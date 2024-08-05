@@ -1,0 +1,71 @@
+.module_50_50 {
+    max-width: 1640px !important;
+    margin: auto;
+    &.module_50_50_content {
+        @extend %center-flex;
+    }
+    .w-1-2 {
+        width: 50% !important;
+
+        .hero_img_background {
+            width: 100% !important;
+            height: 100% !important;
+            .img_block {
+                display: block !important;
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover !important;
+                }
+            }
+        }
+    }
+}
+
+.module_half_half {
+    .hero_content {
+        @extend %center-flex;
+        flex-direction: column;
+
+        h2 {
+            font-size: 24px;
+            line-height: 2.25rem;
+            font-weight: 400;
+            text-decoration: none;
+            color: #000;
+            margin: 0;
+            padding-top: 2.5rem;
+            &:first-child {
+                padding-top: 0;
+            }
+            a{
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;   
+                }
+            }
+        }
+        .text_area_content {
+            margin-top: .5rem;
+        }
+        .button_hero_content {
+            margin-top: 1.5rem ;
+            .btn_black_hover {
+                cursor: pointer;
+                &:hover {
+                    background-color: #fff;
+                    .header-button {
+                        color: $color-link; // שינוי צבע טקסט של הלינק בתוך הכפתור
+                    }
+                }
+            }
+            .header-button {
+                color: #fff;
+                text-decoration: none;
+                &:hover {
+                    color: $color-link;
+                }
+            }
+        }
+    }
+}

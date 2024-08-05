@@ -1,0 +1,106 @@
+.banner_register_newsletter{
+    padding: 20px 0;
+    .register_newsletter_wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #e6e6e6; // Adjust the color as needed
+        padding: 20px 40px;
+        position: relative;
+        @media screen and (max-width: 1023px) {
+            flex-wrap: wrap;
+        }
+        .newsletter_content {
+            flex-basis: 73%;
+            max-width: 73%;
+            @media screen and (max-width: 1023px) {
+                flex-basis: 100%;
+                max-width: 100%;
+            }
+            h2 {
+                font-size: 20px;
+                margin-bottom: 15px;
+                font-weight: normal;
+                text-align: left;
+                line-height: 30px;
+                margin-top: 0;
+            }
+    
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                li {
+                    font-size: 16px;
+                    position: relative;
+                    margin-left: 10px;
+                    &:before{
+                        content:".";
+                        font-size: 20px;
+                        position: absolute;
+                        left: -10px;
+                        top: -3px;
+                        line-height: 1;
+                    }
+                    
+                }
+            }
+        }
+    
+        .newsletter_form {
+            flex-basis: 27%;
+            max-width: 27%;
+            min-width: 412px;
+            @media screen and (max-width: 1023px) {
+                flex-basis: 100%;
+                max-width: 100%;
+            }
+            label{
+                &.visually-hidden {
+                    position: absolute;
+                    width: 1px;
+                    height: 1px;
+                    padding: 0;
+                    margin: -1px;
+                    overflow: hidden;
+                    clip: rect(0, 0, 0, 0);
+                    border: 0;
+                }
+            }
+            span.wpcf7-form-control-wrap{
+                margin-bottom: 15px;
+                display: block;
+            }
+            input[type="email"] {
+                padding: 16px 20px;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                width: 100%; // Adjust width as necessary
+                
+            }
+            input[type="submit"] {
+                @extend %black-btn;
+                display: block;
+                width: 100%;
+                text-align: center;
+                text-transform: uppercase;
+            }
+            .wpcf7-response-output{
+                position: absolute;
+                margin: 0;
+                bottom: 5px;
+                padding: 0;
+                //border: 0;
+                font-size: 20px;
+            }
+            .wpcf7-form.invalid{
+                .wpcf7-response-output{
+                    color: rgb(225, 9, 21);
+                }
+            }
+            
+        }
+    }
+}
+

@@ -1,0 +1,157 @@
+.module_50_50_with_pdts {
+    display: flex !important;
+    .img_block {
+        height: 100%;
+    }    
+}
+.module_half_half_with_pdts {
+    .w-1-2.second {
+        @extend %justify-end;
+        flex-direction: column;
+        align-items: flex-start !important;
+
+        .hero_content {
+            width: 100%;
+            h2 {
+                margin: 0;
+                padding: 0;
+                text-align: left;
+                a{
+                    font-size: $font-size-heading2;
+                    font-weight: 400;
+                    text-decoration: none;
+                    color: $color-link;
+                    &:hover {
+                        text-decoration: underline;   
+                    }
+                }
+            }
+
+            .text_area_content {
+                padding-top: 0;
+                padding-bottom: .25rem;
+                max-height: 9rem !important;
+                overflow-y: auto !important;
+            }
+
+            .button_hero_content {
+                button {
+                    cursor: pointer;
+                    margin: .5rem 0;
+                    &:hover {
+                        background-color: #fff;
+                        .header-button {
+                            color: $color-link; // שינוי צבע טקסט של הלינק בתוך הכפתור
+                        }
+                    }
+                    .header-button {
+                        color: #fff;
+                        text-decoration: none;
+                        &:hover {
+                            color: $color-link;
+                        }
+                    }
+                }    
+            }
+
+            .slider_pdts_content {
+                .tabs_wrapper {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    overflow: hidden;
+        
+                    .swiper-wrapper {
+                        position: relative;
+                        width: 100%;
+                        height: 100%;
+                        z-index: 1;
+                        display: flex;
+                        box-sizing: content-box; 
+                        
+                        .swiper-slide {
+                            .search_suggestions_product {
+                                width: 198px !important;
+                                height: 260px !important;
+
+                                .product_img_wrapper {
+                                    height: 155px !important;
+                                    max-height: 155px !important;
+                                }
+                                .product_details_wrapper {
+                                    height: 105px !important;
+                                    max-height: 105px !important;
+
+                                    .pdt_price_wrapper {
+                                        margin-top: .25rem;
+                                    }
+
+                                    .stock {
+                                        height: auto !important;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .swiper-nav {
+                        z-index: 1;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        will-change: opacity;
+                        position: absolute;
+                        transition-property: opacity;
+                        transition-duration: .3s;
+                        top: 0;
+                        bottom: 0;
+                        margin-top: auto;
+                        margin-bottom: auto;
+                        &.swiper-button-disabled {
+                            opacity: 0;
+                            animation: a-pointer-events 1s linear forwards;
+                        }
+                    
+                        &.swiper-nav-prev {
+                            margin-left: 2.5rem;
+                            left: 0;
+                        }
+                    
+                        &.swiper-nav-next {
+                            margin-right: 2.5rem;
+                            right: 0;
+                        }
+                    
+                        .w-btn {
+                            position: relative;
+                            display: inline-flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                            max-width: 100%;
+                            text-align: left;
+                            cursor: pointer; 
+                    
+                            &.w-color-white {
+                                color: rgb(66,66,66);
+                                border-color: rgb(228,228,228);
+                                background-color: rgb(255,255,255);
+                                justify-content: center;
+                                padding: 1rem 1.5rem;
+                                transition-property: background-color, border-color, color, fill, stroke;
+                                transition-duration: .3s;
+                                border-width: 1px;
+                                border-radius: 0;
+                            }
+                            svg {
+                                display: inline-block;
+                                flex-shrink: 0;
+                                margin: 0 -.5rem;
+                            }
+                        }
+                    }
+        
+                }
+            }
+        }
+    }
+}

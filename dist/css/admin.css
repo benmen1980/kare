@@ -1,0 +1,18 @@
+form#edittag {
+    max-width: 100%;
+}
+
+#edittag input + .form-table, #edittag h2:first-of-type + .form-table {
+    max-width: 800px;
+
+} 
+
+#edittag .acf-fields.-left > .acf-field > .acf-label {
+    margin-left: 0 !important;
+    width: 20% !important;
+    padding: 0 12px !important;
+}
+
+#edittag .acf-fields.-left > .acf-field {
+    padding-left: 0 !important;
+}
