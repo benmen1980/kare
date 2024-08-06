@@ -2874,7 +2874,7 @@ section.section_slider_pdts .section_slider_pdts_wrap .tabs_wrapper .swiper-pagi
 /* Module Banner Newsletter
 --------------------------------------------- */
 .banner_register_newsletter {
-  padding: 20px 0;
+  padding: 20px 1px;
 }
 .banner_register_newsletter .register_newsletter_wrapper {
   display: -webkit-box;
