@@ -7,7 +7,7 @@ Template Name: Homepage
 get_header();
 ?>
 
-<div class="moduls_container margalith">
+<div class="moduls_container">
     <div class="section_modules_wrapper">
         <?php get_template_part('modules/section','case'); ?>
     </div>
