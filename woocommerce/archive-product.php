@@ -104,7 +104,28 @@ endif;
 ?>
 
 <div class="container">
-	<div class="filtering_wrapper"></div>
+<div class="filtering_wrapper">
+		<button class="btn_filter_pdts">
+			<span class="filter_name">delivery time</span>
+			<svg></svg>
+		</button>
+		<button class="btn_filter_pdts">
+			<span class="filter_name">Filter categories</span>
+			<svg></svg>
+		</button>
+		<button class="btn_filter_pdts">
+			<span class="filter_name">material</span>
+			<svg></svg>
+		</button>
+		<button class="btn_filter_pdts">
+			<span class="filter_name">Color</span>
+			<svg></svg>
+		</button>
+		<button class="btn_filter_pdts">
+			<span class="filter_name">All filters</span>
+			<svg></svg>
+		</button>
+	</div>
 	<div class="product_sorting_wrapper"></div>
 	<div class="child_category_wrapper" id="<?php echo 'term-'.$category_id;?>">
 		

@@ -106,36 +106,75 @@
     }
 }
 
-.child_category_wrapper {
-    ul.products {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 0 -1px;
-        margin-top: 2rem;
+.container {
+    .filtering_wrapper {
+        @extend %center-flex;
+        padding: 0 1rem;
+        margin-top: 1.5rem;
+        @media (min-width: 480px) {
+            flex-wrap: wrap;
+        }
 
-        .section_modules_wrapper {
-            width: 100%; 
-            .module_banner_promotion .banner_promotion_wrapper {
-                margin-bottom: 2rem;
+        .btn_filter_pdts{
+            @extend %center-flex;
+            color: #424242;
+            background-color: #fff;
+            border: solid 1px #e4e4e4;
+            border-radius: 0;
+            padding: 1rem 1.5rem;
+            margin: .25rem;
+            flex-shrink: 0;
+            max-width: 100%;
+            text-align: left;
+            cursor: pointer;
+            width: auto;
+            box-sizing: border-box;
+
+            .filter_name {
+                font-weight: 400;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                font-size: 18px;
+
+            }
+            svg {
+                margin-left: 0.5rem;
+                display: inline-block;
+                width: 24px;
+                height: 24px;
             }
         }
     }
 
-    .woocommerce-no-products-found {
-        padding-bottom: 2.5rem;
+    .child_category_wrapper {
+        ul.products {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -1px;
+            margin-top: 2rem;
 
-        .woocommerce-info {
-            background-color: transparent;
-            font-size: 16px;
-            text-align: center;
+            .section_modules_wrapper {
+                width: 100%; 
+                .module_banner_promotion .banner_promotion_wrapper {
+                    margin-bottom: 2rem;
+                }
+            }
         }
+
+        .woocommerce-no-products-found {
+            padding-bottom: 2.5rem;
+
+            .woocommerce-info {
+                background-color: transparent;
+                font-size: 16px;
+                text-align: center;
+            }
+        }    
     }
 
-    
-}
-
-div.module_half_wrapper {
-    h2 {
-        text-align: left ;
+    div.module_half_wrapper {
+        h2 {
+            text-align: left ;
+        }
     }
 }
