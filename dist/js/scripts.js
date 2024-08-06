@@ -163,15 +163,20 @@ jQuery(document).on("ready", function(){
 
 });
 
- // אחרי טעינת Swiper, בדוק את מספר ה-slides
- document.addEventListener('DOMContentLoaded', function () {
-    var swiperWrapper = document.querySelector('#module_slider_pdts');
+// After loading Swiper, check the number of slides
+document.addEventListener('DOMContentLoaded', function () {
+    // Find all elements with same ID
+    var swiperWrappers = document.querySelectorAll('#module_slider_pdts');
 
+    // Iterate over each found element
     swiperWrappers.forEach(function(swiperWrapper) {
         var slides = swiperWrapper.querySelectorAll('.swiper-slide');
 
         if (slides.length < 6) {
             swiperWrapper.style.justifyContent = 'center';
+        }
+        if (slides.length >= 6) {
+            swiperWrapper.style.justifyContent = 'flex-start';
         }
     });
 });

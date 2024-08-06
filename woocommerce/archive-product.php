@@ -104,7 +104,7 @@ endif;
 ?>
 
 <div class="container">
-<div class="filtering_wrapper">
+	<div class="filtering_wrapper">
 		<button class="btn_filter_pdts">
 			<span class="filter_name">delivery time</span>
 			<svg></svg>
@@ -216,8 +216,6 @@ endif;
 			endwhile;
 		endif;
 	?>
-
-
 	</div>
 </div>
 
