@@ -122,6 +122,13 @@ button {
     padding-right: 1rem;
     margin-left: auto;
     margin-right: auto;
+
+    @media (min-width: 1840px) {
+        max-width: 1640px !important;
+    }
+    @media (min-width: 1420px) {
+        max-width: 1360px;
+    }
 }
 
 h2 {
@@ -182,11 +189,5 @@ p{
 }
 
 .container{
-    @media (min-width: 1840px) {
-        max-width: 1640px !important;
-    }
-    @media (min-width: 1420px) {
-        max-width: 1360px;
-    }
-    margin: auto;
+    @extend %container;
 }

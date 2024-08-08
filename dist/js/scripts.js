@@ -152,6 +152,19 @@ jQuery(document).on("ready", function(){
                     }
                 }
             });
+        } else if (container.querySelector('#slider_img_gallery_small')) {
+            swiperOptions = Object.assign({}, defaultSwiperOptions, {
+                spaceBetween: 20,
+                slidesPerView: 9.15,
+                on: { // Explicitly define the events here
+                    init: function () {
+                        updatePagination(this);
+                    },
+                    slideChange: function () {
+                        updatePagination(this);
+                    }
+                }
+            });
         } else {
             swiperOptions = defaultSwiperOptions;
         };
