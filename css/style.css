@@ -1169,6 +1169,7 @@ header .nav-top-wrapper .w-1-3 .w-btn#btn-header-search {
 }
 header .nav-top-wrapper .w-1-3 .l-btn {
   padding-right: 1rem;
+  cursor: pointer;
 }
 header .header-menu {
   background-color: #F4F4F4;
@@ -1286,6 +1287,68 @@ header .header-menu .header-menu-tabs-wrapper .header-menu-button li.menu-item-h
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: start;
+}
+header .login_sidebar {
+  width: 400px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: -400px;
+  background-color: #fff;
+  -webkit-box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+          box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  -webkit-transition: right 0.3s ease-in-out;
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
+}
+header .login_sidebar.active {
+  right: 0;
+}
+header .login_sidebar .close {
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+header .login_sidebar .sidebar-content {
+  padding: 20px;
+}
+header .login_sidebar .sidebar-content h2 {
+  margin-bottom: 20px;
+}
+header .login_sidebar .sidebar-content .form-group {
+  margin-bottom: 15px;
+}
+header .login_sidebar .sidebar-content .form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+header .login_sidebar .sidebar-content .form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+header .login_sidebar .sidebar-content .login-button, header .login_sidebar .sidebar-content .create-account {
+  width: 100%;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+header .login_sidebar .sidebar-content .login-button:hover, header .login_sidebar .sidebar-content .create-account:hover {
+  background-color: #555;
+}
+header .login_sidebar .sidebar-content .forgot-password {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  color: #999;
+  font-size: 0.9em;
 }
 
 /* Home Page

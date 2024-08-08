@@ -11,7 +11,7 @@
 
 ?>
 	</main><!-- #main-site -->
-	<footer id="colophon" class="site-footer vv">
+	<footer id="colophon" class="site-footer">
 		<div class="site-info">
 			<div class="footer-container background-gray">
 				<div class="contain-footer min-p">

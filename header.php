@@ -47,8 +47,8 @@
 					<button aria-label="Wishlist" type="button" class="l-btn">
 						<span>Wishlist</span>
 					</button>
-					<button aria-label="My account" type="button" class="l-btn">
-						<span>My account</span>
+					<button aria-label="My account" type="button" class="l-btn open_account_popup">
+						<span><?php esc_html_e( 'My account', 'kare' ); ?></span>
 					</button>
 					<a href="/cart" aria-label="link" class="w-btn">
 						<!-- <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" class="-m-1 svg-icon sprite-icons"><use href="/_nuxt/41a1314fa8f2980ef26b9b83aa0c0cd1.svg#i-cart" xlink:href="/_nuxt/41a1314fa8f2980ef26b9b83aa0c0cd1.svg#i-cart"></use></svg>  -->
@@ -72,4 +72,22 @@
 					?>
 				</div>
 			</div><!-- #site-navigation -->
+
+			<!-- Popup Sidebar -->
+			<div id="login_sidebar" class="login_sidebar">
+				<div class="sidebar-content">
+					<span id="close_sidebar" class="close">&times;</span>
+					<h2><?php esc_html_e( 'Login', 'kare' ); ?></h2>
+					<?php 
+					// Check if user is not logged in before showing the form
+					if ( !is_user_logged_in() ) { 
+						// Display WooCommerce login form
+						woocommerce_login_form(); 
+					} else {
+						// Optionally, you can display a message or redirect if the user is already logged in
+						echo '<p>You are already logged in.</p>';
+					}
+					?>
+				</div>
+			</div>
 		</header><!-- #masthead -->

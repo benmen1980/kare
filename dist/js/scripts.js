@@ -174,6 +174,23 @@ jQuery(document).on("ready", function(){
         }
     });  
 
+    //open account popup in header
+    $('.open_account_popup').on('click', function() {
+        $('#login_sidebar').addClass('active');
+    });
+    
+    $('#close_sidebar').on('click', function() {
+        $('#login_sidebar').removeClass('active');
+    });
+    
+    // Close the sidebar if clicked outside
+    $(document).mouseup(function(e) {
+        var container = $("#login_sidebar");
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
+            container.removeClass('active');
+        }
+    });
+
 });
 
 // After loading Swiper, check the number of slides
