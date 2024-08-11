@@ -177,10 +177,17 @@ jQuery(document).on("ready", function(){
     //open account popup in header
     $('.open_account_popup').on('click', function() {
         $('#login_sidebar').addClass('active');
+        if ($('#overlay').length === 0) {
+            $('body').append('<div id="overlay"></div>');
+        }
+        $('#overlay').fadeIn(); // Show the overlay
     });
     
     $('#close_sidebar').on('click', function() {
         $('#login_sidebar').removeClass('active');
+        $('#overlay').fadeOut(function() {
+            $(this).remove(); // Remove overlay after fade out
+        });
     });
     
     // Close the sidebar if clicked outside
@@ -188,6 +195,9 @@ jQuery(document).on("ready", function(){
         var container = $("#login_sidebar");
         if (!container.is(e.target) && container.has(e.target).length === 0) {
             container.removeClass('active');
+            $('#overlay').fadeOut(function() {
+                $(this).remove(); // Remove overlay after fade out
+            });
         }
     });
 
