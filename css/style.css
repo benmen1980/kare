@@ -2372,6 +2372,14 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
       -ms-flex-positive: 1;
           flex-grow: 1;
 }
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_title .accordion_question svg {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
 #primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_title .accordion_question .rotate180 {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
@@ -2382,6 +2390,10 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
 }
 #primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content {
   overflow: hidden;
+  display: none;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content.active {
+  display: block;
 }
 #primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .data_wrapper {
   padding: 3.75rem 0;

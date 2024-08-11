@@ -232,10 +232,14 @@
 				<div class="accordion_title">
 					<button type="button" aria-label="button" class="accordion_question">
 						<span class="title"><?php echo esc_html_e( 'Technical data', 'kare' ); ?></span>
-						<?php echo file_get_contents( get_template_directory_uri() . '/dist/images/svg/arrow-down.svg');?>
+						<?php 
+							$icon = file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-down.svg');
+							$icon_with_class = str_replace('<svg', '<svg class="rotate180"', $icon);
+							echo $icon_with_class;
+						?>
 					</button>
 				</div>
-				<div class="accordion_content">
+				<div class="accordion_content active">
 					<div class="accordion_answer data_wrapper">
 						<h3><?php echo esc_html_e( 'Generally', 'kare' ); ?></h3>
 						<ul class="information_product">
