@@ -17,7 +17,7 @@
     <div class="w-1-2 first">
         <div class="hero_img_background">
             <a href="<?php echo $btn_text; ?>" class="img_block">
-                <img src="<?php echo $banner_img ?>" alt=" image">
+                <img src="<?php echo $banner_img ?>" alt="image">
             </a>
         </div>
     </div>

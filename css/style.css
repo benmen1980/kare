@@ -90,7 +90,7 @@ button {
   border: 1px solid #e4e4e4;
 }
 
-.section_slider_4_cubes .tabs_wrapper_cubes .swiper-pagination-wrapper .swiper-pagination, .section_slider_4_cubes .tabs_wrapper_cubes .swiper-pagination-wrapper, .module_banner_promotion .banner_promotion_wrapper > .container, .module_banner_promotion .banner_promotion_wrapper, section.section_slider_pdts .section_slider_pdts_wrap .tabs_wrapper .swiper-pagination-wrapper .swiper-pagination, section.section_slider_pdts .section_slider_pdts_wrap .tabs_wrapper .swiper-pagination-wrapper, .module_half_half .hero_content, .module_50_50.module_50_50_content, section.section_slider_categories .section_slider_cat_wrap .tabs_wrapper.rounded_btn .swiper_slide_cat .swiper-slide a div, section.section_slider_categories .section_slider_cat_wrap .tabs_wrapper.rounded_btn .swiper_slide_cat, section.section_slider_categories .section_slider_cat_wrap .tabs_wrapper.simple .swiper-pagination-wrapper .swiper-pagination, section.section_slider_categories .section_slider_cat_wrap .tabs_wrapper.simple .swiper-pagination-wrapper, section.design_banner_wrapper .section_image_inner > button, #primary .product .top_details .l_side .product-gallery .small_img_slider_wrapper .swiper_img_slider.swiper-container .swiper-nav, #primary .product .top_details .l_side .product-gallery .small_img_slider_wrapper .swiper_img_slider.swiper-container .img_gallery_small.swiper-wrapper .swiper-slide .product_zoom_thumbnail_item, #primary .product .top_details .l_side .product-gallery .slider_gallery_wrapper .gallery-thumbnail-slider .gallery-thumbnail, .container .filtering_wrapper .btn_filter_pdts, .container .filtering_wrapper, .breadcrumb_section .woocommerce-breadcrumb, .site-info .bottom-footer, .site-info .footer-container .contain-footer div.center-flex, header .header-menu .header-menu-tabs-wrapper .header-menu-button > .menu-item > ul.sub-menu, header .header-menu, .channel-kare .center-flex, .center-flex {
+.section_slider_4_cubes .tabs_wrapper_cubes .swiper-pagination-wrapper .swiper-pagination, .section_slider_4_cubes .tabs_wrapper_cubes .swiper-pagination-wrapper, .module_banner_promotion .banner_promotion_wrapper > .container, .module_banner_promotion .banner_promotion_wrapper, section.section_slider_pdts .section_slider_pdts_wrap .tabs_wrapper .swiper-pagination-wrapper .swiper-pagination, section.section_slider_pdts .section_slider_pdts_wrap .tabs_wrapper .swiper-pagination-wrapper, .module_half_half .hero_content, .module_50_50.module_50_50_content, section.section_slider_categories .section_slider_cat_wrap .tabs_wrapper.rounded_btn .swiper_slide_cat .swiper-slide a div, section.section_slider_categories .section_slider_cat_wrap .tabs_wrapper.rounded_btn .swiper_slide_cat, section.section_slider_categories .section_slider_cat_wrap .tabs_wrapper.simple .swiper-pagination-wrapper .swiper-pagination, section.section_slider_categories .section_slider_cat_wrap .tabs_wrapper.simple .swiper-pagination-wrapper, section.design_banner_wrapper .section_image_inner > button, #primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_title .accordion_question, #primary .product .top_details .l_side .product-gallery .small_img_slider_wrapper .swiper_img_slider.swiper-container .swiper-nav, #primary .product .top_details .l_side .product-gallery .small_img_slider_wrapper .swiper_img_slider.swiper-container .img_gallery_small.swiper-wrapper .swiper-slide .product_zoom_thumbnail_item, #primary .product .top_details .l_side .product-gallery .slider_gallery_wrapper .gallery-thumbnail-slider .gallery-thumbnail, .container .filtering_wrapper .btn_filter_pdts, .container .filtering_wrapper, .breadcrumb_section .woocommerce-breadcrumb, .site-info .bottom-footer, .site-info .footer-container .contain-footer div.center-flex, header .header-menu .header-menu-tabs-wrapper .header-menu-button > .menu-item > ul.sub-menu, header .header-menu, .channel-kare .center-flex, .center-flex {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -963,6 +963,12 @@ body {
 
 main {
   padding-bottom: 6.25rem;
+}
+
+*, :after, :before {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 0 solid;
 }
 
 /* Comments
@@ -2339,6 +2345,110 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
   line-height: 3rem;
   text-align: center;
   font-weight: 400;
+}
+#primary .product .accordion_wrapper .accordion_product_details {
+  background-color: #ededed;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item {
+  width: 100%;
+  position: relative;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_title .accordion_question {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  padding: 1.25rem;
+  font-size: 16px;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #f4f4f4;
+  border-color: #e4e4e4;
+  border-width: 0 0 1px;
+  cursor: pointer;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_title .accordion_question .title {
+  margin-right: 0.5rem;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_title .accordion_question svg {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_title .accordion_question .rotate180 {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content {
+  overflow: hidden;
+  display: none;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content.active {
+  display: block;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .data_wrapper {
+  padding: 3.75rem 0;
+  font-size: 14px;
+  line-height: 1.3125rem;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .data_wrapper h3 {
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-weight: 400;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .data_wrapper ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1.5rem;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .data_wrapper ul li {
+  padding: 0.25rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .data_wrapper ul li span {
+  width: 50%;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .data_wrapper ul li span.description_bold {
+  text-align: right;
+  padding-right: 0.5rem;
+  font-weight: 700;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .data_wrapper ul li span.answer {
+  padding-left: 0.5rem;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .description_wrapper {
+  padding: 3.75rem 0;
+  font-size: 14px;
+  line-height: 1.3125rem;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .description_wrapper h3 {
+  margin: 0;
+  padding-bottom: 1.25rem;
+  text-align: left;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .description_wrapper .text_description {
+  font-size: 16px;
+  line-height: 1.5rem;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .delivery_wrapper .text_delivery {
+  padding: 1.25rem;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .delivery_wrapper .text_delivery p, #primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .delivery_wrapper .text_delivery span {
+  font-size: 16px;
+  line-height: 1.5rem;
 }
 
 /*--------------------------------------------------------------

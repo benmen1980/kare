@@ -204,10 +204,166 @@
 	</section>
 	<section class="accordion_wrapper">
 		<h2><b>Product</b> details</h2>
-		<section class="accordion_Product_details"></section>
-	</section>
-	<section class="pdts_related_wrapper">
-	<h2><b>Product</b> details</h2>
+		<section class="accordion_product_details">
+			<?php if(get_field('product_details')):  
+				$product_details = get_field('product_details'); // Getting the main set of fields
+				
+				// getting the fields from the internal field group 'pdt_information'
+				$pdt_information = $product_details['pdt_information'];
+				$item_number = $pdt_information['item_number'];
+				$material_details = $pdt_information['material_details'];
+				$width = $pdt_information['width'];
+				$depth = $pdt_information['depth'];
+				$height = $pdt_information['height'];
+				$weight = $pdt_information['weight'];
+				$color = $pdt_information['color'];
+				$series = $pdt_information['series'];
+
+				// Getting additional fields from the main field group
+				$video_url = $product_details['url_video'];
+				$title_description = $product_details['title_description'];
+				$txt_description = $product_details['more_description'];
+				$delivery_information = $product_details['delivery_information'];
+				$file_download = $product_details['file_download'];
+
+			endif; ?>
+
+			<div class="accordion_item">
+				<div class="accordion_title">
+					<button type="button" aria-label="button" class="accordion_question">
+						<span class="title"><?php echo esc_html_e( 'Technical data', 'kare' ); ?></span>
+						<?php 
+							$icon = file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-down.svg');
+							$icon_with_class = str_replace('<svg', '<svg class="rotate180"', $icon);
+							echo $icon_with_class;
+						?>
+					</button>
+				</div>
+				<div class="accordion_content active">
+					<div class="accordion_answer data_wrapper">
+						<h3><?php echo esc_html_e( 'Generally', 'kare' ); ?></h3>
+						<ul class="information_product">
+							<li>
+								<span class="description_bold"><?php echo esc_html_e( 'Article number:', 'kare' ); ?></span>
+								<span class="answer"><?php echo esc_html( $item_number ); ?></span>
+							</li>
+						</ul>
+						<h3><?php echo esc_html_e( 'Details', 'kare' ); ?></h3>
+						<ul class="information_product">
+							<li>
+								<span class="description_bold"><?php echo esc_html_e( 'Material Details:', 'kare' ); ?></span>
+								<span class="answer"><?php echo esc_html( $material_details ); ?></span>
+							</li>
+						</ul>
+						<h3><?php echo esc_html_e( 'Dimensions', 'kare' ); ?></h3>
+						<ul class="information_product">
+							<li>
+								<span class="description_bold"><?php echo esc_html_e( 'Width (cm):', 'kare' ); ?></span>
+								<span class="answer"><?php echo esc_html( $width ); ?></span>
+							</li>
+							<li>
+								<span class="description_bold"><?php echo esc_html_e( 'Depth (cm):', 'kare' ); ?></span>
+								<span class="answer"><?php echo esc_html( $depth ); ?></span>
+							</li>
+							<li>
+								<span class="description_bold"><?php echo esc_html_e( 'Height (cm):', 'kare' ); ?></span>
+								<span class="answer"><?php echo esc_html( $height ); ?></span>
+							</li>
+						</ul>
+						<h3><?php echo esc_html_e( 'Miscellaneous', 'kare' ); ?></h3>
+						<ul class="information_product">
+							<li>
+								<span class="description_bold"><?php echo esc_html_e( 'Weight (kg):', 'kare' ); ?></span>
+								<span class="answer"><?php echo esc_html( $weight ); ?></span>
+							</li>
+							<li>
+								<span class="description_bold"><?php echo esc_html_e( 'Color:', 'kare' ); ?></span>
+								<span class="answer"><?php echo esc_html( $color ); ?></span>
+							</li>
+							<?php if(!empty($series)) : ?>
+								<li>
+									<span class="description_bold"><?php echo esc_html_e( 'Series:', 'kare' ); ?></span>
+									<span class="answer"><?php echo esc_html( $series ); ?></span>
+								</li>
+							<?php endif?>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<?php if($video_url) : ?>
+				<div class="accordion_item">
+					<div class="accordion_title">
+						<button type="button" aria-label="button" class="accordion_question">
+							<span class="title"><?php echo esc_html_e( 'Video', 'kare' ); ?></span>
+							<?php echo file_get_contents( get_template_directory_uri() . '/dist/images/svg/arrow-down.svg');?>
+						</button>
+					</div>
+					<div class="accordion_content">
+						<div class="accordion_answer">
+							<div class="video-wrapper">
+								<iframe width="768" height="432" src="<?php echo $video_url; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php endif?>
+			<div class="accordion_item">
+				<div class="accordion_title">
+					<button type="button" aria-label="button" class="accordion_question">
+						<span class="title"><?php echo esc_html_e( 'Description', 'kare' ); ?></span>
+						<?php echo file_get_contents( get_template_directory_uri() . '/dist/images/svg/arrow-down.svg');?>
+					</button>
+				</div>
+				<div class="accordion_content">
+					<div class="accordion_answer container description_wrapper">
+						<h3><?php echo esc_html( $title_description ); ?></h3>
+						<span class="text_description"><?php echo esc_html($txt_description); ?></span>
+					</div>
+				</div>
+			</div>
+			<div class="accordion_item">
+				<div class="accordion_title">
+					<button type="button" aria-label="button" class="accordion_question">
+						<span class="title"><?php echo esc_html_e( 'Delivery', 'kare' ); ?></span>
+						<?php echo file_get_contents( get_template_directory_uri() . '/dist/images/svg/arrow-down.svg');?>
+					</button>
+				</div>
+				<div class="accordion_content">
+					<div class="accordion_answer container delivery_wrapper">
+						<div class="text_delivery"><?php echo wp_kses_post($delivery_information); ?></div>
+					</div>
+				</div>
+			</div>
+			<div class="accordion_item">
+				<div class="accordion_title">
+					<button type="button" aria-label="button" class="accordion_question">
+						<span class="title"><?php echo esc_html_e( 'Customer reviews', 'kare' ); ?></span>
+						<?php echo file_get_contents( get_template_directory_uri() . '/dist/images/svg/arrow-down.svg');?>
+					</button>
+				</div>
+				<div class="accordion_content">
+					<div class="accordion_answer">
+						<div class="container"><?php echo wp_kses_post($delivery_information); ?></div>
+					</div>
+				</div>
+			</div>
+			<div class="accordion_item">
+				<div class="accordion_title">
+					<button type="button" aria-label="button" class="accordion_question">
+						<span class="title"><?php echo esc_html_e( 'Downloads', 'kare' ); ?></span>
+						<?php echo file_get_contents( get_template_directory_uri() . '/dist/images/svg/arrow-down.svg');?>
+					</button>
+				</div>
+				<div class="accordion_content">
+					<div class="accordion_answer">
+						<h6><?php echo esc_html_e( 'Installation instructions', 'kare' ); ?></h6>
+						<button aria-label="button" type="button" class="btn_white_hover">
+							<a href="<?php echo $file_download; ?>" class="button_download" rel="noopener" target="_blank"><?php echo esc_html_e( 'Download', 'kare' ); ?></a>
+						</button>
+					</div>
+				</div>
+			</div>
+		</section>
 	</section>
  </div>
  
