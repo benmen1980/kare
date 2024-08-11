@@ -231,27 +231,40 @@ header {
         &.active {
             right: 0;
         }
-  
-        .close {
-            @extend %black-btn;
-            font-size: 24px;
-            cursor: pointer;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
+
+        
         .sidebar-content {
-            padding: 20px;
-            h2 {
-                margin-bottom: 20px;
-            }
             .top_sidebar{
                 display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 8px 16px;
+                border-bottom: 1px solid rgb(228, 228, 228);
+                margin-bottom: 10px;
+                .close {
+                    font-size: 24px;
+                    cursor: pointer;
+                    transition-property: background-color,border-color,color,fill,stroke;
+                    transition-duration: .3s;
+                    background-color: #fff;
+                    border-radius: 0;
+                    padding: 13px 17px;
+                    &:hover{
+                        background-color: #000;
+                    }
+                }
+                h2 {
+                    margin: 0px;
+                    font-size: 20px
+                }
+            }
+            .bottom_sidebar{
+                padding: 20px;
             }
             form{
                 &.login{
-                    .form-row{
-                        margin-bottom: 10px;
+                    .form-row{  
+                        margin-bottom: 10px;                      
                         label{
                             position: absolute;
                             width: 1px;
@@ -266,35 +279,29 @@ header {
                             padding: 13px 20px;
                             font-size: 16px;
                             border: 1px solid #ccc;
-                            border-radius: 3px;
                             width: 100%;
                             box-shadow: 0 0 0 1000px rgb(244,244,244) inset;
+                            border: 1px solid rgb(228, 228, 228);
+                        }
+                        button{
+                            @extend %black-btn;
+                            justify-content: center;
+                            text-transform: uppercase;
+                            width: 100%;
+                        }
+                    }
+                    .lost_password{
+                        a{
+                            text-decoration: none;
+                            text-align: right;
+                            display: block;
+                            &:hover{
+                                text-decoration: underline;
+                            }
                         }
                     }
                 }
 
-            }
-            .login-button, .create-account {
-                width: 100%;
-                padding: 10px;
-                background-color: #333;
-                color: #fff;
-                border: none;
-                cursor: pointer;
-                border-radius: 4px;
-                margin-top: 10px;
-                
-                &:hover {
-                    background-color: #555;
-                }
-            }
-            
-            .forgot-password {
-                display: block;
-                margin-top: 10px;
-                text-align: center;
-                color: #999;
-                font-size: 0.9em;
             }
         }
     }

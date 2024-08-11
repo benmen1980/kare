@@ -52,7 +52,7 @@ button {
   background-color: #000000;
 }
 
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit], #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button, header .login_sidebar .close, .btn-test, .btn_black_hover {
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit], #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button, header .login_sidebar .sidebar-content form.login .form-row button, .btn-test, .btn_black_hover {
   padding: 1rem 1.5rem;
   position: relative;
   display: -webkit-inline-box;
@@ -70,13 +70,17 @@ button {
   border: none;
   border-radius: 0;
   cursor: pointer;
-}
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover, header .login_sidebar .close:hover, .btn-test:hover, .btn_black_hover:hover {
-  background-color: #fff;
-  color: #424242;
+  -webkit-transition-property: background-color, border-color, color, fill, stroke;
+  transition-property: background-color, border-color, color, fill, stroke;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
   border: 1px solid #e4e4e4;
 }
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover a, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover a, header .login_sidebar .close:hover a, .btn-test:hover a, .btn_black_hover:hover a {
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover, header .login_sidebar .sidebar-content form.login .form-row button:hover, .btn-test:hover, .btn_black_hover:hover {
+  background-color: #fff;
+  color: #424242;
+}
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover a, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover a, header .login_sidebar .sidebar-content form.login .form-row button:hover a, .btn-test:hover a, .btn_black_hover:hover a {
   color: #000000;
 }
 
@@ -224,7 +228,7 @@ h5 {
 
 p {
   font-size: 14px !important;
-  margin: 0 !important;
+  margin: 0;
 }
 
 .pt-3 {
@@ -1321,51 +1325,77 @@ header .login_sidebar {
 header .login_sidebar.active {
   right: 0;
 }
-header .login_sidebar .close {
+header .login_sidebar .sidebar-content .top_sidebar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 8px 16px;
+  border-bottom: 1px solid rgb(228, 228, 228);
+  margin-bottom: 10px;
+}
+header .login_sidebar .sidebar-content .top_sidebar .close {
   font-size: 24px;
   cursor: pointer;
-  position: absolute;
-  top: 20px;
-  right: 20px;
+  -webkit-transition-property: background-color, border-color, color, fill, stroke;
+  transition-property: background-color, border-color, color, fill, stroke;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  background-color: #fff;
+  border-radius: 0;
+  padding: 13px 17px;
 }
-header .login_sidebar .sidebar-content {
+header .login_sidebar .sidebar-content .top_sidebar .close:hover {
+  background-color: #000;
+}
+header .login_sidebar .sidebar-content .top_sidebar h2 {
+  margin: 0px;
+  font-size: 20px;
+}
+header .login_sidebar .sidebar-content .bottom_sidebar {
   padding: 20px;
 }
-header .login_sidebar .sidebar-content h2 {
-  margin-bottom: 20px;
+header .login_sidebar .sidebar-content form.login .form-row {
+  margin-bottom: 10px;
 }
-header .login_sidebar .sidebar-content .form-group {
-  margin-bottom: 15px;
+header .login_sidebar .sidebar-content form.login .form-row label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
-header .login_sidebar .sidebar-content .form-group label {
-  display: block;
-  margin-bottom: 5px;
-}
-header .login_sidebar .sidebar-content .form-group input {
-  width: 100%;
-  padding: 8px;
+header .login_sidebar .sidebar-content form.login .form-row input {
+  padding: 13px 20px;
+  font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-}
-header .login_sidebar .sidebar-content .login-button, header .login_sidebar .sidebar-content .create-account {
   width: 100%;
-  padding: 10px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-  margin-top: 10px;
+  -webkit-box-shadow: 0 0 0 1000px rgb(244, 244, 244) inset;
+          box-shadow: 0 0 0 1000px rgb(244, 244, 244) inset;
+  border: 1px solid rgb(228, 228, 228);
 }
-header .login_sidebar .sidebar-content .login-button:hover, header .login_sidebar .sidebar-content .create-account:hover {
-  background-color: #555;
+header .login_sidebar .sidebar-content form.login .form-row button {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-transform: uppercase;
+  width: 100%;
 }
-header .login_sidebar .sidebar-content .forgot-password {
+header .login_sidebar .sidebar-content form.login .lost_password a {
+  text-decoration: none;
+  text-align: right;
   display: block;
-  margin-top: 10px;
-  text-align: center;
-  color: #999;
-  font-size: 0.9em;
+}
+header .login_sidebar .sidebar-content form.login .lost_password a:hover {
+  text-decoration: underline;
 }
 
 /* Home Page

@@ -46,10 +46,13 @@ button {
     border: none;
     border-radius: 0;
     cursor: pointer;
+    transition-property: background-color,border-color,color,fill,stroke;
+    transition-duration: .3s;
+    border: $border-width solid #e4e4e4;
     &:hover {
         background-color: #fff;
         color: #424242;
-        border: $border-width solid #e4e4e4;
+        
         a {
             color: $color-link;
         }
@@ -182,7 +185,7 @@ $width-1-3: 33.3333%;
 }
 p{
     font-size: $font-size-base !important;
-    margin: 0 !important;
+    margin: 0;
 }
 .pt-3{
     padding-top: 1rem !important;
