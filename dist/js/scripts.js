@@ -190,7 +190,27 @@ jQuery(document).on("ready", function(){
             container.removeClass('active');
         }
     });
+    
+    // opening and closing respectively of an accordion by clicking on the class "accordion_item" 
+    $('.accordion_content').css('display', 'none');
+    $('.accordion_question').click(function() {
+        var accordionItem = $(this).closest('.accordion_item');
+        var accordionContent = accordionItem.find('.accordion_content');
+        var isOpen = accordionContent.css('display') !== 'none';
 
+        if (isOpen) {
+            accordionContent.slideUp().css('display', 'none');
+            accordionItem.removeClass('active');
+        } else {
+            accordionContent.slideDown().css('display', 'block');
+            accordionItem.addClass('active');
+        }
+
+        // rotation of the arrow 
+       $(this).find('svg').toggleClass('rotate180', !isOpen);
+
+    });
+    
 });
 
 // After loading Swiper, check the number of slides
