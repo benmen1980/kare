@@ -227,7 +227,7 @@ header {
         background-color: #fff;
         box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
         transition: right 0.3s ease-in-out;
-        z-index: 1000;
+        z-index: 9999;
         &.active {
             right: 0;
         }

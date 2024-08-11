@@ -1310,7 +1310,7 @@ header .login_sidebar {
           box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
   -webkit-transition: right 0.3s ease-in-out;
   transition: right 0.3s ease-in-out;
-  z-index: 1000;
+  z-index: 9999;
 }
 header .login_sidebar.active {
   right: 0;
