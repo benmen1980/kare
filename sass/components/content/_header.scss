@@ -231,7 +231,9 @@ header {
         &.active {
             right: 0;
         }
+  
         .close {
+            @extend %black-btn;
             font-size: 24px;
             cursor: pointer;
             position: absolute;
@@ -243,20 +245,35 @@ header {
             h2 {
                 margin-bottom: 20px;
             }
-            .form-group {
-                margin-bottom: 15px;
-                label {
-                    display: block;
-                    margin-bottom: 5px;
-                }
-                input {
-                    width: 100%;
-                    padding: 8px;
-                    border: 1px solid #ccc;
-                    border-radius: 4px;
-                }
+            .top_sidebar{
+                display: flex;
             }
-            
+            form{
+                &.login{
+                    .form-row{
+                        margin-bottom: 10px;
+                        label{
+                            position: absolute;
+                            width: 1px;
+                            height: 1px;
+                            padding: 0;
+                            margin: -1px;
+                            overflow: hidden;
+                            clip: rect(0, 0, 0, 0);
+                            border: 0;
+                        }
+                        input{
+                            padding: 13px 20px;
+                            font-size: 16px;
+                            border: 1px solid #ccc;
+                            border-radius: 3px;
+                            width: 100%;
+                            box-shadow: 0 0 0 1000px rgb(244,244,244) inset;
+                        }
+                    }
+                }
+
+            }
             .login-button, .create-account {
                 width: 100%;
                 padding: 10px;

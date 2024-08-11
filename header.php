@@ -76,8 +76,10 @@
 			<!-- Popup Sidebar -->
 			<div id="login_sidebar" class="login_sidebar">
 				<div class="sidebar-content">
-					<span id="close_sidebar" class="close">&times;</span>
-					<h2><?php esc_html_e( 'Login', 'kare' ); ?></h2>
+					<div class="top_sidebar">
+						<button id="close_sidebar" class="close">&times;</button>
+						<h2><?php esc_html_e( 'Login', 'kare' ); ?></h2>
+					</div>
 					<?php 
 					// Check if user is not logged in before showing the form
 					if ( !is_user_logged_in() ) { 

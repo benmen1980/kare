@@ -52,7 +52,7 @@ button {
   background-color: #000000;
 }
 
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit], #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button, .btn-test, .btn_black_hover {
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit], #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button, header .login_sidebar .close, .btn-test, .btn_black_hover {
   padding: 1rem 1.5rem;
   position: relative;
   display: -webkit-inline-box;
@@ -71,12 +71,12 @@ button {
   border-radius: 0;
   cursor: pointer;
 }
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover, .btn-test:hover, .btn_black_hover:hover {
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover, header .login_sidebar .close:hover, .btn-test:hover, .btn_black_hover:hover {
   background-color: #fff;
   color: #424242;
   border: 1px solid #e4e4e4;
 }
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover a, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover a, .btn-test:hover a, .btn_black_hover:hover a {
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover a, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover a, header .login_sidebar .close:hover a, .btn-test:hover a, .btn_black_hover:hover a {
   color: #000000;
 }
 
