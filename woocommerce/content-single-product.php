@@ -221,6 +221,7 @@
 
 				// Getting additional fields from the main field group
 				$video_url = $product_details['url_video'];
+				$img_link = $product_details['img_link'];
 				$title_description = $product_details['title_description'];
 				$txt_description = $product_details['more_description'];
 				$delivery_information = $product_details['delivery_information'];
@@ -299,9 +300,26 @@
 						</button>
 					</div>
 					<div class="accordion_content">
-						<div class="accordion_answer">
+						<div class="accordion_answer video_wrapper container">
 							<div class="video-wrapper">
 								<iframe width="768" height="432" src="<?php echo $video_url; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php endif?>
+			<?php if($img_link) : ?>
+				<div class="accordion_item">
+					<div class="accordion_title">
+						<button type="button" aria-label="button" class="accordion_question">
+							<span class="title"><?php echo esc_html_e( 'Dimensions', 'kare' ); ?></span>
+							<?php echo file_get_contents( get_template_directory_uri() . '/dist/images/svg/arrow-down.svg');?>
+						</button>
+					</div>
+					<div class="accordion_content">
+						<div class="accordion_answer dimensions_wrapper container">
+							<div class="img-wrapper">
+								<img src="<?php echo $img_link; ?>" alt="image with dimensions of the product"/>
 							</div>
 						</div>
 					</div>
@@ -342,27 +360,60 @@
 					</button>
 				</div>
 				<div class="accordion_content">
-					<div class="accordion_answer">
-						<div class="container"><?php echo wp_kses_post($delivery_information); ?></div>
+					<div class="accordion_answer reviews_wrapper container">
+						<div class="customer_reviews">
+							<?php if (have_comments()) : ?>
+								<?php
+								// Display reviews
+								wp_list_comments(array(
+									'style'       => 'div',
+									'short_ping'  => true,
+									'callback'    => 'woocommerce_comments'
+								));
+								?>
+							<?php else : ?>
+								<p><?php esc_html_e('No reviews for this search', 'kare'); ?></p>
+							<?php endif; ?>
+				
+							<?php if (is_user_logged_in()) : ?>
+								<?php
+								// Display review form
+								comment_form(array(
+									'title_reply'          => esc_html__('Add Review', 'kare'),
+									'title_reply_to'       => esc_html__('Leave a Reply to %s', 'kare'),
+									'title_reply_before'   => '<h3 id="reply-title" class="comment-reply-title">',
+									'title_reply_after'    => '</h3>',
+									'label_submit'         => esc_html__('Submit', 'kare'),
+								));
+								?>
+							<?php else : ?>
+								<button aria-label="button" type="button" class="open_account_button btn_white_hover">
+									<a href="#" class="add_review_btn" ><?php echo esc_html_e( 'Add Review', 'kare' ); ?></a>
+								</button>
+							<?php endif; ?>
+							
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="accordion_item">
-				<div class="accordion_title">
-					<button type="button" aria-label="button" class="accordion_question">
-						<span class="title"><?php echo esc_html_e( 'Downloads', 'kare' ); ?></span>
-						<?php echo file_get_contents( get_template_directory_uri() . '/dist/images/svg/arrow-down.svg');?>
-					</button>
-				</div>
-				<div class="accordion_content">
-					<div class="accordion_answer">
-						<h6><?php echo esc_html_e( 'Installation instructions', 'kare' ); ?></h6>
-						<button aria-label="button" type="button" class="btn_white_hover">
-							<a href="<?php echo $file_download; ?>" class="button_download" rel="noopener" target="_blank"><?php echo esc_html_e( 'Download', 'kare' ); ?></a>
+			<?php if($file_download) : ?>
+				<div class="accordion_item">
+					<div class="accordion_title">
+						<button type="button" aria-label="button" class="accordion_question">
+							<span class="title"><?php echo esc_html_e( 'Downloads', 'kare' ); ?></span>
+							<?php echo file_get_contents( get_template_directory_uri() . '/dist/images/svg/arrow-down.svg');?>
 						</button>
 					</div>
+					<div class="accordion_content">
+						<div class="accordion_answer downloads_wrapper container">
+							<h6><?php echo esc_html_e( 'Installation instructions', 'kare' ); ?></h6>
+							<button aria-label="button" type="button" class="btn_white_hover">
+								<a href="<?php echo $file_download; ?>" class="button_download" rel="noopener" target="_blank" download><?php echo esc_html_e( 'Download', 'kare' ); ?></a>
+							</button>
+						</div>
+					</div>
 				</div>
-			</div>
+			<?php endif; ?>
 		</section>
 	</section>
  </div>

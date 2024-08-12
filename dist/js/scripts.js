@@ -200,6 +200,12 @@ jQuery(document).on("ready", function(){
             });
         }
     });
+
+    //open account popup to write product reviews
+    $('.open_account_button').click(function(e) {
+        e.preventDefault(); // Prevents the default action of the link
+        $('.open_account_popup').trigger('click'); // Triggers the popup
+    });
     
     // opening and closing respectively of an accordion by clicking on the class "accordion_item" 
     $('.accordion_question').click(function() {

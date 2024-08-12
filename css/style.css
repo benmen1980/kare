@@ -128,18 +128,21 @@ button {
           align-items: center;
 }
 
-#primary .product .top_details .r_side .product-details form.cart .quantity, header .nav-top-wrapper .w-1-3 .w-btn {
-  padding: 1rem;
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .downloads_wrapper .btn_white_hover, #primary .product .top_details .r_side .product-details form.cart .quantity, header .nav-top-wrapper .w-1-3 .w-btn {
+  padding: 1rem 1.5rem;
   width: auto;
   max-width: 100%;
   background-color: #fff;
-  border-radius: 50px;
+  border-radius: 0;
   font-family: "Montserrat", sans-serif;
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 20px;
   color: #000000;
-  text-align: left;
-  border: none;
+  text-align: center;
+  border: 1px solid #e4e4e4;
   text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
 header .nav-top-wrapper .w-1-3 .l-btn {
@@ -203,6 +206,15 @@ h5 {
   color: #000000;
   line-height: 1.75rem;
   text-transform: uppercase;
+}
+
+h6 {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000000;
+  text-transform: uppercase;
+  margin: 0;
 }
 
 .w-full {
@@ -1180,6 +1192,14 @@ header .nav-top-wrapper {
 }
 header .nav-top-wrapper .w-1-3 {
   width: 33.3333%;
+}
+header .nav-top-wrapper .w-1-3 .w-btn {
+  padding: 1rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 14px;
+  text-align: left;
+  text-transform: none;
 }
 header .nav-top-wrapper .w-1-3 .w-btn#btn-header-search {
   width: 250px !important;
@@ -2340,6 +2360,7 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
   display: block;
 }
 #primary .product .accordion_wrapper h2 {
+  margin: 0;
   margin-bottom: 1rem;
   font-size: 36px;
   line-height: 3rem;
@@ -2449,6 +2470,44 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
 #primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .delivery_wrapper .text_delivery p, #primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .delivery_wrapper .text_delivery span {
   font-size: 16px;
   line-height: 1.5rem;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .downloads_wrapper {
+  padding: 3.75rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .downloads_wrapper h6 {
+  white-space: nowrap;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .downloads_wrapper .btn_white_hover {
+  width: 20rem;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .downloads_wrapper .btn_white_hover:hover {
+  background-color: #000;
+  color: #fff;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .downloads_wrapper .btn_white_hover:hover a {
+  color: #fff;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .downloads_wrapper .btn_white_hover a {
+  color: #424242;
+  border: none;
+  text-decoration: none;
+}
+#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .downloads_wrapper .btn_white_hover a:hover {
+  background-color: #000;
+  color: #fff;
 }
 
 /*--------------------------------------------------------------
