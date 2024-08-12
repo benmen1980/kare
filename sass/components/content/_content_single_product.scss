@@ -444,6 +444,32 @@
                             }
                         }
 
+                        .video_wrapper {
+                            padding: 1.25rem;
+
+                            .video_container {
+                                max-width: 768px;
+                                margin: auto;
+                            }
+                        }
+
+                        .dimensions_wrapper{
+                            @extend %center-flex;
+                            flex-wrap: wrap;
+                            padding: 3.75rem 0;
+
+                            img {
+                                display: inline-block;
+                                width: 100%;
+                                max-width: 400px;
+                                height: auto;
+                                max-height: 400px;
+                                mix-blend-mode: darken;
+                                object-fit: contain;
+                                cursor: pointer;
+                            }
+                        }
+
                         .description_wrapper {
                             padding: 3.75rem 0;
                             font-size: $font-size-base;
@@ -469,6 +495,46 @@
                                 }
                             }
                             
+                        }
+
+                        .reviews_wrapper {
+                            .customer_reviews {
+                                padding: 60px 0;
+
+                                .btn_white_hover {
+                                    @extend %white-btn;
+                                    &:hover {
+                                        background-color: #000;
+                                        color: #fff;
+                                        a {
+                                            color: #fff; 
+                                        }
+                                    }
+                                    a {
+                                        color: #424242; 
+                                        border: none;
+                                        text-decoration: none;
+                                        &:hover {
+                                            background-color: #000;
+                                            color: #fff;
+                                        }
+                                    }
+                                    display: block;
+                                    margin: 20px auto;
+                                }
+
+                                div {
+                                    padding: 5px 0 32px 0;
+
+                                    p {
+                                        margin: 0;
+                                        text-align: center;
+                                        font-size: 16px;
+                                        line-height: 20px;
+                                    }
+
+                                }
+                            }
                         }
 
                         .downloads_wrapper {

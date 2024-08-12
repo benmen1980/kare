@@ -51,7 +51,7 @@ $post_id = 'category_'. $category_id;
 		<?php
 		if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 			woocommerce_breadcrumb(array(
-				'delimiter'   => ' &bull; ',
+				'delimiter'   => '&nbsp;&bull;&nbsp;',
 				'wrap_before' => '<nav class="w-breadcrumb">',
 				'wrap_after'  => '</nav>',
 				'before'      => '',

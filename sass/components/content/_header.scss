@@ -154,7 +154,7 @@ header {
                         padding-left: 8.5rem !important;
                         display: none;
                         @extend %center-flex;
-                        @extend %container;
+                        // @extend %container;
                         z-index: 20 !important;
                         box-shadow: 0 0 8px rgba(0, 0, 0, .25) !important;
                         grid-template-columns: repeat(4, 1fr); 

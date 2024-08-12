@@ -24,8 +24,19 @@
   *
   * @hooked woocommerce_output_all_notices - 10
   */
- do_action( 'woocommerce_before_single_product' );
- 
+ do_action( 'woocommerce_before_single_product' ); 
+		
+if ( function_exists( 'woocommerce_breadcrumb' ) ) {
+	woocommerce_breadcrumb(array(
+		'delimiter'   => '&nbsp;&bull;&nbsp;',
+		'wrap_before' => '<nav class="woocommerce-breadcrumb" aria-label="Breadcrumb">',
+		'wrap_after'  => '</nav>',
+		'before'      => '',
+		'after'       => '',
+		'home'        => _x( 'Home', 'breadcrumb', 'woocommerce' ),
+	));
+}
+
  if ( post_password_required() ) {
 	 echo get_the_password_form(); // WPCS: XSS ok.
 	 return;
@@ -203,7 +214,7 @@
 		</div>
 	</section>
 	<section class="accordion_wrapper">
-		<h2><b>Product</b> details</h2>
+		<h2><b><?php echo esc_html_e('Product'); ?></b> <?php echo esc_html_e(' details'); ?></h2>
 		<section class="accordion_product_details">
 			<?php if(get_field('product_details')):  
 				$product_details = get_field('product_details'); // Getting the main set of fields
@@ -300,8 +311,8 @@
 						</button>
 					</div>
 					<div class="accordion_content">
-						<div class="accordion_answer video_wrapper container">
-							<div class="video-wrapper">
+						<div class="accordion_answer video_wrapper">
+							<div class="video_container">
 								<iframe width="768" height="432" src="<?php echo $video_url; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 							</div>
 						</div>
@@ -317,8 +328,8 @@
 						</button>
 					</div>
 					<div class="accordion_content">
-						<div class="accordion_answer dimensions_wrapper container">
-							<div class="img-wrapper">
+						<div class="accordion_answer dimensions_wrapper">
+							<div class="img_wrapper">
 								<img src="<?php echo $img_link; ?>" alt="image with dimensions of the product"/>
 							</div>
 						</div>
@@ -360,38 +371,16 @@
 					</button>
 				</div>
 				<div class="accordion_content">
-					<div class="accordion_answer reviews_wrapper container">
+					<div class="accordion_answer reviews_wrapper">
 						<div class="customer_reviews">
-							<?php if (have_comments()) : ?>
-								<?php
-								// Display reviews
-								wp_list_comments(array(
-									'style'       => 'div',
-									'short_ping'  => true,
-									'callback'    => 'woocommerce_comments'
-								));
-								?>
-							<?php else : ?>
-								<p><?php esc_html_e('No reviews for this search', 'kare'); ?></p>
-							<?php endif; ?>
-				
-							<?php if (is_user_logged_in()) : ?>
-								<?php
-								// Display review form
-								comment_form(array(
-									'title_reply'          => esc_html__('Add Review', 'kare'),
-									'title_reply_to'       => esc_html__('Leave a Reply to %s', 'kare'),
-									'title_reply_before'   => '<h3 id="reply-title" class="comment-reply-title">',
-									'title_reply_after'    => '</h3>',
-									'label_submit'         => esc_html__('Submit', 'kare'),
-								));
-								?>
-							<?php else : ?>
+							<?php if (!have_comments()) : ?>
 								<button aria-label="button" type="button" class="open_account_button btn_white_hover">
 									<a href="#" class="add_review_btn" ><?php echo esc_html_e( 'Add Review', 'kare' ); ?></a>
 								</button>
+								<div>
+									<p><?php esc_html_e('No reviews for this search', 'kare'); ?></p>
+								</div>
 							<?php endif; ?>
-							
 						</div>
 					</div>
 				</div>
@@ -416,6 +405,144 @@
 			<?php endif; ?>
 		</section>
 	</section>
+	<?php 
+	$product_categories = get_the_terms( get_the_ID(), 'product_cat' );
+	if ( !empty( $product_categories ) && !is_wp_error( $product_categories ) ) {
+		$category = $product_categories[0];
+	}
+	?>
+	<section class="related_products_section">
+		<section class="appropriate_categories">
+			<h2 class="title_wrapper"><?php echo esc_html_e('This fits:'); ?></h2>
+			<div>
+				<?php
+				$categories_fits = get_field('add_this_fits', 'term_' . $category->term_id);
+
+				if ( $categories_fits ) {
+					foreach($categories_fits as $key => $cat){ 
+						$cat_name = $cat->name; 
+						$cat_link = get_term_link($cat->term_id);
+						$cat_img_link = get_field('img_link_cat', 'product_cat_' . $cat->term_id); 
+						?>
+
+						<div class="swiper-slide more_categories_fits">
+							<a href="<?php echo $cat_link; ?>" class="category_btn" title="<?php echo $cat_name;?>" aria-lable="link">
+								<div class="card_category_wrapper" >
+									<img src="<?php echo !empty($cat_img_link) ? $cat_img_link : ''?>" alt="<?php echo $cat_name;?>" width="50" height="50"/>
+								</div>
+								<p><?php echo $cat_name;?></p>
+							</a>
+						</div>
+					<?php
+					}
+				}
+				?>
+			</div>
+		</section>
+		<section class="more_same_category">
+			<h2 class="title_wrapper"><b><?php echo esc_html_e('More'); ?></b> <?php echo esc_html($category->name);?></h2>
+			<div>
+				<?php
+				$args = array(
+					'post_type' => 'product',
+					'posts_per_page' => -1,
+					'tax_query' => array(
+						array(
+							'taxonomy' => 'product_cat',
+							'field'    => 'term_id',
+							'terms'    => $category->term_id,
+						),
+					),
+					'post__not_in' => array( get_the_ID() ), // מונע הצגה של המוצר הנוכחי
+				);
+			
+				$query = new WP_Query( $args );
+			
+				if ( $query->have_posts() ) {
+					while ( $query->have_posts() ) {
+						$query->the_post();
+						get_template_part('page-templates/box-product');
+					}
+					wp_reset_postdata(); 
+				} 			
+				?>
+			</div>
+		</section>
+		<section class="bestseller_same_category">
+			<h2 class="title_wrapper"><b><?php echo esc_html_e('Bestseller'); ?></b> <?php echo esc_html($category->name);?></h2>
+			<div>
+				<?php
+				$args = array(
+					'post_type' => 'product',
+					'posts_per_page' => -1,
+					'tax_query' => array(
+						'relation' => 'AND',
+						array(
+							'taxonomy' => 'product_cat',
+							'field'    => 'term_id',
+							'terms'    => $category->term_id,
+						),
+						array(
+							'taxonomy' => 'product_tag',
+							'field'    => 'slug',
+							'terms'    => 'bestseller',
+						),
+					),
+					'post__not_in' => array( get_the_ID() ), // מונע הצגה של המוצר הנוכחי
+				);
+			
+				$query = new WP_Query( $args );
+			
+				if ( $query->have_posts() ) {
+					while ( $query->have_posts() ) {
+						$query->the_post();
+						get_template_part('page-templates/box-product');
+					}
+					wp_reset_postdata(); 
+				} 			
+				?>
+			</div>
+		</section>
+		<section class="interesting_products">
+			<h3 class="title_wrapper"><b><?php echo esc_html_e('Interesting products for you'); ?> </b></h3>
+			<div>
+				<a href="<?php echo get_term_link($category->term_id); ?>" class="interesting _category" title="<?php echo $category->name;?>" aria-lable="link">
+					<?php echo $category->name;?>
+				</a>
+			</div>
+		</section>
+		<section class="bestseller_products">
+			<h2 class="title_wrapper"><b><?php echo esc_html_e('Bestseller'); ?></b></h2>
+			<div>
+				<?php
+				$args = array(
+					'post_type' => 'product',
+					'posts_per_page' => -1,
+					'tax_query' => array(
+						array(
+							'taxonomy' => 'product_tag',
+							'field'    => 'slug',
+							'terms'    => 'bestseller',
+						),
+					),
+					'post__not_in' => array( get_the_ID() ), // מונע הצגה של המוצר הנוכחי
+				);
+			
+				$query = new WP_Query( $args );
+			
+				if ( $query->have_posts() ) {
+					while ( $query->have_posts() ) {
+						$query->the_post();
+						get_template_part('page-templates/box-product');
+					}
+					wp_reset_postdata(); 
+				} 			
+				?>
+			</div>
+		</section>
+		
+	</section>
+
  </div>
  
  <?php //do_action( 'woocommerce_after_single_product' ); ?>
