@@ -219,6 +219,29 @@ jQuery(document).on("ready", function(){
         // rotation of the arrow 
        $(this).find('svg').toggleClass('rotate180');
     });
+
+    //add the selected quantity of the product to the cart
+    const selectWrapper = document.querySelector('.custom_select_wrapper');
+    const selectTrigger = selectWrapper.querySelector('.btn_quantity_wrapper');
+    const options = selectWrapper.querySelector('.custom_options');
+    const hiddenInput = selectWrapper.querySelector('.custom_select_hidden');
+    const selectedValue = selectWrapper.querySelector('.selected_value');
+
+    selectTrigger.addEventListener('click', function() {
+        options.classList.toggle('open');
+    });
+
+    options.addEventListener('click', function(e) {
+        if (e.target.classList.contains('custom_option')) {
+            hiddenInput.value = e.target.getAttribute('data-value');
+            selectedValue.textContent = e.target.textContent;
+            options.classList.remove('open');
+            document.querySelectorAll('.custom_option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            e.target.classList.add('selected');
+        }
+    });
     
 });
 
@@ -239,3 +262,4 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+

@@ -251,47 +251,143 @@
                             box-sizing: border-box;
                         }
                     }
-            
-                    p.price {
-                        margin-top: 1.25rem !important;
-                        span {
+                    
+                    .pdt_price_wrapper {
+                        display: flex;
+                        align-items: center;
+                        margin-top: 20px;
+
+                        .sale_tag {
+                            background-color: $color-background-button;
+                            color: #fff;
+                            margin-right: 8px;
+                            padding: 4px;
                             font-size: 16px;
-                            font-weight: 700;
+                            line-height: 20px;
+                        }
+
+                        .sale_price {
+                            margin: 0;
+                            font-size: 16px;
+                            line-height: 20px;
+                        }
+
+                        .price {
+                            margin: 0;
+                            font-size: 16px ;
+                            line-height: 20px;
+                            del {
+                                margin-right: 8px;
+                            
+                                span{
+                                    font-weight: 400;
+                                }
+                            }
+
+                            ins {
+                                background: transparent;
+                                font-weight: 700;
+                            }
                         }
                     }
-            
-                    p.stock {
-                        display: none;
-                    }
-            
+                                    
                     .stock_shipping_availability {
                         display: flex;
                         flex-wrap: nowrap;
-                        padding: 1rem 0;
+                        margin: 16px 0 20px;
                         .product-shipping {
                             font-size: 14px;
-                            line-height: 1.3125rem;
+                            line-height: 20px;
                             font-weight: 400;
-                            margin-right: .25rem !important;
+                            margin: 0;
+                            margin-right: 4px !important;
                         }
                         & > .stock {
                             color: #026805;
                             font-weight: 700;
                             display: inline-block !important;
+                            margin: 0;
                         }
                     }
             
                     form.cart {
                         display: flex;
                         flex-wrap: nowrap;
-            
-                        .quantity {
-                            margin-right: .5rem;
-                            @extend %white-btn;
-                            
+
+                        .custom_select_wrapper {
+                            position: relative;
+                            margin-right: 8px;
+
+                            .btn_quantity_wrapper {
+                                display: flex;
+                                align-items: center;
+                                @extend %white-btn;
+                                &:hover {
+                                    background-color: #000;
+                                    color: #fff;
+                                }
+                                .selected_value {
+                                    width: 24px;
+                                    margin-right: 8px;
+                                    font-size: 16px;
+                                    
+                                }
+                                svg {
+                                    display: block;
+                                }
+                            }
+
+                            .custom_options {
+                                display: none;
+                                position: absolute;
+                                top: 110%;
+                                left: 0;
+                                right: 0;
+                                width: 100%;
+                                padding: 0;
+                                margin: 0;
+                                background-color: #fff;
+                                color: #424242;
+                                box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+                                list-style: none;
+                                text-align: center;
+                                font-size: 16px;
+                                font-weight: 700;
+                                z-index: 2;
+
+                                &.open {
+                                    display: block;
+                                }
+
+                                .custom_option {
+                                    padding: 8px 20px;
+                                    cursor: pointer;
+                                    &:hover {
+                                        background-color: #000;
+                                        color: #fff;
+                                    }
+                                }
+                            }
                         }
+                        
                         button.single_add_to_cart_button {
                             @extend %black-btn;
+                            margin-right: 8px;
+                            flex-grow: 1;
+                            justify-content: center;
+                            font-weight: 700;
+                        }
+
+                        .wishlist_btn {
+                            @extend %white-btn;
+                            padding: 16px;
+                            &:hover {
+                                background-color: #000;
+                                color: #fff;
+                            }
+                            svg {
+                                display: block;
+                            }
                         }
                     }
             
@@ -311,8 +407,9 @@
                                     vertical-align: middle;
                                 }
                                 .text_item {
+                                    padding: 0;
                                     padding-left: .5rem;
-                                    margin-left: .25rem;
+                                    margin: 0 0 4px 4px;
                                     font-size: $font-size-base;
                                     line-height: 1.3125rem;
                                     text-transform: uppercase;
@@ -572,6 +669,53 @@
                 }
             }            
 
+        }
+
+        .related_products_section {
+            h2 {
+                margin: 32px 0 4px 0;
+                padding: 0;
+                font-weight: 400;
+                text-align: center;
+            }
+
+            .appropriate_categories {
+                .more_categories_wrapper {
+                    display: flex;
+                    padding-bottom: 32px;
+
+                    .more_categories_fits {
+                        margin-right: 8px;
+                    
+                        a.category_btn {
+                            display: flex;
+                            align-items: center;
+                            flex-direction: row;
+                            flex-wrap: wrap;
+                            background-color: #f4f4f4;
+                            padding: 16px;
+                            text-decoration: none;
+                            &:hover {
+                                text-decoration: underline;
+                            }
+
+                            .card_category_wrapper {
+                                margin-right: 16px;
+
+                                img {
+                                    display: block;
+                                    mix-blend-mode: darken;
+                                }
+                            }
+
+                            p {
+                                margin: 0;
+                                font-size: 16px;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -52,7 +52,7 @@ if(!is_category() && !is_product_category()) : ?>
                         <div class="pdt_price_wrapper">
                             <?php if(!empty($sale_price)): ?>
                                 <p class="sale_price"> 
-                                    <span>UVP*: </span>
+                                    <span>RRP*: </span>
                                     <span> <?php echo wc_price($sale_price); ?> </span>
                                 </p>
                                 <p class="regular_price <?php  echo (!empty($sale_price)) ? 'line-through' : '' ?>"><?php echo wc_price($regular_price); ?></p>

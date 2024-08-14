@@ -44,6 +44,18 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 
  $attachment_ids = $product->get_gallery_image_ids();
 
+ if ( $product->is_type( 'variable' ) ) {
+	$regular_price = $product->get_variation_regular_price();
+	$sale_price = ($regular_price != $product->get_variation_sale_price())? $product->get_variation_sale_price() : '';
+ }
+ else{
+	$regular_price = $product->get_regular_price();
+	$sale_price = $product->get_sale_price();
+ }
+ if(!empty($sale_price)){
+	$percent = round((($regular_price - $sale_price)*100) / $regular_price) ;
+ }
+
  ?>
  <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
 	<section class="top_details container">
@@ -149,8 +161,23 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 				<?php }
 
 				woocommerce_template_single_rating();
-				woocommerce_template_single_price(); 
+				?>
 
+				<div class="pdt_price_wrapper">
+					<?php if(!empty($sale_price)): ?>
+						<div class="sale_tag">
+							<b class="text_sale_percent"> <?php echo '-'.$percent.'%&nbsp;'; ?></b>
+						</div>
+						<p class="sale_price"> 
+							<span>RRP*: &nbsp;</span>
+							<?php woocommerce_template_single_price(); ?>
+						</p>
+					<?php else : ?>
+						<b class="regular_price"><?php woocommerce_template_single_price(); ?></b>
+					<?php endif; ?> 
+				</div>
+
+				<?php
 				if ($product->get_stock_quantity() > 0){
 					$stock = 'Immediately available';
 				}
@@ -166,41 +193,83 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 				</div>
 				<?php
 
-				woocommerce_template_single_add_to_cart();
+				// woocommerce_template_single_add_to_cart(); ?>
+				<?php do_action( 'woocommerce_before_add_to_cart_form' ); ?>
+
+				<form class="cart" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data'>
+					<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
+			
+					<?php
+						do_action( 'woocommerce_before_add_to_cart_quantity' );
 				
-				woocommerce_template_single_sharing();
-				?>
-				<div class="about_product">
-					<!-- List of qualities in the product -->
-					<div class="list_qualities_pdts">
-						<?php
-						if( have_rows( 'list_item_product', $product->get_id() ) ):
-							while( have_rows( 'list_item_product', $product->get_id() ) ): the_row();
-							// Get sub field value.
-							$list_item = get_sub_field('list_item',);
+						$max_quantity = apply_filters( 'woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product );
+						$min_quantity = apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product );
+						
+						?>
+
+						<div class="custom_select_wrapper">
+							<button aria-label="button" type="button" class="btn_quantity_wrapper">
+								<span class="selected_value">1</span> <!-- ברירת מחדל: הספרה 1 -->
+								<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-down.svg'); ?>
+							</button>
+							<ul class="custom_options">
+								<?php for ($i = $min_quantity; $i <= 10; $i++) { ?>
+									<li class="custom_option <?php echo $i == 1 ? 'selected' : ''; ?>" data-value="<?php echo esc_attr($i); ?>">
+										<?php echo esc_html($i); ?>
+									</li>
+								<?php } ?>
+							</ul>
+							<input type="hidden" name="quantity" class="custom_select_hidden" value="1"> <!-- ברירת מחדל: ערך 1 -->
+						</div>
+
+						<?php do_action( 'woocommerce_after_add_to_cart_quantity' );
+					?>
+			
+					<button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="single_add_to_cart_button button alt"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
+
+					<button aria-label="link" type="button" title="Add to Wishlist" class="wishlist_btn">
+						<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/heart-outline.svg');?>
+					</button>
+		
+					<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
+				</form>
+		
+				<?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>
+					
+				<?php	woocommerce_template_single_sharing();
+					?>
+					<div class="about_product">
+						<!-- List of qualities in the product -->
+						<div class="list_qualities_pdts">
+							<?php
+							if( have_rows( 'list_item_product', $product->get_id() ) ):
+								while( have_rows( 'list_item_product', $product->get_id() ) ): the_row();
+								// Get sub field value.
+								$list_item = get_sub_field('list_item',);
+								?>
+
+								<div class="item_pdt">
+									<?php echo file_get_contents( get_template_directory_uri() . '/dist/images/svg/check.svg');?>
+									<p class="text_item"><?php echo $list_item;?></p>
+								</div>
+
+								<?php					
+								// End loop.
+								endwhile;
+							endif;
 							?>
+						</div>
 
-							<div class="item_pdt">
-								<?php echo file_get_contents( get_template_directory_uri() . '/dist/images/svg/check.svg');?>
-								<p class="text_item"><?php echo $list_item;?></p>
-							</div>
+						<h5 class="short_discreption_title">At a glance:</h5>
+						<?php
+						
+						// add short description
+						woocommerce_template_single_excerpt();
 
-							<?php					
-							// End loop.
-							endwhile;
-						endif;
 						?>
 					</div>
-
-					<h5 class="short_discreption_title">At a glance:</h5>
-					<?php
-					
-					// add short description
-					woocommerce_template_single_excerpt();
-
-					?>
-				</div>
 			</div>
+
 			<?php
 			/**
 			 * Hook: woocommerce_after_single_product_summary.
@@ -211,6 +280,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 			*/
 			// do_action( 'woocommerce_after_single_product_summary' );
 			?>
+			
 		</div>
 	</section>
 	<section class="accordion_wrapper">
@@ -411,10 +481,10 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 		$category = $product_categories[0];
 	}
 	?>
-	<section class="related_products_section">
+	<section class="related_products_section container">
 		<section class="appropriate_categories">
-			<h2 class="title_wrapper"><?php echo esc_html_e('This fits:'); ?></h2>
-			<div>
+			<h2 class="title_wrapper"> <b><?php echo esc_html_e('This fits:'); ?></b></h2>
+			<div class="more_categories_wrapper">
 				<?php
 				$categories_fits = get_field('add_this_fits', 'term_' . $category->term_id);
 
@@ -458,13 +528,19 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 			
 				$query = new WP_Query( $args );
 			
-				if ( $query->have_posts() ) {
-					while ( $query->have_posts() ) {
-						$query->the_post();
-						get_template_part('page-templates/box-product');
-					}
-					wp_reset_postdata(); 
-				} 			
+				if ( $query->have_posts() ) { ?>
+					<div class="tabs_wrapper">
+                        <div class="swiper_slide_pdts swiper_slide_category swiper-container">
+                            <div id="slide_bestseller_products" class="slider_products_content swiper-wrapper">
+								<?php while ( $query->have_posts() ) {
+									$query->the_post();
+									get_template_part('page-templates/box-product');
+								}
+								wp_reset_postdata(); ?>
+							</div>
+						</div>
+					</div>
+				<?php } 			
 				?>
 			</div>
 		</section>
@@ -493,13 +569,19 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 			
 				$query = new WP_Query( $args );
 			
-				if ( $query->have_posts() ) {
-					while ( $query->have_posts() ) {
-						$query->the_post();
-						get_template_part('page-templates/box-product');
-					}
-					wp_reset_postdata(); 
-				} 			
+				if ( $query->have_posts() ) { ?>
+					<div class="tabs_wrapper">
+                        <div class="swiper_slide_pdts swiper_slide_bestseller_category swiper-container">
+                            <div id="slide_bestseller_products" class="slider_products_content swiper-wrapper">
+								<?php while ( $query->have_posts() ) {
+									$query->the_post();
+									get_template_part('page-templates/box-product');
+								}
+								wp_reset_postdata(); ?>
+							</div>
+						</div>
+					</div>
+				<?php } 			
 				?>
 			</div>
 		</section>
@@ -530,13 +612,19 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 			
 				$query = new WP_Query( $args );
 			
-				if ( $query->have_posts() ) {
-					while ( $query->have_posts() ) {
-						$query->the_post();
-						get_template_part('page-templates/box-product');
-					}
-					wp_reset_postdata(); 
-				} 			
+				if ( $query->have_posts() ) { ?>
+					<div class="tabs_wrapper">
+                        <div class="swiper_slide_pdts swiper_slide_bestseller_products swiper-container">
+                            <div id="slide_bestseller_products" class="slider_products_content swiper-wrapper">
+								<?php while ( $query->have_posts() ) {
+									$query->the_post();
+									get_template_part('page-templates/box-product');
+								}
+								wp_reset_postdata(); ?>
+							</div>
+						</div>
+					</div>
+				<?php } 			
 				?>
 			</div>
 		</section>
