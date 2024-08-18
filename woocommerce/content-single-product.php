@@ -62,21 +62,47 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 		<div class="l_side">
 			<div class="product-gallery">
 				<div class="slider_gallery_wrapper">
-					<div class="gallery-thumbnail-slider">
-						<div class="gallery-thumbnail" id="main_slider_1">
+					<!-- Large Gallery -->
+					<div class="gallery-thumbnail-slider main-slider">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="gallery-large" id="main_slider_1">
+									<img src="<?php echo wp_get_attachment_url( $product->get_image_id() ); ?>" data-slide="1" alt="<?php echo $product->get_title();?>">
+								</div>
+							</div>
+							<?php 
+							$key_thumb = 2;
+							foreach ($attachment_ids as $image_id) : ?>
+								<div class="swiper-slide">
+									<div class="gallery-large" id="main_slider_<?php echo $key_thumb; ?>">
+										<img class="thumbnail_img" src="<?php echo  wp_get_attachment_url( $image_id ); ?>" alt="<?php echo $product->get_title();?>">
+									</div>
+								</div>
+								<?php $key_thumb++; 
+							endforeach; ?>								
+						</div>
+						<!-- arrows -->
+						<div class="swiper-nav large-slider-nav-prev swiper-button-disabled">
+							<button aria-label="vorherige" type="button" class="w-btn w-color w-color-white">
+								<?php echo str_replace('<svg', '<svg class="w-dir-left"', file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg')); ?>
+							</button>
+						</div>
+						<div class="swiper-nav large-slider-nav-next">
+							<button aria-label="button" type="button" class="w-btn w-color w-color-white">
+								<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg'); ?>
+							</button>
+						</div>
 							<!-- <a href="<?php// echo wp_get_attachment_url( $product->get_image_id() );?>"> -->
 							<!-- <a href="<?php //echo get_permalink( $product->ID ).'#zoom_1'?>"> -->
-								<img src="<?php echo wp_get_attachment_url( $product->get_image_id() ); ?>" data-slide="1" alt="<?php echo $product->get_title();?>">
 							<!-- </a> -->
-						</div> 
 					</div>
-					
 				</div>
-				<?php if($product->get_image_id() != ''): ?>
+				 <!-- Small Gallery -->
+				<?php if($product->get_image_id() != '') : ?>
 					<div class="small_img_slider_wrapper tabs_wrapper">
-						<div class="swiper_img_slider swiper-container">
+						<div class="swiper_img_slider thumb-slider">
 							<div id="slider_img_gallery_small" class="img_gallery_small swiper-wrapper">
-								<div class="swiper-slide">
+								<div class="swiper-slide active-small-thumbnail">
 									<div class="product_zoom_thumbnail_item">
 										<!-- <a href="<?php// echo get_permalink( $product->ID ).'#zoom_1';?>" data_main_slider="main_slider_1" class="small_img_active"> -->
 											<img class="thumbnail_img" src="<?php echo wp_get_attachment_url($product->get_image_id())?>"  alt="<?php echo $product->get_title();?>">
@@ -85,31 +111,26 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 								</div> 
 								<?php
 								$key_thumb = 2;
-								foreach ($attachment_ids as $image_id){ 
-									$attach_url = wp_get_attachment_url( $image_id);
-									//dont display thumb image
-									if(strpos( $attach_url, 'thumb-fv-1') == false){?>
-										<div class="swiper-slide">
-											<div class="product_zoom_thumbnail_item">
-												<!-- <a href="<?php //echo get_permalink( $product->ID ).'#zoom_'.$key_thumb;?>" data_main_slider="main_slider_<?php echo $key_thumb;?>"> -->
-													<img class="thumbnail_img" src="<?php echo  wp_get_attachment_url( $image_id ); ?>" alt="<?php echo $product->get_title();?>">
-												<!-- </a> -->
-											</div>
+								foreach ($attachment_ids as $image_id) : ?>
+									<div class="swiper-slide">
+										<div class="product_zoom_thumbnail_item">
+											<!-- <a href="<?php //echo get_permalink( $product->ID ).'#zoom_'.$key_thumb;?>" data_main_slider="main_slider_<?php echo $key_thumb;?>"> -->
+												<img class="thumbnail_img" src="<?php echo  wp_get_attachment_url( $image_id ); ?>" alt="<?php echo $product->get_title();?>">
+											<!-- </a> -->
 										</div>
-									<?php $key_thumb++;
-									}
-								} ?> 
+									</div>
+									<?php $key_thumb++; 
+								endforeach; ?>
 							</div>
-
 							<!-- arrows -->
-							<div class="swiper-nav swiper-nav-prev swiper-button-disabled">
+							<div class="swiper-nav small-slider-nav-prev swiper-button-disabled">
 								<button aria-label="vorherige" type="button" class="w-btn w-color w-color-white">
-									<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" class="svg-icon sprite-icons w-dir-left"><use href="/_nuxt/41a1314fa8f2980ef26b9b83aa0c0cd1.svg#i-arrow-right-sm" xlink:href="/_nuxt/41a1314fa8f2980ef26b9b83aa0c0cd1.svg#i-arrow-right-sm"></use></svg>
+									<?php echo str_replace('<svg', '<svg class="w-dir-left"', file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg')); ?>
 								</button>
 							</div>
-							<div class="swiper-nav swiper-nav-next">
+							<div class="swiper-nav small-slider-nav-next">
 								<button aria-label="button" type="button" class="w-btn w-color w-color-white">
-									<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" class="svg-icon sprite-icons"><use href="/_nuxt/41a1314fa8f2980ef26b9b83aa0c0cd1.svg#i-arrow-right-sm" xlink:href="/_nuxt/41a1314fa8f2980ef26b9b83aa0c0cd1.svg#i-arrow-right-sm"></use></svg>
+									<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg'); ?>
 								</button>
 							</div>
 						</div>
@@ -479,39 +500,41 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 	$product_categories = get_the_terms( get_the_ID(), 'product_cat' );
 	if ( !empty( $product_categories ) && !is_wp_error( $product_categories ) ) {
 		$category = $product_categories[0];
+		$categories_fits = get_field('add_this_fits', 'term_' . $category->term_id);
 	}
 	?>
 	<section class="related_products_section container">
-		<section class="appropriate_categories">
-			<h2 class="title_wrapper"> <b><?php echo esc_html_e('This fits:'); ?></b></h2>
-			<div class="more_categories_wrapper">
-				<?php
-				$categories_fits = get_field('add_this_fits', 'term_' . $category->term_id);
-
-				if ( $categories_fits ) {
-					foreach($categories_fits as $key => $cat){ 
-						$cat_name = $cat->name; 
-						$cat_link = get_term_link($cat->term_id);
-						$cat_img_link = get_field('img_link_cat', 'product_cat_' . $cat->term_id); 
-						?>
-
-						<div class="swiper-slide more_categories_fits">
-							<a href="<?php echo $cat_link; ?>" class="category_btn" title="<?php echo $cat_name;?>" aria-lable="link">
-								<div class="card_category_wrapper" >
-									<img src="<?php echo !empty($cat_img_link) ? $cat_img_link : ''?>" alt="<?php echo $cat_name;?>" width="50" height="50"/>
-								</div>
-								<p><?php echo $cat_name;?></p>
-							</a>
-						</div>
+		<?php if ($categories_fits) : ?>
+			<section class="appropriate_categories">
+				<h2 class="title_wrapper"> <b><?php echo esc_html_e('This fits:'); ?></b></h2>
+				<div class="more_categories_wrapper">
 					<?php
+
+					if ( $categories_fits ) {
+						foreach($categories_fits as $key => $cat){ 
+							$cat_name = $cat->name; 
+							$cat_link = get_term_link($cat->term_id);
+							$cat_img_link = get_field('img_link_cat', 'product_cat_' . $cat->term_id); 
+							?>
+
+							<div class="swiper-slide more_categories_fits">
+								<a href="<?php echo $cat_link; ?>" class="category_btn" title="<?php echo $cat_name;?>" aria-lable="link">
+									<div class="card_category_wrapper" >
+										<img src="<?php echo !empty($cat_img_link) ? $cat_img_link : ''?>" alt="<?php echo $cat_name;?>" width="50" height="50"/>
+									</div>
+									<p><?php echo $cat_name;?></p>
+								</a>
+							</div>
+						<?php
+						}
 					}
-				}
-				?>
-			</div>
-		</section>
+					?>
+				</div>
+			</section>
+		<?php endif; ?>
 		<section class="more_same_category">
 			<h2 class="title_wrapper"><b><?php echo esc_html_e('More'); ?></b> <?php echo esc_html($category->name);?></h2>
-			<div>
+			<div class="same_category_wrapper">
 				<?php
 				$args = array(
 					'post_type' => 'product',
@@ -538,6 +561,23 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 								}
 								wp_reset_postdata(); ?>
 							</div>
+
+							<!-- arrows -->
+							<div class="swiper-nav swiper-nav-prev swiper-button-disabled">
+								<button aria-label="vorherige" type="button" class="w-btn w-color w-color-white">
+									<?php echo str_replace('<svg', '<svg class="w-dir-left"', file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg')); ?>
+								</button>
+							</div>
+							<div class="swiper-nav swiper-nav-next">
+								<button aria-label="button" type="button" class="w-btn w-color w-color-white">
+									<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg'); ?>
+								</button>
+							</div>
+							<!-- dropping points-->
+							<div class="swiper-pagination-wrapper">
+								<div class="swiper-pagination swiper-pagination-black swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic" style="width: 100px;">
+								</div>
+							</div>
 						</div>
 					</div>
 				<?php } 			
@@ -546,7 +586,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 		</section>
 		<section class="bestseller_same_category">
 			<h2 class="title_wrapper"><b><?php echo esc_html_e('Bestseller'); ?></b> <?php echo esc_html($category->name);?></h2>
-			<div>
+			<div class="same_category_wrapper">
 				<?php
 				$args = array(
 					'post_type' => 'product',
@@ -579,6 +619,23 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 								}
 								wp_reset_postdata(); ?>
 							</div>
+
+							<!-- arrows -->
+							<div class="swiper-nav swiper-nav-prev swiper-button-disabled">
+								<button aria-label="vorherige" type="button" class="w-btn w-color w-color-white">
+									<?php echo str_replace('<svg', '<svg class="w-dir-left"', file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg')); ?>
+								</button>
+							</div>
+							<div class="swiper-nav swiper-nav-next">
+								<button aria-label="button" type="button" class="w-btn w-color w-color-white">
+									<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg'); ?>
+								</button>
+							</div>
+							<!-- dropping points-->
+							<div class="swiper-pagination-wrapper">
+								<div class="swiper-pagination swiper-pagination-black swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic" style="width: 100px;">
+								</div>
+							</div>
 						</div>
 					</div>
 				<?php } 			
@@ -586,16 +643,16 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 			</div>
 		</section>
 		<section class="interesting_products">
-			<h3 class="title_wrapper"><b><?php echo esc_html_e('Interesting products for you'); ?> </b></h3>
-			<div>
-				<a href="<?php echo get_term_link($category->term_id); ?>" class="interesting _category" title="<?php echo $category->name;?>" aria-lable="link">
+			<h3 class="title_wrapper"><?php echo esc_html_e('Interesting products for you'); ?> </h3>
+			<div class="interesting_category_wrapper">
+				<a href="<?php echo get_term_link($category->term_id); ?>" class="interesting_category" title="<?php echo $category->name;?>" aria-lable="link">
 					<?php echo $category->name;?>
 				</a>
 			</div>
 		</section>
 		<section class="bestseller_products">
 			<h2 class="title_wrapper"><b><?php echo esc_html_e('Bestseller'); ?></b></h2>
-			<div>
+			<div class="same_category_wrapper">
 				<?php
 				$args = array(
 					'post_type' => 'product',
@@ -621,6 +678,23 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 									get_template_part('page-templates/box-product');
 								}
 								wp_reset_postdata(); ?>
+							</div>
+
+							<!-- arrows -->
+							<div class="swiper-nav swiper-nav-prev swiper-button-disabled">
+								<button aria-label="vorherige" type="button" class="w-btn w-color w-color-white">
+									<?php echo str_replace('<svg', '<svg class="w-dir-left"', file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg')); ?>
+								</button>
+							</div>
+							<div class="swiper-nav swiper-nav-next">
+								<button aria-label="button" type="button" class="w-btn w-color w-color-white">
+									<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg'); ?>
+								</button>
+							</div>
+							<!-- dropping points-->
+							<div class="swiper-pagination-wrapper">
+								<div class="swiper-pagination swiper-pagination-black swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic" style="width: 100px;">
+								</div>
 							</div>
 						</div>
 					</div>

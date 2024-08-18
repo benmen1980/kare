@@ -2,7 +2,7 @@
 var $=jQuery.noConflict();
 
 jQuery(document).on("ready", function(){
-    
+
     //Listens to the scroll of the surfer to add a clickable button to the top of the page
     let scrollThreshold = 1500;
 
@@ -40,16 +40,144 @@ jQuery(document).on("ready", function(){
         $('html, body').animate({ scrollTop: 0 }, 'slow');
     });
 
-    // $('.slider_categories').slick({
-    //     infinite: false,
-    //     slidesToShow: 8.5,
-    //     slidesToScroll: 1,
-    //     arrows: true,
-    //     dots: true,
-    //     rtl: false,
-    // });
+     // Initialize the large gallery (main-slider)
+     const largeGallery = new Swiper('.main-slider', {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        initialSlide: 0,
+        loop: false,
+        navigation: {
+            nextEl: '.large-slider-nav-next',
+            prevEl: '.large-slider-nav-prev',
+        },
+    });
+    largeGallery.update(); // Forces Swiper to recalculate slides
+
+    // Initialize the small gallery (thumb-slider)
+    const smallGallery = new Swiper('.thumb-slider', {
+        slidesPerView: 9.15,
+        spaceBetween: 20,
+        navigation: {
+            nextEl: '.small-slider-nav-next',
+            prevEl: '.small-slider-nav-prev',
+        },
+    });
+    smallGallery.update(); // Forces Swiper to recalculate slides
+
+     // Sync the active thumbnail border when the large gallery changes
+     largeGallery.on('slideChange', function () {
+        let activeIndex = largeGallery.activeIndex;
+        if (activeIndex === 0) {
+            activeIndex = 1; // Adjust based on your needs
+        }
+        
+        // Remove 'active-thumbnail' class from all slides in the small gallery
+        smallGallery.slides.forEach(slide => {
+            slide.classList.remove('active-small-thumbnail');
+        });
+
+        // Add 'active-thumbnail' class to the corresponding slide in the small gallery
+        if (smallGallery.slides[activeIndex]) {
+            smallGallery.slides[activeIndex].classList.add('active-small-thumbnail');
+        }
+
+        // Scroll the small gallery to the correct thumbnail
+        smallGallery.slideTo(activeIndex);
+    });
+
+     // Manually set the red border for the small gallery active slide
+     smallGallery.slides.forEach((slide, index) => {
+        slide.addEventListener('click', function () {
+            // Update the active thumbnail in the small gallery
+            smallGallery.slides.forEach(slide => {
+                slide.classList.remove('active-small-thumbnail');
+            });
+            slide.classList.add('active-small-thumbnail');
+
+             // Slide the large gallery to the clicked thumbnail's corresponding slide
+             largeGallery.slideTo(index);
+        });
+    });
+
+    // General Swiper Initialization (for other galleries)
+    var defaultSwiperOptions = {
+        slidesPerView: 8.5,
+        slidesPerGroup: 1,
+        spaceBetween: 3,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            renderBullet: function (index, className) {
+                return '<span class="' + className + '"></span>';
+            },
+        },
+        navigation: {
+            nextEl: '.swiper-nav-next',
+            prevEl: '.swiper-nav-prev',
+        },
+        on: {
+            init: function () {
+                updatePagination(this);
+            },
+            slideChange: function () {
+                updatePagination(this);
+            }
+        }
+    };
+
+    var swiperContainers = document.querySelectorAll('.swiper-container');
+
+    swiperContainers.forEach(function(container) {
+        var swiperOptions = defaultSwiperOptions;
+
+        if (container.querySelector('#rounded_btn')) {
+            swiperOptions = Object.assign({}, defaultSwiperOptions, {
+                spaceBetween: 8,
+                slidesPerView: 10
+            });
+        } else if (container.querySelector('#module_slider_pdts')) {
+            swiperOptions = Object.assign({}, defaultSwiperOptions, {
+                spaceBetween: 8,
+                slidesPerView: 6
+            });
+        } else if (container.querySelector('#module_pdts_content')) {
+            swiperOptions = Object.assign({}, defaultSwiperOptions, {
+                spaceBetween: 2,
+                slidesPerView: 4
+            });
+        } else if (container.querySelector('#module_slide_cube')) {
+            swiperOptions = Object.assign({}, defaultSwiperOptions, {
+                spaceBetween: 16,
+                slidesPerView: 4
+            });
+        }
+
+        if (swiperOptions) {
+            new Swiper(container, swiperOptions);
+        }
+    });
 
     function updatePagination(swiper) {
+        var paginationEl = swiper.pagination.el;
+        if (Array.isArray(paginationEl)) {
+            paginationEl = paginationEl[0];
+        }
+        if (!paginationEl || !paginationEl.querySelectorAll) {
+            return;
+        }
+        var bullets = paginationEl.querySelectorAll('.swiper-pagination-bullet');
+        var activeIndex = swiper.activeIndex;
+        bullets.forEach((bullet, index) => {
+            var distance = Math.abs(activeIndex - index);
+            var size = 16 - (distance * 5);
+            size = size < 4 ? 4 : size;
+            bullet.style.width = size + 'px';
+            bullet.style.height = size + 'px';
+            bullet.style.opacity = 0.5 + (0.5 / (distance + 1));
+        });
+    }
+
+    /*function updatePagination(swiper) {
         var paginationEl = swiper.pagination.el;
 
         // Verify if paginationEl is an array and take the first element
@@ -152,7 +280,7 @@ jQuery(document).on("ready", function(){
                     }
                 }
             });
-        } else if (container.querySelector('#slider_img_gallery_small')) {
+        } /*else if (container.querySelector('#slider_img_gallery_small')) {
             swiperOptions = Object.assign({}, defaultSwiperOptions, {
                 spaceBetween: 20,
                 slidesPerView: 9.15,
@@ -165,14 +293,14 @@ jQuery(document).on("ready", function(){
                     }
                 }
             });
-        } else {
+        } * else {
             swiperOptions = defaultSwiperOptions;
         };
         // Initialize your swiper instance here if swiperOptions is defined
         if (swiperOptions) {
             new Swiper(container, swiperOptions);
         }
-    });  
+    }); */
 
     //open account popup in header
     $('.open_account_popup').on('click', function() {
@@ -262,4 +390,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-

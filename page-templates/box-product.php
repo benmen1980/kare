@@ -34,7 +34,7 @@ if(!is_category() && !is_product_category()) : ?>
                         </a>
                         <?php if(!empty($sale_price)){ ?>
                             <div class="sale_tag">
-                                <span class="text_sale_percent"> <?php echo $percent.'%'; ?></span>
+                                <span class="text_sale_percent"> <?php echo '-'.$percent.'%'; ?></span>
                             </div>
                         <?php } ?>
                         <?php if(has_term( '29', 'product_tag',$product->get_id() )){ 

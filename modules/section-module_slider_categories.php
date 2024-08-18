@@ -22,8 +22,8 @@
                     <?php endif; ?>              
                 </div>
             <?php endif; ?>
-            <div class="tabs_wrapper <?php echo $btn_type; ?>">
-                <div class="swiper_slide_cat swiper-container">
+            <div class="tabs_wrapper swiper <?php echo $btn_type; ?>">
+                <div class="swiper_slide_cat swiper-container categoty-slider">
                     <div id="<?php echo $btn_type; ?>" class="slider_categories swiper-wrapper">
                         <?php foreach($categories as $key => $cat){ 
                             $cat_name = $cat->name; 

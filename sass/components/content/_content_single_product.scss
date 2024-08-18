@@ -60,9 +60,10 @@
                     background-color: #fff;
                     width: 100%;
                     height: 100%;
-                    // overflow: hidden;
+                    overflow: hidden;
 
                     .slider_gallery_wrapper {
+                        position: relative;
                         width: 100%;
                         height: calc(100% - 116px);
                         border: solid 1px #e4e4e4;
@@ -71,20 +72,91 @@
                             width: 100%;
                             height: 100%;
 
-                            .gallery-thumbnail {
+                            .swiper-wrapper {
                                 width: 100%;
                                 height: 100%;
-                                @extend %center-flex;
-                                padding: 1rem;
+                                @extend %flex-start;
+                                align-items: center;
                                 cursor: pointer;
-                                img {
-                                    display: inline-block;
-                                    mix-blend-mode: darken;
-                                    width: 100% ;
-                                    height: 100%;
-                                    object-fit: contain;
+
+                                .swiper-slide {
+                                    width: 100% !important;
                                 }
-                            }              
+                                .gallery-large {
+                                    width: 100% !important;
+                                    height: 100% !important;
+                                    display: flex !important;
+                                    align-items: center !important;
+                                    justify-content: center !important;  
+                                    padding: 1rem;
+                                    cursor: pointer;
+                                
+                                    img {
+                                        display: inline-block;
+                                        mix-blend-mode: darken;
+                                        width: 100% ;
+                                        height: 100%;
+                                        object-fit: contain;
+                                    }
+                                }
+                            }
+                            
+                            .swiper-nav {
+                                z-index: 1;
+                                @extend %center-flex;
+                                will-change: opacity;
+                                position: absolute;
+                                transition-property: opacity;
+                                transition-duration: .3s;
+                                top: 0;
+                                bottom: 0;
+                                margin: auto 1.5rem;
+                                padding-bottom: 0;
+                                &.swiper-button-disabled {
+                                    opacity: 0;
+                                    animation: a-pointer-events 1s linear forwards;
+                                }
+                            
+                                &.large-slider-nav-prev {
+                                    margin-left: 2.5rem;
+                                    left: 0;
+                                    svg.w-dir-left {
+                                        transform: rotate(-180deg);
+                                    }
+                                }
+                         
+                                &.large-slider-nav-next {
+                                    margin-right: 2.5rem;
+                                    right: 0;
+                                }
+                           
+                                .w-btn {
+                                    position: relative;
+                                    display: inline-flex;
+                                    align-items: center;
+                                    flex-shrink: 0;
+                                    max-width: 100%;
+                                    text-align: left;
+                                    cursor: pointer; 
+                            
+                                    &.w-color-white {
+                                        color: rgb(66,66,66);
+                                        border-color: rgb(228,228,228);
+                                        background-color: rgb(255,255,255);
+                                        justify-content: center;
+                                        padding: 1rem 1.5rem;
+                                        transition-property: background-color, border-color, color, fill, stroke;
+                                        transition-duration: .3s;
+                                        border-width: 1px;
+                                        border-radius: 0;
+                                    }
+                                    svg {
+                                        display: inline-block;
+                                        flex-shrink: 0;
+                                        margin: 0 -.5rem;
+                                    }
+                                }
+                            }
                         }
                     }             
 
@@ -95,7 +167,7 @@
                         flex-grow: 1;
                         max-width: 100%;
 
-                        .swiper_img_slider.swiper-container {
+                        .swiper_img_slider.thumb-slider {
                             margin: 0 auto;
                             position: relative;
                             overflow: hidden;
@@ -116,6 +188,7 @@
                                     height: 100%;
                                     flex-shrink: 0;
                                     position: relative;
+
                                     .product_zoom_thumbnail_item{
                                         @extend %center-flex;
                                         width: 6.25rem;
@@ -136,7 +209,7 @@
                                         }
                                     }
 
-                                    &.swiper-slide-active .product_zoom_thumbnail_item {
+                                    &.active-small-thumbnail .product_zoom_thumbnail_item {
                                         border-color: #e10915;
                                     }
                                 }
@@ -151,20 +224,21 @@
                                 transition-duration: .3s;
                                 top: 0;
                                 bottom: 0;
-                                margin: auto 1.5rem;
+                                margin: auto 24px;
                                 padding-bottom: 0;
                                 &.swiper-button-disabled {
                                     opacity: 0;
                                     animation: a-pointer-events 1s linear forwards;
                                 }
                             
-                                &.swiper-nav-prev {
-                                    margin-left: 2.5rem;
+                                &.small-slider-nav-prev {
                                     left: 0;
+                                    svg.w-dir-left {
+                                        transform: rotate(-180deg);
+                                    }
                                 }
-                            
-                                &.swiper-nav-next {
-                                    margin-right: 2.5rem;
+
+                                &.small-slider-nav-next {
                                     right: 0;
                                 }
                             
@@ -672,6 +746,8 @@
         }
 
         .related_products_section {
+            padding: 0;
+            padding-top: 30px;
             h2 {
                 margin: 32px 0 4px 0;
                 padding: 0;
@@ -681,7 +757,7 @@
 
             .appropriate_categories {
                 .more_categories_wrapper {
-                    display: flex;
+                    @extend %center-flex;
                     padding-bottom: 32px;
 
                     .more_categories_fits {
@@ -711,6 +787,189 @@
                             p {
                                 margin: 0;
                                 font-size: 16px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .more_same_category, .bestseller_same_category, .bestseller_products{
+                h2 {
+                    margin: 0;
+                    margin-bottom: 16px;
+                }
+                .same_category_wrapper {
+                    @extend %center-flex;
+                    padding-bottom: 32px;
+                }
+            }
+
+            .more_same_category, .bestseller_same_category, .interesting_products, .bestseller_products{
+                margin-top: calc(72px*(1 - 0));
+                margin-bottom: calc(72px* 0);
+            }
+
+            .interesting_products {               
+                h3 {
+                    text-align: center;
+                    margin: 0;
+                    margin-bottom: 16px;
+                }
+
+                .interesting_category_wrapper {
+                    @extend %center-flex;
+                    .interesting_category {
+                        background-color: #e4e4e4;
+                        padding: 8px 16px;
+                        font-size: 14px;
+                        line-height: 21px;
+                        border-width: 1px;
+                        border-color: transparent;
+                        text-decoration: none;
+                        &:hover {
+                            background-color: #000;
+                            color: #fff;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+
+            .tabs_wrapper {
+                position: relative;
+                .swiper-slide {
+                    .search_suggestions_product {
+                        width: 233px !important;
+                        .box_product {
+                            .product_img_wrapper {
+                            height: 208px;
+                            max-height: 208px;
+                            }
+                            .product_details_wrapper {
+                                height: 107px;
+                                max-height: 107px;
+                                padding: 8px;
+                                a.product_details{
+                                    display: block;
+                                    margin: 0;
+                                    height: 100%;
+                                    p{
+                                        margin: 0;
+                                    }
+                                    .name-product {
+                                        font-size: 14px !important;
+                                    }
+                                    .pdt_price_wrapper {
+                                        margin-top: 4px;
+                                        flex-grow: 1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+                .swiper-nav {
+                    z-index: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    will-change: opacity;
+                    position: absolute;
+                    transition-property: opacity;
+                    transition-duration: .3s;
+                    top: 0;
+                    bottom: 0;
+                    margin-top: auto;
+                    margin-bottom: auto;
+                    // padding-bottom: 32px;
+                    &.swiper-button-disabled {
+                        opacity: 0;
+                        animation: a-pointer-events 1s linear forwards;
+                    }
+                
+                    &.swiper-nav-prev {
+                        margin-left: 2.5rem;
+                        left: 0;
+                    }
+                
+                    &.swiper-nav-next {
+                        margin-right: 2.5rem;
+                        right: 0;
+                    }
+                
+                    .w-btn {
+                        position: relative;
+                        display: inline-flex;
+                        align-items: center;
+                        flex-shrink: 0;
+                        max-width: 100%;
+                        text-align: left;
+                        cursor: pointer; 
+                
+                        &.w-color-white {
+                            color: rgb(66,66,66);
+                            border-color: rgb(228,228,228);
+                            background-color: rgb(255,255,255);
+                            justify-content: center;
+                            padding: 1rem 1.5rem;
+                            transition-property: background-color, border-color, color, fill, stroke;
+                            transition-duration: .3s;
+                            border-width: 1px;
+                            border-radius: 0;
+                        }
+                        svg {
+                            display: inline-block;
+                            flex-shrink: 0;
+                            margin: 0 -.5rem;
+
+                            &.w-dir-left {
+                                transform: rotate(-180deg);
+                            }
+                        }
+                    }
+                }
+                
+                .swiper-pagination-wrapper {
+                    position: absolute;
+                    @extend %center-flex;
+                    right: 0;
+                    left: 0;
+                    bottom: 0;
+                    height: 1.25rem;
+                
+                    .swiper-pagination {
+                        position: absolute;
+                        text-align: center;
+                        transition: opacity .3s;
+                        transform: translateZ(0);
+                        z-index: 10;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        font-size: 0;
+                        color: #000;
+                        @extend %center-flex;
+                
+                        .swiper-pagination-bullet  {
+                            position: relative;
+                            display: inline-block;
+                            border-radius: 50%;
+                            border: 1px solid rgb(66,66,66);
+                            width: 10px;
+                            height: 10px;
+                            transition: width 0.3s, height 0.3s, opacity 0.3s;
+                            background-color: transparent;
+                            opacity: 1;
+                            cursor: pointer;
+                            transform: scale(1);    
+                            margin: 0 .3rem;
+                
+                            &.swiper-pagination-bullet-active{
+                                background-color: #000;
+                                border-width: 1px;
+                                width: 15px;
+                                height: 15px;  
                             }
                         }
                     }
