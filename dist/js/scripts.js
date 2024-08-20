@@ -51,7 +51,7 @@ jQuery(document).on("ready", function(){
             prevEl: '.large-slider-nav-prev',
         },
     });
-    largeGallery.update(); // Forces Swiper to recalculate slides
+    //largeGallery.update(); // Forces Swiper to recalculate slides
 
     // Initialize the small gallery (thumb-slider)
     const smallGallery = new Swiper('.thumb-slider', {
@@ -62,7 +62,7 @@ jQuery(document).on("ready", function(){
             prevEl: '.small-slider-nav-prev',
         },
     });
-    smallGallery.update(); // Forces Swiper to recalculate slides
+    //smallGallery.update(); // Forces Swiper to recalculate slides
 
      // Sync the active thumbnail border when the large gallery changes
      largeGallery.on('slideChange', function () {
