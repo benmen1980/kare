@@ -257,6 +257,9 @@ header {
                     padding: 13px 17px;
                     &:hover{
                         background-color: #000;
+                        img{
+                            filter: invert(100%) brightness(100%);
+                        }
                     }
                 }
                 h2 {

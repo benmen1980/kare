@@ -79,7 +79,7 @@
 					<div class="top_sidebar">
 						<h2><?php esc_html_e( 'Login', 'kare' ); ?></h2>
 						<button id="close_sidebar" class="close">
-						<img src="<?php echo get_template_directory_uri();?>/dist/images/close.svg" alt="Skip arrow to the top of the page" width="24" height="24">
+						<img src="<?php echo get_template_directory_uri();?>/dist/images/close.svg" alt="Skip arrow to the top of the page" width="18" height="18">
 						</button>
 					</div>
 					<div class="bottom_sidebar">
