@@ -3,6 +3,29 @@ var $=jQuery.noConflict();
 
 jQuery(document).on("ready", function(){
 
+    //logout with popup
+    $('.custom_logout a').on('click', function(e) {
+        e.preventDefault();
+        console.log('click!');
+        $(".logout_popup").show();
+        // Handle the OK button click
+    
+        $('#confirm-logout').on('click', function() {
+            var logout_href = $('.woocommerce-MyAccount-navigation-link--customer-logout a').attr('href');
+            //console.log("🚀 ~ $ ~ logout_href:", logout_href);
+            window.location.href = logout_href;
+           
+            
+        
+
+        });
+        
+        // Handle the Cancel button click
+        $('#cancel-logout').on('click', function() {
+            $(".logout_popup").hide();
+        });
+    })
+
     //Listens to the scroll of the surfer to add a clickable button to the top of the page
     let scrollThreshold = 1500;
 
@@ -310,7 +333,7 @@ jQuery(document).on("ready", function(){
         }
         $('#overlay').fadeIn(); // Show the overlay
     });
-    
+
     $('#close_sidebar').on('click', function() {
         $('#login_sidebar').removeClass('active');
         $('#overlay').fadeOut(function() {
@@ -334,6 +357,18 @@ jQuery(document).on("ready", function(){
         e.preventDefault(); // Prevents the default action of the link
         $('.open_account_popup').trigger('click'); // Triggers the popup
     });
+
+    //open account popup forurl with panel=account
+    
+    function getQueryParam(param) {
+        var urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Check if 'panel' parameter equals 'account'
+    if (getQueryParam('panel') === 'account') {
+        $('.open_account_popup').trigger('click');
+    }
     
     // opening and closing respectively of an accordion by clicking on the class "accordion_item" 
     $('.accordion_question').click(function() {
@@ -390,3 +425,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+
+;
+
+

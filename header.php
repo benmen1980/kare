@@ -79,40 +79,66 @@
 					<div class="top_sidebar">
 						<h2><?php echo (!is_user_logged_in()) ? __( 'Login', 'kare' ) :  __( 'Your customer account', 'kare' ); ?></h2>
 						<button id="close_sidebar" class="close">
-						<img src="<?php echo get_template_directory_uri();?>/dist/images/svg/close.svg" alt="Skip arrow to the top of the page" width="18" height="18">
+						<img src="<?php echo get_template_directory_uri();?>/dist/images/svg/close.svg" alt="" width="18" height="18">
 						</button>
 					</div>
-					<div class="bottom_sidebar">
+					
 					<?php 
 					// Check if user is not logged in before showing the form
 					if ( !is_user_logged_in() ) {  ?>
-						<p><?php echo get_field('txt_before_login','option'); ?></p>
-						<?php 
-						woocommerce_login_form();?>
-						<a class="register_page" href="/my-account"><?php esc_html_e( 'Create new account', 'kare' ); ?></a>
-						<div class="accordion_details_wrapper">
-							<div class="accordion_item">
-								<div class="accordion_title">
-									<button type="button" aria-label="button" class="accordion_question">
-										<span class="title"><?php echo get_field('why_register','option') ?></span>
-										<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" width="24" height="24"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg>
-									</button>
-								</div>
-								<div class="accordion_content">
-									<div class="accordion_answer">
-										<p><?php echo get_field('why_register_response','option'); ?></p>
+						<div class="bottom_sidebar">
+							<p><?php echo get_field('txt_before_login','option'); ?></p>
+							<?php 
+							woocommerce_login_form();?>
+							<a class="register_page" href="/my-account"><?php esc_html_e( 'Create new account', 'kare' ); ?></a>
+							<div class="accordion_details_wrapper">
+								<div class="accordion_item">
+									<div class="accordion_title">
+										<button type="button" aria-label="button" class="accordion_question">
+											<span class="title"><?php echo get_field('why_register','option') ?></span>
+											<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" width="24" height="24"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg>
+										</button>
+									</div>
+									<div class="accordion_content">
+										<div class="accordion_answer">
+											<p><?php echo get_field('why_register_response','option'); ?></p>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 						
-					<?php } else {
-						// Optionally, you can display a message or redirect if the user is already logged in
-						echo '<p>You are already logged in.</p>';
-					}
+					<?php } else {?>
+						<div class="my_account_menu_wrapper">
+							<?php do_action( 'woocommerce_account_navigation' ); ?>
+						</div>
+						<div class="bottom_sidebar">
+							<p class="contact_title"><?php esc_html_e( "contact", "kare" ); ?></p>
+							<button class="contact_mail">
+								<img src="<?php echo get_template_directory_uri();?>/dist/images/svg/mail.svg" alt="" width="20" height="20">
+								<a href="mailto:<?php echo get_field('contact_email','option'); ?>"  target="_blank"><?php echo get_field('contact_email','option'); ?></a>
+							</button>
+						</div>
+						<nav class="woocommerce-MyAccount-navigation">
+							<ul>
+								<li class="woocommerce-MyAccount-navigation-link custom_logout">
+									<a href="javascript:void(0)">
+										<?php esc_html_e( 'Logout', 'woocommerce' ); ?>
+									</a>
+								</li>
+							</ul>
+						</nav>
+					<?php }
 					?>
-					</div>
+					
 
 				</div>
 			</div>
 		</header><!-- #masthead -->
+
+
+		<div class="logout_popup">
+			<p><?php esc_html_e( 'Would you like to unsubscribe?', 'kare' ); ?></p>
+			<button id="confirm-logout"><?php esc_html_e( 'OK', 'kare' ); ?></button>
+			<button id="cancel-logout"><?php esc_html_e( 'CANCEL', 'kare' ); ?></button>
+		</div>
