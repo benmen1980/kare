@@ -52,7 +52,7 @@ button {
   background-color: #000000;
 }
 
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit], #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button, header .login_sidebar .sidebar-content form.login .form-row button, .btn-test, .btn_black_hover {
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit], #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button, header .login_sidebar .sidebar-content form.login .form-row button, header .login_sidebar .sidebar-content .bottom_sidebar .register_page, .btn-test, .btn_black_hover {
   padding: 1rem 1.5rem;
   position: relative;
   display: -webkit-inline-box;
@@ -76,11 +76,11 @@ button {
           transition-duration: 0.3s;
   border: 1px solid #e4e4e4;
 }
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover, header .login_sidebar .sidebar-content form.login .form-row button:hover, .btn-test:hover, .btn_black_hover:hover {
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover, header .login_sidebar .sidebar-content form.login .form-row button:hover, header .login_sidebar .sidebar-content .bottom_sidebar .register_page:hover, .btn-test:hover, .btn_black_hover:hover {
   background-color: #fff;
   color: #424242;
 }
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover a, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover a, header .login_sidebar .sidebar-content form.login .form-row button:hover a, .btn-test:hover a, .btn_black_hover:hover a {
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover a, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover a, header .login_sidebar .sidebar-content form.login .form-row button:hover a, header .login_sidebar .sidebar-content .bottom_sidebar .register_page:hover a, .btn-test:hover a, .btn_black_hover:hover a {
   color: #000000;
 }
 
@@ -94,7 +94,7 @@ button {
   border: 1px solid #e4e4e4;
 }
 
-.section_slider_4_cubes .tabs_wrapper_cubes .swiper-pagination-wrapper .swiper-pagination, .section_slider_4_cubes .tabs_wrapper_cubes .swiper-pagination-wrapper, .module_banner_promotion .banner_promotion_wrapper > .container, .module_banner_promotion .banner_promotion_wrapper, section.section_slider_pdts .section_slider_pdts_wrap .tabs_wrapper .swiper-pagination-wrapper .swiper-pagination, section.section_slider_pdts .section_slider_pdts_wrap .tabs_wrapper .swiper-pagination-wrapper, .module_half_half .hero_content, .module_50_50.module_50_50_content, section.section_slider_categories .section_slider_cat_wrap .tabs_wrapper.rounded_btn .swiper_slide_cat .swiper-slide a div, section.section_slider_categories .section_slider_cat_wrap .tabs_wrapper.rounded_btn .swiper_slide_cat, section.section_slider_categories .section_slider_cat_wrap .tabs_wrapper.simple .swiper-pagination-wrapper .swiper-pagination, section.section_slider_categories .section_slider_cat_wrap .tabs_wrapper.simple .swiper-pagination-wrapper, section.design_banner_wrapper .section_image_inner > button, #primary .product .related_products_section .tabs_wrapper .swiper-pagination-wrapper .swiper-pagination, #primary .product .related_products_section .tabs_wrapper .swiper-pagination-wrapper, #primary .product .related_products_section .interesting_products .interesting_category_wrapper, #primary .product .related_products_section .more_same_category .same_category_wrapper, #primary .product .related_products_section .bestseller_same_category .same_category_wrapper, #primary .product .related_products_section .bestseller_products .same_category_wrapper, #primary .product .related_products_section .appropriate_categories .more_categories_wrapper, #primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .dimensions_wrapper, #primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_title .accordion_question, #primary .product .top_details .l_side .product-gallery .small_img_slider_wrapper .swiper_img_slider.thumb-slider .swiper-nav, #primary .product .top_details .l_side .product-gallery .small_img_slider_wrapper .swiper_img_slider.thumb-slider .img_gallery_small.swiper-wrapper .swiper-slide .product_zoom_thumbnail_item, #primary .product .top_details .l_side .product-gallery .slider_gallery_wrapper .gallery-thumbnail-slider .swiper-nav, .container .filtering_wrapper .btn_filter_pdts, .container .filtering_wrapper, .breadcrumb_section .woocommerce-breadcrumb, .site-info .bottom-footer, .site-info .footer-container .contain-footer div.center-flex, header .header-menu .header-menu-tabs-wrapper .header-menu-button > .menu-item > ul.sub-menu, header .header-menu, .channel-kare .center-flex, .center-flex {
+.section_slider_4_cubes .tabs_wrapper_cubes .swiper-pagination-wrapper .swiper-pagination, .section_slider_4_cubes .tabs_wrapper_cubes .swiper-pagination-wrapper, .module_banner_promotion .banner_promotion_wrapper > .container, .module_banner_promotion .banner_promotion_wrapper, section.section_slider_pdts .section_slider_pdts_wrap .tabs_wrapper .swiper-pagination-wrapper .swiper-pagination, section.section_slider_pdts .section_slider_pdts_wrap .tabs_wrapper .swiper-pagination-wrapper, .module_half_half .hero_content, .module_50_50.module_50_50_content, section.section_slider_categories .section_slider_cat_wrap .tabs_wrapper.rounded_btn .swiper_slide_cat .swiper-slide a div, section.section_slider_categories .section_slider_cat_wrap .tabs_wrapper.rounded_btn .swiper_slide_cat, section.section_slider_categories .section_slider_cat_wrap .tabs_wrapper.simple .swiper-pagination-wrapper .swiper-pagination, section.section_slider_categories .section_slider_cat_wrap .tabs_wrapper.simple .swiper-pagination-wrapper, section.design_banner_wrapper .section_image_inner > button, .accordion_details_wrapper .accordion_item .accordion_content .dimensions_wrapper, .accordion_details_wrapper .accordion_item .accordion_title .accordion_question, #primary .product .related_products_section .tabs_wrapper .swiper-pagination-wrapper .swiper-pagination, #primary .product .related_products_section .tabs_wrapper .swiper-pagination-wrapper, #primary .product .related_products_section .interesting_products .interesting_category_wrapper, #primary .product .related_products_section .more_same_category .same_category_wrapper, #primary .product .related_products_section .bestseller_same_category .same_category_wrapper, #primary .product .related_products_section .bestseller_products .same_category_wrapper, #primary .product .related_products_section .appropriate_categories .more_categories_wrapper, #primary .product .top_details .l_side .product-gallery .small_img_slider_wrapper .swiper_img_slider.thumb-slider .swiper-nav, #primary .product .top_details .l_side .product-gallery .small_img_slider_wrapper .swiper_img_slider.thumb-slider .img_gallery_small.swiper-wrapper .swiper-slide .product_zoom_thumbnail_item, #primary .product .top_details .l_side .product-gallery .slider_gallery_wrapper .gallery-thumbnail-slider .swiper-nav, .container .filtering_wrapper .btn_filter_pdts, .container .filtering_wrapper, .breadcrumb_section .woocommerce-breadcrumb, .site-info .bottom-footer, .site-info .footer-container .contain-footer div.center-flex, header .header-menu .header-menu-tabs-wrapper .header-menu-button > .menu-item > ul.sub-menu, header .header-menu, .channel-kare .center-flex, .center-flex {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -132,7 +132,7 @@ button {
           align-items: center;
 }
 
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .downloads_wrapper .btn_white_hover, #primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .reviews_wrapper .customer_reviews .btn_white_hover, #primary .product .top_details .r_side .product-details form.cart .wishlist_btn, #primary .product .top_details .r_side .product-details form.cart .custom_select_wrapper .btn_quantity_wrapper, header .nav-top-wrapper .w-1-3 .w-btn {
+.accordion_details_wrapper .accordion_item .accordion_content .downloads_wrapper .btn_white_hover, .accordion_details_wrapper .accordion_item .accordion_content .reviews_wrapper .customer_reviews .btn_white_hover, #primary .product .top_details .r_side .product-details form.cart .wishlist_btn, #primary .product .top_details .r_side .product-details form.cart .custom_select_wrapper .btn_quantity_wrapper, header .nav-top-wrapper .w-1-3 .w-btn {
   padding: 1rem 1.5rem;
   width: auto;
   max-width: 100%;
@@ -1380,12 +1380,42 @@ header .login_sidebar .sidebar-content .top_sidebar .close {
 header .login_sidebar .sidebar-content .top_sidebar .close:hover {
   background-color: #000;
 }
+header .login_sidebar .sidebar-content .top_sidebar .close:hover img {
+  -webkit-filter: invert(100%) brightness(100%);
+          filter: invert(100%) brightness(100%);
+}
 header .login_sidebar .sidebar-content .top_sidebar h2 {
   margin: 0px;
   font-size: 20px;
 }
 header .login_sidebar .sidebar-content .bottom_sidebar {
   padding: 20px;
+}
+header .login_sidebar .sidebar-content .bottom_sidebar .register_page {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-transform: uppercase;
+  width: 100%;
+  background-color: #fff;
+  color: #000;
+  text-decoration: none;
+}
+header .login_sidebar .sidebar-content .bottom_sidebar .register_page:hover {
+  background-color: #000;
+  color: #fff;
+}
+header .login_sidebar .sidebar-content .bottom_sidebar .accordion_details_wrapper {
+  margin-left: -20px;
+  margin-right: -20px;
+  margin-top: 40px;
+}
+header .login_sidebar .sidebar-content .bottom_sidebar .accordion_details_wrapper .title {
+  text-align: left;
+}
+header .login_sidebar .sidebar-content .bottom_sidebar .accordion_details_wrapper .accordion_content {
+  padding: 20px;
+  background-color: #fff;
 }
 header .login_sidebar .sidebar-content form.login .form-row {
   margin-bottom: 10px;
@@ -2594,203 +2624,6 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
   text-align: center;
   font-weight: 400;
 }
-#primary .product .accordion_wrapper .accordion_product_details {
-  background-color: #ededed;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item {
-  width: 100%;
-  position: relative;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_title .accordion_question {
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-  padding: 1.25rem;
-  font-size: 16px;
-  text-align: center;
-  text-transform: uppercase;
-  background-color: #f4f4f4;
-  border-color: #e4e4e4;
-  border-width: 0 0 1px;
-  cursor: pointer;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_title .accordion_question .title {
-  margin-right: 0.5rem;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_title .accordion_question svg {
-  -webkit-transform: rotate(0deg);
-          transform: rotate(0deg);
-  -webkit-transition: -webkit-transform 0.3s ease;
-  transition: -webkit-transform 0.3s ease;
-  transition: transform 0.3s ease;
-  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_title .accordion_question .rotate180 {
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
-  -webkit-transition: -webkit-transform 0.3s ease;
-  transition: -webkit-transform 0.3s ease;
-  transition: transform 0.3s ease;
-  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content {
-  overflow: hidden;
-  display: none;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content.active {
-  display: block;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .data_wrapper {
-  padding: 3.75rem 0;
-  font-size: 14px;
-  line-height: 1.3125rem;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .data_wrapper h3 {
-  margin-bottom: 0.5rem;
-  text-align: center;
-  font-weight: 400;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .data_wrapper ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-  line-height: 1.5rem;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .data_wrapper ul li {
-  padding: 0.25rem 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .data_wrapper ul li span {
-  width: 50%;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .data_wrapper ul li span.description_bold {
-  text-align: right;
-  padding-right: 0.5rem;
-  font-weight: 700;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .data_wrapper ul li span.answer {
-  padding-left: 0.5rem;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .video_wrapper {
-  padding: 1.25rem;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .video_wrapper .video_container {
-  max-width: 768px;
-  margin: auto;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .dimensions_wrapper {
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  padding: 3.75rem 0;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .dimensions_wrapper img {
-  display: inline-block;
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  max-height: 400px;
-  mix-blend-mode: darken;
-  -o-object-fit: contain;
-     object-fit: contain;
-  cursor: pointer;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .description_wrapper {
-  padding: 3.75rem 0;
-  font-size: 14px;
-  line-height: 1.3125rem;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .description_wrapper h3 {
-  margin: 0;
-  padding-bottom: 1.25rem;
-  text-align: left;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .description_wrapper .text_description {
-  font-size: 16px;
-  line-height: 1.5rem;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .delivery_wrapper .text_delivery {
-  padding: 1.25rem;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .delivery_wrapper .text_delivery p, #primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .delivery_wrapper .text_delivery span {
-  font-size: 16px;
-  line-height: 1.5rem;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .reviews_wrapper .customer_reviews {
-  padding: 60px 0;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .reviews_wrapper .customer_reviews .btn_white_hover {
-  display: block;
-  margin: 20px auto;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .reviews_wrapper .customer_reviews .btn_white_hover:hover {
-  background-color: #000;
-  color: #fff;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .reviews_wrapper .customer_reviews .btn_white_hover:hover a {
-  color: #fff;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .reviews_wrapper .customer_reviews .btn_white_hover a {
-  color: #424242;
-  border: none;
-  text-decoration: none;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .reviews_wrapper .customer_reviews .btn_white_hover a:hover {
-  background-color: #000;
-  color: #fff;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .reviews_wrapper .customer_reviews div {
-  padding: 5px 0 32px 0;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .reviews_wrapper .customer_reviews div p {
-  margin: 0;
-  text-align: center;
-  font-size: 16px;
-  line-height: 20px;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .downloads_wrapper {
-  padding: 3.75rem 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .downloads_wrapper h6 {
-  white-space: nowrap;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .downloads_wrapper .btn_white_hover {
-  width: 20rem;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .downloads_wrapper .btn_white_hover:hover {
-  background-color: #000;
-  color: #fff;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .downloads_wrapper .btn_white_hover:hover a {
-  color: #fff;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .downloads_wrapper .btn_white_hover a {
-  color: #424242;
-  border: none;
-  text-decoration: none;
-}
-#primary .product .accordion_wrapper .accordion_product_details .accordion_item .accordion_content .downloads_wrapper .btn_white_hover a:hover {
-  background-color: #000;
-  color: #fff;
-}
 #primary .product .related_products_section {
   padding: 0;
   padding-top: 30px;
@@ -3015,6 +2848,204 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
   border-width: 1px;
   width: 15px;
   height: 15px;
+}
+
+.accordion_details_wrapper {
+  background-color: #ededed;
+}
+.accordion_details_wrapper .accordion_item {
+  width: 100%;
+  position: relative;
+}
+.accordion_details_wrapper .accordion_item .accordion_title .accordion_question {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  padding: 1.25rem;
+  font-size: 16px;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #f4f4f4;
+  border-color: #e4e4e4;
+  border-width: 0 0 1px;
+  cursor: pointer;
+}
+.accordion_details_wrapper .accordion_item .accordion_title .accordion_question .title {
+  margin-right: 0.5rem;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+.accordion_details_wrapper .accordion_item .accordion_title .accordion_question svg {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+.accordion_details_wrapper .accordion_item .accordion_title .accordion_question .rotate180 {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+.accordion_details_wrapper .accordion_item .accordion_content {
+  overflow: hidden;
+  display: none;
+}
+.accordion_details_wrapper .accordion_item .accordion_content.active {
+  display: block;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .data_wrapper {
+  padding: 3.75rem 0;
+  font-size: 14px;
+  line-height: 1.3125rem;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .data_wrapper h3 {
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-weight: 400;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .data_wrapper ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1.5rem;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .data_wrapper ul li {
+  padding: 0.25rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .data_wrapper ul li span {
+  width: 50%;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .data_wrapper ul li span.description_bold {
+  text-align: right;
+  padding-right: 0.5rem;
+  font-weight: 700;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .data_wrapper ul li span.answer {
+  padding-left: 0.5rem;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .video_wrapper {
+  padding: 1.25rem;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .video_wrapper .video_container {
+  max-width: 768px;
+  margin: auto;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .dimensions_wrapper {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 3.75rem 0;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .dimensions_wrapper img {
+  display: inline-block;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  max-height: 400px;
+  mix-blend-mode: darken;
+  -o-object-fit: contain;
+     object-fit: contain;
+  cursor: pointer;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .description_wrapper {
+  padding: 3.75rem 0;
+  font-size: 14px;
+  line-height: 1.3125rem;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .description_wrapper h3 {
+  margin: 0;
+  padding-bottom: 1.25rem;
+  text-align: left;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .description_wrapper .text_description {
+  font-size: 16px;
+  line-height: 1.5rem;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .delivery_wrapper .text_delivery {
+  padding: 1.25rem;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .delivery_wrapper .text_delivery p, .accordion_details_wrapper .accordion_item .accordion_content .delivery_wrapper .text_delivery span {
+  font-size: 16px;
+  line-height: 1.5rem;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .reviews_wrapper .customer_reviews {
+  padding: 60px 0;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .reviews_wrapper .customer_reviews .btn_white_hover {
+  display: block;
+  margin: 20px auto;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .reviews_wrapper .customer_reviews .btn_white_hover:hover {
+  background-color: #000;
+  color: #fff;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .reviews_wrapper .customer_reviews .btn_white_hover:hover a {
+  color: #fff;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .reviews_wrapper .customer_reviews .btn_white_hover a {
+  color: #424242;
+  border: none;
+  text-decoration: none;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .reviews_wrapper .customer_reviews .btn_white_hover a:hover {
+  background-color: #000;
+  color: #fff;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .reviews_wrapper .customer_reviews div {
+  padding: 5px 0 32px 0;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .reviews_wrapper .customer_reviews div p {
+  margin: 0;
+  text-align: center;
+  font-size: 16px;
+  line-height: 20px;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .downloads_wrapper {
+  padding: 3.75rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .downloads_wrapper h6 {
+  white-space: nowrap;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .downloads_wrapper .btn_white_hover {
+  width: 20rem;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .downloads_wrapper .btn_white_hover:hover {
+  background-color: #000;
+  color: #fff;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .downloads_wrapper .btn_white_hover:hover a {
+  color: #fff;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .downloads_wrapper .btn_white_hover a {
+  color: #424242;
+  border: none;
+  text-decoration: none;
+}
+.accordion_details_wrapper .accordion_item .accordion_content .downloads_wrapper .btn_white_hover a:hover {
+  background-color: #000;
+  color: #fff;
 }
 
 /*--------------------------------------------------------------

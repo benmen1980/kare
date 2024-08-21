@@ -269,6 +269,32 @@ header {
             }
             .bottom_sidebar{
                 padding: 20px;
+                .register_page{
+                    @extend %black-btn;
+                    justify-content: center;
+                    text-transform: uppercase;
+                    width: 100%;
+                    background-color: #fff;
+                    color: #000;
+                    text-decoration: none;
+                    &:hover{
+                        background-color: #000;
+                        color: #fff;
+                    }
+                }
+                .accordion_details_wrapper{
+                    margin-left: -20px;
+                    margin-right: -20px;
+                    margin-top: 40px;
+                   .title{
+                    text-align:left;
+                   } 
+                   .accordion_content{
+                    padding: 20px;
+                    background-color: #fff;
+                   }
+                }
+
             }
             form{
                 &.login{

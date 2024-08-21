@@ -306,7 +306,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 	</section>
 	<section class="accordion_wrapper">
 		<h2><b><?php echo esc_html_e('Product'); ?></b> <?php echo esc_html_e(' details'); ?></h2>
-		<section class="accordion_product_details">
+		<section class="accordion_details_wrapper">
 			<?php if(get_field('product_details')):  
 				$product_details = get_field('product_details'); // Getting the main set of fields
 				
