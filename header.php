@@ -79,7 +79,7 @@
 					<div class="top_sidebar">
 						<h2><?php echo (!is_user_logged_in()) ? __( 'Login', 'kare' ) :  __( 'Your customer account', 'kare' ); ?></h2>
 						<button id="close_sidebar" class="close">
-						<img src="<?php echo get_template_directory_uri();?>/dist/images/svg/close.svg" alt="" width="18" height="18">
+							<img src="<?php echo get_template_directory_uri();?>/dist/images/svg/close.svg" alt="" width="18" height="18">
 						</button>
 					</div>
 					
