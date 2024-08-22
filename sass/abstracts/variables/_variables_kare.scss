@@ -51,8 +51,7 @@ button {
     border: $border-width solid #e4e4e4;
     &:hover {
         background-color: #fff;
-        color: #424242;
-        
+        color: #424242; 
         a {
             color: $color-link;
         }
@@ -108,6 +107,10 @@ button {
     text-decoration: none;
     text-transform: uppercase;
     cursor: pointer;
+    &:hover{
+        background-color: #000;
+        color: #fff;
+    }
 }
 
 %link-btn {

@@ -52,7 +52,7 @@ button {
   background-color: #000000;
 }
 
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit], #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button, header .login_sidebar .sidebar-content form.login .form-row button, header .login_sidebar .sidebar-content .bottom_sidebar .contact_mail, header .login_sidebar .sidebar-content .bottom_sidebar .register_page, .btn-test, .btn_black_hover {
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit], .logout_popup .logout_popup_content .popup_btns #cancel_logout, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button, header .login_sidebar .sidebar-content form.login .form-row button, .btn-test, .btn_black_hover {
   padding: 1rem 1.5rem;
   position: relative;
   display: -webkit-inline-box;
@@ -76,11 +76,11 @@ button {
           transition-duration: 0.3s;
   border: 1px solid #e4e4e4;
 }
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover, header .login_sidebar .sidebar-content form.login .form-row button:hover, header .login_sidebar .sidebar-content .bottom_sidebar .contact_mail:hover, header .login_sidebar .sidebar-content .bottom_sidebar .register_page:hover, .btn-test:hover, .btn_black_hover:hover {
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover, header .login_sidebar .sidebar-content form.login .form-row button:hover, .btn-test:hover, .btn_black_hover:hover {
   background-color: #fff;
   color: #424242;
 }
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover a, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover a, header .login_sidebar .sidebar-content form.login .form-row button:hover a, header .login_sidebar .sidebar-content .bottom_sidebar .contact_mail:hover a, header .login_sidebar .sidebar-content .bottom_sidebar .register_page:hover a, .btn-test:hover a, .btn_black_hover:hover a {
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover a, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover a, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover a, header .login_sidebar .sidebar-content form.login .form-row button:hover a, .btn-test:hover a, .btn_black_hover:hover a {
   color: #000000;
 }
 
@@ -132,7 +132,7 @@ button {
           align-items: center;
 }
 
-.accordion_details_wrapper .accordion_item .accordion_content .downloads_wrapper .btn_white_hover, .accordion_details_wrapper .accordion_item .accordion_content .reviews_wrapper .customer_reviews .btn_white_hover, #primary .product .top_details .r_side .product-details form.cart .wishlist_btn, #primary .product .top_details .r_side .product-details form.cart .custom_select_wrapper .btn_quantity_wrapper, header .nav-top-wrapper .w-1-3 .w-btn {
+.logout_popup .logout_popup_content .popup_btns #confirm_logout, .accordion_details_wrapper .accordion_item .accordion_content .downloads_wrapper .btn_white_hover, .accordion_details_wrapper .accordion_item .accordion_content .reviews_wrapper .customer_reviews .btn_white_hover, #primary .product .top_details .r_side .product-details form.cart .wishlist_btn, #primary .product .top_details .r_side .product-details form.cart .custom_select_wrapper .btn_quantity_wrapper, header .login_sidebar .sidebar-content .bottom_sidebar .contact_mail, header .login_sidebar .sidebar-content .bottom_sidebar .register_page, header .nav-top-wrapper .w-1-3 .w-btn {
   padding: 1rem 1.5rem;
   width: auto;
   max-width: 100%;
@@ -147,6 +147,10 @@ button {
   text-decoration: none;
   text-transform: uppercase;
   cursor: pointer;
+}
+.logout_popup .logout_popup_content .popup_btns #confirm_logout:hover, .accordion_details_wrapper .accordion_item .accordion_content .downloads_wrapper .btn_white_hover:hover, .accordion_details_wrapper .accordion_item .accordion_content .reviews_wrapper .customer_reviews .btn_white_hover:hover, #primary .product .top_details .r_side .product-details form.cart .wishlist_btn:hover, #primary .product .top_details .r_side .product-details form.cart .custom_select_wrapper .btn_quantity_wrapper:hover, header .login_sidebar .sidebar-content .bottom_sidebar .contact_mail:hover, header .login_sidebar .sidebar-content .bottom_sidebar .register_page:hover, header .nav-top-wrapper .w-1-3 .w-btn:hover {
+  background-color: #000;
+  color: #fff;
 }
 
 header .nav-top-wrapper .w-1-3 .l-btn {
@@ -1391,14 +1395,7 @@ header .login_sidebar .sidebar-content .bottom_sidebar {
   padding: 20px;
 }
 header .login_sidebar .sidebar-content .bottom_sidebar .register_page {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  text-transform: uppercase;
-  width: 100%;
-  background-color: #fff;
-  color: #000;
-  text-decoration: none;
+  display: block;
 }
 header .login_sidebar .sidebar-content .bottom_sidebar .register_page:hover {
   background-color: #000;
@@ -1422,13 +1419,13 @@ header .login_sidebar .sidebar-content .bottom_sidebar .contact_title {
   margin-top: 10px;
 }
 header .login_sidebar .sidebar-content .bottom_sidebar .contact_mail {
-  border: 1px solid rgb(228, 228, 228);
-  background-color: #fff;
-  color: #000;
-  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  width: 100%;
 }
 header .login_sidebar .sidebar-content .bottom_sidebar .contact_mail a {
   font-size: 16px;
@@ -3181,6 +3178,59 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   z-index: 9999;
+  width: 30rem;
+  height: 18rem;
+}
+.logout_popup .logout_popup_content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  height: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.logout_popup .logout_popup_content p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 4;
+      -ms-flex-positive: 4;
+          flex-grow: 4;
+  text-align: center;
+  font-size: 16px;
+}
+.logout_popup .logout_popup_content .popup_btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.logout_popup .logout_popup_content .popup_btns #confirm_logout {
+  margin-right: 5px;
+  width: 144px;
+  display: block;
+  text-align: center;
+}
+.logout_popup .logout_popup_content .popup_btns #cancel_logout {
+  margin-left: 5px;
+  width: 144px;
+  display: block;
+  text-align: center;
 }
 
 /*--------------------------------------------------------------

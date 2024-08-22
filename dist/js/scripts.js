@@ -10,18 +10,14 @@ jQuery(document).on("ready", function(){
         $(".logout_popup").show();
         // Handle the OK button click
     
-        $('#confirm-logout').on('click', function() {
+        $('#confirm_logout').on('click', function() {
             var logout_href = $('.woocommerce-MyAccount-navigation-link--customer-logout a').attr('href');
             //console.log("🚀 ~ $ ~ logout_href:", logout_href);
             window.location.href = logout_href;
-           
-            
-        
-
         });
         
         // Handle the Cancel button click
-        $('#cancel-logout').on('click', function() {
+        $('#cancel_logout').on('click', function() {
             $(".logout_popup").hide();
         });
     })
@@ -358,7 +354,7 @@ jQuery(document).on("ready", function(){
         $('.open_account_popup').trigger('click'); // Triggers the popup
     });
 
-    //open account popup forurl with panel=account
+    //open account popup for url with panel=account
     
     function getQueryParam(param) {
         var urlParams = new URLSearchParams(window.location.search);
@@ -368,6 +364,11 @@ jQuery(document).on("ready", function(){
     // Check if 'panel' parameter equals 'account'
     if (getQueryParam('panel') === 'account') {
         $('.open_account_popup').trigger('click');
+        //remove panel=account from url
+        var url = new URL(window.location.href);
+        console.log("🚀 ~ jQuery ~ url:", url);
+        url.searchParams.delete('panel');
+        window.history.replaceState({}, document.title, url.pathname + url.search);
     }
     
     // opening and closing respectively of an accordion by clicking on the class "accordion_item" 

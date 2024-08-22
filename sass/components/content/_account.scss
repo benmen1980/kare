@@ -119,4 +119,40 @@
     padding: 20px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     z-index: 9999;
+    width: 30rem;
+    height: 18rem;
+    .logout_popup_content{
+        display: flex;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        justify-content: center;
+        height: 100%;
+        align-items: center;
+        p{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            flex-direction: column;
+            flex-grow: 4;
+            text-align: center;
+            font-size: 16px;
+        }
+        .popup_btns{
+            display: flex;
+            #confirm_logout{
+                @extend %white-btn;
+                margin-right: 5px;
+                width: 144px; 
+                display: block;
+                text-align: center;
+            }
+            #cancel_logout{
+                @extend %black-btn;
+                margin-left: 5px;
+                width: 144px; 
+                display: block;
+                text-align: center;
+            }
+        }
+    }
 }

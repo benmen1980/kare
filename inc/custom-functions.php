@@ -74,7 +74,27 @@ add_action('template_redirect', 'redirect_if_not_logged_in');
 function redirect_if_not_logged_in() {
     if (is_account_page() && !is_user_logged_in()) {
         // Redirect to the home page with a query parameter
-        wp_redirect(home_url('?panel=account'));
+        $redirect_url = add_query_arg('panel', 'account', home_url());
+        wp_redirect($redirect_url);
         exit;
     }
 }
+
+// on logout redirect to home page
+add_action('wp_logout','auto_redirect_after_logout');
+
+function auto_redirect_after_logout(){
+
+  wp_redirect( home_url() );
+  exit();
+
+}
+// on login redirect to home page
+add_filter('woocommerce_login_redirect', 'redirect_to_home_after_login', 10, 3);
+
+function redirect_to_home_after_login($redirect_to) {
+    // Always redirect to the home page after login
+    return home_url();
+}
+
+

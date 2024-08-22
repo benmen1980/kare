@@ -138,7 +138,12 @@
 
 
 		<div class="logout_popup">
-			<p><?php esc_html_e( 'Would you like to unsubscribe?', 'kare' ); ?></p>
-			<button id="confirm-logout"><?php esc_html_e( 'OK', 'kare' ); ?></button>
-			<button id="cancel-logout"><?php esc_html_e( 'CANCEL', 'kare' ); ?></button>
+			<div class="logout_popup_content">
+				<p><?php esc_html_e( 'Would you like to unsubscribe?', 'kare' ); ?></p>
+				<div class="popup_btns">
+					<button id="confirm_logout"><?php esc_html_e( 'OK', 'kare' ); ?></button>
+					<button id="cancel_logout"><?php esc_html_e( 'CANCEL', 'kare' ); ?></button>
+				</div>
+				
+			</div>
 		</div>
