@@ -1,0 +1,158 @@
+.woocommerce-account{
+    article{
+        @extend %container;
+        .woocommerce{
+            display: flex;
+            .woocommerce-MyAccount-navigation{
+                width: 20%;
+                margin-right: 20px;
+            } 
+            .woocommerce-MyAccount-content{
+                
+            }
+        }
+    }
+  
+}
+
+.my_account_menu_wrapper{
+    .woocommerce-MyAccount-navigation{
+        li.woocommerce-MyAccount-navigation-link--customer-logout{
+            display: none;
+        }
+    }
+}
+.woocommerce-MyAccount-navigation{
+    ul{
+        display: block;
+        list-style-type: none;
+        margin-left: 0;
+        padding-left: 0;
+        margin-bottom: 0;
+        li{                
+            position: relative;
+            background-color: rgb(244, 244, 244);
+            padding-left: 55px;
+            height: 62px;
+            border-bottom: 1px solid #fff;
+            transition-property: background-color,border-color,color,fill,stroke;
+            transition-duration: .3s;
+            &.is-active{
+                background-color: #000;
+                color: #fff;
+                &:before{
+                    filter: invert(100%) brightness(100%);
+                }
+                a{
+                    text-decoration: underline;
+                    color:#fff;
+                }
+            }
+            a{
+                text-decoration: none;
+                font-size: 16px;
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+            &:before{
+                width: 20px;
+                height: 20px;
+                position: absolute;
+                left: 25px;
+                top: 22px;
+                content: "";
+                background-size: 20px;
+            }
+            &.woocommerce-MyAccount-navigation-link--orders{
+                &::before{
+                    background-image: url(../images/svg/doc.svg);
+                    
+                }
+            }
+            &.woocommerce-MyAccount-navigation-link--edit-account{
+                &::before{
+                    background-image: url(../images/svg/user.svg);
+                    
+                }
+            }
+            &.woocommerce-MyAccount-navigation-link--edit-address{
+                &::before{
+                    background-image: url(../images/svg/car.svg);
+                    transform: scaleX(-1);  
+                }
+            }
+            &.woocommerce-MyAccount-navigation-link--wishlist{
+                &::before{
+                    background-image: url(../images/svg/heart.svg);
+                    
+                }
+            }
+            &.woocommerce-MyAccount-navigation-link--customer-logout{
+                &::before{
+                    //background-image: url(../images/svg/car.svg); 
+                }
+                &:hover{
+                    background-color: #000;
+                    color: #fff;
+                    &:before{
+                        filter: invert(100%) brightness(100%);
+                    }
+                    a{
+                        text-decoration: underline;
+                        color:#fff;
+                    }
+                }
+                
+            }
+        }
+    }
+}
+
+.logout_popup{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    z-index: 9999;
+    width: 30rem;
+    height: 18rem;
+    .logout_popup_content{
+        display: flex;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        justify-content: center;
+        height: 100%;
+        align-items: center;
+        p{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            flex-direction: column;
+            flex-grow: 4;
+            text-align: center;
+            font-size: 16px;
+        }
+        .popup_btns{
+            display: flex;
+            #confirm_logout{
+                @extend %white-btn;
+                margin-right: 5px;
+                width: 144px; 
+                display: block;
+                text-align: center;
+            }
+            #cancel_logout{
+                @extend %black-btn;
+                margin-left: 5px;
+                width: 144px; 
+                display: block;
+                text-align: center;
+            }
+        }
+    }
+}

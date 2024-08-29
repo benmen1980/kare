@@ -34,6 +34,36 @@
     src: url("../fonts/montserrat/static/Montserrat-Black.ttf") format("truetype");
 }
 
+/* general design for the scroll bars throughout the site */
+::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+    display: none !important; /* hide the arrow-buttons */
+}
+
+::-webkit-scrollbar {
+    width: 8px; 
+    box-shadow: none !important;
+}
+
+::-webkit-scrollbar-track {
+    background: #fff;
+    box-shadow: none !important;
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+    box-shadow: none !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #E4E4E4; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #f4f4f4;
+}
+
 .sticky {
 	display: block;
 }
@@ -86,6 +116,7 @@ main {
 }
 
 *, :after, :before {
+    position: relative;
     box-sizing: border-box;
     border: 0 solid;
 }

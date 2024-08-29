@@ -3,6 +3,25 @@ var $=jQuery.noConflict();
 
 jQuery(document).on("ready", function(){
 
+    //logout with popup
+    $('.custom_logout a').on('click', function(e) {
+        e.preventDefault();
+        console.log('click!');
+        $(".logout_popup").show();
+        // Handle the OK button click
+    
+        $('#confirm_logout').on('click', function() {
+            var logout_href = $('.woocommerce-MyAccount-navigation-link--customer-logout a').attr('href');
+            //console.log("🚀 ~ $ ~ logout_href:", logout_href);
+            window.location.href = logout_href;
+        });
+        
+        // Handle the Cancel button click
+        $('#cancel_logout').on('click', function() {
+            $(".logout_popup").hide();
+        });
+    })
+
     //Listens to the scroll of the surfer to add a clickable button to the top of the page
     let scrollThreshold = 1500;
 
@@ -40,64 +59,91 @@ jQuery(document).on("ready", function(){
         $('html, body').animate({ scrollTop: 0 }, 'slow');
     });
 
-     // Initialize the large gallery (main-slider)
-     const largeGallery = new Swiper('.main-slider', {
-        slidesPerView: 1,
-        spaceBetween: 0,
-        initialSlide: 0,
-        loop: false,
-        navigation: {
-            nextEl: '.large-slider-nav-next',
-            prevEl: '.large-slider-nav-prev',
-        },
-    });
-    largeGallery.update(); // Forces Swiper to recalculate slides
+    //checks if the current page is a single-product
+    if (document.body.classList.contains('single-product')) {
 
-    // Initialize the small gallery (thumb-slider)
-    const smallGallery = new Swiper('.thumb-slider', {
-        slidesPerView: 9.15,
-        spaceBetween: 20,
-        navigation: {
-            nextEl: '.small-slider-nav-next',
-            prevEl: '.small-slider-nav-prev',
-        },
-    });
-    smallGallery.update(); // Forces Swiper to recalculate slides
+        //add the selected quantity of the product to the cart
+        const selectWrapper = document.querySelector('.custom_select_wrapper');
+        const selectTrigger = selectWrapper.querySelector('.btn_quantity_wrapper');
+        const options = selectWrapper.querySelector('.custom_options');
+        const hiddenInput = selectWrapper.querySelector('.custom_select_hidden');
+        const selectedValue = selectWrapper.querySelector('.selected_value');
 
-     // Sync the active thumbnail border when the large gallery changes
-     largeGallery.on('slideChange', function () {
-        let activeIndex = largeGallery.activeIndex;
-        if (activeIndex === 0) {
-            activeIndex = 1; // Adjust based on your needs
-        }
-        
-        // Remove 'active-thumbnail' class from all slides in the small gallery
-        smallGallery.slides.forEach(slide => {
-            slide.classList.remove('active-small-thumbnail');
+        selectTrigger.addEventListener('click', function() {
+            options.classList.toggle('open');
         });
 
-        // Add 'active-thumbnail' class to the corresponding slide in the small gallery
-        if (smallGallery.slides[activeIndex]) {
-            smallGallery.slides[activeIndex].classList.add('active-small-thumbnail');
-        }
+        options.addEventListener('click', function(e) {
+            if (e.target.classList.contains('custom_option')) {
+                hiddenInput.value = e.target.getAttribute('data-value');
+                selectedValue.textContent = e.target.textContent;
+                options.classList.remove('open');
+                document.querySelectorAll('.custom_option').forEach(option => {
+                    option.classList.remove('selected');
+                });
+                e.target.classList.add('selected');
+            }
+        });
 
-        // Scroll the small gallery to the correct thumbnail
-        smallGallery.slideTo(activeIndex);
-    });
+        // Initialize the large gallery (main-slider)
+        const largeGallery = new Swiper('.main-slider', {
+            slidesPerView: 1,
+            spaceBetween: 0,
+            initialSlide: 0,
+            loop: false,
+            navigation: {
+                nextEl: '.large-slider-nav-next',
+                prevEl: '.large-slider-nav-prev',
+            },
+        });
+        //largeGallery.update(); // Forces Swiper to recalculate slides
 
-     // Manually set the red border for the small gallery active slide
-     smallGallery.slides.forEach((slide, index) => {
-        slide.addEventListener('click', function () {
-            // Update the active thumbnail in the small gallery
+        // Initialize the small gallery (thumb-slider)
+        const smallGallery = new Swiper('.thumb-slider', {
+            slidesPerView: 9.15,
+            spaceBetween: 20,
+            navigation: {
+                nextEl: '.small-slider-nav-next',
+                prevEl: '.small-slider-nav-prev',
+            },
+        });
+        //smallGallery.update(); // Forces Swiper to recalculate slides
+
+        // Sync the active thumbnail border when the large gallery changes
+        largeGallery.on('slideChange', function () {
+            let activeIndex = largeGallery.activeIndex;
+            if (activeIndex === 0) {
+                activeIndex = 1; // Adjust based on your needs
+            }
+            
+            // Remove 'active-thumbnail' class from all slides in the small gallery
             smallGallery.slides.forEach(slide => {
                 slide.classList.remove('active-small-thumbnail');
             });
-            slide.classList.add('active-small-thumbnail');
 
-             // Slide the large gallery to the clicked thumbnail's corresponding slide
-             largeGallery.slideTo(index);
+            // Add 'active-thumbnail' class to the corresponding slide in the small gallery
+            if (smallGallery.slides[activeIndex]) {
+                smallGallery.slides[activeIndex].classList.add('active-small-thumbnail');
+            }
+
+            // Scroll the small gallery to the correct thumbnail
+            smallGallery.slideTo(activeIndex);
         });
-    });
+
+        // Manually set the red border for the small gallery active slide
+        smallGallery.slides.forEach((slide, index) => {
+            slide.addEventListener('click', function () {
+                // Update the active thumbnail in the small gallery
+                smallGallery.slides.forEach(slide => {
+                    slide.classList.remove('active-small-thumbnail');
+                });
+                slide.classList.add('active-small-thumbnail');
+
+                // Slide the large gallery to the clicked thumbnail's corresponding slide
+                largeGallery.slideTo(index);
+            });
+        });
+    }
 
     // General Swiper Initialization (for other galleries)
     var defaultSwiperOptions = {
@@ -302,6 +348,33 @@ jQuery(document).on("ready", function(){
         }
     }); */
 
+    //open wishlist popup in header
+    $('.open_wishlist_popup').on('click', function() {
+        $('#wishlist_sidebar').addClass('active');
+        if ($('#overlay').length === 0) {
+            $('body').append('<div id="overlay"></div>');
+        }
+        $('#overlay').fadeIn(); // Show the overlay
+    });
+
+    $('#close_sidebar').on('click', function() {
+        $('#wishlist_sidebar').removeClass('active');
+        $('#overlay').fadeOut(function() {
+            $(this).remove(); // Remove overlay after fade out
+        });
+    });
+
+    // Close the sidebar if clicked outside
+    $(document).mouseup(function(e) {
+        var container = $("#wishlist_sidebar");
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
+            container.removeClass('active');
+            $('#overlay').fadeOut(function() {
+                $(this).remove(); // Remove overlay after fade out
+            });
+        }
+    });
+
     //open account popup in header
     $('.open_account_popup').on('click', function() {
         $('#login_sidebar').addClass('active');
@@ -310,7 +383,7 @@ jQuery(document).on("ready", function(){
         }
         $('#overlay').fadeIn(); // Show the overlay
     });
-    
+
     $('#close_sidebar').on('click', function() {
         $('#login_sidebar').removeClass('active');
         $('#overlay').fadeOut(function() {
@@ -334,6 +407,22 @@ jQuery(document).on("ready", function(){
         e.preventDefault(); // Prevents the default action of the link
         $('.open_account_popup').trigger('click'); // Triggers the popup
     });
+
+    //open account popup for url with panel=account
+    function getQueryParam(param) {
+        var urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Check if 'panel' parameter equals 'account'
+    if (getQueryParam('panel') === 'account') {
+        $('.open_account_popup').trigger('click');
+        //remove panel=account from url
+        var url = new URL(window.location.href);
+        console.log("🚀 ~ jQuery ~ url:", url);
+        url.searchParams.delete('panel');
+        window.history.replaceState({}, document.title, url.pathname + url.search);
+    }
     
     // opening and closing respectively of an accordion by clicking on the class "accordion_item" 
     $('.accordion_question').click(function() {
@@ -348,26 +437,19 @@ jQuery(document).on("ready", function(){
        $(this).find('svg').toggleClass('rotate180');
     });
 
-    //add the selected quantity of the product to the cart
-    const selectWrapper = document.querySelector('.custom_select_wrapper');
-    const selectTrigger = selectWrapper.querySelector('.btn_quantity_wrapper');
-    const options = selectWrapper.querySelector('.custom_options');
-    const hiddenInput = selectWrapper.querySelector('.custom_select_hidden');
-    const selectedValue = selectWrapper.querySelector('.selected_value');
-
-    selectTrigger.addEventListener('click', function() {
-        options.classList.toggle('open');
+    //Added a class to wishlist_btn if it is in the list
+    document.querySelectorAll('.delete_item').forEach(function(element) {
+        element.closest('.wishlist_btn').classList.add('wishlist_btn_black');
     });
-
-    options.addEventListener('click', function(e) {
-        if (e.target.classList.contains('custom_option')) {
-            hiddenInput.value = e.target.getAttribute('data-value');
-            selectedValue.textContent = e.target.textContent;
-            options.classList.remove('open');
-            document.querySelectorAll('.custom_option').forEach(option => {
-                option.classList.remove('selected');
-            });
-            e.target.classList.add('selected');
+    $(document).on('click', '.yith-wcwl-add-button a', function(e) {
+        e.preventDefault();
+        
+        var $wishlistButton = $(this).closest('.wishlist_btn');
+    
+        if ($wishlistButton.hasClass('wishlist_btn_black')) {
+            $wishlistButton.removeClass('wishlist_btn_black');
+        } else {
+            $wishlistButton.addClass('wishlist_btn_black');
         }
     });
     
@@ -388,5 +470,17 @@ document.addEventListener('DOMContentLoaded', function () {
         if (slides.length >= 6) {
             swiperWrapper.style.justifyContent = 'flex-start';
         }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // שינויים עבור כפתור ההסרה בפופאפ
+    document.querySelectorAll('.wishlist_table .product-remove a').forEach(function(button) {
+        button.innerHTML = '<img src="' + templateUrl + '/dist/images/svg/bin.svg" alt="Remove">';
+    });
+
+    // שינויים עבור כפתור הוספה לסל בפופאפ
+    document.querySelectorAll('.wishlist_table .add_to_cart_button').forEach(function(button) {
+        button.innerHTML = '<img src="' + templateUrl + '/dist/images/svg/cart.svg" alt="Add to cart">';
     });
 });

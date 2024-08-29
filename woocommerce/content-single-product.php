@@ -150,7 +150,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 		
 		<div class="r_side">
 			<div class="summary entry-summary product-details">
-				<p class="product-sku"><?php echo 'Item no.:' . $product->get_sku(); ?></p>
+				<p class="product-sku"><?php echo 'Item no.: ' . $product->get_sku(); ?></p>
 
 				<?php
 				/**
@@ -204,7 +204,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 				}
 
 				if ($product->get_stock_quantity() <= 0){ 
-					$stock = $product->get_stock_quantity() . ' weeks';
+					$stock = $product->get_stock_quantity() . '60 business days';
 				}
 				
 				?>
@@ -225,70 +225,92 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 				
 						$max_quantity = apply_filters( 'woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product );
 						$min_quantity = apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product );
-						
+						$pack_quantity = get_post_meta($product->get_id(), 'quantity_product_order', true);
+						$quantity = isset($pack_quantity) && $pack_quantity > 1 ? $pack_quantity : $min_quantity; 
+
 						?>
 
 						<div class="custom_select_wrapper">
 							<button aria-label="button" type="button" class="btn_quantity_wrapper">
-								<span class="selected_value">1</span> <!-- ברירת מחדל: הספרה 1 -->
+								<span class="selected_value"><?php echo esc_html($quantity); ?></span> <!-- ברירת מחדל: הספרה 1 -->
 								<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-down.svg'); ?>
 							</button>
 							<ul class="custom_options">
-								<?php for ($i = $min_quantity; $i <= 10; $i++) { ?>
-									<li class="custom_option <?php echo $i == 1 ? 'selected' : ''; ?>" data-value="<?php echo esc_attr($i); ?>">
+								<?php for ($i = $quantity; $i <= min(24, $max_quantity); $i += $quantity) { ?>
+									<li class="custom_option <?php echo $i == $quantity ? 'selected' : ''; ?>" data-value="<?php echo esc_attr($i); ?>">
 										<?php echo esc_html($i); ?>
 									</li>
 								<?php } ?>
 							</ul>
-							<input type="hidden" name="quantity" class="custom_select_hidden" value="1"> <!-- ברירת מחדל: ערך 1 -->
+							<input type="hidden" name="quantity" class="custom_select_hidden" value="<?php echo esc_html($quantity); ?>"> <!-- ברירת מחדל: ערך 1 -->
 						</div>
 
 						<?php do_action( 'woocommerce_after_add_to_cart_quantity' );
 					?>
 			
 					<button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="single_add_to_cart_button button alt"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
-
+					
 					<button aria-label="link" type="button" title="Add to Wishlist" class="wishlist_btn">
-						<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/heart-outline.svg');?>
+						<?php echo do_shortcode('[yith_wcwl_add_to_wishlist]'); ?>
 					</button>
-		
+	
 					<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 				</form>
 		
-				<?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>
-					
-				<?php	woocommerce_template_single_sharing();
-					?>
-					<div class="about_product">
-						<!-- List of qualities in the product -->
-						<div class="list_qualities_pdts">
-							<?php
-							if( have_rows( 'list_item_product', $product->get_id() ) ):
-								while( have_rows( 'list_item_product', $product->get_id() ) ): the_row();
-								// Get sub field value.
-								$list_item = get_sub_field('list_item',);
-								?>
+				<?php do_action( 'woocommerce_after_add_to_cart_form' ); 
+				
+				//get quantityto order of the product
+				$quantity_product = get_post_meta($product->get_id(), 'quantity_product_order', true);
 
-								<div class="item_pdt">
-									<?php echo file_get_contents( get_template_directory_uri() . '/dist/images/svg/check.svg');?>
-									<p class="text_item"><?php echo $list_item;?></p>
-								</div>
+				if ($quantity_product && $quantity_product  > 1 ) :
+				?>
+					<section class="product_price_notification">
+						<?php echo file_get_contents( get_template_directory_uri() . '/dist/images/svg/box.svg');?>
+						<span class="product_price_notification_text">
+							<p>
+								<?php echo esc_html_e( 'Minimum order quantity: ' . $quantity_product . ' pieces', 'kare' ); ?>
+							</p>
+							<p>
+								<?php echo esc_html_e( 'This product is only available in a set of ' . $quantity_product . '. Price is per piece.', 'kare' ); ?>
+							</p>
+						</span>
+					</section>
+				<?php
+				endif;
 
-								<?php					
-								// End loop.
-								endwhile;
-							endif;
-							?>
-						</div>
+				woocommerce_template_single_sharing();
 
-						<h5 class="short_discreption_title">At a glance:</h5>
+				?>
+				<div class="about_product">
+					<!-- List of qualities in the product -->
+					<div class="list_qualities_pdts">
 						<?php
-						
-						// add short description
-						woocommerce_template_single_excerpt();
+						if( have_rows( 'list_item_product', $product->get_id() ) ):
+							while( have_rows( 'list_item_product', $product->get_id() ) ): the_row();
+							// Get sub field value.
+							$list_item = get_sub_field('list_item',);
+							?>
 
+							<div class="item_pdt">
+								<?php echo file_get_contents( get_template_directory_uri() . '/dist/images/svg/check.svg');?>
+								<p class="text_item"><?php echo $list_item;?></p>
+							</div>
+
+							<?php					
+							// End loop.
+							endwhile;
+						endif;
 						?>
 					</div>
+
+					<h5 class="short_discreption_title">At a glance:</h5>
+					<?php
+					
+					// add short description
+					woocommerce_template_single_excerpt();
+
+					?>
+				</div>
 			</div>
 
 			<?php
@@ -306,7 +328,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 	</section>
 	<section class="accordion_wrapper">
 		<h2><b><?php echo esc_html_e('Product'); ?></b> <?php echo esc_html_e(' details'); ?></h2>
-		<section class="accordion_product_details">
+		<section class="accordion_details_wrapper">
 			<?php if(get_field('product_details')):  
 				$product_details = get_field('product_details'); // Getting the main set of fields
 				
@@ -324,7 +346,6 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 				// Getting additional fields from the main field group
 				$video_url = $product_details['url_video'];
 				$img_link = $product_details['img_link'];
-				$title_description = $product_details['title_description'];
 				$txt_description = $product_details['more_description'];
 				$delivery_information = $product_details['delivery_information'];
 				$file_download = $product_details['file_download'];
@@ -436,7 +457,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 				</div>
 				<div class="accordion_content">
 					<div class="accordion_answer container description_wrapper">
-						<h3><?php echo esc_html( $title_description ); ?></h3>
+						<h3><?php echo esc_html( $product->get_name() ); ?></h3>
 						<span class="text_description"><?php echo esc_html($txt_description); ?></span>
 					</div>
 				</div>
@@ -454,28 +475,28 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 					</div>
 				</div>
 			</div>
-			<div class="accordion_item">
+			<!-- <div class="accordion_item">
 				<div class="accordion_title">
 					<button type="button" aria-label="button" class="accordion_question">
-						<span class="title"><?php echo esc_html_e( 'Customer reviews', 'kare' ); ?></span>
-						<?php echo file_get_contents( get_template_directory_uri() . '/dist/images/svg/arrow-down.svg');?>
+						<span class="title"><?php // echo esc_html_e( 'Customer reviews', 'kare' ); ?></span>
+						<?php // echo file_get_contents( get_template_directory_uri() . '/dist/images/svg/arrow-down.svg');?>
 					</button>
 				</div>
 				<div class="accordion_content">
 					<div class="accordion_answer reviews_wrapper">
 						<div class="customer_reviews">
-							<?php if (!have_comments()) : ?>
+							<?php // if (!have_comments()) : ?>
 								<button aria-label="button" type="button" class="open_account_button btn_white_hover">
-									<a href="#" class="add_review_btn" ><?php echo esc_html_e( 'Add Review', 'kare' ); ?></a>
+									<a href="#" class="add_review_btn" ><?php // echo esc_html_e( 'Add Review', 'kare' ); ?></a>
 								</button>
 								<div>
-									<p><?php esc_html_e('No reviews for this search', 'kare'); ?></p>
+									<p><?php // esc_html_e('No reviews for this search', 'kare'); ?></p>
 								</div>
-							<?php endif; ?>
+							<?php // endif; ?>
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<?php if($file_download) : ?>
 				<div class="accordion_item">
 					<div class="accordion_title">
@@ -585,34 +606,34 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 			</div>
 		</section>
 		<section class="bestseller_same_category">
-			<h2 class="title_wrapper"><b><?php echo esc_html_e('Bestseller'); ?></b> <?php echo esc_html($category->name);?></h2>
-			<div class="same_category_wrapper">
-				<?php
-				$args = array(
-					'post_type' => 'product',
-					'posts_per_page' => -1,
-					'tax_query' => array(
-						'relation' => 'AND',
-						array(
-							'taxonomy' => 'product_cat',
-							'field'    => 'term_id',
-							'terms'    => $category->term_id,
-						),
-						array(
-							'taxonomy' => 'product_tag',
-							'field'    => 'slug',
-							'terms'    => 'bestseller',
-						),
+			<?php 
+			$args = array(
+				'post_type' => 'product',
+				'posts_per_page' => -1,
+				'tax_query' => array(
+					'relation' => 'AND',
+					array(
+						'taxonomy' => 'product_cat',
+						'field'    => 'term_id',
+						'terms'    => $category->term_id,
 					),
-					'post__not_in' => array( get_the_ID() ), // מונע הצגה של המוצר הנוכחי
-				);
-			
-				$query = new WP_Query( $args );
-			
-				if ( $query->have_posts() ) { ?>
+					array(
+						'taxonomy' => 'product_tag',
+						'field'    => 'slug',
+						'terms'    => 'bestseller',
+					),
+				),
+				'post__not_in' => array( get_the_ID() ), // מונע הצגה של המוצר הנוכחי
+			);
+		
+			$query = new WP_Query( $args );
+		
+			if ( $query->have_posts() ) { ?>
+				<h2 class="title_wrapper"><b><?php echo esc_html_e('Bestseller'); ?></b> <?php echo esc_html($category->name);?></h2>
+				<div class="same_category_wrapper">
 					<div class="tabs_wrapper">
-                        <div class="swiper_slide_pdts swiper_slide_bestseller_category swiper-container">
-                            <div id="slide_bestseller_products" class="slider_products_content swiper-wrapper">
+						<div class="swiper_slide_pdts swiper_slide_bestseller_category swiper-container">
+							<div id="slide_bestseller_products" class="slider_products_content swiper-wrapper">
 								<?php while ( $query->have_posts() ) {
 									$query->the_post();
 									get_template_part('page-templates/box-product');
@@ -638,9 +659,9 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 							</div>
 						</div>
 					</div>
-				<?php } 			
-				?>
-			</div>
+				</div>
+			<?php } 			
+			?>
 		</section>
 		<section class="interesting_products">
 			<h3 class="title_wrapper"><?php echo esc_html_e('Interesting products for you'); ?> </h3>

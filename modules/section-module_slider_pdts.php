@@ -56,12 +56,12 @@
                 <!-- arrows -->
                 <div class="swiper-nav swiper-nav-prev swiper-button-disabled">
                     <button aria-label="vorherige" type="button" class="w-btn w-color w-color-white">
-                        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" class="svg-icon sprite-icons w-dir-left"><use href="/_nuxt/41a1314fa8f2980ef26b9b83aa0c0cd1.svg#i-arrow-right-sm" xlink:href="/_nuxt/41a1314fa8f2980ef26b9b83aa0c0cd1.svg#i-arrow-right-sm"></use></svg>
+                        <?php echo str_replace('<svg', '<svg class="w-dir-left"', file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg')); ?>
                     </button>
                 </div>
                 <div class="swiper-nav swiper-nav-next">
                     <button aria-label="button" type="button" class="w-btn w-color w-color-white">
-                        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" class="svg-icon sprite-icons"><use href="/_nuxt/41a1314fa8f2980ef26b9b83aa0c0cd1.svg#i-arrow-right-sm" xlink:href="/_nuxt/41a1314fa8f2980ef26b9b83aa0c0cd1.svg#i-arrow-right-sm"></use></svg>
+                        <?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg'); ?>
                     </button>
                 </div>
                 <!-- dropping points-->

@@ -52,6 +52,7 @@ function kare_setup() {
 			'footer_navigation1' => esc_html__( 'First Footer Navigation', 'kare' ),
 			'footer_navigation2' => esc_html__( 'Second Footer Navigation', 'kare' ),
 			'footer_navigation3' => esc_html__( 'Third Footer Navigation', 'kare' ),
+			'login-menu' => esc_html__( 'Login menu', 'kare' ),
 		)
 	);
 
