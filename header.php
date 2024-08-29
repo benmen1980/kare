@@ -147,7 +147,11 @@
 							<p><?php echo get_field('txt_before_login','option'); ?></p>
 							<?php 
 							woocommerce_login_form();?>
+<<<<<<< HEAD
 							<a class="register_page" href=""><?php esc_html_e( 'Create new account', 'kare' ); ?></a>
+=======
+							<a class="register_page" href="/my-account"><?php esc_html_e( 'Create new account', 'kare' ); ?></a>
+>>>>>>> a55c4022cc2c89bbcedc27b74b02104d525f6e4c
 							<div class="accordion_details_wrapper">
 								<div class="accordion_item">
 									<div class="accordion_title">

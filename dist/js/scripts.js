@@ -59,6 +59,7 @@ jQuery(document).on("ready", function(){
         $('html, body').animate({ scrollTop: 0 }, 'slow');
     });
 
+<<<<<<< HEAD
     //checks if the current page is a single-product
     if (document.body.classList.contains('single-product')) {
 
@@ -68,6 +69,31 @@ jQuery(document).on("ready", function(){
         const options = selectWrapper.querySelector('.custom_options');
         const hiddenInput = selectWrapper.querySelector('.custom_select_hidden');
         const selectedValue = selectWrapper.querySelector('.selected_value');
+=======
+     // Initialize the large gallery (main-slider)
+     const largeGallery = new Swiper('.main-slider', {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        initialSlide: 0,
+        loop: false,
+        navigation: {
+            nextEl: '.large-slider-nav-next',
+            prevEl: '.large-slider-nav-prev',
+        },
+    });
+    //largeGallery.update(); // Forces Swiper to recalculate slides
+
+    // Initialize the small gallery (thumb-slider)
+    const smallGallery = new Swiper('.thumb-slider', {
+        slidesPerView: 9.15,
+        spaceBetween: 20,
+        navigation: {
+            nextEl: '.small-slider-nav-next',
+            prevEl: '.small-slider-nav-prev',
+        },
+    });
+    //smallGallery.update(); // Forces Swiper to recalculate slides
+>>>>>>> a55c4022cc2c89bbcedc27b74b02104d525f6e4c
 
         selectTrigger.addEventListener('click', function() {
             options.classList.toggle('open');
@@ -409,6 +435,10 @@ jQuery(document).on("ready", function(){
     });
 
     //open account popup for url with panel=account
+<<<<<<< HEAD
+=======
+    
+>>>>>>> a55c4022cc2c89bbcedc27b74b02104d525f6e4c
     function getQueryParam(param) {
         var urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(param);
@@ -473,6 +503,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+<<<<<<< HEAD
 document.addEventListener('DOMContentLoaded', function() {
     // שינויים עבור כפתור ההסרה בפופאפ
     document.querySelectorAll('.wishlist_table .product-remove a').forEach(function(button) {
@@ -484,3 +515,9 @@ document.addEventListener('DOMContentLoaded', function() {
         button.innerHTML = '<img src="' + templateUrl + '/dist/images/svg/cart.svg" alt="Add to cart">';
     });
 });
+=======
+
+;
+
+
+>>>>>>> a55c4022cc2c89bbcedc27b74b02104d525f6e4c
