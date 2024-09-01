@@ -362,84 +362,123 @@ header {
 
                 //wishlist popup
                 .wishlist_content {
+                    margin-top: 16px;
                     .wishlist-title-container {
                         display: none;
                     }
-                    // עיצוב כללי לטבלה של רשימת המשאלות
+
                     .wishlist_table {
                         width: 100%;
-                        border-spacing: 10px;
+                        border-collapse: collapse;
 
                         thead {
                             display: none;
                         }
                     
                         .wishlist-items-wrapper {
-                            display: flex;
-                            align-items: center;
-                            padding: 15px 0;
-                            border-bottom: 1px solid #ddd;
-                        
-                            td {
-                                vertical-align: middle;
-                                
+                            @extend %flex-start;
+                            flex-wrap: wrap;
+
+                            tr {
+                                position: relative;
+                                padding-bottom: 20px;
+                                border-bottom: 1px dashed #e4e4e4;
+                                display: flex;
+                                align-items: flex-start;
+                            
+                                td {
+                                    vertical-align: middle;
+                                    padding: 0;
+                                    
+                                    &.product-thumbnail {
+                                        width: 144px;
+                                        height: 144px;
+                                        padding: 16px;
+                                        margin-right: 16px;
+                                        border: 1px solid #e4e4e4;
+                                        background-color: #f4f4f4;
+                                        flex-shrink: 0;
+                                        a {
+                                            width: 100%;
+                                            height: 100%;
+                                            max-width: 100%;
+                                            img {
+                                                width: 100%;
+                                                height: 100%;
+                                                object-fit: contain;
+                                                mix-blend-mode: darken;
+                                            }
+                                        }
+                                       
+                                    }
+
+                                    &.product-name {
+                                        height: 38px;
+                                        overflow: hidden;
+                                        font-size: 14px;
+                                        font-weight: 700;
+                                        line-height: 1.375;
+                                        text-decoration: none;
+                                        &:hover {
+                                            text-decoration: underline;
+                                        }
+                                    }
+
+                                    &.product-price {
+                                        font-size: 20px;
+                                        line-height: 30px;
+                                        text-transform: uppercase;
+                                        color: #e10915;
+                                        font-weight: 700;
+                                    }
+
+                                    &.product-add-to-cart { 
+                                        padding-top: 4px;
+                                        margin-top: -70px;
+                                        display: flex;
+                                        justify-content: flex-end;
+                                        text-align: center;
+                                        a.add_to_cart_button {
+                                            background: none !important;
+                                            border: none !important;
+                                            padding: 0 !important;
+                                            content: url('/wp-content/themes/kare/dist/images/svg/cart.svg');
+                                        }
+                                        a.remove_from_wishlist {
+                                            background: none !important;
+                                            border: none !important;
+                                            padding: 0 !important;
+                                            content: url('/wp-content/themes/kare/dist/images/svg/bin.svg');
+                                        }
+                                    }
+
+                                    &.product-name,
+                                    &.product-price,
+                                    &.product-add-to-cart {
+                                        display: block;
+                                        flex-grow: 1;
+                                        margin-bottom: 10px;
+                                    }
+                                }
                             }
                         }
-                    
-                        // עיצוב לתמונה של המוצר
-                        img {
-                        max-width: 100px;
-                        margin-right: 20px;
-                        }
-                    
-                        // עיצוב לשם המוצר
-                        .product-name {
-                        font-size: 1.2em;
-                        font-weight: bold;
-                        }
-                    
-                        // עיצוב למחיר המוצר
-                        .product-price {
-                        color: red;
-                        font-weight: bold;
-                        font-size: 1.3em;
-                        }
-                    
-                        // כפתורים לעגלת הקניות ולהסרה מהרשימה
-                        .product-remove, .product-add-to-cart {
-                        text-align: center;
-                        button {
-                            background-color: #fff;
-                            border: 1px solid #ccc;
-                            padding: 10px;
-                            cursor: pointer;
-                            display: inline-block;
-                    
-                            &:hover {
-                            background-color: #f8f8f8;
-                            border-color: #aaa;
+                                        
+                        .product-add-to-cart {
+                            text-align: center;
+                            a {
+                                background: none !important;
+                                border: none !important;
+                                padding: 0 !important;
+                                content: url('/wp-content/themes/kare/dist/images/svg/cart.svg');
                             }
                         }
-                        }
+
+                    }
+                    .yith_wcwl_wishlist_footer {
+                        display: none;
                     }
   
-                    // עיצוב עבור הכפתור להסרת המוצר עם SVG
-                    .product-remove button {
-                        background: none;
-                        border: none;
-                        padding: 0;
-                        cursor: pointer;
                     
-                        svg {
-                        width: 20px;
-                        height: 20px;
-                        fill: #d9534f;
-                    
-                        &:hover {
-                            fill: #c9302c;
-                        }
-                        }
-                    }
                 }
             }
             form{
