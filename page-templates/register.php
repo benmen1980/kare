@@ -26,10 +26,10 @@ get_header();
                 
                 <?php do_action( 'woocommerce_register_form_start' ); ?>
 
-                <!-- <div class="form_group">
+                <div class="form_group">
                     <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="full_name" id="reg_full_name"  placeholder="" autocomplete="full_name" value="<?php echo ( ! empty( $_POST['full_name'] ) ) ? esc_attr( wp_unslash( $_POST['full_name'] ) ) : ''; ?>" />
                     <label for="reg_full_name"><?php esc_html_e( 'First name Last Name', 'woocommerce' ); ?>&nbsp;<span class="required">*</span></label>
-                </div> -->
+                </div> 
                 <!-- <div class="form_group">
                    
                     <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="last_name" id="reg_last_name" autocomplete="last_name" value="<?php echo ( ! empty( $_POST['last_name'] ) ) ? esc_attr( wp_unslash( $_POST['last_name'] ) ) : ''; ?>" />

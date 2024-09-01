@@ -98,7 +98,7 @@ function redirect_to_home_after_login($redirect_to) {
 }
 
 // Add the "Full Name" field to the registration form
-add_action('woocommerce_register_form_start', 'add_full_name_field_to_registration_form');
+//add_action('woocommerce_register_form_start', 'add_full_name_field_to_registration_form');
 function add_full_name_field_to_registration_form() {
     ?>
     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
