@@ -81,7 +81,7 @@
 				<div class="sidebar-content">
 					<div class="top_sidebar">
 						<h2><?php echo (!is_user_logged_in()) ? __( 'Login', 'kare' ) :  __( 'Wishlist', 'kare' ); ?></h2>
-						<button id="close_sidebar" class="close">
+						<button id="close_wishlist" class="close">
 							<img src="<?php echo get_template_directory_uri();?>/dist/images/svg/close.svg" alt="" width="18" height="18">
 						</button>
 					</div>			
@@ -147,11 +147,7 @@
 							<p><?php echo get_field('txt_before_login','option'); ?></p>
 							<?php 
 							woocommerce_login_form();?>
-<<<<<<< HEAD
-							<a class="register_page" href=""><?php esc_html_e( 'Create new account', 'kare' ); ?></a>
-=======
 							<a class="register_page" href="/my-account"><?php esc_html_e( 'Create new account', 'kare' ); ?></a>
->>>>>>> a55c4022cc2c89bbcedc27b74b02104d525f6e4c
 							<div class="accordion_details_wrapper">
 								<div class="accordion_item">
 									<div class="accordion_title">

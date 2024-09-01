@@ -357,7 +357,7 @@ jQuery(document).on("ready", function(){
         $('#overlay').fadeIn(); // Show the overlay
     });
 
-    $('#close_sidebar').on('click', function() {
+    $('#close_wishlist').on('click', function() {
         $('#wishlist_sidebar').removeClass('active');
         $('#overlay').fadeOut(function() {
             $(this).remove(); // Remove overlay after fade out
