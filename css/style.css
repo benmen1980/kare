@@ -52,7 +52,7 @@ button {
   background-color: #000000;
 }
 
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit], .logout_popup .logout_popup_content .popup_btns #cancel_logout, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button, header .login_sidebar .sidebar-content form.login .form-row button, header .wishlist_sidebar .sidebar-content form.login .form-row button, .btn-test, .btn_black_hover {
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit], .register_page form button, .logout_popup .logout_popup_content .popup_btns #cancel_logout, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button, header .login_sidebar .sidebar-content form.login .form-row button, header .wishlist_sidebar .sidebar-content form.login .form-row button, .btn-test, .btn_black_hover {
   padding: 1rem 1.5rem;
   position: relative;
   display: -webkit-inline-box;
@@ -76,11 +76,11 @@ button {
           transition-duration: 0.3s;
   border: 1px solid #e4e4e4;
 }
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover, header .login_sidebar .sidebar-content form.login .form-row button:hover, header .wishlist_sidebar .sidebar-content form.login .form-row button:hover, .btn-test:hover, .btn_black_hover:hover {
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover, .register_page form button:hover, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover, header .login_sidebar .sidebar-content form.login .form-row button:hover, header .wishlist_sidebar .sidebar-content form.login .form-row button:hover, .btn-test:hover, .btn_black_hover:hover {
   background-color: #fff;
   color: #424242;
 }
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover a, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover a, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover a, header .login_sidebar .sidebar-content form.login .form-row button:hover a, header .wishlist_sidebar .sidebar-content form.login .form-row button:hover a, .btn-test:hover a, .btn_black_hover:hover a {
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover a, .register_page form button:hover a, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover a, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover a, header .login_sidebar .sidebar-content form.login .form-row button:hover a, header .wishlist_sidebar .sidebar-content form.login .form-row button:hover a, .btn-test:hover a, .btn_black_hover:hover a {
   color: #000000;
 }
 
@@ -3459,6 +3459,117 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
   text-align: center;
 }
 
+/* Register Page
+--------------------------------------------- */
+.register_page {
+  margin: auto;
+  max-width: 448px;
+}
+.register_page h1 {
+  font-weight: 700;
+  font-size: 36px;
+  color: #000;
+  text-align: center;
+  line-height: 3rem;
+  text-transform: uppercase;
+}
+.register_page h2 {
+  font-size: 18px;
+  font-weight: 700;
+}
+.register_page .desc_before_field {
+  text-align: center;
+  font-size: 16px;
+}
+.register_page form .form_group {
+  position: relative;
+  margin-bottom: 10px;
+}
+.register_page form .form_group input {
+  width: 100%;
+  padding: 20px 20px 8px 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  outline: none;
+  background-color: rgb(244, 244, 244);
+}
+.register_page form .form_group input:not(:-moz-placeholder-shown) + label {
+  transform: scale3d(0.6, 0.6, 1);
+  position: absolute;
+  top: 0;
+  left: -10px;
+}
+.register_page form .form_group input:not(:-ms-input-placeholder) + label {
+  transform: scale3d(0.6, 0.6, 1);
+  position: absolute;
+  top: 0;
+  left: -10px;
+}
+.register_page form .form_group input:focus + label, .register_page form .form_group input:not(:placeholder-shown) + label {
+  -webkit-transform: scale3d(0.6, 0.6, 1);
+          transform: scale3d(0.6, 0.6, 1);
+  position: absolute;
+  top: 0;
+  left: -10px;
+}
+.register_page form .form_group label {
+  position: absolute;
+  top: 50%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: 20px;
+  font-size: 16px;
+  color: #000;
+  pointer-events: none;
+  -webkit-transition: 0.3s ease all;
+  transition: 0.3s ease all;
+}
+.register_page form .checkbox_wrapper label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 15px;
+}
+.register_page form .checkbox_wrapper label input[type=checkbox] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #000;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  display: inline-grid;
+  place-content: center;
+  cursor: pointer;
+}
+.register_page form .checkbox_wrapper label input[type=checkbox]:checked {
+  background-color: rgb(66, 66, 66);
+}
+.register_page form .checkbox_wrapper label input[type=checkbox]:checked:before {
+  content: url("../images/svg/check.svg");
+  width: 16px;
+  height: 20px;
+  color: #fff;
+  -webkit-filter: invert(100%) brightness(100%);
+          filter: invert(100%) brightness(100%);
+}
+.register_page form .checkbox_wrapper label p {
+  font-size: 16px;
+}
+.register_page form .woocommerce-privacy-policy-text {
+  display: none;
+}
+.register_page form button {
+  width: 100%;
+  text-transform: uppercase;
+  text-align: center;
+  display: block;
+  font-weight: bold;
+  line-height: 24px;
+}
+
 /* Inspiration Page
 --------------------------------------------- */
 .post-type-archive-inspiration h1 {
@@ -3483,6 +3594,24 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
   display: block;
   width: 100%;
   height: 100%;
+  position: relative;
+  min-height: 144px;
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+.post-type-archive-inspiration .inspiration_box_wrapper .trend_box_wraper a:after {
+  content: "";
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(-35%, rgba(0, 0, 0, 0.5)), color-stop(50%, transparent));
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) -35%, transparent 50%);
 }
 .post-type-archive-inspiration .inspiration_box_wrapper .trend_box_wraper a img {
   height: 100%;
@@ -3493,6 +3622,7 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
   bottom: 0px;
   font-size: 16px;
   color: #fff;
+  z-index: 2;
 }
 .post-type-archive-inspiration .inspiration_box_wrapper .trend_box_wraper button {
   position: absolute;
@@ -3505,6 +3635,7 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
   border: 1px solid #fff;
   padding: 15px 8px;
   cursor: pointer;
+  z-index: 2;
 }
 .post-type-archive-inspiration .inspiration_box_wrapper .trend_box_wraper button img {
   -webkit-filter: invert(100%) brightness(100%);

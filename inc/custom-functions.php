@@ -95,10 +95,32 @@ add_filter('woocommerce_login_redirect', 'redirect_to_home_after_login', 10, 3);
 function redirect_to_home_after_login($redirect_to) {
     // Always redirect to the home page after login
     return home_url();
-<<<<<<< HEAD
-}
-=======
 }
 
+// Validate Full Name Field
+function validate_woocommerce_registration_full_name_field( $username, $email, $validation_errors ) {
+    if ( isset( $_POST['full_name'] ) && empty( $_POST['full_name'] ) ) {
+        $validation_errors->add( 'full_name_error', __( 'Full Name is required!', 'woocommerce' ) );
+    }
 
->>>>>>> a55c4022cc2c89bbcedc27b74b02104d525f6e4c
+    return $validation_errors;
+}
+add_action( 'woocommerce_register_post', 'validate_woocommerce_registration_full_name_field', 10, 3 );
+
+// Save Full Name Field as First Name and Last Name
+function save_woocommerce_registration_full_name_field( $customer_id ) {
+    if ( isset( $_POST['full_name'] ) ) {
+        $full_name = sanitize_text_field( $_POST['full_name'] );
+        
+        // Split the full name by the first space encountered
+        $name_parts = explode( ' ', $full_name, 2 );
+        $first_name = $name_parts[0];
+        $last_name = ( isset( $name_parts[1] ) ) ? $name_parts[1] : '';
+
+        // Save the names
+        update_user_meta( $customer_id, 'first_name', $first_name );
+        update_user_meta( $customer_id, 'last_name', $last_name );
+    }
+}
+add_action( 'woocommerce_created_customer', 'save_woocommerce_registration_full_name_field' );
+
