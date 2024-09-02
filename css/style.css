@@ -52,8 +52,7 @@ button {
   background-color: #000000;
 }
 
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit], .logout_popup .logout_popup_content .popup_btns #cancel_logout, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button, header .login_sidebar .sidebar-content form.login .form-row button, header .wishlist_sidebar .sidebar-content form.login .form-row button, header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn, .btn-test, .btn_black_hover {
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit], .register_page form button, .logout_popup .logout_popup_content .popup_btns #cancel_logout, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button, header .login_sidebar .sidebar-content form.login .form-row button, header .wishlist_sidebar .sidebar-content form.login .form-row button, .btn-test, .btn_black_hover {
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit], .register_page form button, .logout_popup .logout_popup_content .popup_btns #cancel_logout, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button, header .login_sidebar .sidebar-content form.login .form-row button, header .wishlist_sidebar .sidebar-content form.login .form-row button, header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn, .btn-test, .btn_black_hover {
   padding: 1rem 1.5rem;
   position: relative;
   display: -webkit-inline-box;
@@ -77,19 +76,11 @@ button {
           transition-duration: 0.3s;
   border: 1px solid #e4e4e4;
 }
-<<<<<<< HEAD
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover, header .login_sidebar .sidebar-content form.login .form-row button:hover, header .wishlist_sidebar .sidebar-content form.login .form-row button:hover, header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover, .btn-test:hover, .btn_black_hover:hover {
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover, .register_page form button:hover, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover, header .login_sidebar .sidebar-content form.login .form-row button:hover, header .wishlist_sidebar .sidebar-content form.login .form-row button:hover, header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover, .btn-test:hover, .btn_black_hover:hover {
   background-color: #fff;
   color: #424242;
 }
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover a, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover a, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover a, header .login_sidebar .sidebar-content form.login .form-row button:hover a, header .wishlist_sidebar .sidebar-content form.login .form-row button:hover a, header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover a, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover a, .btn-test:hover a, .btn_black_hover:hover a {
-=======
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover, .register_page form button:hover, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover, header .login_sidebar .sidebar-content form.login .form-row button:hover, header .wishlist_sidebar .sidebar-content form.login .form-row button:hover, .btn-test:hover, .btn_black_hover:hover {
-  background-color: #fff;
-  color: #424242;
-}
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover a, .register_page form button:hover a, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover a, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover a, header .login_sidebar .sidebar-content form.login .form-row button:hover a, header .wishlist_sidebar .sidebar-content form.login .form-row button:hover a, .btn-test:hover a, .btn_black_hover:hover a {
->>>>>>> 96780d7c18d33a1f57d0b4e1ba5991add72b9dbe
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover a, .register_page form button:hover a, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover a, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover a, header .login_sidebar .sidebar-content form.login .form-row button:hover a, header .wishlist_sidebar .sidebar-content form.login .form-row button:hover a, header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover a, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover a, .btn-test:hover a, .btn_black_hover:hover a {
   color: #000000;
 }
 
@@ -173,7 +164,7 @@ header .nav-top-wrapper .w-1-3 .l-btn {
   text-align: left;
 }
 
-.woocommerce-account article, #primary .product .top_details, #primary .woocommerce-breadcrumb, .site-info .bottom-footer, .site-info .footer-container .contain-footer, .container {
+.woocommerce-cart article .entry-content, .woocommerce-account article, #primary .product .top_details, #primary .woocommerce-breadcrumb, .site-info .bottom-footer, .site-info .footer-container .contain-footer, .container {
   max-width: 100%;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -181,12 +172,12 @@ header .nav-top-wrapper .w-1-3 .l-btn {
   margin-right: auto;
 }
 @media (min-width: 1840px) {
-  .woocommerce-account article, #primary .product .top_details, #primary .woocommerce-breadcrumb, .site-info .bottom-footer, .site-info .footer-container .contain-footer, .container {
+  .woocommerce-cart article .entry-content, .woocommerce-account article, #primary .product .top_details, #primary .woocommerce-breadcrumb, .site-info .bottom-footer, .site-info .footer-container .contain-footer, .container {
     max-width: 1640px !important;
   }
 }
 @media (min-width: 1420px) {
-  .woocommerce-account article, #primary .product .top_details, #primary .woocommerce-breadcrumb, .site-info .bottom-footer, .site-info .footer-container .contain-footer, .container {
+  .woocommerce-cart article .entry-content, .woocommerce-account article, #primary .product .top_details, #primary .woocommerce-breadcrumb, .site-info .bottom-footer, .site-info .footer-container .contain-footer, .container {
     max-width: 1360px;
   }
 }
@@ -2392,6 +2383,11 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
   display: flex;
   padding: 0;
 }
+@media (min-width: 1840px) {
+  #primary .product .top_details {
+    width: 1640px;
+  }
+}
 #primary .product .top_details .l_side {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3785,6 +3781,14 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
           filter: none;
 }
 
+/* Cart Page
+--------------------------------------------- */
+.woocommerce-cart article {
+  margin-bottom: 0;
+}
+.woocommerce-cart article .entry-header {
+  display: none;
+}
 /*--------------------------------------------------------------
 # Plugins
 --------------------------------------------------------------*/

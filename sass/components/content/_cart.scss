@@ -1,0 +1,14 @@
+//cart page
+.woocommerce-cart{
+    article{
+        margin-bottom:0;
+
+        .entry-header {
+            display: none;
+        }
+
+        .entry-content {
+            @extend %container;
+        }
+    }
+}

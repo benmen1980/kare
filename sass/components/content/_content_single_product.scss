@@ -36,6 +36,9 @@
 
         .top_details {
             @extend %container;
+            @media (min-width: 1840px) {
+                width: 1640px;
+            }
             display: flex;
             padding: 0;
             .l_side {
