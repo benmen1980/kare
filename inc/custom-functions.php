@@ -95,10 +95,4 @@ add_filter('woocommerce_login_redirect', 'redirect_to_home_after_login', 10, 3);
 function redirect_to_home_after_login($redirect_to) {
     // Always redirect to the home page after login
     return home_url();
-<<<<<<< HEAD
 }
-=======
-}
-
-
->>>>>>> a55c4022cc2c89bbcedc27b74b02104d525f6e4c

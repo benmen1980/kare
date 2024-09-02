@@ -452,7 +452,24 @@ jQuery(document).on("ready", function(){
             $wishlistButton.addClass('wishlist_btn_black');
         }
     });
-    
+
+    document.querySelector('.share_wishlist_btn').addEventListener('click', function() {
+        var copyTarget = document.querySelector('.copy-target').value;
+        
+        navigator.clipboard.writeText(copyTarget).then(function() {
+            var notification = document.getElementById('copy-notification');
+            notification.style.display = 'block';
+            notification.style.opacity = '1';
+            
+            setTimeout(function() {
+                notification.style.opacity = '0';
+                setTimeout(function() {
+                    notification.style.display = 'none';
+                }, 500); 
+            }, 5000);
+        });   
+        
+    });
 });
 
 // After loading Swiper, check the number of slides

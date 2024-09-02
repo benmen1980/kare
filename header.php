@@ -128,6 +128,7 @@
 					
 
 				</div>
+				<div id="copy-notification" style="display: none;"><?php esc_html_e( 'The wishlist URL has been copied to the clipboard', 'kare' ); ?></div>
 			</div>
 
 			<!-- Popup Sidebar -->
