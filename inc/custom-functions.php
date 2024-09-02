@@ -96,3 +96,42 @@ function redirect_to_home_after_login($redirect_to) {
     // Always redirect to the home page after login
     return home_url();
 }
+
+// Add the "Full Name" field to the registration form
+//add_action('woocommerce_register_form_start', 'add_full_name_field_to_registration_form');
+function add_full_name_field_to_registration_form() {
+    ?>
+    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+        <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" placeholder="" name="full_name" id="reg_full_name" value="<?php if (!empty($_POST['full_name'])) echo esc_attr(wp_unslash($_POST['full_name'])); ?>" />
+        <label for="reg_full_name"><?php esc_html_e('First Name Last Name', 'kare'); ?>&nbsp;<span class="required">*</span></label>   
+    </p>
+    <?php
+}
+
+// Validate Full Name Field
+function validate_woocommerce_registration_full_name_field( $username, $email, $validation_errors ) {
+    if ( isset( $_POST['full_name'] ) && empty( $_POST['full_name'] ) ) {
+        $validation_errors->add( 'full_name_error', __( 'Full Name is required!', 'woocommerce' ) );
+    }
+
+    return $validation_errors;
+}
+add_action( 'woocommerce_register_post', 'validate_woocommerce_registration_full_name_field', 10, 3 );
+
+// Save Full Name Field as First Name and Last Name
+function save_woocommerce_registration_full_name_field( $customer_id ) {
+    if ( isset( $_POST['full_name'] ) ) {
+        $full_name = sanitize_text_field( $_POST['full_name'] );
+        
+        // Split the full name by the first space encountered
+        $name_parts = explode( ' ', $full_name, 2 );
+        $first_name = $name_parts[0];
+        $last_name = ( isset( $name_parts[1] ) ) ? $name_parts[1] : '';
+
+        // Save the names
+        update_user_meta( $customer_id, 'first_name', $first_name );
+        update_user_meta( $customer_id, 'last_name', $last_name );
+    }
+}
+add_action( 'woocommerce_created_customer', 'save_woocommerce_registration_full_name_field' );
+

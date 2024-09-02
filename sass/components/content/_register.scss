@@ -1,0 +1,93 @@
+.register_page{
+    margin: auto;
+    max-width: 448px;
+    h1{
+      font-weight: 700;
+      font-size: 36px;
+      color: #000;
+      text-align: center;
+      line-height: 3rem;
+      text-transform: uppercase;
+    }
+    h2{
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .desc_before_field{
+        text-align: center;
+        font-size: 16px;
+    }
+    form{
+        .form_group {
+            position: relative;
+            margin-bottom: 10px;
+            input {
+              width: 100%;
+              padding: 20px 20px 8px 20px;
+              font-size: 16px;
+              border: 1px solid #ccc;
+              outline: none;
+              background-color: rgb(244,244,244);
+              &:focus + label, &:not(:placeholder-shown) + label{
+                transform: scale3d(.6,.6,1);
+                position: absolute;
+                top: 0;
+                left: -10px;
+              }
+            }
+            label {
+              position: absolute;
+              top: 50%;
+              top: 50%;
+              transform: translateY(-50%);
+              left: 20px;
+              font-size: 16px;
+              color: #000;
+              pointer-events: none;
+              transition: 0.3s ease all;
+            }
+        }
+        .checkbox_wrapper{
+          label{
+            display: flex;
+            gap: 15px;
+            input[type="checkbox"]{
+              appearance: none;
+              width: 24px;
+              height: 24px;
+              border: 2px solid #000;
+              flex-shrink: 0;
+              display: inline-grid;
+              place-content: center;
+              cursor: pointer;
+              &:checked{
+                background-color: rgb(66,66,66);
+                &:before{
+                  content:url("../images/svg/check.svg");
+                  width: 16px;
+                  height: 20px;
+                  color: #fff;
+                  filter: invert(100%) brightness(100%);
+                }
+              }
+            }
+            p{
+              font-size: 16px;
+            }
+          }
+         
+        }
+        .woocommerce-privacy-policy-text{
+          display: none;
+        }
+        button{
+          @extend %black-btn;
+          width: 100%;
+          text-transform: uppercase;
+          text-align: center;
+          display: block;
+          font-weight: bold;
+          line-height: 24px;
+        }  
+    }
+}
