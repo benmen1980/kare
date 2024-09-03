@@ -135,3 +135,4 @@ function save_woocommerce_registration_full_name_field( $customer_id ) {
 }
 add_action( 'woocommerce_created_customer', 'save_woocommerce_registration_full_name_field' );
 
+

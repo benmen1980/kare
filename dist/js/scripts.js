@@ -3,6 +3,29 @@ var $=jQuery.noConflict();
 
 jQuery(document).on("ready", function(){
 
+    $(document).ready(function() {
+        // On input focus
+        $('.login .input-text').focus(function() {
+            $(this).parent('.form-row').find('label').addClass('focused');
+        });
+    
+        // On input blur
+        $('.login .input-text').blur(function() {
+            // Remove the class if the input is empty
+            if ($(this).val() === "") {
+                $(this).parent('.form-row').find('label').removeClass('focused');
+            }
+        });
+    
+        // Check on page load if inputs have text
+        $('.login .input-text').each(function() {
+            if ($(this).val() !== "") {
+                $(this).parent('.form-row').find('label').addClass('focused');
+            }
+        });
+    });
+    
+
     //logout with popup
     $('.custom_logout a').on('click', function(e) {
         e.preventDefault();

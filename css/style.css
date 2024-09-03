@@ -1693,8 +1693,30 @@ header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .
 }
 header .login_sidebar .sidebar-content form.login .form-row, header .wishlist_sidebar .sidebar-content form.login .form-row {
   margin-bottom: 10px;
+  position: relative;
 }
 header .login_sidebar .sidebar-content form.login .form-row label, header .wishlist_sidebar .sidebar-content form.login .form-row label {
+  position: absolute;
+  top: 50%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: 20px;
+  font-size: 16px;
+  color: #000;
+  pointer-events: none;
+  -webkit-transition: 0.3s ease all;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+header .login_sidebar .sidebar-content form.login .form-row label.focused, header .wishlist_sidebar .sidebar-content form.login .form-row label.focused {
+  -webkit-transform: scale3d(0.6, 0.6, 1);
+          transform: scale3d(0.6, 0.6, 1);
+  position: absolute;
+  top: 2px;
+  left: -10px;
+}
+header .login_sidebar .sidebar-content form.login .form-row label.woocommerce-form-login__rememberme, header .wishlist_sidebar .sidebar-content form.login .form-row label.woocommerce-form-login__rememberme {
   position: absolute;
   width: 1px;
   height: 1px;
