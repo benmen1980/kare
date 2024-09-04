@@ -92,7 +92,7 @@
 							<p><?php echo get_field('txt_before_login','option'); ?></p>
 							<?php 
 							woocommerce_login_form();?>
-							<a class="register_page" href=""><?php esc_html_e( 'Create new account', 'kare' ); ?></a>
+							<a class="register_page" href="/register"><?php esc_html_e( 'Create new account', 'kare' ); ?></a>
 							<div class="accordion_details_wrapper">
 								<div class="accordion_item">
 									<div class="accordion_title">
@@ -137,7 +137,7 @@
 					<div class="top_sidebar">
 						<h2><?php echo (!is_user_logged_in()) ? __( 'Login', 'kare' ) :  __( 'Your customer account', 'kare' ); ?></h2>
 						<button id="close_sidebar" class="close">
-							<img src="<?php echo get_template_directory_uri();?>/dist/images/svg/close.svg" alt="" width="18" height="18">
+							<img src="<?php echo get_template_directory_uri();?>/dist/images/svg/close.svg" alt="<?php esc_html_e( 'close sidebar', 'kare' ) ?>" width="18" height="18">
 						</button>
 					</div>
 					
@@ -148,7 +148,7 @@
 							<p><?php echo get_field('txt_before_login','option'); ?></p>
 							<?php 
 							woocommerce_login_form();?>
-							<a class="register_page" href="/my-account"><?php esc_html_e( 'Create new account', 'kare' ); ?></a>
+							<a class="register_page" href="/register"><?php esc_html_e( 'Create new account', 'kare' ); ?></a>
 							<div class="accordion_details_wrapper">
 								<div class="accordion_item">
 									<div class="accordion_title">

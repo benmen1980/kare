@@ -4,6 +4,8 @@ var $=jQuery.noConflict();
 jQuery(document).on("ready", function(){
 
     $(document).ready(function() {
+        
+        //add class to label in login form for adding css 
         // On input focus
         $('.login .input-text').focus(function() {
             $(this).parent('.form-row').find('label').addClass('focused');

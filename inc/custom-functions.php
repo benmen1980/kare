@@ -136,3 +136,11 @@ function save_woocommerce_registration_full_name_field( $customer_id ) {
 add_action( 'woocommerce_created_customer', 'save_woocommerce_registration_full_name_field' );
 
 
+//after registration, redirect to home page
+add_filter( 'woocommerce_registration_redirect', 'custom_redirection_after_registration', 10, 1 );
+function custom_redirection_after_registration( $redirection_url ){
+    // Change the redirection Url
+    $redirection_url = get_home_url(); // Home page
+
+    return $redirection_url; // Always return something
+}

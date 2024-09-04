@@ -3723,6 +3723,46 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
   font-weight: bold;
   line-height: 24px;
 }
+.register_page .woocommerce-error {
+  background-color: rgb(225, 9, 21);
+  color: #fff;
+  border: 0;
+  font-size: 16px;
+  list-style-type: none;
+  padding: 16px 16px 16px 36px;
+  margin: 0 0 20px 0;
+  position: relative;
+}
+.register_page .woocommerce-error::before {
+  content: "";
+  background-image: url("../images/svg/alert.svg");
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-filter: invert(1);
+          filter: invert(1);
+}
+.register_page .woocommerce-error a:hover {
+  color: #fff;
+  opacity: 0.7;
+}
+.register_page .woocommerce-message {
+  background-color: #0c6c40;
+  color: #fff;
+  border: 0;
+  border-right: 0.6180469716em solid rgba(0, 0, 0, 0.15);
+}
+.register_page .woocommerce-message a:hover {
+  color: #fff;
+  opacity: 0.7;
+}
 
 /* Inspiration Page
 --------------------------------------------- */
