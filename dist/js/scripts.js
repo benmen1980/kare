@@ -495,6 +495,56 @@ jQuery(document).on("ready", function(){
         });   
         
     });
+
+
+    if (window.location.href.indexOf("cart") > -1) {
+        const quantityWrapper = document.querySelectorAll('.quantity-wrapper');
+
+        quantityWrapper.forEach(function(wrapper) {
+            const button = wrapper.querySelector('.btn_quantity_wrapper');
+            const options = wrapper.querySelector('.custom_options');
+            const allOption = wrapper.querySelectorAll('.custom_option');
+            const selectedValueSpan = wrapper.querySelector('.selected_value');
+            const hiddenInput = wrapper.querySelector('.custom_select_hidden');
+            const form = wrapper.closest('form');
+    
+            // הצגת הרשימה בעת לחיצה על ה-custom_select_wrapper
+            button.addEventListener('click', function () {
+                options.classList.toggle('open');
+            });
+    
+            // בחירת כמות מתוך הרשימה
+            allOption.forEach(function(option) {
+                option.addEventListener('click', function () {
+                    const selectedValue = option.getAttribute('data-value');
+                    selectedValueSpan.textContent = selectedValue; // עדכון הכמות המוצגת
+                    hiddenInput.value = selectedValue; // עדכון הכמות בשדה הנסתר
+    
+                    // סימון הכמות שנבחרה
+                    allOption.forEach(function(opt) {
+                        opt.classList.remove('selected');
+                    });
+                    option.classList.add('selected');
+                    options.classList.remove('open');
+
+                     // עדכון הכמות בשדה הנסתר לפני שליחת הטופס
+                    hiddenInput.value = selectedValue;
+
+                    // הגשת הטופס באופן אוטומטי לעדכון העגלה
+                    form.querySelector('input[name="update_cart"]').removeAttribute('disabled');
+                    form.submit();
+                });
+            });
+    
+            // סגירת הרשימה אם לוחצים מחוץ ל-wrapper
+            document.addEventListener('click', function(event) {
+                if (!wrapper.contains(event.target)) {
+                    options.classList.remove('open');
+                }
+            });
+        });
+    }
+
 });
 
 // After loading Swiper, check the number of slides

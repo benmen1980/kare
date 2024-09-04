@@ -2,13 +2,380 @@
 .woocommerce-cart{
     article{
         margin-bottom:0;
+    }
+
+    .site-main {
+        @extend %container;
 
         .entry-header {
             display: none;
         }
 
         .entry-content {
-            @extend %container;
+            padding: 20px 40px;
+            margin-top: 40px;
+            background-color: #f4f4f4;
+
+            .woocommerce {
+                position: relative;
+                display: flex;
+
+                .woocommerce-cart-form {
+                    flex-grow: 1;
+
+                    .shop_cart {
+                        position: sticky;
+                        top: 20px;
+                         
+                        .comment_cart {
+                            padding: 20px;
+                            margin-bottom: 20px;
+                            box-shadow: 0 1px 3px rgba(0, 0, 0, .08) !important;
+                            background-color: #fff;
+
+                            h4, .comment_txt {
+                            margin: 0; 
+                            padding: 0;
+                            }
+                        }  
+                        
+                        .cart-product-item {
+                            position: relative;
+                            display: flex;
+                            box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
+                            padding: 20px;
+                            margin-bottom: 20px;
+                            background-color: #fff;
+
+                            p{
+                                margin: 0;
+                                padding: 0;
+                            }
+
+                            .cart-product-thumbnail {
+                                width: 33.333333% !important;
+                                position: relative;
+                                @extend %center-flex;                              
+                                flex-shrink: 0;
+                                cursor: pointer;
+                                color: #424242;
+                                border: 1px solid #e4e4e4;
+                                background-color: #fff;
+                                text-transform: uppercase;
+                                transition-property: background-color, border-color, color, fill, stroke;
+                                transition-duration: .3s;
+                                padding: 16px;
+                                
+                                &:hover {
+                                    border-color: #e10915;  
+                                }
+                                
+                                a {
+                                    width: 300px;
+                                    height: 224px;
+                                    display: inline-block;
+                                    img {
+                                        width: 100%;
+                                        height: 100%;
+                                        object-fit: contain;
+                                        display: inline-block;
+                                    }
+                                }
+                            }
+
+                            .cart-product-details {
+                                width: 66.666667% !important;
+                                padding-left: 20px;
+                                margin: 0;
+
+                                .cart-product-name {
+                                   font-size: 16px; 
+                                   font-weight: 700;
+                                   margin-bottom: 8px;
+                                   text-decoration: none;
+
+                                   &:hover {
+                                    text-decoration: underline;
+                                   }
+
+                                }
+                            }
+
+                            .cart-product-meta {
+
+                                .remove_and_qty {
+                                    margin: 0;
+                                    padding-top: 8px;
+                                    @extend %center-flex;
+
+                                    p {
+                                        margin: 0;
+                                       flex-grow: 1; 
+                                       font-size: 14px;
+                                       line-height: 21px;
+                                    }
+
+                                    .cart-product-quantity-remove {
+                                        flex-shrink: 0;
+                                        display: flex;
+                                        a {
+                                            @extend %white-btn;
+                                            display: inline-flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            z-index: 2;
+                                            // padding: 22px 14px 24px;
+                                            margin-left: 16px;
+
+                                            &:hover {
+                                                background-color: #000;
+                                                color: #fff;
+                                                i {
+
+                                                    color: #fff;
+                                                    content: url('/wp-content/themes/kare/dist/images/svg/bin.svg');
+                                                    filter: brightness(0) saturate(100%) invert(99%) sepia(1%) saturate(46%) hue-rotate(113deg) brightness(117%) contrast(100%);
+                                                }
+                                            }
+                                            
+                                            svg {
+                                                display: inline-block;
+                                                vertical-align: middle;
+                                                flex-shrink: 0;
+                                                margin: -4px -8px ;
+                                            }
+                                        }
+
+                                        .quantity-wrapper {
+                                            position: relative;
+                                            margin-left: 16px;
+
+                                            .btn_quantity_wrapper {
+                                                display: flex;
+                                                align-items: center;
+                                                @extend %white-btn;
+                                                padding: 12px 16px;
+                                                font-weight: 700;
+                                                &:hover {
+                                                    background-color: #000;
+                                                    color: #fff;
+                                                }
+                                                .selected_value {
+                                                    width: 24px;
+                                                    margin-right: 8px;
+                                                    font-size: 16px;
+                                                    
+                                                }
+                                                svg {
+                                                    display: block;
+                                                }
+                                            }
+
+                                            .custom_options {
+                                                display: none;
+                                                position: absolute;
+                                                top: 115%;
+                                                left: -5px;
+                                                right: 5px;
+                                                width: 115%;
+                                                padding: 0;
+                                                margin: 0;
+                                                background-color: #fff;
+                                                color: #424242;
+                                                box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+                                                list-style: none;
+                                                text-align: center;
+                                                font-size: 16px;
+                                                font-weight: 700;
+                                                z-index: 2;
+                
+                                                &.open {
+                                                    display: block;
+                                                    overflow: auto;
+                                                    max-height: 50vh;
+                                                }
+                
+                                                .custom_option {
+                                                    padding: 8px 20px;
+                                                    cursor: pointer;
+                                                    &:hover {
+                                                        background-color: #000;
+                                                        color: #fff;
+                                                    }
+                                                }
+                                            }
+
+                                            option {
+                                                width: 24px;
+                                                margin-right: 8px;
+                                                font-size: 16px;
+                                                
+                                            }
+                                            svg {
+                                                display: block;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .delivery_and_price {
+                                    margin-top: 12px;
+                                    font-size: 14px;
+                                    line-height: 21px;
+
+                                    .delivery_wrapper, 
+                                    .price_wrapper,
+                                    .price_discount_wrapper {
+                                        display: flex;
+                                        justify-content: space-between;
+                                        margin-top: 8px;
+                                    }
+                                    .stock {
+                                        color: #026805;
+                                        display: inline-block;
+                                    }
+
+                                    .bold {
+                                        font-weight: 700;
+                                    }
+
+                                    .red {
+                                        color: #e10915;
+                                    }
+                                }
+
+                            }
+
+                            hr {
+                                margin-top: 20px;
+                                margin-bottom: 8px;
+                                border-top: 1px dashed #e4e4e4;
+                                height: 0;
+                            }
+
+                            .cart-product-price {
+                                display: flex;
+                                justify-content: space-between;
+
+                                p{
+                                    font-size: 16px;
+                                    line-height: 24px;
+                                }
+
+                                .bold {
+                                    font-weight: 700;
+                                }
+
+                                .red {
+                                    color: #e10915;
+                                }
+                            }
+
+                            .discount_message_wrapper {
+                                margin-top: 20px;
+                                padding: 24px 20px;
+                                border: 1px dashed #026805;
+                                p {
+                                    margin: 0;
+                                    padding: 0;
+                                    font-size: 16px;
+                                    bdi,
+                                    .discount-percentage {
+                                        font-weight: 700;
+                                        color: #e10915;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+
+                }
+
+                .cart-collaterals {
+                    width: 384px;
+                    padding-left: 20px;
+                    flex-shrink: 0;
+                }
+            }
+
+            .wc-block-cart {
+                position: relative;
+                padding: 0;
+                margin: 0;
+                
+                .wc-block-components-main {
+                    flex-grow: 1 !important;
+
+                    table.wc-block-cart-items {
+                        @media (min-width: 1025px) {
+                            position: sticky;
+                            top: 20px;
+                        }  
+                        
+                        thead {
+                            display: none;
+                        }
+
+                        tbody {
+                           tr {
+                                position: relative;
+                                display: flex;
+                                box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
+                                padding: 20px;
+                                margin-bottom: 20px;
+                                background-color: #fff;
+
+                                td {
+                                    border: none;
+                                    padding: 0;
+                                    vertical-align: inherit;
+                                    margin: 0;
+                                }
+
+                                td.wc-block-cart-item__image {
+                                    position: relative;
+                                    display: inline-flex;
+                                    align-items: center;
+                                    flex-shrink: 0;
+                                    max-width: 100%;
+                                    text-align: left;
+                                    cursor: pointer;
+                                    justify-content: center;
+                                    color: #424242;
+                                    border: 1px solid #e4e4e4;
+                                    background-color: #fff;
+                                    text-transform: uppercase;
+                                    transition-property: background-color, border-color, color, fill, stroke;
+                                    transition-duration: .3s;
+                                    padding: 16px;
+                                    width: 33.333333% !important;
+
+                                    &:hover {
+                                        border-color: #e10915;  
+                                    }
+                                    
+                                    a {
+                                        width: 100%;
+                                        display: inline-block;
+                                        img {
+                                            height: 224px;
+                                            object-fit: contain;
+                                            display: inline-block;
+                                        }
+                                    }
+
+                                }
+
+                           } 
+                        }
+
+
+                    }
+                }
+            }
         }
+
+        
     }
 }

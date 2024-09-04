@@ -69,7 +69,7 @@ if(!is_category() && !is_product_category()) : ?>
                             <?php if ($stock_status === 'instock') : ?>
                                 <p class="stock instock"><?php esc_html_e( 'Available immediately', 'kare' ); ?></p>
                             <?php else : ?>
-                                <p class="stock outofstock"><?php esc_html_e( '60 days', 'kare' ); ?></p>
+                                <p class="stock outofstock"><?php esc_html_e( '60 business days', 'kare' ); ?></p>
                             <?php endif ?>
                         </div>
                     </a>

@@ -200,11 +200,11 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 
 				<?php
 				if ($product->get_stock_quantity() > 0){
-					$stock = 'Immediately available';
+					$stock = esc_html_e( 'Immediately available', 'kare' );
 				}
 
 				if ($product->get_stock_quantity() <= 0){ 
-					$stock = $product->get_stock_quantity() . '60 business days';
+					$stock = esc_html_e( '60 business days', 'kare' ); 
 				}
 				
 				?>
