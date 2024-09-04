@@ -111,7 +111,7 @@ function add_full_name_field_to_registration_form() {
 // Validate Full Name Field
 function validate_woocommerce_registration_full_name_field( $username, $email, $validation_errors ) {
     if ( isset( $_POST['full_name'] ) && empty( $_POST['full_name'] ) ) {
-        $validation_errors->add( 'full_name_error', __( 'Full Name is required!', 'woocommerce' ) );
+        $validation_errors->add( 'full_name_error', __( 'Please enter full name', 'woocommerce' ) );
     }
 
     return $validation_errors;

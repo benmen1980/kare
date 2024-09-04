@@ -52,7 +52,7 @@ button {
   background-color: #000000;
 }
 
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit], .register_page form button, .logout_popup .logout_popup_content .popup_btns #cancel_logout, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button, header .login_sidebar .sidebar-content form.login .form-row button, header .wishlist_sidebar .sidebar-content form.login .form-row button, header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn, .btn-test, .btn_black_hover {
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit], form button, .logout_popup .logout_popup_content .popup_btns #cancel_logout, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button, header .login_sidebar .sidebar-content form.login .form-row button, header .wishlist_sidebar .sidebar-content form.login .form-row button, header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn, .btn-test, .btn_black_hover {
   padding: 1rem 1.5rem;
   position: relative;
   display: -webkit-inline-box;
@@ -76,11 +76,11 @@ button {
           transition-duration: 0.3s;
   border: 1px solid #e4e4e4;
 }
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover, .register_page form button:hover, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover, header .login_sidebar .sidebar-content form.login .form-row button:hover, header .wishlist_sidebar .sidebar-content form.login .form-row button:hover, header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover, .btn-test:hover, .btn_black_hover:hover {
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover, form button:hover, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover, header .login_sidebar .sidebar-content form.login .form-row button:hover, header .wishlist_sidebar .sidebar-content form.login .form-row button:hover, header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover, .btn-test:hover, .btn_black_hover:hover {
   background-color: #fff;
   color: #424242;
 }
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover a, .register_page form button:hover a, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover a, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover a, header .login_sidebar .sidebar-content form.login .form-row button:hover a, header .wishlist_sidebar .sidebar-content form.login .form-row button:hover a, header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover a, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover a, .btn-test:hover a, .btn_black_hover:hover a {
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover a, form button:hover a, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover a, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover a, header .login_sidebar .sidebar-content form.login .form-row button:hover a, header .wishlist_sidebar .sidebar-content form.login .form-row button:hover a, header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover a, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover a, .btn-test:hover a, .btn_black_hover:hover a {
   color: #000000;
 }
 
@@ -3613,6 +3613,176 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
   text-align: center;
 }
 
+.woocommerce-edit-address .woocommerce-MyAccount-content {
+  width: 40%;
+}
+.woocommerce-edit-address .woocommerce-MyAccount-content .woocommerce-Address {
+  width: 414px;
+  height: auto;
+  background-color: rgb(244, 244, 244);
+  position: relative;
+  padding: 16px 0 16px 0px;
+  margin-top: 50px;
+}
+.woocommerce-edit-address .woocommerce-MyAccount-content .woocommerce-Address.u-column2 {
+  margin-top: 100px;
+}
+.woocommerce-edit-address .woocommerce-MyAccount-content .woocommerce-Address .woocommerce-Address-title {
+  position: static;
+  height: 60px;
+}
+.woocommerce-edit-address .woocommerce-MyAccount-content .woocommerce-Address .woocommerce-Address-title h3 {
+  margin: 0;
+  margin-top: -60px;
+  font-size: 36px;
+}
+.woocommerce-edit-address .woocommerce-MyAccount-content .woocommerce-Address .woocommerce-Address-title a {
+  position: absolute;
+  color: transparent; /* Hide the text */
+  text-decoration: none;
+  padding-left: 20px; /* Adjust based on icon size */
+  display: inline-block;
+  font-size: 0; /* Hide text visually without removing it */
+  width: 56px;
+  height: 56px;
+  background-color: #fff;
+  bottom: 0;
+  right: 0;
+  padding: 0;
+  margin: 0 15px 15px 0;
+  -webkit-transition-property: background-color, border-color, color, fill, stroke;
+  transition-property: background-color, border-color, color, fill, stroke;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  z-index: 1;
+  cursor: pointer;
+}
+.woocommerce-edit-address .woocommerce-MyAccount-content .woocommerce-Address .woocommerce-Address-title a:hover {
+  background-color: #000;
+}
+.woocommerce-edit-address .woocommerce-MyAccount-content .woocommerce-Address .woocommerce-Address-title a:hover:before {
+  -webkit-filter: invert(100%) brightness(100%);
+          filter: invert(100%) brightness(100%);
+}
+.woocommerce-edit-address .woocommerce-MyAccount-content .woocommerce-Address .woocommerce-Address-title a:before {
+  position: absolute;
+  content: "";
+  background-image: url("../images/svg/edit.svg");
+  width: 22px;
+  height: 22px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  bottom: 50%;
+  background-color: #fff;
+  right: 50%;
+  -webkit-transform: translate(50%, 50%);
+          transform: translate(50%, 50%);
+}
+.woocommerce-edit-address .woocommerce-MyAccount-content .woocommerce-Address .woocommerce-Address-title a:after {
+  content: "Edit Billing address";
+  font-size: 0;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  position: absolute;
+}
+.woocommerce-edit-address .woocommerce-MyAccount-content .woocommerce-Address address {
+  font-size: 16px;
+  padding: 0 16px;
+  font-style: normal;
+  min-height: 300px;
+  margin: 0;
+}
+.woocommerce-edit-address .woocommerce-MyAccount-content form .form-row#billing_address_1_field label, .woocommerce-edit-address .woocommerce-MyAccount-content form .form-row#billing_address_2_field label, .woocommerce-edit-address .woocommerce-MyAccount-content form .form-row#billing_country_field label, .woocommerce-edit-address .woocommerce-MyAccount-content form .form-row#shipping_address_1_field label, .woocommerce-edit-address .woocommerce-MyAccount-content form .form-row#shipping_address_2_field label, .woocommerce-edit-address .woocommerce-MyAccount-content form .form-row#shipping_country_field label {
+  position: static;
+  -webkit-transform: unset;
+          transform: unset;
+}
+
+.woocommerce-edit-account form fieldset {
+  border: 1px solid #333;
+  margin: 20px 0;
+}
+
+form .form-row {
+  position: relative;
+  margin-bottom: 10px;
+}
+form .form-row input {
+  width: 100%;
+  padding: 20px 20px 8px 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  outline: none;
+  background-color: rgb(244, 244, 244);
+}
+form .form-row label {
+  position: absolute;
+  top: 50%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: 20px;
+  font-size: 16px;
+  color: #000;
+  pointer-events: none;
+  -webkit-transition: 0.3s ease all;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+form .form-row label.focused {
+  -webkit-transform: scale3d(0.6, 0.6, 1);
+          transform: scale3d(0.6, 0.6, 1);
+  position: absolute;
+  top: 2px;
+  left: -10px;
+}
+form .checkbox_wrapper label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 15px;
+}
+form .checkbox_wrapper label input[type=checkbox] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #000;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  display: inline-grid;
+  place-content: center;
+  cursor: pointer;
+}
+form .checkbox_wrapper label input[type=checkbox]:checked {
+  background-color: rgb(66, 66, 66);
+}
+form .checkbox_wrapper label input[type=checkbox]:checked:before {
+  content: url("../images/svg/check.svg");
+  width: 16px;
+  height: 20px;
+  color: #fff;
+  -webkit-filter: invert(100%) brightness(100%);
+          filter: invert(100%) brightness(100%);
+}
+form .checkbox_wrapper label p {
+  font-size: 16px;
+}
+form .woocommerce-privacy-policy-text {
+  display: none;
+}
+form button {
+  width: 100%;
+  text-transform: uppercase;
+  text-align: center;
+  display: block;
+  font-weight: bold;
+  line-height: 24px;
+}
+
 /* Register Page
 --------------------------------------------- */
 .register_page {
@@ -3634,94 +3804,6 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
 .register_page .desc_before_field {
   text-align: center;
   font-size: 16px;
-}
-.register_page form .form_group {
-  position: relative;
-  margin-bottom: 10px;
-}
-.register_page form .form_group input {
-  width: 100%;
-  padding: 20px 20px 8px 20px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  outline: none;
-  background-color: rgb(244, 244, 244);
-}
-.register_page form .form_group input:not(:-moz-placeholder-shown) + label {
-  transform: scale3d(0.6, 0.6, 1);
-  position: absolute;
-  top: 0;
-  left: -10px;
-}
-.register_page form .form_group input:not(:-ms-input-placeholder) + label {
-  transform: scale3d(0.6, 0.6, 1);
-  position: absolute;
-  top: 0;
-  left: -10px;
-}
-.register_page form .form_group input:focus + label, .register_page form .form_group input:not(:placeholder-shown) + label {
-  -webkit-transform: scale3d(0.6, 0.6, 1);
-          transform: scale3d(0.6, 0.6, 1);
-  position: absolute;
-  top: 0;
-  left: -10px;
-}
-.register_page form .form_group label {
-  position: absolute;
-  top: 50%;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  left: 20px;
-  font-size: 16px;
-  color: #000;
-  pointer-events: none;
-  -webkit-transition: 0.3s ease all;
-  transition: 0.3s ease all;
-}
-.register_page form .checkbox_wrapper label {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  gap: 15px;
-}
-.register_page form .checkbox_wrapper label input[type=checkbox] {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  width: 24px;
-  height: 24px;
-  border: 2px solid #000;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-  display: inline-grid;
-  place-content: center;
-  cursor: pointer;
-}
-.register_page form .checkbox_wrapper label input[type=checkbox]:checked {
-  background-color: rgb(66, 66, 66);
-}
-.register_page form .checkbox_wrapper label input[type=checkbox]:checked:before {
-  content: url("../images/svg/check.svg");
-  width: 16px;
-  height: 20px;
-  color: #fff;
-  -webkit-filter: invert(100%) brightness(100%);
-          filter: invert(100%) brightness(100%);
-}
-.register_page form .checkbox_wrapper label p {
-  font-size: 16px;
-}
-.register_page form .woocommerce-privacy-policy-text {
-  display: none;
-}
-.register_page form button {
-  width: 100%;
-  text-transform: uppercase;
-  text-align: center;
-  display: block;
-  font-weight: bold;
-  line-height: 24px;
 }
 .register_page .woocommerce-error {
   background-color: rgb(225, 9, 21);

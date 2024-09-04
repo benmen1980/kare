@@ -38,5 +38,5 @@ $current_term_id = $current_term->term_id;
 </main><!-- #main -->
 <?php
 
-get_sidebar();
+//get_sidebar();
 get_footer();

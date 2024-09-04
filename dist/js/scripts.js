@@ -7,22 +7,23 @@ jQuery(document).on("ready", function(){
         
         //add class to label in login form for adding css 
         // On input focus
-        $('.login .input-text').focus(function() {
-            $(this).parent('.form-row').find('label').addClass('focused');
+        $('.form-row .input-text').focus(function() {
+            console.log('enter focus!');
+            $(this).closest('.form-row').find('label').addClass('focused');
         });
     
         // On input blur
-        $('.login .input-text').blur(function() {
+        $('.form-row .input-text').blur(function() {
             // Remove the class if the input is empty
             if ($(this).val() === "") {
-                $(this).parent('.form-row').find('label').removeClass('focused');
+                $(this).closest('.form-row').find('label').removeClass('focused');
             }
         });
     
         // Check on page load if inputs have text
-        $('.login .input-text').each(function() {
+        $('.form-row .input-text').each(function() {
             if ($(this).val() !== "") {
-                $(this).parent('.form-row').find('label').addClass('focused');
+                $(this).closest('.form-row').find('label').addClass('focused');
             }
         });
     });

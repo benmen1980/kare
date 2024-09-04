@@ -26,7 +26,7 @@ get_header();
                 
                 <?php do_action( 'woocommerce_register_form_start' ); ?>
 
-                <div class="form_group">
+                <div class="form-row">
                     <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="full_name" id="reg_full_name"  placeholder="" autocomplete="full_name" value="<?php echo ( ! empty( $_POST['full_name'] ) ) ? esc_attr( wp_unslash( $_POST['full_name'] ) ) : ''; ?>" />
                     <label for="reg_full_name"><?php esc_html_e( 'First name Last Name', 'woocommerce' ); ?>&nbsp;<span class="required">*</span></label>
                 </div> 
@@ -36,14 +36,14 @@ get_header();
                     <label for="reg_last_name"><?//php esc_html_e( 'Last name', 'woocommerce' ); ?>&nbsp;<span class="required">*</span></label>
                 </div> -->
 
-                <div class="form_group">
+                <div class="form-row">
                     
                     <input type="email" class="woocommerce-Input woocommerce-Input--text input-text" name="email" id="reg_email" placeholder="" autocomplete="email" value="<?php echo ( ! empty( $_POST['email'] ) ) ? esc_attr( wp_unslash( $_POST['email'] ) ) : ''; ?>" /><?php // @codingStandardsIgnoreLine ?>
                     <label for="reg_email"><?php esc_html_e( 'Email address', 'woocommerce' ); ?> <span class="required">*</span></label>
                 </div>
                 <?php if ( 'no' === get_option( 'woocommerce_registration_generate_password' ) ) : ?>
 
-                <div class="form_group">
+                <div class="form-row">
                     
                     <input type="password" class="woocommerce-Input woocommerce-Input--text input-text" name="password" id="reg_password" autocomplete="new-password" value="<?php echo ( ! empty( $_POST['password'] ) ) ? esc_attr( wp_unslash( $_POST['password'] ) ) : ''; ?>" />
                     <label for="reg_password"><?php esc_html_e( 'Password', 'woocommerce' ); ?>&nbsp;<span class="required">*</span></label>
@@ -71,7 +71,7 @@ get_header();
 
                 <?php do_action( 'woocommerce_register_form' ); ?>
                 
-                <div class="form_group">
+                <div class="form-row">
                     <?php wp_nonce_field( 'woocommerce-register', 'woocommerce-register-nonce' ); ?>
                     <button type="submit" class="register_btn" name="register" value="<?php esc_attr_e( 'Register', 'woocommerce' ); ?>">
                         <?php esc_html_e( 'Create a free customer account', 'kare' ); ?>

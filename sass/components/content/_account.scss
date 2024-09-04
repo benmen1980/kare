@@ -156,3 +156,188 @@
         }
     }
 }
+
+//EDIT ADDRESS PAGE
+.woocommerce-edit-address{
+    .woocommerce-MyAccount-content{
+        width: 40%;
+        .woocommerce-Address{
+        width: 414px;
+        height: auto;
+        background-color: rgb(244, 244, 244);
+        position: relative;
+        padding: 16px 0 16px 0px;
+        margin-top: 50px;
+        &.u-column2{
+            margin-top: 100px;
+        }
+        .woocommerce-Address-title{
+            position: static;
+            height: 60px;
+            h3{
+            margin: 0;
+            margin-top: -60px;
+            font-size: 36px;
+            }
+            a{
+            position: absolute;
+            color: transparent; /* Hide the text */
+            text-decoration: none;
+            padding-left: 20px; /* Adjust based on icon size */
+            display: inline-block;
+            font-size: 0; /* Hide text visually without removing it */
+            width: 56px;
+            height: 56px;
+            background-color: #fff;
+            bottom: 0;
+            right: 0;
+            padding: 0;
+            margin: 0 15px 15px 0;
+            transition-property: background-color,border-color,color,fill,stroke;
+            transition-duration: .3s;
+            z-index: 1;
+            cursor: pointer;
+            &:hover{
+                background-color: #000;
+                &:before{
+                filter: invert(100%) brightness(100%);
+                }
+            }
+            &:before{
+                position:absolute;
+                content: '';
+                background-image: url("../images/svg/edit.svg");
+                width: 22px;
+                height: 22px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                bottom: 50%;
+                background-color: #fff;
+                right: 50%;
+                transform: translate(50%,50%);
+            }
+            &:after{
+                content: "Edit Billing address";
+                font-size: 0;
+                height: 0;
+                width: 0;
+                overflow: hidden;
+                position: absolute;
+            }
+            }
+        }
+        address{
+            font-size: 16px;
+            padding: 0 16px;
+            font-style: normal;
+            min-height: 300px;
+            margin: 0;
+        }
+        }
+        form{
+        .form-row{
+            &#billing_address_1_field, &#billing_address_2_field, &#billing_country_field,
+            &#shipping_address_1_field, &#shipping_address_2_field, &#shipping_country_field
+            {
+            label{
+                position: static;
+                transform: unset;
+            }
+            }
+        }
+        }
+    }
+}
+
+//EDIT PERSONAL DATA PAGE
+.woocommerce-edit-account{
+    form{
+      fieldset{
+        border: 1px solid #333;
+        margin: 20px 0;
+      }
+    }
+}
+
+//FORM FOR ALL ACCOUNT PAGE
+form{
+    .form-row {
+        position: relative;
+        margin-bottom: 10px;
+        input {
+          width: 100%;
+          padding: 20px 20px 8px 20px;
+          font-size: 16px;
+          border: 1px solid #ccc;
+          outline: none;
+          background-color: rgb(244,244,244);
+          // &:focus + label, &:not(:placeholder-shown) + label{
+          //   transform: scale3d(.6,.6,1);
+          //   position: absolute;
+          //   top: 0;
+          //   left: -10px;
+          // }
+        }
+        label {
+          position: absolute;
+          top: 50%;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 20px;
+          font-size: 16px;
+          color: #000;
+          pointer-events: none;
+          transition: 0.3s ease all;
+          z-index: 1;
+          &.focused{
+            transform: scale3d(.6,.6,1);
+            position: absolute;
+            top: 2px;
+            left: -10px;
+          }
+        }
+    }
+    .checkbox_wrapper{
+      label{
+        display: flex;
+        gap: 15px;
+        input[type="checkbox"]{
+          appearance: none;
+          width: 24px;
+          height: 24px;
+          border: 2px solid #000;
+          flex-shrink: 0;
+          display: inline-grid;
+          place-content: center;
+          cursor: pointer;
+          &:checked{
+            background-color: rgb(66,66,66);
+            &:before{
+              content:url("../images/svg/check.svg");
+              width: 16px;
+              height: 20px;
+              color: #fff;
+              filter: invert(100%) brightness(100%);
+            }
+          }
+        }
+        p{
+          font-size: 16px;
+        }
+      }
+     
+    }
+    .woocommerce-privacy-policy-text{
+      display: none;
+    }
+    button{
+      @extend %black-btn;
+      width: 100%;
+      text-transform: uppercase;
+      text-align: center;
+      display: block;
+      font-weight: bold;
+      line-height: 24px;
+    }  
+}
