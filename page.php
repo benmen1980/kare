@@ -20,8 +20,6 @@ $taxonomy = $current_term->taxonomy;
 $current_term_name = $current_term->name;
 $current_term_id = $current_term->term_id;
 
-
-
 ?>
 <main id="primary" class="site-main">
     <?php
@@ -37,9 +35,8 @@ $current_term_id = $current_term->term_id;
 
     endwhile; // End of the loop.
     ?>
-
 </main><!-- #main -->
-
 <?php
+
 get_sidebar();
 get_footer();

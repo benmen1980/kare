@@ -27,5 +27,3 @@ function custom_clickable_last_breadcrumb($crumbs) {
 /**
  * Changes to the cart page
  */
-
-
