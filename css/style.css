@@ -3704,6 +3704,9 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
   border: 1px solid #333;
   margin: 20px 0;
 }
+.woocommerce-edit-account form fieldset legend {
+  font-size: 22px;
+}
 
 form .form-row {
   position: relative;
@@ -3713,9 +3716,10 @@ form .form-row input {
   width: 100%;
   padding: 20px 20px 8px 20px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 1px solid rgb(228, 228, 228);
   outline: none;
   background-color: rgb(244, 244, 244);
+  border-radius: 0;
 }
 form .form-row label {
   position: absolute;

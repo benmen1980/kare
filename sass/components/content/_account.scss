@@ -256,6 +256,9 @@
       fieldset{
         border: 1px solid #333;
         margin: 20px 0;
+        legend{
+            font-size: 22px;
+        }
       }
     }
 }
@@ -269,9 +272,10 @@ form{
           width: 100%;
           padding: 20px 20px 8px 20px;
           font-size: 16px;
-          border: 1px solid #ccc;
+          border: 1px solid rgb(228,228,228);
           outline: none;
           background-color: rgb(244,244,244);
+          border-radius: 0;
           // &:focus + label, &:not(:placeholder-shown) + label{
           //   transform: scale3d(.6,.6,1);
           //   position: absolute;
