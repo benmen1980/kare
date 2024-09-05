@@ -27,3 +27,12 @@ function custom_clickable_last_breadcrumb($crumbs) {
 /**
  * Changes to the cart page
  */
+add_filter( 'woocommerce_coupon_error', 'custom_coupon_error_message', 10, 3 );
+
+function custom_coupon_error_message( $err, $err_code, $coupon ) {
+    if ( $err_code == WC_Coupon::E_WC_COUPON_NOT_EXIST ) {
+        $err = 'The code you entered does not exist - please enter it again.';
+    }
+
+    return $err;
+}

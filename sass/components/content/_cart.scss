@@ -287,6 +287,43 @@
                                 }
                             }
                         }
+
+                        .coupon {
+                            display: flex;
+                            flex-wrap: wrap;
+
+                            input {
+                                margin-right: 8px;
+                                margin-bottom: 0;
+                                flex-grow: 1;
+                                height: 60px;
+                                background-color: #fff;
+                                border: 1px solid #e4e4e4;
+                                display: block;
+                                padding: 20px;
+                                font-size: 18px;
+                                color: #000;
+                            }
+
+                            .coupon_button {
+                                font-weight: 700;
+                                text-transform: uppercase;
+                                @extend %black-btn; 
+                                background-color: #026805;
+                                
+                                &.disable {
+                                    background-color: #e4e4e4;
+                                    color: #424242;
+                                    pointer-events: none; 
+                                }
+                                
+                                &:not(.disable):hover {
+                                    color: #026805;
+                                    border-color: #026805;
+                                }
+                            }
+                            
+                        }
                     }
                     
 

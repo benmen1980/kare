@@ -113,8 +113,11 @@ $total_quantity = $cart->get_cart_contents_count();
 													<?php } ?>
 												</ul>
 												<input type="hidden" name="cart[<?php echo $cart_item_key; ?>][qty]" class="custom_select_hidden" value="<?php echo esc_html($selected_quantity); ?>">
+
 											</div>
-											<input type="hidden" name="update_cart" value="Update cart">
+   											<!-- <button type="submit" class="button" name="update_cart" value="Update cart" style="display: none;">Update cart</button> -->
+											<button type="submit" class="button <?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>" style="display:none;"><?php esc_html_e( 'Update cart', 'woocommerce' ); ?></button>
+
 										</form>
 															
 									<!-- </select> -->
@@ -187,15 +190,31 @@ $total_quantity = $cart->get_cart_contents_count();
 
 			<!-- <tr> -->
 				<!-- <td colspan="6" class="actions"> -->
+				<?php if ( wc_coupons_enabled() ) { ?>
+					<div class="coupon">
+						<label for="coupon_code" class="screen-reader-text"><?php esc_html_e( 'Coupon:', 'woocommerce' ); ?></label>
+						<input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Enter voucher code here...', 'woocommerce' ); ?>" />
+						<button type="submit" class="button disable coupon_button" name="apply_coupon" disabled value="<?php esc_attr_e( 'Activate voucher code', 'woocommerce' ); ?>">
+							<?php esc_html_e( 'Activate voucher code', 'woocommerce' ); ?>
+						</button>
+						<?php do_action( 'woocommerce_cart_coupon' ); ?>
+					</div>
+				<?php } ?>
 
-					<?php if ( wc_coupons_enabled() ) { ?>
-						<div class="coupon">
-							<label for="coupon_code" class="screen-reader-text"><?php esc_html_e( 'Coupon:', 'woocommerce' ); ?></label> <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>" /> <button type="submit" class="button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"><?php esc_html_e( 'Apply coupon', 'woocommerce' ); ?></button>
-							<?php do_action( 'woocommerce_cart_coupon' ); ?>
-						</div>
-					<?php } ?>
+				<?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
 
-					<button type="submit" class="button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>"><?php esc_html_e( 'Update cart', 'woocommerce' ); ?></button>
+				<div class="cart-collaterals">
+					<?php
+						/**
+						 * Cart collaterals hook.
+						 *
+						 * @hooked woocommerce_cross_sell_display
+						 * @hooked woocommerce_cart_totals - 10
+						 */
+						do_action( 'woocommerce_cart_collaterals' );
+					?>
+				</div>
+
 
 					<?php do_action( 'woocommerce_cart_actions' ); ?>
 
@@ -224,3 +243,8 @@ $total_quantity = $cart->get_cart_contents_count();
 </div>
 
 <?php do_action( 'woocommerce_after_cart' ); ?>
+
+<!-- <div class="box_delivery container">
+	<div class="title">+++ DELIVERY AREA +++</div>
+	<p>Delivery area only Germany. Other countries: kare-design.com</p>
+</div> -->

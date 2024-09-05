@@ -15,22 +15,19 @@
 		<div class="site-info">
 			<div class="footer-container background-gray">
 				<div class="contain-footer min-p">
-					<h4 class="text-center w-full">Gute Gründe für KARE Online GmbH</h4>
+					<h4 class="text-center w-full"><?php esc_html_e( 'Good reasons for KARE Online GmbH', 'kare' ); ?></h4>
 					<div class="center-flex justify-around">
-						<div class="text-center  w-1-3">
-							<svg></svg>
-							<img src="<?php echo get_template_directory_uri();?>/dist/images/delivery-truck.png" alt="delivery truck" width="32" height="32" class="svg-icon sprite-icons">
-							<p class="pt-3">Kostenlose Rücksendung</p>
+						<div class="text-center w-1-3">
+							<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/truck.svg'); ?>
+							<p class=""><?php esc_html_e( 'Free returns', 'kare' ); ?></p>
 						</div>
-						<div class="text-center  w-1-3">
-							<svg></svg>
-							<img src="<?php echo get_template_directory_uri();?>/dist/images/delivery-truck.png" alt="delivery truck" width="32" height="32" class="svg-icon sprite-icons">
-							<p class="pt-3">Kostenlose Rücksendung</p>
+						<div class="text-center w-1-3">
+							<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/shield.svg'); ?>
+							<p class=""><?php esc_html_e( 'Purchase on account', 'kare' ); ?></p>
 						</div>
-						<div class="text-center  w-1-3">
-							<svg></svg>
-							<img src="<?php echo get_template_directory_uri();?>/dist/images/delivery-truck.png" alt="delivery truck" width="32" height="32" class="svg-icon sprite-icons">
-							<p class="pt-3">Kostenlose Rücksendung</p>
+						<div class="text-center w-1-3">
+							<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/return.svg'); ?>
+							<p class=""><?php esc_html_e( '14 days cancellation', 'kare' ); ?></p>
 						</div>
 					</div>
 				</div>
@@ -38,7 +35,7 @@
 			</div>
 			<div class="footer-container  first-container-footer background-gray">
 				<div class="contain-footer container">
-					<h3 class="text">POPULAR CATEGORIES</h3>
+					<h3 class="text"><?php esc_html_e( 'POPULAR CATEGORIES', 'kare' ); ?></h3>
 					<div class="">
 						<?php
 							wp_nav_menu(
@@ -68,7 +65,7 @@
 			</div><!-- .second-container-footer -->
 			<div class="footer-container  third-container-footer background-gray">
 			<div class="contain-footer container">
-					<h3 class="text">IMPORTANT LINKS</h3>
+					<h3 class="text"><?php esc_html_e( 'IMPORTANT LINKS', 'kare' ); ?></h3>
 					<div class="">
 						<?php
 							wp_nav_menu(

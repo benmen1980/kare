@@ -528,12 +528,18 @@ jQuery(document).on("ready", function(){
                     option.classList.add('selected');
                     options.classList.remove('open');
 
-                     // עדכון הכמות בשדה הנסתר לפני שליחת הטופס
-                    hiddenInput.value = selectedValue;
-
                     // הגשת הטופס באופן אוטומטי לעדכון העגלה
-                    form.querySelector('input[name="update_cart"]').removeAttribute('disabled');
-                    form.submit();
+                    const updateCartButton = form.querySelector('button[name="update_cart"]');
+                    if (updateCartButton) {
+                        // הסרת ה-disable אם הכפתור קיים
+                        updateCartButton.removeAttribute('disabled');
+                        // הגשת הטופס
+                        form.submit();
+                    } else {
+                        console.error('הכפתור update_cart לא נמצא בטופס.');
+                    }
+                    
+
                 });
             });
     
@@ -543,6 +549,19 @@ jQuery(document).on("ready", function(){
                     options.classList.remove('open');
                 }
             });
+        });
+
+        const couponInput = document.getElementById('coupon_code');
+        const applyButton = document.querySelector('.coupon_button');
+
+        // בדוק את השדה בכל פעם שהמשתמש מקליד משהו
+        couponInput.addEventListener('input', function () {
+            if (couponInput.value.trim() === '') {
+                applyButton.setAttribute('disabled', true);
+            } else {
+                applyButton.removeAttribute('disabled');
+                applyButton.classList.remove('disable');
+            }
         });
     }
 
