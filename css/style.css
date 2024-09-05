@@ -52,11 +52,7 @@ button {
   background-color: #000000;
 }
 
-<<<<<<< HEAD
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit], .woocommerce-cart .site-main .entry-content .woocommerce .woocommerce-cart-form .shop_cart .coupon .coupon_button, .register_page form button, .logout_popup .logout_popup_content .popup_btns #cancel_logout, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button, header .login_sidebar .sidebar-content form.login .form-row button, header .wishlist_sidebar .sidebar-content form.login .form-row button, header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn, .btn-test, .btn_black_hover {
-=======
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit], form button, .logout_popup .logout_popup_content .popup_btns #cancel_logout, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button, header .login_sidebar .sidebar-content form.login .form-row button, header .wishlist_sidebar .sidebar-content form.login .form-row button, header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn, .btn-test, .btn_black_hover {
->>>>>>> 85049a80775b22ae750e085320cf1774b989e9e3
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit], .woocommerce-cart .site-main .entry-content .woocommerce .woocommerce-cart-form .shop_cart .coupon .coupon_button, form button, .logout_popup .logout_popup_content .popup_btns #cancel_logout, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button, header .login_sidebar .sidebar-content form.login .form-row button, header .wishlist_sidebar .sidebar-content form.login .form-row button, header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn, .btn-test, .btn_black_hover {
   padding: 1rem 1.5rem;
   position: relative;
   display: -webkit-inline-box;
@@ -80,19 +76,11 @@ button {
           transition-duration: 0.3s;
   border: 1px solid #e4e4e4;
 }
-<<<<<<< HEAD
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover, .woocommerce-cart .site-main .entry-content .woocommerce .woocommerce-cart-form .shop_cart .coupon .coupon_button:hover, .register_page form button:hover, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover, header .login_sidebar .sidebar-content form.login .form-row button:hover, header .wishlist_sidebar .sidebar-content form.login .form-row button:hover, header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover, .btn-test:hover, .btn_black_hover:hover {
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover, .woocommerce-cart .site-main .entry-content .woocommerce .woocommerce-cart-form .shop_cart .coupon .coupon_button:hover, form button:hover, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover, header .login_sidebar .sidebar-content form.login .form-row button:hover, header .wishlist_sidebar .sidebar-content form.login .form-row button:hover, header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover, .btn-test:hover, .btn_black_hover:hover {
   background-color: #fff;
   color: #424242;
 }
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover a, .woocommerce-cart .site-main .entry-content .woocommerce .woocommerce-cart-form .shop_cart .coupon .coupon_button:hover a, .register_page form button:hover a, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover a, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover a, header .login_sidebar .sidebar-content form.login .form-row button:hover a, header .wishlist_sidebar .sidebar-content form.login .form-row button:hover a, header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover a, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover a, .btn-test:hover a, .btn_black_hover:hover a {
-=======
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover, form button:hover, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover, header .login_sidebar .sidebar-content form.login .form-row button:hover, header .wishlist_sidebar .sidebar-content form.login .form-row button:hover, header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover, .btn-test:hover, .btn_black_hover:hover {
-  background-color: #fff;
-  color: #424242;
-}
-.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover a, form button:hover a, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover a, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover a, header .login_sidebar .sidebar-content form.login .form-row button:hover a, header .wishlist_sidebar .sidebar-content form.login .form-row button:hover a, header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover a, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover a, .btn-test:hover a, .btn_black_hover:hover a {
->>>>>>> 85049a80775b22ae750e085320cf1774b989e9e3
+.banner_register_newsletter .register_newsletter_wrapper .newsletter_form input[type=submit]:hover a, .woocommerce-cart .site-main .entry-content .woocommerce .woocommerce-cart-form .shop_cart .coupon .coupon_button:hover a, form button:hover a, .logout_popup .logout_popup_content .popup_btns #cancel_logout:hover a, #primary .product .top_details .r_side .product-details form.cart button.single_add_to_cart_button:hover a, header .login_sidebar .sidebar-content form.login .form-row button:hover a, header .wishlist_sidebar .sidebar-content form.login .form-row button:hover a, header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover a, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .share_wishlist_btn:hover a, .btn-test:hover a, .btn_black_hover:hover a {
   color: #000000;
 }
 
@@ -1809,9 +1797,11 @@ div.container .section_wrap {
 .site-info .footer-container .contain-footer h4, .site-info .footer-container .contain-footer h3 {
   font-weight: 400 !important;
 }
+.site-info .footer-container .contain-footer div.center-flex {
+  text-transform: uppercase;
+}
 .site-info .footer-container .contain-footer div.center-flex svg {
-  display: block;
-  height: 0 !important;
+  display: inline-block;
 }
 .site-info .footer-container .contain-footer ul.first-section-footer, .site-info .footer-container .contain-footer ul.third-section-footer {
   list-style: none;

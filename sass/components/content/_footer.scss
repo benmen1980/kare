@@ -18,9 +18,9 @@
             }
             div.center-flex {
                 @extend %center-flex;
+                text-transform: uppercase;
                 svg{
-                    display: block;
-                    height: 0 !important;
+                    display: inline-block;
                 }
 
             }
