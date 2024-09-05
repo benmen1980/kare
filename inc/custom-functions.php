@@ -111,7 +111,7 @@ function add_full_name_field_to_registration_form() {
 // Validate Full Name Field
 function validate_woocommerce_registration_full_name_field( $username, $email, $validation_errors ) {
     if ( isset( $_POST['full_name'] ) && empty( $_POST['full_name'] ) ) {
-        $validation_errors->add( 'full_name_error', __( 'Full Name is required!', 'woocommerce' ) );
+        $validation_errors->add( 'full_name_error', __( 'Please enter full name', 'woocommerce' ) );
     }
 
     return $validation_errors;
@@ -136,3 +136,11 @@ function save_woocommerce_registration_full_name_field( $customer_id ) {
 add_action( 'woocommerce_created_customer', 'save_woocommerce_registration_full_name_field' );
 
 
+//after registration, redirect to home page
+add_filter( 'woocommerce_registration_redirect', 'custom_redirection_after_registration', 10, 1 );
+function custom_redirection_after_registration( $redirection_url ){
+    // Change the redirection Url
+    $redirection_url = get_home_url(); // Home page
+
+    return $redirection_url; // Always return something
+}

@@ -17,77 +17,51 @@
         text-align: center;
         font-size: 16px;
     }
-    form{
-        .form_group {
-            position: relative;
-            margin-bottom: 10px;
-            input {
-              width: 100%;
-              padding: 20px 20px 8px 20px;
-              font-size: 16px;
-              border: 1px solid #ccc;
-              outline: none;
-              background-color: rgb(244,244,244);
-              &:focus + label, &:not(:placeholder-shown) + label{
-                transform: scale3d(.6,.6,1);
-                position: absolute;
-                top: 0;
-                left: -10px;
-              }
-            }
-            label {
-              position: absolute;
-              top: 50%;
-              top: 50%;
-              transform: translateY(-50%);
-              left: 20px;
-              font-size: 16px;
-              color: #000;
-              pointer-events: none;
-              transition: 0.3s ease all;
-            }
+    .woocommerce-error {
+      background-color: rgb(225,9,21);
+      color: #fff;
+      border: 0;
+      font-size: 16px;
+      list-style-type: none;
+      padding: 16px 16px 16px 36px;
+      margin: 0 0 20px 0;
+      position: relative;
+      &::before {
+        content: '';
+        background-image: url("../images/svg/alert.svg");
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 10px;
+        width: 20px;
+        height: 20px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        filter: invert(1);
+      }
+      a {
+        &:hover {
+          color: #fff;
+          opacity: .7;
         }
-        .checkbox_wrapper{
-          label{
-            display: flex;
-            gap: 15px;
-            input[type="checkbox"]{
-              appearance: none;
-              width: 24px;
-              height: 24px;
-              border: 2px solid #000;
-              flex-shrink: 0;
-              display: inline-grid;
-              place-content: center;
-              cursor: pointer;
-              &:checked{
-                background-color: rgb(66,66,66);
-                &:before{
-                  content:url("../images/svg/check.svg");
-                  width: 16px;
-                  height: 20px;
-                  color: #fff;
-                  filter: invert(100%) brightness(100%);
-                }
-              }
-            }
-            p{
-              font-size: 16px;
-            }
-          }
-         
+      }
+    }
+    
+    .woocommerce-message {
+      background-color: #0c6c40;
+      color: #fff;
+      border: 0;
+      border-right: .6180469716em solid rgba(0, 0, 0, .15);
+      a {
+        &:hover {
+          color: #fff;
+          opacity: .7;
         }
-        .woocommerce-privacy-policy-text{
-          display: none;
-        }
-        button{
-          @extend %black-btn;
-          width: 100%;
-          text-transform: uppercase;
-          text-align: center;
-          display: block;
-          font-weight: bold;
-          line-height: 24px;
-        }  
+      }
     }
 }
+
+
+
+
