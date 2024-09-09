@@ -3761,7 +3761,47 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
   border: 1px solid #333;
   margin: 20px 0;
 }
+.woocommerce-edit-account form fieldset legend {
+  font-size: 22px;
+}
 
+<<<<<<< HEAD
+=======
+form .form-row {
+  position: relative;
+  margin-bottom: 10px;
+}
+form .form-row input {
+  width: 100%;
+  padding: 20px 20px 8px 20px;
+  font-size: 16px;
+  border: 1px solid rgb(228, 228, 228);
+  outline: none;
+  background-color: rgb(244, 244, 244);
+  border-radius: 0;
+}
+form .form-row label {
+  position: absolute;
+  top: 50%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: 20px;
+  font-size: 16px;
+  color: #000;
+  pointer-events: none;
+  -webkit-transition: 0.3s ease all;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+form .form-row label.focused {
+  -webkit-transform: scale3d(0.6, 0.6, 1);
+          transform: scale3d(0.6, 0.6, 1);
+  position: absolute;
+  top: 2px;
+  left: -10px;
+}
+>>>>>>> 575571b164f8dec4406dd74196dc0bb6cfb68fea
 form .checkbox_wrapper label {
   display: -webkit-box;
   display: -ms-flexbox;
