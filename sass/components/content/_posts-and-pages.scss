@@ -120,3 +120,36 @@ main {
     box-sizing: border-box;
     border: 0 solid;
 }
+
+//FORM FOR ALL SITE PAGE
+form{
+    .form-row {
+        position: relative;
+        margin-bottom: 10px;
+        input {
+          width: 100%;
+          padding: 20px 20px 8px 20px;
+          font-size: 16px;
+          border: 1px solid #ccc;
+          outline: none;
+          background-color: rgb(244,244,244);
+        }
+        label {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 20px;
+          font-size: 16px;
+          color: #000;
+          pointer-events: none;
+          transition: 0.3s ease all;
+          z-index: 1;
+          &.focused{
+            transform: scale3d(.65,.65,1);
+            position: absolute;
+            top: 3px;
+            left: -25px;
+          }
+        }
+    }
+}

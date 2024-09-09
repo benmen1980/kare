@@ -5,8 +5,8 @@
     padding: .065rem;
     cursor: pointer;
 
-    .wishlist-icon{
-        padding: 1.25rem;
+    .wishlist_btn{
+        padding: 20px;
         position: absolute;
         top: 0;
         right: 0;
@@ -16,7 +16,32 @@
         flex-shrink: 0;
         max-width: 100%;
         text-align: left;
+        background-color: transparent;
+        border: none;
         cursor: pointer;
+
+        div, i {
+            margin: 0;
+        }
+
+        a.button {
+            font-size: 0;
+            i {
+                font-size: 20px;
+                &::before {
+                    font-size: 20px;
+                }
+                &.fa-heart::before {
+                    color: #e10915;
+                }
+            }
+        }
+
+        &:hover {
+            i.fa-heart-o::before {
+                color: #e10915;
+            }
+        }
     }
 
     a {

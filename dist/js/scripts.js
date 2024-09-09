@@ -3,30 +3,29 @@ var $=jQuery.noConflict();
 
 jQuery(document).on("ready", function(){
 
-    $(document).ready(function() {
-        
-        //add class to label in login form for adding css 
-        // On input focus
-        $('.form-row .input-text').focus(function() {
-            console.log('enter focus!');
-            $(this).closest('.form-row').find('label').addClass('focused');
-        });
+
     
-        // On input blur
-        $('.form-row .input-text').blur(function() {
-            // Remove the class if the input is empty
-            if ($(this).val() === "") {
-                $(this).closest('.form-row').find('label').removeClass('focused');
-            }
-        });
-    
-        // Check on page load if inputs have text
-        $('.form-row .input-text').each(function() {
-            if ($(this).val() !== "") {
-                $(this).closest('.form-row').find('label').addClass('focused');
-            }
-        });
+    //add class to label in login form for adding css 
+    // On input focus
+    $('.form-row .input-text').focus(function() {
+        $(this).closest('.form-row').find('label').addClass('focused');
     });
+
+    // On input blur
+    $('.form-row .input-text').blur(function() {
+        // Remove the class if the input is empty
+        if ($(this).val() === "") {
+            $(this).closest('.form-row').find('label').removeClass('focused');
+        }
+    });
+
+    // Check on page load if inputs have text
+    $('.form-row .input-text').each(function() {
+        if ($(this).val() !== "") {
+            $(this).closest('.form-row').find('label').addClass('focused');
+        }
+    });
+    
     
 
     //logout with popup
@@ -499,69 +498,20 @@ jQuery(document).on("ready", function(){
 
 
     if (window.location.href.indexOf("cart") > -1) {
-        const quantityWrapper = document.querySelectorAll('.quantity-wrapper');
-
-        quantityWrapper.forEach(function(wrapper) {
-            const button = wrapper.querySelector('.btn_quantity_wrapper');
-            const options = wrapper.querySelector('.custom_options');
-            const allOption = wrapper.querySelectorAll('.custom_option');
-            const selectedValueSpan = wrapper.querySelector('.selected_value');
-            const hiddenInput = wrapper.querySelector('.custom_select_hidden');
-            const form = wrapper.closest('form');
-    
-            // הצגת הרשימה בעת לחיצה על ה-custom_select_wrapper
-            button.addEventListener('click', function () {
-                options.classList.toggle('open');
-            });
-    
-            // בחירת כמות מתוך הרשימה
-            allOption.forEach(function(option) {
-                option.addEventListener('click', function () {
-                    const selectedValue = option.getAttribute('data-value');
-                    selectedValueSpan.textContent = selectedValue; // עדכון הכמות המוצגת
-                    hiddenInput.value = selectedValue; // עדכון הכמות בשדה הנסתר
-    
-                    // סימון הכמות שנבחרה
-                    allOption.forEach(function(opt) {
-                        opt.classList.remove('selected');
-                    });
-                    option.classList.add('selected');
-                    options.classList.remove('open');
-
-                    // הגשת הטופס באופן אוטומטי לעדכון העגלה
-                    const updateCartButton = form.querySelector('button[name="update_cart"]');
-                    if (updateCartButton) {
-                        // הסרת ה-disable אם הכפתור קיים
-                        updateCartButton.removeAttribute('disabled');
-                        // הגשת הטופס
-                        form.submit();
-                    } else {
-                        console.error('הכפתור update_cart לא נמצא בטופס.');
-                    }
-                    
-
-                });
-            });
-    
-            // סגירת הרשימה אם לוחצים מחוץ ל-wrapper
-            document.addEventListener('click', function(event) {
-                if (!wrapper.contains(event.target)) {
-                    options.classList.remove('open');
-                }
-            });
-        });
-
-        const couponInput = document.getElementById('coupon_code');
-        const applyButton = document.querySelector('.coupon_button');
+        const couponInputs = document.querySelectorAll('.coupon_code');
+        const applyButtons = document.querySelectorAll('.coupon_button');
 
         // בדוק את השדה בכל פעם שהמשתמש מקליד משהו
-        couponInput.addEventListener('input', function () {
-            if (couponInput.value.trim() === '') {
-                applyButton.setAttribute('disabled', true);
-            } else {
-                applyButton.removeAttribute('disabled');
-                applyButton.classList.remove('disable');
-            }
+        couponInputs.forEach(function (couponInput, index) {
+            couponInput.addEventListener('input', function () {
+                if (couponInput.value.trim() === '') {
+                    applyButtons[index].setAttribute('disabled', true);
+                    applyButtons[index].classList.add('disable');
+                } else {
+                    applyButtons[index].removeAttribute('disabled');
+                    applyButtons[index].classList.remove('disable');
+                }
+            });
         });
     }
 

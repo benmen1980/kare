@@ -21,10 +21,11 @@ if(!is_category() && !is_product_category()) : ?>
             }
                         
             if(is_category() || is_product_category()) : ?>
-            						
-            <a href="#" class="wishlist-icon">
-                <img src="<?php echo get_template_directory_uri();?>/dist/images/wishlist.png" alt="wishlist" width="24" height="24" class="fas fa-heart" />
-            </a>
+
+                <button aria-label="link" type="button" title="Add to Wishlist" class="wishlist_btn">
+                    <?php echo do_shortcode('[yith_wcwl_add_to_wishlist]'); ?>
+                </button>
+                
             <?php endif; ?>
             <div class="box_product flex card-product" id="<?php echo $product->get_id();?>">
                 <div  class="product_img_wrapper">

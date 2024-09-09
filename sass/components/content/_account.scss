@@ -7,9 +7,6 @@
                 width: 20%;
                 margin-right: 20px;
             } 
-            .woocommerce-MyAccount-content{
-                
-            }
         }
     }
   
@@ -262,42 +259,6 @@
 
 //FORM FOR ALL ACCOUNT PAGE
 form{
-    .form-row {
-        position: relative;
-        margin-bottom: 10px;
-        input {
-          width: 100%;
-          padding: 20px 20px 8px 20px;
-          font-size: 16px;
-          border: 1px solid #ccc;
-          outline: none;
-          background-color: rgb(244,244,244);
-          // &:focus + label, &:not(:placeholder-shown) + label{
-          //   transform: scale3d(.6,.6,1);
-          //   position: absolute;
-          //   top: 0;
-          //   left: -10px;
-          // }
-        }
-        label {
-          position: absolute;
-          top: 50%;
-          top: 50%;
-          transform: translateY(-50%);
-          left: 20px;
-          font-size: 16px;
-          color: #000;
-          pointer-events: none;
-          transition: 0.3s ease all;
-          z-index: 1;
-          &.focused{
-            transform: scale3d(.6,.6,1);
-            position: absolute;
-            top: 2px;
-            left: -10px;
-          }
-        }
-    }
     .checkbox_wrapper{
       label{
         display: flex;
