@@ -285,8 +285,8 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 					<!-- List of qualities in the product -->
 					<div class="list_qualities_pdts">
 						<?php
-						if( have_rows( 'list_item_product', $product->get_id() ) ):
-							while( have_rows( 'list_item_product', $product->get_id() ) ): the_row();
+						if( have_rows( 'list_item_product', 'option' ) ):
+							while( have_rows( 'list_item_product', 'option' ) ): the_row();
 							// Get sub field value.
 							$list_item = get_sub_field('list_item',);
 							?>
