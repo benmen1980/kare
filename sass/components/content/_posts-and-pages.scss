@@ -111,7 +111,7 @@ body {
 
 }
 
-main {
+main#main-site {
     padding-bottom: 6.25rem;
 }
 
@@ -153,3 +153,34 @@ form{
         }
     }
 }
+
+.woocommerce-error {
+    background-color: #e10915;
+    color: #fff;
+    border: 0;
+    font-size: 16px;
+    list-style-type: none;
+    padding: 16px 16px 16px 36px;
+    margin: 0 0 20px 0;
+    position: relative;
+    &::before {
+      content: '';
+      background-image: url("../images/svg/alert.svg");
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 10px;
+      width: 20px;
+      height: 20px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      filter: invert(1);
+    }
+    a {
+      &:hover {
+        color: #fff;
+        opacity: .7;
+      }
+    }
+  }

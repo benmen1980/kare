@@ -496,13 +496,16 @@ jQuery(document).on("ready", function(){
         
     });
 
-
+    // Check if the current page is the cart page
     if (window.location.href.indexOf("cart") > -1) {
-        const couponInputs = document.querySelectorAll('.coupon_code');
-        const applyButtons = document.querySelectorAll('.coupon_button');
 
-        // בדוק את השדה בכל פעם שהמשתמש מקליד משהו
+        // disable the coupon button, if the input field is empty
+        const couponInputs = document.querySelectorAll('.coupon_code'); // Select all coupon code input fields
+        const applyButtons = document.querySelectorAll('.coupon_button'); // Select all related apply buttons
+
         couponInputs.forEach(function (couponInput, index) {
+            applyButtons[index].classList.add('disable');
+
             couponInput.addEventListener('input', function () {
                 if (couponInput.value.trim() === '') {
                     applyButtons[index].setAttribute('disabled', true);

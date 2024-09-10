@@ -27,6 +27,9 @@ function custom_clickable_last_breadcrumb($crumbs) {
 /**
  * Changes to the cart page
  */
+
+// remove_action( 'woocommerce_cart_is_empty', 'wc_empty_cart_message', 10 );
+
 add_filter( 'woocommerce_coupon_error', 'custom_coupon_error_message', 10, 3 );
 
 function custom_coupon_error_message( $err, $err_code, $coupon ) {

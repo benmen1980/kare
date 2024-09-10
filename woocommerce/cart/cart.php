@@ -28,7 +28,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 	<?php do_action( 'woocommerce_before_cart_table' ); ?>
 
-	<div class="cart_content_wrap">
+	<div class="cart_content_wrap shop_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="0">
 
 		<div class="pdts_content">
 
@@ -200,10 +200,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 				</div>
 			<?php
 			}
-			
 			?>
-
-			<?php do_action( 'woocommerce_cart_contents' ); ?>
 
 			<div class="delivery_cost_wrapper white_bg">
 				<h5 class="title"><?php _e( 'Delivery costs', 'woocommerce' ); ?></h5>
@@ -228,16 +225,18 @@ do_action( 'woocommerce_before_cart' ); ?>
 					</p>
 				</div>
 			</div>
+			<?php do_action( 'woocommerce_cart_contents' ); ?>
 			<div class="coupon_wrapper">
 				<div colspan="6" class="actions">
-				<h5 class="title"><?php _e( 'Voucher code', 'woocommerce' ); ?></h5>
+					<h5 class="title"><?php _e( 'Voucher code', 'woocommerce' ); ?></h5>
+					
 					<?php if ( wc_coupons_enabled() ) { ?>
 						<div class="coupon form-row">
 							<label for="coupon_code" class="">
 								<span> <?php esc_html_e( 'Enter voucher code here...', 'woocommerce' ); ?> </span>
 							</label> 
-							<input type="text" name="coupon_code" class="input-text coupon_code" id="coupon_code_a" value="" placeholder=" " /> 
-							<button type="submit" class="coupon_button disable <?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"><?php esc_html_e( 'Activate voucher code', 'woocommerce' ); ?></button>
+							<input type="text" name="coupon_code" class="input-text coupon_code" id="coupon_code" value="" placeholder=" " /> 
+							<button type="submit" class="coupon_button <?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"><?php esc_html_e( 'Activate voucher code', 'woocommerce' ); ?></button>
 							<?php do_action( 'woocommerce_cart_coupon' ); ?>
 						</div>
 					<?php } ?>
@@ -250,8 +249,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 				</div>
 			</div>
 			<?php do_action( 'woocommerce_after_cart_contents' ); ?>
-			<?php do_action( 'woocommerce_after_cart_table' ); ?>
-
+			
 			<?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
 			<div class="cart_summary_inpdts_content">
 				<div class="cart_summary_content">
@@ -316,13 +314,11 @@ do_action( 'woocommerce_before_cart' ); ?>
 							<label for="coupon_code" class="">
 								<span> <?php esc_html_e( 'Enter voucher code here...', 'woocommerce' ); ?> </span>
 							</label> 
-							<input type="text" name="coupon_code" class="input-text coupon_code" id="coupon_code_b" value="" placeholder=" " /> 
-							<button type="submit" class="coupon_button disable <?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"><?php esc_html_e( 'Activate voucher code', 'woocommerce' ); ?></button>
+							<input type="text" name="coupon_code" class="input-text coupon_code" id="coupon_code" value="" placeholder=" " /> 
+							<button type="submit" class="coupon_button  <?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"><?php esc_html_e( 'Activate voucher code', 'woocommerce' ); ?></button>
 							<?php do_action( 'woocommerce_cart_coupon' ); ?>
 						</div>
 					<?php } ?>
-
-					<button type="submit" class="button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>"><?php esc_html_e( 'Update cart', 'woocommerce' ); ?></button>
 
 					<?php do_action( 'woocommerce_cart_actions' ); ?>
 
@@ -340,6 +336,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 			</div>
 		</div>
 	</div>
+	<?php do_action( 'woocommerce_after_cart_table' ); ?>
 </form>
 
 <?php do_action( 'woocommerce_after_cart' ); ?>
