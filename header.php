@@ -53,7 +53,7 @@
 						<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/user.svg'); ?>
 						<span><?php esc_html_e( 'Account', 'kare' ); ?></span>
 					</button>
-					<a href="/cart" aria-label="link" class="shopping-cart w-btn">
+					<a href="<?php echo wc_get_cart_url(); ?>" aria-label="link" class="shopping-cart w-btn <?php echo is_cart() ? 'cart' : ''; ?>">
 						<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/cart.svg'); ?>
 						<span class="shopping-cart-btn"><?php esc_html_e( 'Shopping Cart', 'kare' ); ?></span> 
 					</a>

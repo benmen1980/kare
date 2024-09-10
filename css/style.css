@@ -1305,6 +1305,9 @@ header .nav-top-wrapper .w-1-3 .w-btn span:hover {
 header .nav-top-wrapper .w-1-3 .w-btn.search span {
   margin-right: 100px;
 }
+header .nav-top-wrapper .w-1-3 .w-btn.cart {
+  text-decoration: underline;
+}
 header .nav-top-wrapper .w-1-3 .l-btn {
   padding: 0;
   padding-right: 16px;
@@ -1318,6 +1321,10 @@ header .nav-top-wrapper .w-1-3 .l-btn span:hover {
 }
 header .nav-top-wrapper .w-1-3 .l-btn a {
   text-decoration: none;
+}
+header .nav-top-wrapper .w-1-3.justify-end:hover a {
+  text-decoration: underline;
+  cursor: pointer;
 }
 header .header-menu {
   background-color: #F4F4F4;

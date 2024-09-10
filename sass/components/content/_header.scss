@@ -93,7 +93,7 @@ header {
                 border-radius: 50px;
                 font-size: $font-size-base;
                 text-align: left;
-                text-transform: none;
+                text-transform: none;      
                 &:hover {
                     background-color: #fff;
                     color: $color-text;
@@ -118,6 +118,10 @@ header {
                 &.search span{
                     margin-right: 100px;
                 }
+
+                &.cart {
+                    text-decoration: underline;
+                }
             }
 
             .l-btn {
@@ -135,6 +139,15 @@ header {
                 a{
                     text-decoration: none;
                    
+                }
+            }
+
+            &.justify-end {
+                &:hover {
+                    a {
+                        text-decoration: underline;
+                        cursor: pointer;
+                    }
                 }
             }
         }
