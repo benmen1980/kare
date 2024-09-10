@@ -214,9 +214,16 @@ do_action( 'woocommerce_before_cart' ); ?>
 					<p class="price">
 						<span><?php _e( 'Price:', 'woocommerce' ); ?></span>
 						<?php 
-							$cart_total = WC()->cart->get_subtotal();
-							$cost_delivery = $cart_total > 1800 ? 0 : 50.00;
-							echo wc_price( $cost_delivery ); 
+							$order_total = WC()->cart->cart_contents_total;
+							$shipping_amount  = get_field('shipping_cost','option');
+							$max_sum_shippping = get_field('max_sum_shippping', 'option');
+							// Define the shipping rate based on the order amount
+							if ($order_total <= $max_sum_shippping) {
+								$shipping_cost = $shipping_amount; // Set the shipping cost for orders under $50
+							} else {
+								$shipping_cost = 0; // Set free shipping for orders of $50 or more
+							}
+							echo wc_price( $shipping_cost ); 
 						?>
 					</p>
 				</div>
@@ -266,7 +273,9 @@ do_action( 'woocommerce_before_cart' ); ?>
 			
 			<?php
 				$cart_total_before_discounts = WC()->cart->get_subtotal();
+				// $cart_total_before_discounts = 800;
 				$discount_total = WC()->cart->get_discount_total();
+				// $discount_total = 600;
 				$shipping_total = WC()->cart->get_shipping_total();
 				$cart_total_after_discounts = WC()->cart->total;
 
@@ -334,3 +343,12 @@ do_action( 'woocommerce_before_cart' ); ?>
 </form>
 
 <?php do_action( 'woocommerce_after_cart' ); ?>
+
+<section class="delivery_message_wrapper">
+	<div class="delivery_message">
+		<div class="title_message">
+			<h2> <?php _e( '+++ DELIVERY AREA +++', 'woocommerce' ); ?></h2>
+		</div>
+		<p><?php _e( 'Delivery area only Israel. To other countries: kare-design.com', 'woocommerce' ); ?></p>
+	</div>
+</section>

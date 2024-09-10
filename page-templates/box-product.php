@@ -19,6 +19,16 @@ if(!is_category() && !is_product_category()) : ?>
             if(!empty($sale_price)){
                 $percent = round((($regular_price - $sale_price)*100) / $regular_price) ;
             }
+
+            //get_gallery_image 
+            $attachment_ids = $product->get_gallery_image_ids();
+        
+            if ( is_array( $attachment_ids ) && !empty($attachment_ids) ) {
+                //check if image has hover image    
+                if(strpos(wp_get_attachment_url( $attachment_ids[0] ), 'master-mood') !== false){
+                    $image_hover_url = wp_get_attachment_url( $attachment_ids[0] );
+                }                
+            }
                         
             if(is_category() || is_product_category()) : ?>
 
@@ -29,15 +39,26 @@ if(!is_category() && !is_product_category()) : ?>
             <?php endif; ?>
             <div class="box_product flex card-product" id="<?php echo $product->get_id();?>">
                 <div  class="product_img_wrapper">
-                    <div class="thumbnail <?php echo !empty($hover_image_url) ? 'has-hover' :'' ?>">
-                        <a href="<?php echo $pdt_permalink; ?>" title="<?php echo $pdt_name;?>">
-                            <img src="<?php echo wp_get_attachment_url( $product->get_image_id() ); ?>" alt="<?php echo $product->get_title(); ?>">
-                        </a>
+                    <div class="image_with_tags">
+                        <div class="image-pdts thumbnail <?php echo !empty($image_hover_url) ? 'has-hover' :'' ?>">
+                            <a href="<?php echo $pdt_permalink; ?>" title="<?php echo $pdt_name;?>">
+                                <img src="<?php echo wp_get_attachment_url( $product->get_image_id() ); ?>" alt="<?php echo $product->get_title(); ?>">
+                            </a>
+                        </div>
+                        <?php if(!empty($image_hover_url)): ?>
+                            <div class="image-pdts thumbnail-hover">
+                                <a href="<?php echo $pdt_permalink; ?>" title="<?php echo $pdt_name;?>">
+                                    <img src="<?php echo  $image_hover_url; ?>" alt="<?php echo $product->get_title(); ?>">
+                                </a>
+                            </div> 
+                        <?php endif; ?>
+
                         <?php if(!empty($sale_price)){ ?>
                             <div class="sale_tag">
                                 <span class="text_sale_percent"> <?php echo '-'.$percent.'%'; ?></span>
                             </div>
                         <?php } ?>
+
                         <?php if(has_term( '29', 'product_tag',$product->get_id() )){ 
                                 $term_data = get_term_by('id', '29', 'product_tag');
                             ?>                       

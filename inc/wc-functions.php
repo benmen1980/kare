@@ -137,14 +137,28 @@ function custom_coupon_error_message( $err, $err_code, $coupon ) {
 * @community     https://businessbloomer.com/club/
 */
  
-add_filter( 'woocommerce_package_rates', 'bbloomer_woocommerce_tiered_shipping', 10, 2 );
- 
-function bbloomer_woocommerce_tiered_shipping( $rates, $package ) {
-   $threshold = 1800;
-   if ( WC()->cart->subtotal < $threshold ) {
-      unset( $rates['flat_rate:1'] );
-   } else {
-      unset( $rates['flat_rate:2'] );
-   }
-   return $rates;
+add_filter('woocommerce_package_rates', 'custom_shipping_price_based_on_order_amount', 10, 2);
+function custom_shipping_price_based_on_order_amount($rates, $package) {
+    // Get the order total amount
+    $order_total = WC()->cart->cart_contents_total;
+    $shipping_amount  = get_field('shipping_cost','option');
+    $max_sum_shippping = get_field('max_sum_shippping', 'option');
+    // Define the shipping rate based on the order amount
+    if ($order_total <= $max_sum_shippping) {
+        $shipping_cost = $shipping_amount; // Set the shipping cost for orders under $50
+    } else {
+        $shipping_cost = 0; // Set free shipping for orders of $50 or more
+    }
+    // Loop through the shipping rates
+    foreach ($rates as $rate_key => $rate) {
+        // Update the shipping cost for the specific shipping method
+        if ($rate->method_id === 'flat_rate') {
+            $rates[$rate_key]->cost = $shipping_cost;
+            if($rates[$rate_key]->cost == 0){
+                $rates[ $rate_key ]->label .= ' (free)';
+            }
+        }
+    }
+
+    return $rates;
 }

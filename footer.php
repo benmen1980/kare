@@ -52,6 +52,20 @@
 			</div><!-- .first-container-footer -->
 			<div class="footer-container second-container-footer background-dark-gray">
 				<div class="second-footer container contain-footer">
+					<div class="customer_service_footer_menu">
+						<ul class="footer-menu"> 
+							<li class="menu-item menu-item-has-children">
+								<a href="#">
+									<?php echo get_field('footer_title','option'); ?>
+								</a>
+								<ul class="sub-menu">
+									<li>	
+										<?php echo get_field('footer_desc','option'); ?>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 					<?php
 						wp_nav_menu(
 							array(

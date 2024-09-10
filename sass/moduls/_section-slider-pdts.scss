@@ -42,6 +42,7 @@ section.section_slider_pdts {
                 padding-bottom: 3rem;
                 &.swiper-button-disabled {
                     opacity: 0;
+                    display: none;
                     animation: a-pointer-events 1s linear forwards;
                 }
             

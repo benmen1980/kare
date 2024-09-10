@@ -121,6 +121,7 @@
                                 padding-bottom: 0;
                                 &.swiper-button-disabled {
                                     opacity: 0;
+                                    display: none;
                                     animation: a-pointer-events 1s linear forwards;
                                 }
                             
@@ -242,6 +243,7 @@
                                 padding-bottom: 0;
                                 &.swiper-button-disabled {
                                     opacity: 0;
+                                    display: none;
                                     animation: a-pointer-events 1s linear forwards;
                                     z-index: -1;
                                 }
@@ -756,6 +758,7 @@
                     // padding-bottom: 32px;
                     &.swiper-button-disabled {
                         opacity: 0;
+                        display: none;
                         animation: a-pointer-events 1s linear forwards;
                     }
                 
