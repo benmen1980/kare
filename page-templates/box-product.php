@@ -86,10 +86,11 @@ if(!is_category() && !is_product_category()) : ?>
                         <?php 
                             $availability = $product->get_availability(); 
                             $stock_status = $product->get_stock_status();
+                            $stock_qty = $product->get_stock_quantity();
                         ?>
                         <div>
-                            <?php if ($stock_status === 'instock') : ?>
-                                <p class="stock instock"><?php esc_html_e( 'Available immediately', 'kare' ); ?></p>
+                            <?php if ( $stock_qty > 0 ) : ?>
+                                <p class="stock instock"><?php esc_html_e( 'Immediately available', 'kare' ); ?></p>
                             <?php else : ?>
                                 <p class="stock outofstock"><?php esc_html_e( '60 business days', 'kare' ); ?></p>
                             <?php endif ?>
