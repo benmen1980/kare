@@ -4799,9 +4799,6 @@ form button {
 .woocommerce-checkout .site-main .entry-content {
   margin: 20px 0;
 }
-.woocommerce-checkout .site-main .entry-content .woocommerce .woocommerce-notices-wrapper:nth-of-type(2) {
-  display: none;
-}
 .woocommerce-checkout .site-main .entry-content .woocommerce form.woocommerce-checkout {
   position: relative;
   display: -webkit-box;

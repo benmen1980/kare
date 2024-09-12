@@ -192,3 +192,10 @@ remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_paymen
 
 // Add the payment after the address fields
 add_action( 'woocommerce_after_order_notes', 'woocommerce_checkout_payment' );
+
+//Filter out the matching zone notice that shipping debug creates.
+add_filter('woocommerce_add_message', 'wc_check_notices');
+function wc_check_notices($message) {
+  if (strpos($message, 'Customer matched zone') !== false) return;
+  else return $message; 
+}
