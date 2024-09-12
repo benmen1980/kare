@@ -3,7 +3,7 @@ var $=jQuery.noConflict();
 
 jQuery(document).on("ready", function(){
 
-
+    // console.log(typeof jQuery);  
     
     //add class to label in login form for adding css 
     // On input focus
@@ -47,6 +47,33 @@ jQuery(document).on("ready", function(){
         });
     })
 
+       //open wishlist popup in header
+    $('.open_wishlist_popup').on('click', function() {
+        $('#wishlist_sidebar').addClass('active');
+        if ($('#overlay').length === 0) {
+            $('body').append('<div id="overlay"></div>');
+        }
+        $('#overlay').fadeIn(); // Show the overlay
+    });
+
+    $('#close_wishlist').on('click', function() {
+        $('#wishlist_sidebar').removeClass('active');
+        $('#overlay').fadeOut(function() {
+            $(this).remove(); // Remove overlay after fade out
+        });
+    });
+
+    // Close the wishlist sidebar if clicked outside
+    $(document).mouseup(function(e) {
+        var container = $("#wishlist_sidebar");
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
+            container.removeClass('active');
+            $('#overlay').fadeOut(function() {
+                $(this).remove(); // Remove overlay after fade out
+            });
+        }
+    });
+
     //Listens to the scroll of the surfer to add a clickable button to the top of the page
     let scrollThreshold = 1500;
 
@@ -60,6 +87,13 @@ jQuery(document).on("ready", function(){
             }
         }
     }
+
+    //Remove placeholder text in form fields in checkout page
+    jQuery(document).ready(function($) {
+        $('form.checkout .form-row input, form.checkout textarea, form.checkout select').each(function() {
+            $(this).removeAttr('placeholder');
+        });
+    });
 
     $(window).on('scroll', throttle(function() {
         let st = $(this).scrollTop();
@@ -478,24 +512,6 @@ jQuery(document).on("ready", function(){
         }
     });
 
-    document.querySelector('.share_wishlist_btn').addEventListener('click', function() {
-        var copyTarget = document.querySelector('.copy-target').value;
-        
-        navigator.clipboard.writeText(copyTarget).then(function() {
-            var notification = document.getElementById('copy-notification');
-            notification.style.display = 'block';
-            notification.style.opacity = '1';
-            
-            setTimeout(function() {
-                notification.style.opacity = '0';
-                setTimeout(function() {
-                    notification.style.display = 'none';
-                }, 500); 
-            }, 5000);
-        });   
-        
-    });
-
     // Check if the current page is the cart page
     if (window.location.href.indexOf("cart") > -1) {
 
@@ -517,6 +533,44 @@ jQuery(document).on("ready", function(){
             });
         });
     }
+
+    // Check if the current page is the checkout page
+    if (window.location.href.indexOf('checkout') > -1) {
+        //Open the product display in the checkout form
+        function toggleCart() {
+            $('#show_pdts').on('click', function() {
+                $(this).siblings('.wc-cart-mini-wrapper').toggleClass('open-cart');
+                
+                // rotation of the arrow 
+                $(this).find('svg').toggleClass('rotate180');
+            });
+        }
+    
+        toggleCart();
+    
+        $(document.body).on('updated_checkout', function() {
+            toggleCart();
+        });
+
+    }
+
+    document.querySelector('.share_wishlist_btn').addEventListener('click', function() {
+        var copyTarget = document.querySelector('.copy-target').value;
+        
+        navigator.clipboard.writeText(copyTarget).then(function() {
+            var notification = document.getElementById('copy-notification');
+            notification.style.display = 'block';
+            notification.style.opacity = '1';
+            
+            setTimeout(function() {
+                notification.style.opacity = '0';
+                setTimeout(function() {
+                    notification.style.display = 'none';
+                }, 500); 
+            }, 5000);
+        });   
+        
+    });
 
 });
 

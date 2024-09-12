@@ -130,9 +130,10 @@ form{
           width: 100%;
           padding: 20px 20px 8px 20px;
           font-size: 16px;
-          border: 1px solid #ccc;
+          border: 1px solid #e4e4e4;
           outline: none;
-          background-color: rgb(244,244,244);
+          background-color: #f4f4f4;
+          border-radius: 0;
         }
         label {
           position: absolute;
@@ -153,34 +154,67 @@ form{
         }
     }
 }
+.woocommerce-notices-wrapper, .woocommerce-NoticeGroup {
 
-.woocommerce-error {
-    background-color: #e10915;
-    color: #fff;
-    border: 0;
-    font-size: 16px;
-    list-style-type: none;
-    padding: 16px 16px 16px 36px;
-    margin: 0 0 20px 0;
-    position: relative;
-    &::before {
-      content: '';
-      background-image: url("../images/svg/alert.svg");
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      left: 10px;
-      width: 20px;
-      height: 20px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      filter: invert(1);
-    }
-    a {
-      &:hover {
+    .woocommerce-error {
+        background-color: #e10915;
         color: #fff;
-        opacity: .7;
-      }
+        border: 0;
+        font-size: 16px;
+        list-style-type: none;
+        padding: 16px 16px 16px 36px;
+        margin: 0 0 20px 0;
+        position: relative;
+        &::before {
+        content: '';
+        background-image: url("../images/svg/alert.svg");
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 10px;
+        width: 20px;
+        height: 20px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        filter: invert(1);
+        }
+        a {
+        &:hover {
+            color: #fff;
+            opacity: .7;
+        }
+        }
     }
-  }
+
+    .woocommerce-message {
+        background-color: #026805;
+        color: #fff;
+        border: 0;
+        font-size: 16px;
+        list-style-type: none;
+        padding: 16px 16px 16px 36px;
+        margin: 0 0 20px 0;
+        position: relative;
+        &::before {
+        content: '';
+        background-image: url("../images/svg/check-circle.svg");
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 10px;
+        width: 20px;
+        height: 20px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        filter: invert(1);
+        }
+        a {
+        &:hover {
+            color: #fff;
+            opacity: .7;
+        }
+        }
+    }
+}

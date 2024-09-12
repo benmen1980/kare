@@ -165,3 +165,30 @@ function custom_shipping_price_based_on_order_amount($rates, $package) {
 
     return $rates;
 }
+
+
+/**
+ * Changes to the checkout page
+ */
+
+ //Removes the coupon code form from the WooCommerce checkout page.
+ function remove_checkout_coupon_form() {
+    remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
+}
+add_action( 'woocommerce_before_checkout_form', 'remove_checkout_coupon_form', 9 );
+
+//Adjust fields in the checkout form
+// add_filter( 'woocommerce_checkout_fields', 'remove_checkout_fields_placeholder' );
+function remove_checkout_fields_placeholder( $fields ) {
+    
+    //Removes fields from the WooCommerce checkout page.
+    // unset( $fields['billing']['billing_company'] );
+
+    return $fields;
+}
+
+// Remove the charge from the diplot position
+remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
+
+// Add the payment after the address fields
+add_action( 'woocommerce_after_order_notes', 'woocommerce_checkout_payment' );
