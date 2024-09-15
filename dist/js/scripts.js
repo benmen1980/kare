@@ -554,6 +554,26 @@ jQuery(document).on("ready", function(){
 
     }
 
+    // Check if the current page is the order recived page
+    if (window.location.href.indexOf("order-received") !== -1) {
+        console.log("This is the order confirmation page.");
+
+        function toggleCartOrder() {
+            $('#show_pdts').on('click', function() {
+                $(this).siblings('.wc-order-mini-wrapper').toggleClass('open-cart');
+                
+                // rotation of the arrow 
+                $(this).find('svg').toggleClass('rotate180');
+            });
+        }
+
+        toggleCartOrder();
+
+        $(document.body).on('updated_checkout', function() {
+            toggleCartOrder();
+        });
+    }
+
     document.querySelector('.share_wishlist_btn').addEventListener('click', function() {
         var copyTarget = document.querySelector('.copy-target').value;
         

@@ -149,7 +149,7 @@ form{
             transform: scale3d(.65,.65,1);
             position: absolute;
             top: 3px;
-            left: -25px;
+            left: -10px;
           }
         }
     }
@@ -211,10 +211,12 @@ form{
         filter: invert(1);
         }
         a {
-        &:hover {
             color: #fff;
-            opacity: .7;
-        }
+            
+            &:hover {
+                color: #fff;
+                opacity: .7;
+            }
         }
     }
 }

@@ -19,6 +19,14 @@
             //     display: none;
             // }
 
+            .form-row.woocommerce-invalid input.input-text {
+                box-shadow: inset 2px 0 0 #e10915;
+            }
+
+            .form-row.woocommerce-validated input.input-text {
+                box-shadow: inset 2px 0 0 #026805;
+            }
+
             .woocommerce form.woocommerce-checkout {            
                 position: relative;
                 display: flex;
@@ -54,7 +62,7 @@
                     flex-grow: 1;
                     width: 75%;
                     padding: 20px 60px;
-                    margin-bottom: 20px;
+                    // margin-bottom: 20px;
                     box-shadow: 0 1px 3px rgba(0, 0, 0, .08) !important;
                     background-color: #fff;
                     height: fit-content;
@@ -76,8 +84,12 @@
                                 transform: inherit;
                             }
 
-                            label.focused {
-                                left: -7px;
+                            &#billing_company_field label.focused {
+                                left: -25px;
+                            } 
+
+                            &#billing_phone_field label.focused {
+                                left: 0px;
                             }                            
                         }
                     }
@@ -104,16 +116,28 @@
                                 label {
                                     display: flex;
                                     align-items: center;
+                                    gap: 16px;
 
-                                    input {
+                                    input[type="checkbox"]{
                                         position: relative;
-                                        flex-shrink: 0;
-                                        width: 20px;
-                                        height: 20px;
-                                        margin-right: 16px;
                                         appearance: none;
+                                        width: 24px;
+                                        height: 24px;
                                         border: 2px solid #424242;
+                                        flex-shrink: 0;
+                                        display: inline-grid;
+                                        place-content: center;
                                         cursor: pointer;
+                                        &:checked{
+                                          background-color: rgb(66,66,66);
+                                          &:before{
+                                            content:url("../images/svg/check.svg");
+                                            width: 16px;
+                                            height: 20px;
+                                            color: #fff;
+                                            filter: invert(100%) brightness(100%);
+                                          }
+                                        }
                                     }
                                 }                                
                             }
@@ -131,8 +155,8 @@
                                     transform: inherit;
                                 }
     
-                                label.focused {
-                                    left: -7px;
+                                &#shipping_company_field label.focused {
+                                    left: -25px;
                                 }
                             }
                         }
@@ -147,7 +171,11 @@
                                 border-bottom: 1px dashed #e4e4e4;
 
                                 label {
-                                    top: 20px
+                                    top: 20px;
+                                    &.focused {
+                                        top: 3px;
+                                        left: -23px;
+                                    }
                                 }
     
                                 textarea#order_comments {
@@ -159,6 +187,7 @@
                                     border-radius: 0;
                                     height: 120px;
                                     max-height: 120px;
+                                    padding: 8px;
                                 }
                             }                            
 
@@ -216,16 +245,31 @@
                                                 align-content: center;
                                                 align-items: center;
                                                 transform: none;
+                                                pointer-events: auto;
 
-                                                input#terms {
+                                                input#terms[type="checkbox"]{
                                                     background-color: #fff;
-                                                    border: 2px solid #424242;
-                                                    width: 20px;
-                                                    height: 20px;
+                                                    position: relative;
                                                     appearance: none;
+                                                    width: 24px;
+                                                    height: 24px;
+                                                    border: 2px solid #424242;
+                                                    flex-shrink: 0;
+                                                    display: inline-grid;
+                                                    place-content: center;
                                                     cursor: pointer;
                                                     margin-right: 8px;
                                                     padding: 0;
+                                                    &:checked{
+                                                      background-color: rgb(66,66,66);
+                                                      &:before{
+                                                        content:url("../images/svg/check.svg");
+                                                        width: 16px;
+                                                        height: 20px;
+                                                        color: #fff;
+                                                        filter: invert(100%) brightness(100%);
+                                                      }
+                                                    }
                                                 }
                                             }
                                         }
@@ -282,6 +326,7 @@
                                         padding: 8px 20px; 
                                         text-align: left; 
                                         border-width: 0 0 1px;
+                                        border-radius: 0;
                                         font-weight: 400;
                                         &:hover {
                                             color: #000;
@@ -291,6 +336,7 @@
                                         }
 
                                         span {
+                                            text-transform: none;
                                             flex-grow: 1;
                                             margin-right: 8px;
                                         }
@@ -315,10 +361,11 @@
                                         transition-duration: .3s;
 
                                         &.open-cart {
-                                            height: 250px !important;
+                                            height: 40vh !important;
+                                            max-height: 50vh !important;
                                         }
                                         .product {
-                                            max-height: 50vh;
+                                            max-height: 100%;
                                             border-color: #e4e4e4;
                                             padding: 20px;
                                             overflow: auto;
@@ -373,9 +420,14 @@
                                                     margin-top: 20px;
                                                     // margin-bottom: 8px;
                                                     text-decoration: none;
-                
+                                                    display: flex;
+                                                    justify-content: space-between;
+    
                                                     &:hover {
-                                                    text-decoration: underline;
+                                                        text-decoration: underline;
+                                                        strong {
+                                                            text-decoration: none;
+                                                        }
                                                     }
                 
                                                 }

@@ -262,15 +262,25 @@
 
 //FORM FOR ALL ACCOUNT PAGE
 form{
+    .form-row {
+        label {
+            &[for=password_current],&[for=password_1],&[for=password_2]{
+                &.focused{
+                    left: -8%;
+                }
+            }
+        }
+
+    }
     .checkbox_wrapper{
       label{
         display: flex;
-        gap: 15px;
+        gap: 16px;
         input[type="checkbox"]{
           appearance: none;
           width: 24px;
           height: 24px;
-          border: 2px solid #000;
+          border: 2px solid #424242;
           flex-shrink: 0;
           display: inline-grid;
           place-content: center;

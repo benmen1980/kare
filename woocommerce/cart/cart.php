@@ -278,7 +278,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 				$cart_total_after_discounts = WC()->cart->total;
 
 				if ($cart_total_before_discounts > 0 && $discount_total > 0) { ?>
-					<div class="product-discount-message">
+					<div class="product-discount-message white-bg">
 						<p>
 							<?php
 								$discount_percentage = ($discount_total / $cart_total_before_discounts) * 100;

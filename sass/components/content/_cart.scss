@@ -340,7 +340,8 @@
                                     }
                                 }
 
-                                .product-discount-message {
+                                .product-discount-message.white-bg {
+                                    background-color: #fff;
                                     margin-top: 20px;
                                     padding: 24px 20px;
                                     border: 1px dashed #026805;
@@ -390,6 +391,10 @@
                             .coupon {
                                 display: flex;
                                 flex-wrap: nowrap;
+
+                                label.focused {
+                                    left: -25px;
+                                }
 
                                 input {
                                     margin-right: 8px;
@@ -451,6 +456,7 @@
 
                         .product-discount-message {
                             background-color: #dcedc8;
+                            border: none;
                             margin: 20px 0;
                             padding: 20px;
                             text-align: center;
@@ -521,6 +527,7 @@
                                     top: 25%;
                                     &.focused{ 
                                         top: 3px;
+                                        left: -25px;
                                     }
                                 }
 

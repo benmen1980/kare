@@ -178,11 +178,13 @@ function custom_shipping_price_based_on_order_amount($rates, $package) {
 add_action( 'woocommerce_before_checkout_form', 'remove_checkout_coupon_form', 9 );
 
 //Adjust fields in the checkout form
-// add_filter( 'woocommerce_checkout_fields', 'remove_checkout_fields_placeholder' );
+add_filter( 'woocommerce_checkout_fields', 'remove_checkout_fields_placeholder' );
 function remove_checkout_fields_placeholder( $fields ) {
     
     //Removes fields from the WooCommerce checkout page.
-    // unset( $fields['billing']['billing_company'] );
+    unset( $fields['billing']['billing_state_field'] );
+    // unset( $fields['billing']['billing_address_2'] );
+    // unset( $fields['shipping']['shipping_address_2'] );
 
     return $fields;
 }
@@ -196,6 +198,8 @@ add_action( 'woocommerce_after_order_notes', 'woocommerce_checkout_payment' );
 //Filter out the matching zone notice that shipping debug creates.
 add_filter('woocommerce_add_message', 'wc_check_notices');
 function wc_check_notices($message) {
-  if (strpos($message, 'Customer matched zone') !== false) return;
-  else return $message; 
+    if (strpos($message, 'Customer matched zone') !== false) 
+        return;
+    else 
+        return $message; 
 }
