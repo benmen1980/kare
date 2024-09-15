@@ -223,14 +223,15 @@ $total_quantity = $cart->get_cart_contents_count();
 			<p class="price-order-total"><?php wc_cart_totals_order_total_html(); ?></p>
 		</div>
 
-		<div class="another-data">
-			<h5><?php _e( 'Do you need help?', 'woocommerce' ); ?></h5>
-			<button class="contact_mail">
-				<a href="mailto:<?php echo get_field('contact_email','option'); ?>"  target="_blank"><?php _e( 'Contact us', 'woocommerce' ); ?></a>
-			</button>
-		</div>
+
 
 		<?php do_action( 'woocommerce_review_order_after_order_total' ); ?>
 
+	</section>
+	<section class="another-data">
+		<h5><?php _e( 'Do you need help?', 'woocommerce' ); ?></h5>
+		<button class="contact_mail">
+			<a href="mailto:<?php echo get_field('contact_email','option'); ?>"  target="_blank"><?php _e( 'Contact us', 'woocommerce' ); ?></a>
+		</button>
 	</section>
 </div>

@@ -562,34 +562,35 @@
                                     color: #e10915;
                                 }
                             }
+                        }
 
-                            .another-data {
-                                order: 4;
-                                margin-top: 24px;
-                                h5 {
-                                    margin: 0;
-                                }
-    
-                                button {
-                                    margin-top: 20px;
-                                    @extend %white-btn;
-                                    width: 100%;
-                                    font-weight: 400;
-                                    
-                                    &:hover {
-                                        a {
-                                            color: #fff;
-                                        }
-                                    }
+                        section.another-data {
+                            padding: 20px;
+                            margin-top: 20px;
+                            box-shadow: 0 1px 3px rgba(0, 0, 0, .08) !important;
+                            background-color: #fff;
+                            h5 {
+                                margin: 0;
+                            }
+
+                            button {
+                                margin-top: 20px;
+                                @extend %white-btn;
+                                width: 100%;
+                                font-weight: 400;
+                                
+                                &:hover {
                                     a {
-                                        text-decoration: none;
-                                        &:hover {
-                                            color: #fff;
-                                        }
+                                        color: #fff;
+                                    }
+                                }
+                                a {
+                                    text-decoration: none;
+                                    &:hover {
+                                        color: #fff;
                                     }
                                 }
                             }
-
                         }
                     }
                 }
