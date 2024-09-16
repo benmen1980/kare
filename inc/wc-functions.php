@@ -203,3 +203,16 @@ function wc_check_notices($message) {
     else 
         return $message; 
 }
+
+function update_mini_cart_fragment( $fragments ) {
+    ob_start();
+    ?>
+    <div class="mini-cart-wrapper">
+        <?php woocommerce_mini_cart(); ?>
+    </div>
+    <?php
+    $fragments['div.mini-cart-wrapper'] = ob_get_clean();
+    
+    return $fragments;
+}
+// add_filter( 'woocommerce_add_to_cart_fragments', 'update_mini_cart_fragment' );

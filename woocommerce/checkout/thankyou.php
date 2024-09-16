@@ -172,7 +172,7 @@ $order = wc_get_order($order_id);
 		</section>
 		<section class="wc-order-total">
 			<h5 class="summary"><?php echo esc_html_e('summary', 'kare'); ?></h5>
-			<p class="comment_txt"><?php echo get_field('comment_txt_checout','option'); ?></p>
+			<p class="comment_txt"><?php echo get_field('comment_txt_checkout','option'); ?></p>
 			<ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details">
 
 				<li class="woocommerce-order-overview__order order">

@@ -258,6 +258,16 @@ p {
   padding-top: 1rem;
 }
 
+@media (max-width: 940px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+@media (min-width: 941px) {
+  .hidden-desktop {
+    display: none !important;
+  }
+}
 /*--------------------------------------------------------------
 # Generic
 --------------------------------------------------------------*/
@@ -1874,6 +1884,25 @@ header .login_sidebar #copy-notification, header .wishlist_sidebar #copy-notific
   width: -webkit-min-content;
   width: -moz-min-content;
   width: min-content;
+}
+
+.mini-cart-wrapper {
+  width: 400px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: -400px;
+  background-color: #fff;
+  -webkit-box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+          box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  -webkit-transition: right 0.3s ease-in-out;
+  transition: right 0.3s ease-in-out;
+  z-index: 9999;
+  display: none;
+}
+.mini-cart-wrapper.open {
+  right: 0;
+  display: block;
 }
 
 /* Home Page

@@ -21,4 +21,33 @@ jQuery(document).ready(function($){
             window.location.reload(); // Refresh the cart page after the update
         });
     });
+
+        // Custom AJAX Add to Cart for Single Product Page
+       /* $('body').on('click', '.ajax_add_to_cart', function(e) {
+            e.preventDefault();
+            var $button = $(this),
+                product_id = $button.data('product_id');
+            
+            $.ajax({
+                type: 'POST',
+                url: wc_add_to_cart_params.ajax_url,
+                data: {
+                    action: 'woocommerce_ajax_add_to_cart',
+                    product_id: product_id
+                },
+                beforeSend: function() {
+                    // You can show a loading spinner here if needed
+                },
+                success: function(response) {
+                    if (response.error && response.product_url) {
+                        window.location = response.product_url;
+                        return;
+                    }
+                    // Update the mini cart, etc.
+                    $(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash]);
+                }
+            });
+        });*/
+    
+    
 });

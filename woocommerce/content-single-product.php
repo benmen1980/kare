@@ -242,8 +242,8 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 						<?php do_action( 'woocommerce_after_add_to_cart_quantity' );
 					?>
 			
-					<button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="single_add_to_cart_button button alt"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
-					
+					<button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="single_add_to_cart_button button alt ajax_add_to_cart" data-product_id="<?php echo esc_attr( $product->get_id() ); ?>"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
+
 					<button aria-label="link" type="button" title="Add to Wishlist" class="wishlist_btn">
 						<?php echo do_shortcode('[yith_wcwl_add_to_wishlist]'); ?>
 					</button>

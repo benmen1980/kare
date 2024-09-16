@@ -205,3 +205,7 @@
 				
 			</div>
 		</div>
+
+		<div class="mini-cart-wrapper">
+			<?php woocommerce_mini_cart(); // Display the WooCommerce mini cart ?>
+		</div>

@@ -47,7 +47,7 @@ jQuery(document).on("ready", function(){
         });
     })
 
-       //open wishlist popup in header
+    //open wishlist popup in header
     $('.open_wishlist_popup').on('click', function() {
         $('#wishlist_sidebar').addClass('active');
         if ($('#overlay').length === 0) {
@@ -461,6 +461,30 @@ jQuery(document).on("ready", function(){
         }
     });
 
+    // Open mini-cart on product added
+    $('button[name="add-to-cart"]').on('click', function() {
+        $('.mini-cart-wrapper').addClass('open');
+
+        // Add overlay if not already present
+        if ($('#overlay').length === 0) {
+            $('body').append('<div id="overlay"></div>');
+        }
+        $('#overlay').fadeIn(); // Show the overlay
+    });
+
+    // Close mini-cart popup when clicking outside
+    $(document).mouseup(function(e) {
+        var miniCartContainer = $(".mini-cart-wrapper");
+
+        if (!miniCartContainer.is(e.target) && miniCartContainer.has(e.target).length === 0) {
+            miniCartContainer.removeClass('open');
+            $('#overlay').fadeOut(function() {
+                $(this).remove(); // Remove overlay after fade out
+            });
+        }
+    });
+
+
     //open account popup to write product reviews
     $('.open_account_button').click(function(e) {
         e.preventDefault(); // Prevents the default action of the link
@@ -500,6 +524,7 @@ jQuery(document).on("ready", function(){
     document.querySelectorAll('.delete_item').forEach(function(element) {
         element.closest('.wishlist_btn').classList.add('wishlist_btn_black');
     });
+
     $(document).on('click', '.yith-wcwl-add-button a', function(e) {
         e.preventDefault();
         

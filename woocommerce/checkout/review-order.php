@@ -169,7 +169,7 @@ $total_quantity = $cart->get_cart_contents_count();
 	<section class="summary-wrapper">
 		
 		<h5 class="summary"><?php echo esc_html_e('summary', 'kare'); ?></h5>
-		<p class="comment_txt"><?php echo get_field('comment_txt_checout','option'); ?></p>
+		<p class="comment_txt"><?php echo get_field('comment_txt_checkout','option'); ?></p>
 
 		<div class="cart-subtotal">
 			<p><?php esc_html_e( 'Order total:', 'woocommerce' ); ?></p>

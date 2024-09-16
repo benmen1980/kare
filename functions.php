@@ -226,3 +226,10 @@ require get_template_directory() . '/inc/wc-functions.php';
 if ( class_exists( 'WooCommerce' ) ) {
     require get_template_directory() . '/inc/woocommerce.php';
 }
+
+function enqueue_woocommerce_scripts() {
+    if ( class_exists( 'WooCommerce' ) ) {
+        wp_enqueue_script( 'wc-add-to-cart' );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'enqueue_woocommerce_scripts' );
