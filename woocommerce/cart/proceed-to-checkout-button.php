@@ -26,5 +26,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php esc_html_e( 'Proceed to checkout', 'woocommerce' ); ?>
 </a>
 <a href="<?php echo esc_url( home_url() ); ?>" class="shopping-button button alt wc-forward">
+	<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-back.svg'); ?>
 	<?php esc_html_e( 'Continue shopping', 'woocommerce' ); ?>
 </a>

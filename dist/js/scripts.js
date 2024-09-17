@@ -96,20 +96,23 @@ jQuery(document).on("ready", function(){
     });
 
     $(window).on('scroll', throttle(function() {
-        let st = $(this).scrollTop();
-        let btn = $('#btnSkipArrow');
+        if (window.innerWidth >= 1024) {
 
-        if (st >= scrollThreshold) {
-            if (!btn.hasClass('show')) {
-                btn.css('display', 'block'); // Show the element before starting the transition
-                setTimeout(function() {
-                    btn.removeClass('hide');
-                    btn.addClass('show');
-                }, 10); // Small delay to ensure the display change is applied
+            let st = $(this).scrollTop();
+            let btn = $('#btnSkipArrow');
+
+            if (st >= scrollThreshold) {
+                if (!btn.hasClass('show')) {
+                    btn.css('display', 'block'); // Show the element before starting the transition
+                    setTimeout(function() {
+                        btn.removeClass('hide');
+                        btn.addClass('show');
+                    }, 10); // Small delay to ensure the display change is applied
+                }
+            } else {
+                btn.removeClass('show');
+                btn.addClass('hide');
             }
-        } else {
-            btn.removeClass('show');
-            btn.addClass('hide');
         }
     }, 100)); // Executes the function every 100ms
 
@@ -537,6 +540,14 @@ jQuery(document).on("ready", function(){
         }
     });
 
+    // Capture the "Enter" keypress in the search input field
+    $('#search-input').on('keypress', function(event) {
+        if(event.which === 13) { // 13 is the Enter key
+            event.preventDefault(); // Prevent the default form submission
+            $('#search-button').click(); // Trigger the hidden button click
+        }
+    });
+
     // Check if the current page is the cart page
     if (window.location.href.indexOf("cart") > -1) {
 
@@ -584,11 +595,11 @@ jQuery(document).on("ready", function(){
         console.log("This is the order confirmation page.");
 
         function toggleCartOrder() {
-            $('#show_pdts').on('click', function() {
+            $('#show_pdts_recived').on('click', function() {
                 $(this).siblings('.wc-order-mini-wrapper').toggleClass('open-cart');
                 
                 // rotation of the arrow 
-                $(this).find('svg').toggleClass('rotate180');
+                $(this).find('svg').toggleClass('rotatesvg');
             });
         }
 

@@ -15,10 +15,18 @@
             }
             h4, h3 {
                 font-weight: 400 !important;
+                @include media("<=mobile") {
+                    margin: 0;
+                    padding-bottom: 20px
+                }
             }
             div.center-flex {
                 @extend %center-flex;
                 text-transform: uppercase;
+                flex-direction: column;
+                @include media(">mobile") {
+                    flex-direction: row;
+                }
                 svg{
                     display: inline-block;
                 }

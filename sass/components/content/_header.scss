@@ -103,11 +103,8 @@ header {
                     span {
                         text-decoration: underline;
                     }
-                  }
-                &#btn-header-search {
-                    width: auto;
                 }
-
+                
                 span {
                     margin-left: 8px; 
                     &:hover {
@@ -121,6 +118,37 @@ header {
 
                 &.cart {
                     text-decoration: underline;
+                }
+            }
+
+            #btn-header-search {
+                width: min-content;
+                input {
+                    @extend %white-btn;
+                    @extend %center-flex;
+                    height: 49px;
+                    padding: 16px;
+                    border: none;
+                    border-radius: 50px;
+                    font-size: $font-size-base;
+                    text-align: left;
+                    text-transform: none;
+                    content: url('/wp-content/themes/kare/dist/images/svg/search.svg');;
+                    &:hover {
+                        background-color: #fff;
+                        color: $color-text;
+                        pointer-events: none; 
+                        border: none;
+                    }
+                    &#search-input {
+                        border: none;
+                        &:active {
+                            border: none;
+                        }
+                        &:focus-visible {
+                            border: none;
+                        }
+                    }
                 }
             }
 

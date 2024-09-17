@@ -216,3 +216,63 @@ function update_mini_cart_fragment( $fragments ) {
     return $fragments;
 }
 // add_filter( 'woocommerce_add_to_cart_fragments', 'update_mini_cart_fragment' );
+
+
+/**
+ * Search products of woocommerce
+ */
+// Only search in products
+function filter_woocommerce_search( $query ) {
+    if ( ! is_admin() && $query->is_search() && $query->is_main_query() ) {
+        $query->set( 'post_type', 'product' ); 
+    }
+}
+add_action( 'pre_get_posts', 'filter_woocommerce_search' );
+
+//Search by Partial Product Name or SKU
+function custom_search_by_name_or_sku( $search, $wp_query ) {
+    global $wpdb;
+
+    // Check if it's a search query and the main query
+    if ( ! $wp_query->is_search() || ! $wp_query->is_main_query() || is_admin() ) {
+        return $search;
+    }
+
+    // Get the search term entered by the user
+    $search_term = $wp_query->get( 's' );
+    if ( empty( $search_term ) ) {
+        return $search;
+    }
+
+    // Use the wpdb esc_like method to escape the search term properly
+    $search_term = $wpdb->esc_like( $search_term );
+
+    // Build the custom search query to search in product titles and SKUs
+    $search = "
+        AND (
+            {$wpdb->posts}.post_title LIKE '%{$search_term}%'
+            OR (
+                {$wpdb->postmeta}.meta_key = '_sku'
+                AND {$wpdb->postmeta}.meta_value LIKE '%{$search_term}%'
+            )
+        )
+    ";
+
+    return $search;
+}
+add_filter( 'posts_search', 'custom_search_by_name_or_sku', 10, 2 );
+
+function custom_join_for_sku_search( $join, $wp_query ) {
+    global $wpdb;
+
+    // Ensure it's only for search and the main query
+    if ( ! $wp_query->is_search() || ! $wp_query->is_main_query() || is_admin() ) {
+        return $join;
+    }
+
+    // Add the JOIN clause for postmeta to search SKUs
+    $join .= " LEFT JOIN {$wpdb->postmeta} ON {$wpdb->posts}.ID = {$wpdb->postmeta}.post_id ";
+
+    return $join;
+}
+add_filter( 'posts_join', 'custom_join_for_sku_search', 10, 2 );

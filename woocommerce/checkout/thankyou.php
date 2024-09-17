@@ -72,7 +72,7 @@ $order = wc_get_order($order_id);
 			<div class="order-header">
 				<h5 class="order-title"><?php esc_html_e( 'Order Summary', 'woocommerce' ); ?></h5>
 				<div class="order-pdts">
-					<button aria-label="button" type="button" alt="show checkout products" id="show_pdts" class="toggle-cart">
+					<button aria-label="button" type="button" alt="show checkout products" id="show_pdts_recived" class="toggle-cart">
 						<span><?php _e( 'Show products', 'woocommerce' ); ?></span>
 						<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-down.svg'); ?>
 					</button>

@@ -230,8 +230,29 @@ $total_quantity = $cart->get_cart_contents_count();
 	</section>
 	<section class="another-data">
 		<h5><?php _e( 'Do you need help?', 'woocommerce' ); ?></h5>
-		<button class="contact_mail">
-			<a href="mailto:<?php echo get_field('contact_email','option'); ?>"  target="_blank"><?php _e( 'Contact us', 'woocommerce' ); ?></a>
+		<button type="button" aria-label="link" class="contact_mail">
+			<a aria-label="link" href="mailto:<?php echo get_field('contact_email','option'); ?>"  target="_blank"><?php _e( 'Contact us', 'woocommerce' ); ?></a>
 		</button>
+
+		<hr>
+		
+		<h5><?php _e( 'Useful links', 'woocommerce' ); ?></h5>
+		<button type="button" aria-label="link" class="back_to back_to_shop">
+			<a aria-label="link" href="<?php echo wc_get_cart_url(); ?>"  target=""><?php _e( 'Back to shopping cart', 'woocommerce' ); ?></a>
+		</button>
+		<button type="button" aria-label="link" class="back_to back_to_home_page">
+			<a aria-label="link" href="<?php echo home_url(); ?>"  target=""><?php _e( 'Back to home page', 'woocommerce' ); ?></a>
+		</button>
+		<?php
+			// $privacy_policy_page_id = get_option('wp_page_for_privacy_policy'); 
+			// $privacy_policy_url = get_permalink($privacy_policy_page_id);
+		?>
+		<button type="button" aria-label="link" class="back_to back_to_privact">
+			<a aria-label="link" href="<?php echo home_url(); ?>"  target=""><?php _e( 'Terms and Conditions', 'woocommerce' ); ?></a>
+		</button>
+		<button type="button" aria-label="link" class="back_to back_to_faq">
+			<a aria-label="link" href="<?php home_url(); ?>"  target=""><?php _e( 'Faq', 'woocommerce' ); ?></a>
+		</button>
+
 	</section>
 </div>

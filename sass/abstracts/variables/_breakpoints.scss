@@ -1,4 +1,4 @@
-$breakpoints: (phone: 320px, tablet: 940px, desktop-small: 1280px, desktop-large: 1400px);
+$breakpoints: (phone: 480px, mobile: 768px, tablet: 940px, desktop: 1024px);
 
 @include media("<=tablet") {
     .hidden-mobile {

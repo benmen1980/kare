@@ -182,7 +182,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 						</div>
 
 						<?php if ( $_product->is_on_sale() ) : ?>
-							<div class="product-discount-message">
+							<div class="product-discount-message white-bg">
 								<p>
 									<?php
 										$regular_price = $_product->get_regular_price();
@@ -231,11 +231,13 @@ do_action( 'woocommerce_before_cart' ); ?>
 					<h5 class="title"><?php _e( 'Voucher code', 'woocommerce' ); ?></h5>
 					
 					<?php if ( wc_coupons_enabled() ) { ?>
-						<div class="coupon form-row">
-							<label for="coupon_code" class="">
-								<span> <?php esc_html_e( 'Enter voucher code here...', 'woocommerce' ); ?> </span>
-							</label> 
-							<input type="text" name="coupon_code" class="input-text coupon_code" id="coupon_code" value="" placeholder=" " /> 
+						<div class="coupon">
+							<div class="form-row">
+								<label for="coupon_code" class="">
+									<span> <?php esc_html_e( 'Enter voucher code here...', 'woocommerce' ); ?> </span>
+								</label> 
+								<input type="text" name="coupon_code" class="input-text coupon_code" id="coupon_code" value="" placeholder=" " /> 
+							</div>
 							<button type="submit" class="coupon_button <?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"><?php esc_html_e( 'Activate voucher code', 'woocommerce' ); ?></button>
 							<?php do_action( 'woocommerce_cart_coupon' ); ?>
 						</div>
@@ -271,14 +273,14 @@ do_action( 'woocommerce_before_cart' ); ?>
 			
 			<?php
 				$cart_total_before_discounts = WC()->cart->get_subtotal();
-				// $cart_total_before_discounts = 800;
+				$cart_total_before_discounts = 800;
 				$discount_total = WC()->cart->get_discount_total();
-				// $discount_total = 600;
+				$discount_total = 600;
 				$shipping_total = WC()->cart->get_shipping_total();
 				$cart_total_after_discounts = WC()->cart->total;
 
 				if ($cart_total_before_discounts > 0 && $discount_total > 0) { ?>
-					<div class="product-discount-message white-bg">
+					<div class="product-discount-message">
 						<p>
 							<?php
 								$discount_percentage = ($discount_total / $cart_total_before_discounts) * 100;
@@ -307,7 +309,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 			do_action( 'woocommerce_cart_collaterals' );
 			?>
 			<div class="coupon_wrapper">
-				<div colspan="6" class="actions">
+				<div class="coupon_summary" colspan="6" class="actions">
 				<h5 class="title"><?php _e( 'Voucher code', 'woocommerce' ); ?></h5>
 					<?php if ( wc_coupons_enabled() ) { ?>
 						<div class="coupon form-row">
@@ -327,8 +329,25 @@ do_action( 'woocommerce_before_cart' ); ?>
 			</div>
 			<div class="another_data">
 				<h5><?php _e( 'Do you need help?', 'woocommerce' ); ?></h5>
-				<button class="contact_mail">
-					<a href="mailto:<?php echo get_field('contact_email','option'); ?>"  target="_blank"><?php _e( 'Contact us', 'woocommerce' ); ?></a>
+				<button type="button" aria-label="link" class="contact_mail">
+					<a aria-label="link" href="mailto:<?php echo get_field('contact_email','option'); ?>"  target="_blank"><?php _e( 'Contact us', 'woocommerce' ); ?></a>
+				</button>
+
+				<hr>
+				
+				<h5><?php _e( 'Useful links', 'woocommerce' ); ?></h5>
+				<button type="button" aria-label="link" class="back_to back_to_home_page">
+					<a aria-label="link" href="<?php echo home_url(); ?>"  target=""><?php _e( 'Back to home page', 'woocommerce' ); ?></a>
+				</button>
+				<?php
+					// $privacy_policy_page_id = get_option('wp_page_for_privacy_policy'); 
+					// $privacy_policy_url = get_permalink($privacy_policy_page_id);
+				?>
+				<button type="button" aria-label="link" class="back_to back_to_privact">
+					<a aria-label="link" href="<?php echo home_url(); ?>"  target=""><?php _e( 'Terms and Conditions', 'woocommerce' ); ?></a>
+				</button>
+				<button type="button" aria-label="link" class="back_to back_to_faq">
+					<a aria-label="link" href="<?php home_url(); ?>"  target=""><?php _e( 'Faq', 'woocommerce' ); ?></a>
 				</button>
 			</div>
 			<div class="desc_under_total">

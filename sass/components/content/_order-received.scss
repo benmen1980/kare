@@ -3,6 +3,7 @@
 
     .site-main {
         @extend %container;
+        padding: 0;
 
         article{
             margin-bottom:0;
@@ -18,8 +19,12 @@
             
             .woocommerce {
                 background-color: #f4f4f4;
-                padding: 40px;
-                display: flex;
+                margin-bottom: 20px;
+                padding-bottom: 100px;
+                @include media(">desktop") {
+                    padding: 40px;
+                    display: flex;
+                }
             
                 .woocommerce-order {            
                     position: relative;
@@ -62,6 +67,9 @@
                         padding-bottom: 20px;
                         border-bottom: 1px dashed #e4e4e4;
                         order: 1;
+                        @include media("<mobile") {
+                            margin: 0;
+                        }
                     }
 
                     section.woocommerce-order-details {
@@ -88,13 +96,23 @@
                             align-items: flex-start;
                             padding-bottom: 20px;
                             border-bottom: 1px dashed #e4e4e4;
+                            @include media("<mobile") {
+                                flex-direction: column;
+                                border-bottom: 0;
+                            }
 
                             .woocommerce-column {
-                                width: 50%;
-
-                                &.woocommerce-column--billing-address {
-                                    border-right: 1px dashed #e4e4e4;
-                                    margin-right: 40px;
+                                width: 100%;
+                                @include media(">desktop") {
+                                    width: 50%;
+                                    &.woocommerce-column--billing-address {
+                                        border-right: 1px dashed #e4e4e4;
+                                        margin-right: 40px;
+                                    }
+                                }
+                                @include media("<mobile") {
+                                    border-bottom: 1px dashed #e4e4e4;
+                                    padding: 20px 0;
                                 }
 
                                 h2.woocommerce-column__title {
@@ -123,8 +141,10 @@
 
                 .woocommerce-review-order {
                     flex-shrink: 0;
-                    width: 25%;
-                    padding-left: 20px;
+                    @include media(">desktop") {
+                        width: 25%;
+                        padding-left: 20px;
+                    }
 
                     .woocommerce-review-order-wrapper {
                         position: sticky;
@@ -136,10 +156,17 @@
 
                     
                         section.wc-order-mini {
+                            margin-top: 20px;
                             padding: 0;
                             padding-top: 20px;
-                            border: 1px solid #e4e4e4;
+                            background-color: #fff;
+                            border: none;
                             box-shadow: 0 1px 3px rgba(0, 0, 0, .08) !important;
+                            @include media(">desktop") {
+                                background-color: transparent;
+                                margin: 0;
+                                border: 1px solid #e4e4e4;
+                            }
 
                             div.order-header {
                                 padding: 0;
@@ -162,11 +189,16 @@
                                         border-radius: 0;
                                         font-weight: 400;
                                         width: 100%;
+                                        @include media("<mobile") {
+                                            background-color: #fff;
+                                        }
                                         &:hover {
                                             color: #000;
                                             background-color: #f4f4f4;
                                             border-color: #e10915;
-
+                                            @include media("<mobile") {
+                                                background-color: #fff;
+                                            }
                                         }
 
                                         span {
@@ -179,7 +211,7 @@
                                             flex-shrink: 0;
                                             width: auto;
 
-                                            &.rotate180 {
+                                            &.rotatesvg {
                                                 transform: rotate(180deg);
                                                 transition: transform 0.3s ease;
                                             }
@@ -351,8 +383,13 @@
                             margin-top: 20px;
                             font-size: 14px;
                             line-height: 21px;
-                            border: 1px solid #e4e4e4;
+                            border: none;
+                            background-color: #fff;
                             box-shadow: 0 1px 3px rgba(0, 0, 0, .08) !important;
+                            @include media(">desktop") {
+                                background-color: transparent;
+                                border: 1px solid #e4e4e4;
+                            }
 
                             h5 {
                                 margin-bottom: 8px;

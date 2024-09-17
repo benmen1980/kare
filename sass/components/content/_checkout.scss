@@ -3,6 +3,7 @@
 
     .site-main {
         @extend %container;
+        padding: 0;
 
         article{
             margin-bottom:0;
@@ -28,12 +29,17 @@
             }
 
             .woocommerce form.woocommerce-checkout {            
-                position: relative;
-                display: flex;
-                flex-wrap: wrap;
-                padding: 40px;
-                margin: 0;
+                position: relative;                
+                margin-bottom: 20px;
+                padding-bottom: 100px;
                 background-color: #f4f4f4;
+
+                @include media(">desktop") {
+                    padding: 40px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin: 0;
+                }
 
                 .woocommerce-NoticeGroup {
                     width: 100%;
@@ -60,12 +66,18 @@
                 #customer_details {
                     padding: 0;
                     flex-grow: 1;
-                    width: 75%;
-                    padding: 20px 60px;
+                    // width: 75%;
+                    padding: 20px;
                     // margin-bottom: 20px;
                     box-shadow: 0 1px 3px rgba(0, 0, 0, .08) !important;
                     background-color: #fff;
                     height: fit-content;
+                    @include media(">desktop") {
+                        width: 75%;
+                        position: sticky;
+                        top: 20px;
+                        padding: 20px 60px;
+                    }
 
                     .col-1 .woocommerce-billing-fields {
                         padding-bottom: 20px;
@@ -230,6 +242,10 @@
                                         .woocommerce-privacy-policy-text {
                                             display: inline-block;
                                             order: 2;
+                                            @include media("<mobile") {
+                                                padding: 0 20px;
+                                                text-align: justify;
+                                            }
                                         }
 
                                         p.form-row {
@@ -242,10 +258,14 @@
                                                 left: inherit;
                                                 display: flex;
                                                 justify-content: flex-start;
-                                                align-content: center;
-                                                align-items: center;
+                                                align-content: flex-start;
+                                                align-items: flex-start;
                                                 transform: none;
                                                 pointer-events: auto;
+                                                @include media(">desktop") {
+                                                    align-content: center;
+                                                    align-items: center; 
+                                                }
 
                                                 input#terms[type="checkbox"]{
                                                     background-color: #fff;
@@ -274,15 +294,34 @@
                                             }
                                         }
                                     }
-    
-                                    button {
-                                        background-color: #026805;
-                                        &:hover {
-                                            color: #026805;
+
+                                    .btn_submit_order {
+                                        @include media("<mobile") {
+                                            padding: 8px;
+                                            padding-bottom: 24px;
+                                            margin-top: 20px;
                                             background-color: #fff;
-                                            border-color: #026805;
+                                            box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+                                            display: flex;
+                                            position: fixed;
+                                            right: 0;
+                                            left: 0;
+                                            bottom: 0;
+                                            z-index: 999999999999;
                                         }
+                                        button#place_order {
+                                            background-color: #026805;
+                                            
+                                            &:hover {
+                                                color: #026805;
+                                                background-color: #fff;
+                                                border-color: #026805;
+                                            }
+                                        }
+
                                     }
+    
+                                    
                                 }
                             }
                         }
@@ -291,18 +330,26 @@
                
 
                 #order_review{
-                    width: 25%;
-                    padding-left: 20px;
+                    margin-top: 20px;
                     flex-shrink: 0;
                     position: initial;
+                    @include media(">desktop") {
+                        width: 25%;
+                        padding-left: 20px;
+                        margin-top: 0;
+                    }
 
                     div.woocommerce-checkout-review-order-table {
+                        margin: 0;
+                        padding: 0; 
+                        padding-bottom: 4px;
                         position: sticky;
                         top: 20px;
-                        margin: 0;
-                        padding: 0;
                         display: flex;
                         flex-direction: column;
+                        @include media(">desktop") {
+                            padding-bottom: 0;
+                        }
 
                         section.wc-cart-mini {
                             padding: 0;
@@ -578,6 +625,10 @@
                                 @extend %white-btn;
                                 width: 100%;
                                 font-weight: 400;
+
+                                &.back_to {
+                                    margin-top: 8px;
+                                }
                                 
                                 &:hover {
                                     a {
@@ -590,6 +641,12 @@
                                         color: #fff;
                                     }
                                 }
+                            }
+
+                            hr {
+                                margin: 20px 0;
+                                border-top: 1px dashed #e4e4e4;
+                                height: 0;
                             }
                         }
                     }

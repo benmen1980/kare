@@ -34,10 +34,11 @@
 		<header id="masthead" class="site-header">
 			<nav class="nav-top-wrapper">
 				<div class="search-site w-1-3">
-					<button aria-label="button" type="button" id="btn-header-search" class="w-btn search">
-						<span><?php esc_html_e( 'search...', 'kare' ); ?></span>
-						<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/search.svg'); ?>
-					</button>
+					<div id="btn-header-search" class="search">
+						<!-- <span><?php //esc_html_e( 'search...', 'kare' ); ?></span> -->
+						<!-- <?php //echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/search.svg'); ?> -->
+						<?php echo get_product_search_form(); ?>
+					</div>
 				</div>
 				<div class="logo-site center-flex w-1-3">
 					<a href="/" aria-current="page" title="KARE - Buy KARE furniture" class="logo-kare">
