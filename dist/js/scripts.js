@@ -24,9 +24,7 @@ jQuery(document).on("ready", function(){
         if ($(this).val() !== "") {
             $(this).closest('.form-row').find('label').addClass('focused');
         }
-    });
-    
-    
+    });   
 
     //logout with popup
     $('.custom_logout a').on('click', function(e) {
@@ -46,33 +44,6 @@ jQuery(document).on("ready", function(){
             $(".logout_popup").hide();
         });
     })
-
-    //open wishlist popup in header
-    $('.open_wishlist_popup').on('click', function() {
-        $('#wishlist_sidebar').addClass('active');
-        if ($('#overlay').length === 0) {
-            $('body').append('<div id="overlay"></div>');
-        }
-        $('#overlay').fadeIn(); // Show the overlay
-    });
-
-    $('#close_wishlist').on('click', function() {
-        $('#wishlist_sidebar').removeClass('active');
-        $('#overlay').fadeOut(function() {
-            $(this).remove(); // Remove overlay after fade out
-        });
-    });
-
-    // Close the wishlist sidebar if clicked outside
-    $(document).mouseup(function(e) {
-        var container = $("#wishlist_sidebar");
-        if (!container.is(e.target) && container.has(e.target).length === 0) {
-            container.removeClass('active');
-            $('#overlay').fadeOut(function() {
-                $(this).remove(); // Remove overlay after fade out
-            });
-        }
-    });
 
     //Listens to the scroll of the surfer to add a clickable button to the top of the page
     let scrollThreshold = 1500;
@@ -410,38 +381,12 @@ jQuery(document).on("ready", function(){
         }
     }); */
 
-    //open wishlist popup in header
-    $('.open_wishlist_popup').on('click', function() {
-        $('#wishlist_sidebar').addClass('active');
-        if ($('#overlay').length === 0) {
-            $('body').append('<div id="overlay"></div>');
-        }
-        $('#overlay').fadeIn(); // Show the overlay
-    });
-
-    $('#close_wishlist').on('click', function() {
-        $('#wishlist_sidebar').removeClass('active');
-        $('#overlay').fadeOut(function() {
-            $(this).remove(); // Remove overlay after fade out
-        });
-    });
-
-    // Close the wishlist sidebar if clicked outside
-    $(document).mouseup(function(e) {
-        var container = $("#wishlist_sidebar");
-        if (!container.is(e.target) && container.has(e.target).length === 0) {
-            container.removeClass('active');
-            $('#overlay').fadeOut(function() {
-                $(this).remove(); // Remove overlay after fade out
-            });
-        }
-    });
-
     //open account popup in header
     $('.open_account_popup').on('click', function() {
         $('#login_sidebar').addClass('active');
         if ($('#overlay').length === 0) {
             $('body').append('<div id="overlay"></div>');
+            $('body').css('overflow', 'hidden');
         }
         $('#overlay').fadeIn(); // Show the overlay
     });
@@ -451,6 +396,7 @@ jQuery(document).on("ready", function(){
         $('#overlay').fadeOut(function() {
             $(this).remove(); // Remove overlay after fade out
         });
+        $('body').css('overflow', '');
     });
     
     // Close the sidebar if clicked outside
@@ -461,8 +407,118 @@ jQuery(document).on("ready", function(){
             $('#overlay').fadeOut(function() {
                 $(this).remove(); // Remove overlay after fade out
             });
+            $('body').css('overflow', '');
         }
     });
+
+    //open wishlist popup in header
+    $('.open_wishlist_popup').on('click', function() {
+        $('#wishlist_sidebar').addClass('active');
+        if ($('#overlay').length === 0) {
+            $('body').append('<div id="overlay"></div>');
+            $('body').css('overflow', 'hidden');
+        }
+        $('#overlay').fadeIn(); // Show the overlay
+    });
+
+    $('#close_wishlist').on('click', function() {
+        $('#wishlist_sidebar').removeClass('active');
+        $('#overlay').fadeOut(function() {
+            $(this).remove(); // Remove overlay after fade out
+        });
+        $('body').css('overflow', '');
+    });
+
+    // Close the wishlist sidebar if clicked outside
+    $(document).mouseup(function(e) {
+        var container = $("#wishlist_sidebar");
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
+            container.removeClass('active');
+            $('#overlay').fadeOut(function() {
+                $(this).remove(); // Remove overlay after fade out
+            });
+            $('body').css('overflow', '');
+        }
+    });
+
+    //open mobile menu
+    if ($(window).width() < 1024) {
+         $('button.menu-toggle').on('click', function() {
+            $('#mobile_menu_sidebar').addClass('active_left');
+            if ($('#overlay').length === 0) {
+                $('body').append('<div id="overlay"></div>');
+                $('body').css('overflow', 'hidden');
+            }
+            $('#overlay').fadeIn(); // Show the overlay
+        });
+
+        $('#close_menu').on('click', function() {
+            $('#mobile_menu_sidebar').removeClass('active_left');
+            $('#overlay').fadeOut(function() {
+                $(this).remove(); // Remove overlay after fade out
+            });
+            $('body').css('overflow', '');
+        });     
+
+        // Close the wishlist sidebar if clicked outside
+        $(document).mouseup(function(e) {
+            var container = $("#mobile_menu_sidebar");
+            if (!container.is(e.target) && container.has(e.target).length === 0) {
+                container.removeClass('active_left');
+                $('#overlay').fadeOut(function() {
+                    $(this).remove(); // Remove overlay after fade out
+                });
+                $('body').css('overflow', '');
+            }
+        });
+
+        // Open sub-menu on clicking main menu item
+        $('#primary-menu > li > a').on('click', function(event) {
+            event.preventDefault(); 
+
+            const parentLi = $(this).parent();
+            const submenu = parentLi.find('ul.sub-menu');
+        
+            if (parentLi.hasClass('active-nemu')) {
+
+                submenu.stop().animate({ left: '500px', opacity: 0 }, 300, function() {
+                    submenu.removeClass('sub-menu-active'); 
+                });
+                parentLi.removeClass('active-nemu');
+
+            } else {
+                $('#primary-menu > li.active-nemu').each(function() {
+                    const activeSubmenu = $(this).find('ul.sub-menu.sub-menu-active');
+                    $(this).removeClass('active-nemu');
+                    activeSubmenu.stop().animate({ right: '-500px', opacity: 0 }, 300, function() {
+                        activeSubmenu.removeClass('sub-menu-active');
+                    });
+                });
+        
+                // open sub-menu
+                parentLi.addClass('active-nemu');
+                $(this).css({ left: '-500px', opacity: 0 })
+                       .stop().animate({ left: '0', opacity: 1 }, 300);
+                
+                submenu.addClass('sub-menu-active')
+                       .css({ left: '-500px', opacity: 0 })
+                       .stop().animate({ left: '0', opacity: 1 }, 300);
+            }
+        });
+
+         // Close submenu on back arrow or close icon click
+        $('#primary-menu > li > a::after', '#primary-menu > li > a::before').on('click', function() {
+            const parentLi = $(this).closest('li');
+            const submenu = parentLi.find('ul.sub-menu');
+
+            submenu.css({ right: '0', opacity: 1 })
+                .stop().animate({ right: '-500px', opacity: 0 }, 300, function() {
+                submenu.removeClass('sub-menu-active');
+            });
+            parentLi.removeClass('active-nemu');
+        });
+    }
+
 
     // Open mini-cart on product added
     $('button[name="add-to-cart"]').on('click', function() {
@@ -546,6 +602,13 @@ jQuery(document).on("ready", function(){
             event.preventDefault(); // Prevent the default form submission
             $('#search-button').click(); // Trigger the hidden button click
         }
+    });
+
+    $('.dropdown-toggle').on('click', function() {
+        $(this).siblings().slideToggle();
+        $(this).siblings().toggleClass('active-menu'); 
+
+        $(this).toggleClass('rotate180');
     });
 
     // Check if the current page is the cart page

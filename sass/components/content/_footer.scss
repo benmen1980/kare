@@ -1,22 +1,33 @@
 .site-info {
     .background-gray {
-        background-color: $color-background-gray;
+        background-color: $color-background-gray; 
     }
     .background-dark-gray {
-        background-color: $color-background-dark-gray;
+        @include media(">=phone") {
+            background-color: $color-background-dark-gray;
+        }
+        &.second-container-footer {
+            background-color: transparent;
+            @include media(">=mobile") {
+                background-color: $color-background-dark-gray;
+            }
+        }
     }
     .footer-container {
         .contain-footer {
             height: auto;
-            padding: 3.5rem 0 !important;
+            padding: 56px 16px 40px 16px;
             @extend %container;
-            &.min-p {
-                padding-bottom: 1.5rem !important;
+            &:not(.min-p) {
+                @include media("<=phone") {
+                    padding: 0;
+                }
             }
             h4, h3 {
                 font-weight: 400 !important;
                 @include media("<=mobile") {
                     margin: 0;
+                    padding: 0 16px;
                     padding-bottom: 20px
                 }
             }
@@ -26,6 +37,7 @@
                 flex-direction: column;
                 @include media(">mobile") {
                     flex-direction: row;
+                    justify-content: space-evenly;
                 }
                 svg{
                     display: inline-block;
@@ -37,7 +49,14 @@
                 text-decoration: none; 
                 margin: 0;
                 padding: 0;
-                @extend %flex-start;
+                @include media(">=phone") {
+                    padding-top: 24px;
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    flex-wrap: wrap;
+                    row-gap: 24px;
+                }
                 & > li:first-child a {
                     text-transform: uppercase;
                     font-size: 16px;
@@ -45,27 +64,53 @@
                 a {
                     text-decoration: none;
                 }
-                & > li {
-                    width: 25%;
+                & > li {    
+                    width: 100%;
                     list-style: none; 
                     text-decoration: none; 
                     font-size: 14px;
                     line-height: 2;
+                    border: 1px solid #fff;
+                    border-bottom-width: 2px;
+                    @include media(">=phone") {
+                        width: 50%;
+                        border-width: 0;
+                    }
+                    @include media(">desktop") {
+                        width: 25%;
+                    }
                     & > a:hover {
                         text-decoration: underline;
                     } 
                     & > ul.sub-menu {
-                        margin: 0;
+                        margin-bottom: 24px;
+                        width: 100%;
                         padding: 0;
-                        padding-top: 1rem;
+                        padding-top: 16px;
                         list-style: none; 
                         text-decoration: none;
+                        @include media(">=phone") {
+                            margin: 0;
+                            flex-direction: column;
+                        }
                                                 
                         & > li {
                             list-style: none; 
                             text-decoration: none;
+                            background-color: #fff;
+                            margin-right: 8px;
+                            margin-left: 16px;
+                            padding: 20px;
+                            @include media(">=phone") {
+                                  background-color: transparent;  
+                                  margin: 0;
+                                  padding: 0;
+                            }
                             &:first-child {
-                                padding-bottom: 1rem ;
+                                padding-bottom: 16px;
+                                @include media(">=phone") {
+                                    flex-direction: column;
+                                }
                             }
                             a {
                                 font-size: 14px;  
@@ -90,7 +135,12 @@
 
                         & > li.menu-item {
                             &:first-child a {
-                                font-size: 16px;
+                                font-size: 14px;
+                                line-height: 21px;
+                                @include media(">desktop") {
+                                    font-size: 16px;
+                                    line-height: 24px;
+                                }
                             }
                             & > ul.sub-menu {
                                 margin: 0;
@@ -110,17 +160,86 @@
                 }
             }
 
+            &.first-footer {
+                padding: 20px 16px;
+                @include media("<=phone") {
+                    background-color: #fff;
+                    padding: 0;
+                    padding-top: 40px;
+                }
+                @include media("<=mobile") {
+                    margin-bottom: 40px;
+                }
+                .bg-gray {
+                    background-color: $color-background-gray;
+                }
+                @include media("<=phone") {
+                    ul.sub-menu {
+                        margin: 0;
+                        display: flex;
+                        flex-direction: column;
+                        overflow-x: auto;
+                        white-space: nowrap;  
+                        scrollbar-width: thin;                   
+                      
+                        li.menu-item {
+                            padding: 20px;
+                            background-color: #fff;
+                        
+
+                            &:first-child {
+                                width: 100%;
+                                padding: 16px 21px 35px 16px;
+                                background-color: $color-background-gray;
+                            }
+                        
+                        
+                            &:not(:first-child) {
+                                display: inline-block;
+                                flex: 0 0 auto;
+                                white-space: nowrap;
+                            }
+                        }
+                    }  
+                    ul.sub-menu::-webkit-scrollbar {
+                        height: 6px; 
+                    }  
+                    ul.sub-menu::-webkit-scrollbar-thumb {
+                        background-color: #C0C0C0; 
+                      }
+                      
+                      ul.sub-menu::-webkit-scrollbar-track {
+                        background-color: transparent;
+                      }                               
+                }
+            }
+
+
             &.second-footer {
                 display: flex;
+                @include media("<desktop") {
+                    flex-wrap: wrap;
+                }
+                @include media("<=mobile") {
+                    padding: 0;
+                }
 
                 .customer_service_footer_menu {
-                    width: 25%;
+                    width: 100%;
+                    padding-bottom: 80px;
+                    @include media(">=mobile") {
+                        border-width: 0;
+                        padding: 0;
+                    }
+                    @include media(">desktop") {
+                        width: 25%;
+                    }                    
 
                     ul.footer-menu {
                         list-style: none;
                         // text-decoration: none; 
                         margin: 0;
-                        padding: 0;
+                        padding: 0;       
 
                         a {
                             text-decoration: none;
@@ -129,12 +248,21 @@
                             &:hover {
                                 text-decoration: underline;
                             }
+                            @include media("<=mobile") {
+                                padding: 0 16px;
+                            }
                         }
 
                         .sub-menu {
                             list-style: none;
                             margin: 0;
                             padding: 0;
+                            @include media("<=mobile") {
+                                background-color: #e4e4e4;
+                                margin: 16px 0;
+                                padding: 0 16px;
+                            }
+            
 
                             & > li {
                                 padding: 20px 0;
@@ -157,36 +285,62 @@
                 }
 
                 div:last-child {
-                    width: 75%;
-                }
-
-                
+                    width: 100%;
+                    @include media(">desktop") {
+                        width: 75%;
+                    }
+                }               
                 
                 ul.second-section-footer {
                     list-style: none;
                     text-decoration: none; 
                     margin: 0;
-                    padding: 16px 0;
+                    padding: 0;
                     @extend %flex-start;
                     flex-direction: row;
                     justify-content: space-between;
+                    flex-wrap: wrap;
+                    @include media(">=mobile") {
+                       flex-wrap: nowrap;
+                       padding: 16px 0;
+                    }
     
                     a {
                         text-decoration: none;
                     }
     
                     & > li {
-                        width: 33.3333%;
+                        width: 100%;
+                        padding-bottom: 80px;
+                        @include media(">=mobile") {
+                            width: 33.3333%;                            
+                        }
+                        @include media(">=mobile") {
+                            padding-bottom: 0;
+                        }
+                        &:first-child ul li{
+                            @include media(">=mobile", "<desktop") {
+                                margin-left: 0 !important;
+                            }
+                        }
                         & > ul.sub-menu {
                             list-style: none;
                             padding: 0;
                             margin: 0;
                             & > li:first-child {
                                 padding: 0 !important;
+                                @include media("<=mobile") {
+                                    padding: 0 16px !important;
+                                    padding-bottom: 16px !important;
+                                    margin: 0;
+                                }
                                 & > a {
                                     text-transform: uppercase;
                                     font-size: 20px;
-                                    
+                                    white-space: nowrap;
+                                    @include media("<=mobile") {
+                                        white-space: inherit;
+                                    }
                                     &:hover {
                                         text-decoration: underline;
                                     }
@@ -198,15 +352,27 @@
                                 margin-right: 1rem;
                             }
                             & > li {
-                                padding: 1.25rem 0;
+                                padding: 20px 0;
                                 @extend %flex-start;
-                                margin-left: 1.25rem;
+                                margin-left: 20px;
                                 border-bottom: 1px solid white;
+                                @include media("<=mobile") {
+                                    padding: 16px;
+                                    margin: 0;
+                                    background-color: #E4E4E4;
+                                    &:first-child {
+                                        background-color: transparent;
+                                    }
+                                }
                                 &:last-child, &:first-child{
                                     border-bottom: 0 !important;
                                 }
                                 & > a {
                                     font-size: 14px;
+                                    white-space: nowrap;
+                                    @include media("<=mobile") {
+                                        white-space: inherit;
+                                    }
                                     &:hover {
                                         text-decoration: underline;
                                     }
@@ -223,6 +389,74 @@
                     }
                 }
 
+            }
+
+            &.third-footer {
+                @include media("<=phone") {
+                    padding: 0px;                
+                    background-color: #fff;
+
+                    ul.third-section-footer li{
+                        border: none;
+                    }
+            
+                    ul.sub-menu {
+                        margin: 0 !important;             
+                      
+                        li.menu-item {
+                            // padding: 20px;
+                            background-color: #fff;
+                            background-color: #F4F4F4;
+                            height: auto;
+                            padding: 4px 40px;
+                            margin: 0;
+                            &:nth-child(2) {
+                                padding-top: 20px;
+                            }
+                            &:last-child {
+                                padding-bottom: 40px;
+                            }
+                        
+                            &.dropdown-toggle {
+                                background-color: #f4f4f4;
+                                border-bottom: 1px solid #e4e4e4;
+                                position: relative;
+                                display: flex;
+                                justify-content: flex-start;
+                                align-items: center;
+                                padding: 20px;
+                                margin: 0;
+                                text-transform: uppercase;
+                                cursor: pointer;
+                                &::after {
+                                    content: url(../images/svg/arrow-down.svg);  
+                                    position: absolute;
+                                    right: 20px;
+                                    width: 24px;
+                                    height: 24px;
+                                    // background: url('../images/svg/arrow-down.svg') no-repeat center;
+                                    // background-size: contain;
+                                    transition: transform 0.3s ease; 
+                                }
+                                &:hover {
+                                    background-color: #e4e4e4;
+                                }
+                                &.rotate180:after {
+                                    transform: rotate(180deg);
+                                }
+                            }
+
+
+                            &.active-menu{
+                                display: block;
+                            }
+                        
+                            &:not(.dropdown-toggle) {
+                                display: none;
+                            }
+                        }
+                    } 
+                }
             }
             
         }
@@ -243,6 +477,9 @@
         padding-bottom: 5.75rem !important;
         p{
             padding-top: 1rem;
+            @include media("<=phone") {
+                text-align: left;
+            }
         }
     }
 }

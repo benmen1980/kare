@@ -3,7 +3,7 @@
         $img_position = get_sub_field('img_position');
         $banner_img = get_sub_field('half_moudle_link_img');
     ?>
-    <div class="module_50_50_content module_50_50" style= "padding-top: 30px; <?php echo ($img_position == "right") ? 'flex-direction:row-reverse':'flex-direction:row'?>;">
+    <div class="module_50_50_content module_50_50" style= "<?php echo ($img_position == "right") ? 'flex-direction:row-reverse':'flex-direction:row'?>;">
         <div class="w-1-2">
             <div class="hero_img_background">
                 <a href="<?php echo $button_txt; ?>" class="img_block">

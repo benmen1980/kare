@@ -96,6 +96,12 @@ body {
 	height: 100vh;
     text-align: left;
     overflow-x: hidden;
+
+    &.fixed-position {
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
 }
 
 .center-flex{

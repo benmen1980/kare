@@ -34,9 +34,9 @@
 
 			</div>
 			<div class="footer-container  first-container-footer background-gray">
-				<div class="contain-footer container">
+				<div class="first-footer contain-footer container">
 					<h3 class="text"><?php esc_html_e( 'POPULAR CATEGORIES', 'kare' ); ?></h3>
-					<div class="">
+					<div class="bg-gray">
 						<?php
 							wp_nav_menu(
 								array(
@@ -78,7 +78,7 @@
 				</div>
 			</div><!-- .second-container-footer -->
 			<div class="footer-container  third-container-footer background-gray">
-			<div class="contain-footer container">
+			<div class="third-footer contain-footer container">
 					<h3 class="text"><?php esc_html_e( 'IMPORTANT LINKS', 'kare' ); ?></h3>
 					<div class="">
 						<?php

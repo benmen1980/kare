@@ -1,6 +1,9 @@
 section.design_banner_wrapper {
-    height: 605px;
+    height: 500px;
     max-width: 100%;
+    @include media(">desktop") {
+        height: 605px;
+    }
 
     .section_image_inner {
         display: block;
@@ -11,7 +14,19 @@ section.design_banner_wrapper {
             width: 100vw;
             height: 100%;
             object-fit: cover;
-            display: block;
+
+            &.img_banner {
+                display: none;
+                @include media(">desktop") {
+                    display: block;
+                }
+            }
+            &.img_mobile {
+                display: block;
+                @include media(">desktop") {
+                    display: none;
+                }
+            }
         }
 
         & > button {

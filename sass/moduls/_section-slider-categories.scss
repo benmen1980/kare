@@ -1,8 +1,9 @@
 section.section_slider_categories {
     .section_slider_cat_wrap {
-        padding: 40px 0;
+        padding: 40px 16px;
         @media (min-width: 1420px) {
             max-width: 1360px;
+            padding: 40px 0;
         }
         @media (min-width: 1840px) {
             max-width: 1640px;
@@ -13,6 +14,11 @@ section.section_slider_categories {
             margin-top: 0;
             margin-bottom: 24px;
             font-weight: 400;
+            text-align: left;
+            @include media(">desktop") {
+                text-align: center;
+            }
+
         }
 
         h5 {
