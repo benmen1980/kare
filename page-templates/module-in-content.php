@@ -11,8 +11,8 @@ get_header();
 
 <div class="moduls_container">
     <div class="section_modules_wrapper">
-        <?php get_template_part('modules/section','module_register_newsletter'); ?>
-        <?//php get_template_part('modules/section','case'); ?>
+        <?php //get_template_part('modules/section','module_register_newsletter'); ?>
+        <?php get_template_part('modules/section','case'); ?>
     </div>
 </div>
 

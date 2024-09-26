@@ -227,7 +227,14 @@ jQuery(document).on("ready", function(){
         } else if (container.querySelector('#module_slide_cube')) {
             swiperOptions = Object.assign({}, defaultSwiperOptions, {
                 spaceBetween: 16,
-                slidesPerView: 4
+                slidesPerView: 4,
+                breakpoints: {
+                    768: { 
+                        slidesPerView: 1.5,
+                        slidesPerGroup: 1,
+                        spaceBetween: 16
+                    }
+                }
             });
         }
 
@@ -517,6 +524,9 @@ jQuery(document).on("ready", function(){
             });
             parentLi.removeClass('active-nemu');
         });
+
+        $('.visible-mobile').append('<p class="add_text">...or discover categories:</p>');
+        $('.visible-mobile a').text('show all');
     }
 
 

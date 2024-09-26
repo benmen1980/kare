@@ -6,15 +6,18 @@
 
     .woocommerce-breadcrumb {
         @extend %container;
-        padding: 1.25rem 0;
+        padding: 20px 16px;
         display: block;
         text-align: left;
         font-size: 10px;
         line-height: 16px;
         text-transform: capitalize;
+        @include media(">=phone") {
+            padding: 20px 0;
+        }
         @media (min-width: 1025px) {
             font-size: 12px;
-            line-height: 1.125rem;
+            line-height: 18px;
         }
         a {
             display: inline-flex;
@@ -39,19 +42,22 @@
             @media (min-width: 1840px) {
                 width: 1640px;
             }
-            display: flex;
             padding: 0;
+            @include media(">=phone") {
+                padding-bottom: 24px; 
+                display: flex;               
+            }
             .l_side {
                 display: flex;
                 flex-direction: column;
-                margin: 0 1rem;
-                height: 30rem;
-                @media (min-width: 480px) {
+                margin: 0 -16px;
+                height: 480px;
+                @include media(">=phone") {
                     width: 50%;
-                    top: 1.25rem;
+                    top: 20px;
                     position: sticky;
-                    min-height: 40rem;
-                    max-height: 42rem;
+                    min-height: 640px;
+                    max-height: 672px;
                     margin: 0;
                     height: 75vh;
                 }
@@ -73,7 +79,9 @@
                         position: relative;
                         width: 100%;
                         height: calc(100% - 116px);
-                        border: solid 1px #e4e4e4;
+                        @include media(">=phone") {
+                            border: solid 1px #e4e4e4;
+                        }
 
                         .gallery-thumbnail-slider {
                             width: 100%;
@@ -95,7 +103,7 @@
                                     display: flex !important;
                                     align-items: center !important;
                                     justify-content: center !important;  
-                                    padding: 1rem;
+                                    padding: 16px;
                                     cursor: pointer;
                                 
                                     img {
@@ -169,11 +177,14 @@
                     }             
 
                     .small_img_slider_wrapper {
-                        padding: 0;
-                        margin-top: 1rem;
+                        padding: 0 16px;
+                        margin-top: 16px;
                         position: relative;
                         flex-grow: 1;
                         max-width: 100%;
+                        @include media(">=phone") {
+                            padding: 0;
+                        }
 
                         .swiper_img_slider.thumb-slider {
                             margin: 0 auto;

@@ -1,12 +1,16 @@
 section.section_slider_pdts {
     .section_slider_pdts_wrap {
+        margin-top: 20px;
+        padding: 0 16px;
         @media (min-width: 1840px) {
             max-width: 1640px !important;
         }
         @media (min-width: 1420px) {
             max-width: 1360px;
-        }
-        margin: auto;
+            padding: 0;
+            margin: auto;
+        }      
+
 
         .tabs_wrapper {
             position: relative;

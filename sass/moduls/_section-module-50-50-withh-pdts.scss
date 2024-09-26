@@ -1,43 +1,84 @@
 .module_50_50_with_pdts {
-    display: flex !important;
+    padding: 0;
+    padding-top: 40px;
+    @include media(">desktop") {
+        display: flex;
+        align-items: flex-end;
+        padding-top: 20px;
+    }
+    .visible_mobile {
+        h2 {
+            padding: 0 20px;
+        }
+    }
     .img_block {
+        display: flex !important;
         height: 100%;
     }    
 }
 .module_half_half_with_pdts {
     .w-1-2.second {
-        @extend %justify-end;
-        flex-direction: column;
-        align-items: flex-start !important;
-
+        @include media("<=desktop") {
+            padding: 0 16px;
+        }
+    
         .hero_content {
+            @extend %justify-end;
+            flex-direction: column;
             width: 100%;
-            h2 {
-                margin: 0;
-                padding: 0;
-                text-align: left;
-                a{
-                    font-size: $font-size-heading2;
-                    font-weight: 400;
-                    text-decoration: none;
-                    color: $color-link;
-                    &:hover {
-                        text-decoration: underline;   
-                    }
+            @include media("<=desktop") { 
+                padding: 0 !important;
+                text-align: left !important;
+            }
+            
+            a.link_content{
+                font-size: $font-size-heading2;
+                font-weight: 400;
+                text-decoration: none;
+                color: $color-link;
+                display: none;
+                @include media(">desktop") { 
+                    display: block;
+                }
+                &:hover {
+                    text-decoration: underline;   
+                }
+                h2 {
+                    margin: 0;
+                    padding: 0;
+                    text-align: left;
                 }
             }
 
             .text_area_content {
-                padding-top: 0;
-                padding-bottom: 4px;
+                padding-top: 8px;
                 max-height: 144px !important;
                 overflow-y: auto !important;
+                @include media(">desktop") { 
+                    padding: 4px 0;
+                }
+                p {
+                    margin: 0;
+                }
             }
 
             .button_hero_content {
+                margin-top: 16px;
+                width: 100%;
+                @include media(">desktop") { 
+                    margin-top: 24px;
+                    width: auto;
+                }
                 button {
-                    cursor: pointer;
-                    margin: 8px 0;
+                    margin: 0;
+                    margin-bottom: 16px;
+                    justify-content: center;
+                    width: 100%;
+                    cursor: pointer;    
+                    @include media(">desktop") { 
+                        width: auto;
+                        margin: 8px 0;       
+                    }
                     &:hover {
                         background-color: #fff;
                         .header-button {
@@ -55,6 +96,7 @@
             }
 
             .slider_pdts_content {
+                width: 100%;
                 .tabs_wrapper {
                     position: relative;
                     width: 100%;

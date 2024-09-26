@@ -120,7 +120,12 @@
                     cursor: pointer;
 
                     .text_sale_percent {
-                        font-size: $font-size-base;
+                        font-size: 12px;
+                        line-height: 18px;
+                        @include media(">desktop") { 
+                            font-size: $font-size-base;
+                            line-height: 21px;
+                        }
                         font-weight: 700 !important;
                         color: white;
                     }
