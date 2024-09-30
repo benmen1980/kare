@@ -64,7 +64,8 @@ function custom_coupon_error_message( $err, $err_code, $coupon ) {
        'input_value' => '1',
        'classes' => apply_filters( 'woocommerce_quantity_input_classes', array( 'input-text', 'qty', 'text' ), $product ),
        'max_value' => apply_filters( 'woocommerce_quantity_input_max', -1, $product ),
-       'min_value' => apply_filters( 'woocommerce_quantity_input_min', 0, $product ),
+    //    'min_value' => apply_filters( 'woocommerce_quantity_input_min', 0, $product ),
+       'min_value' => isset($pack_quantity) && $pack_quantity >= 1 ? $pack_quantity : apply_filters( 'woocommerce_quantity_input_min', 0, $product ),
        'step'        => isset($pack_quantity) && $pack_quantity > 1 ? $pack_quantity : apply_filters( 'woocommerce_quantity_input_step', 1, $product ),
        'pattern' => apply_filters( 'woocommerce_quantity_input_pattern', has_filter( 'woocommerce_stock_amount', 'intval' ) ? '[0-9]*' : '' ),
        'inputmode' => apply_filters( 'woocommerce_quantity_input_inputmode', has_filter( 'woocommerce_stock_amount', 'intval' ) ? 'numeric' : '' ),
@@ -74,9 +75,10 @@ function custom_coupon_error_message( $err, $err_code, $coupon ) {
     $args = apply_filters( 'woocommerce_quantity_input_args', wp_parse_args( $args, $defaults ), $product );
    
     // Apply sanity to min/max args - min cannot be lower than 0.
-    $args['min_value'] = max( $args['min_value'], 1 );
+    $args['min_value'] = isset($pack_quantity) && $pack_quantity >= 1 ? $pack_quantity : max( $args['min_value'], 1 );
+
     // Note: change 20 to whatever you like
-    $args['max_value'] = 0 < $args['max_value'] ? $args['max_value'] : 24;
+    $args['max_value'] = 0 > $args['max_value'] ? $args['max_value'] : 24;
   
     // Max cannot be lower than min if defined.
     if ( '' !== $args['max_value'] && $args['max_value'] < $args['min_value'] ) {

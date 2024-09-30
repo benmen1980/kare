@@ -1089,3 +1089,122 @@
     top: inherit;
     bottom: 20px;
 }
+
+#modal_mini_cart {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: -500px;
+    background-color: #fff;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.25);
+    transition: right 0.3s ease-in-out;
+    z-index: 9999;
+    &.active {
+        right: 0;
+    }
+    
+    @include media(">=phone") {
+        width: 415px;
+        right: -430px;
+    }  
+    
+    .sidebar-content {
+        .top_sidebar{
+            padding: 8px 16px;
+            border-bottom: 1px solid rgb(228, 228, 228);
+            .top_sidebar_title{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .close {
+                    font-size: 24px;
+                    cursor: pointer;
+                    transition-property: background-color,border-color,color,fill,stroke;
+                    transition-duration: .3s;
+                    background-color: #fff;
+                    border-radius: 0;
+                    padding: 13px 17px;
+                    &:hover{
+                        background-color: #000;
+                        img{
+                            filter: invert(100%) brightness(100%);
+                        }
+                    }
+                }
+                h2 {
+                    margin: 0px;
+                    font-size: 16px
+                }
+            }
+
+            #wc-add-product-notices{
+                padding: 8px 0;
+                .woocommerce-message {
+                    background-color: transparent;
+                    color: inherit;
+                    font-size: 12px;
+                    font-weight: 700;
+                    list-style-type: none;
+                    position: relative;
+                    margin: 0;
+                    &::before {
+                        content: '';
+                        background-image: url("../images/svg/check.svg");
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        left: 10px;
+                        width: 20px;
+                        height: 20px;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        filter: brightness(0) saturate(100%) invert(24%) sepia(55%) saturate(2418%) hue-rotate(88deg) brightness(94%) contrast(105%);
+                    }
+                }
+            }
+            .continue_shop_btn {
+                text-transform: uppercase;
+                @extend %black-btn; 
+                text-decoration: none;
+                text-align: center;
+                display: inline-flex;                      
+                align-items: center;
+                font-weight: 700;
+                background-color: #026805;
+                margin-bottom: 8px;
+                width: 100%;
+                        
+                &:hover {
+                    color: #026805;
+                    border-color: #026805;
+                    background-color: #fff;
+                }
+                    
+                svg {
+                    display: inline-block;
+                    flex-shrink: 0;
+                    text-decoration: none;
+                    margin-right: 8px;
+                }
+                
+            }
+        }
+        
+        .bottom_sidebar{
+            display: flex;
+            justify-content: flex-end;
+            flex-grow: 1;
+            flex-direction: column;
+            // overflow-y: auto;
+            padding-bottom: 100px;
+            height: calc(100vh - 201px);
+            @include media(">desktop") {
+                padding-bottom: 0;
+            }
+        }
+       
+    }
+}

@@ -185,9 +185,10 @@ do_action( 'woocommerce_before_cart' ); ?>
 							<div class="product-discount-message white-bg">
 								<p>
 									<?php
+										$qty = $cart_item['quantity'];
 										$regular_price = $_product->get_regular_price();
 										$sale_price = $_product->get_sale_price();
-										$savings = $regular_price - $sale_price;
+										$savings = ($regular_price * $qty) - ($sale_price * $qty);
 										$percentage = round( ( $savings / $regular_price ) * 100 );
 										
 										$percentage_class = '<span class="discount-percentage">' . $percentage . '%</span>';

@@ -530,23 +530,20 @@ jQuery(document).on("ready", function(){
     }
 
 
-    // Open mini-cart on product added
-    $('button[name="add-to-cart"]').on('click', function() {
-        $('.mini-cart-wrapper').addClass('open');
-
-        // Add overlay if not already present
-        if ($('#overlay').length === 0) {
-            $('body').append('<div id="overlay"></div>');
-        }
-        $('#overlay').fadeIn(); // Show the overlay
+    // Close mini-cart popup when clicking close button or clicking outside
+    $('#close_mini_cart').on('click', function() {
+        $('#modal_mini_cart').removeClass('active');
+        $('#overlay').fadeOut(function() {
+            $(this).remove(); // Remove overlay after fade out
+        });
+        $('body').css('overflow', '');
     });
-
-    // Close mini-cart popup when clicking outside
+    
     $(document).mouseup(function(e) {
-        var miniCartContainer = $(".mini-cart-wrapper");
+        var miniCartContainer = $("#modal_mini_cart");
 
         if (!miniCartContainer.is(e.target) && miniCartContainer.has(e.target).length === 0) {
-            miniCartContainer.removeClass('open');
+            miniCartContainer.removeClass('active');
             $('#overlay').fadeOut(function() {
                 $(this).remove(); // Remove overlay after fade out
             });

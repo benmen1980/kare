@@ -86,7 +86,7 @@
 					<div class="top_sidebar">
 						<h2><?php echo (!is_user_logged_in()) ? __( 'Login', 'kare' ) :  __( 'Wishlist', 'kare' ); ?></h2>
 						<button id="close_wishlist" class="close">
-							<img src="<?php echo get_template_directory_uri();?>/dist/images/svg/close.svg" alt="" width="18" height="18">
+							<img src="<?php echo get_template_directory_uri();?>/dist/images/svg/close.svg" alt="<?php esc_html_e( 'close whishlist sidebar', 'kare' ) ?>" width="18" height="18">
 						</button>
 					</div>			
 					<?php 
@@ -203,7 +203,7 @@
 					<div class="top_sidebar">
 						<h2><?php echo __( 'all categories', 'kare' ); ?></h2>
 						<button id="close_menu" class="close">
-							<img src="<?php echo get_template_directory_uri();?>/dist/images/svg/close.svg" alt="" width="18" height="18">
+							<img src="<?php echo get_template_directory_uri();?>/dist/images/svg/close.svg" alt="<?php esc_html_e( 'close mobile menu', 'kare' ) ?>" width="18" height="18">
 						</button>
 					</div>			
 					<div class="bottom_sidebar">
@@ -218,7 +218,6 @@
 						?>
 					</div>
 				</div>
-				<div id="copy-notification" style="display: none;"><?php esc_html_e( 'The wishlist URL has been copied to the clipboard', 'kare' ); ?></div>
 			</div>
 		</header><!-- #masthead -->
 
@@ -234,6 +233,26 @@
 			</div>
 		</div>
 
-		<div class="mini-cart-wrapper">
-			<?php woocommerce_mini_cart(); // Display the WooCommerce mini cart ?>
+		 <!-- Display the WooCommerce mini cart -->
+		<div class="mini_cart_sidebar" id="modal_mini_cart">
+			<div class="sidebar-content">
+				<div class="top_sidebar">
+					<div class="top_sidebar_title">
+						<h2><?php echo __( 'Product overview', 'kare' ); ?></h2>
+						<button id="close_mini_cart" class="close">
+							<img src="<?php echo get_template_directory_uri();?>/dist/images/svg/close.svg" alt="<?php esc_html_e( 'close mini cart', 'kare' ) ?>" width="18" height="18">
+						</button>
+						
+					</div>
+					<div id="wc-add-product-notices"></div>	
+					<a href="<?php echo wc_get_cart_url(); ?>" aria-label="link" class="continue_shop_btn" alt="<?php esc_html_e( 'Continue to shopping cart', 'kare' ) ?>">
+						<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/cart.svg'); ?>
+
+						<span><?php esc_html_e( 'Continue to shopping cart', 'kare' ); ?></span>
+					</a>
+				</div>	
+				<div class="bottom_sidebar widget_shopping_cart_content">
+					<?php woocommerce_mini_cart(); ?>
+				</div>
+			</div>
 		</div>
