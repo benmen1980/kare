@@ -43,6 +43,8 @@
             border-bottom: 1px solid #fff;
             transition-property: background-color,border-color,color,fill,stroke;
             transition-duration: .3s;
+            display: flex;
+            align-items: center;
             &.is-active{
                 background-color: #000;
                 color: #fff;
@@ -56,7 +58,7 @@
             }
             a{
                 text-decoration: none;
-                font-size: 16px;
+                font-size: 14px;
                 &:hover{
                     text-decoration: underline;
                 }
@@ -357,3 +359,168 @@ form{
       line-height: 24px;
     }  
 }
+.woocommerce-account{
+    &.woocommerce-orders{
+        .woocommerce-MyAccount-content{
+            width: calc(80% - 20px); 
+        }
+        .shop_table{
+            border: 0;
+            text-align: right;
+            width: 100%;
+            border-collapse: separate;
+            margin-top: -20px;
+            font-size: 16px;
+            border-spacing: 0 20px;
+            tbody{
+                tr:last-child{
+                  td,th{
+                    border-bottom: 0;
+                  }
+                  
+                }
+            }
+            tr{
+                background-color: #f4f4f4;
+                th{
+                    font-weight: 700;
+                    padding: 20px 12px;
+                    border-bottom: 0;
+                  }
+                
+                td{
+                    padding: 10px;
+                    border-bottom: 0;
+                    .wc-item-meta{
+                    list-style: none outside;
+                    margin: 0;
+                    padding: 0;
+                    
+                    li{
+                        display: flex;
+                        strong{
+                        font-weight: 500;
+                        }
+                    }
+                    }
+                    &.woocommerce-orders-table__cell-order-actions{
+                        a {
+                            border: 1px solid;
+                            padding: 3px 15px;
+                            margin-left: 10px;
+                            text-decoration: none;
+                            background-color: #f4f4f4;
+                            @extend %white-btn;
+                            &:last-of-type {
+                                margin-left: 0;
+                            }
+                        }
+                    }
+                }
+            }
+       
+        }
+    }
+    &.woocommerce-view-order{
+        font-size: 14px;
+        .woocommerce-MyAccount-content{
+            width: calc(80% - 20px);
+            .woocommerce-order-details{
+                h2{
+                    font-size: 16px;
+                    text-align: left;
+                    margin: 0;
+                }
+                .woocommerce-table--order-details{
+                    display: block;
+                    padding: 20px;
+                    text-align: left;
+                    width: 100%;
+                    border: 0;
+                    background-color: #f4f4f4;
+                    thead{
+                        display: none;
+                    }
+                    tbody{
+                        display: block;
+                        width: 100%;
+                        border: 0;
+                        tr{
+                            display: flex;
+                            flex-wrap: wrap;
+                            background-color: #fff;
+                            margin: 20px 0;
+                            border: 0;
+                            padding: 10px 20px;
+                            th{
+                                font-weight: 700;
+                                padding: 9px 12px;
+                                border-bottom: 0;
+                              }
+                         
+                              td{
+                                padding: 10px;
+                                border-bottom: 0;
+                                &.product-thumbnail{
+                                    img{
+                                        max-width: 100px;
+                                    }
+                                    
+                                }
+                                &.product-name{
+                                    & > a{
+                                        font-weight: bold;
+                                        text-decoration: none;
+                                    }
+                                    .price_wrapper{
+                                        display: block;
+                                        .amount{
+                                            font-weight: bold;
+                                        }
+                                    }
+                                }
+                                .wc-item-meta{
+                                  list-style: none outside;
+                                  margin: 0;
+                                  padding: 0;
+                                  
+                                  li{
+                                    display: flex;
+                                    strong{
+                                      font-weight: 500;
+                                    }
+                                  }
+                                }
+                            }  
+                        }
+                    }
+                  
+                  
+                  tfoot{
+                    tr:last-child{
+                      td,th{
+                        border-bottom: 0;
+                      }
+                      
+                    }
+                  }
+                 
+                }
+            }
+            .woocommerce-customer-details{
+                .addresses{
+                    display: flex;
+                    gap: 50px;
+                    h2{
+                        font-size: 16px;
+                    }
+                  
+                }
+            }
+        }
+
+    }
+}
+
+
+
