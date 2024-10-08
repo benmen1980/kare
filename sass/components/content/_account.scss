@@ -1,7 +1,7 @@
 .woocommerce-account{
     article{
         @extend %container;
-        .entry-header{
+        /**.entry-header{
             h1{
                 font-size: 36px;
                 text-transform: uppercase;
@@ -9,7 +9,7 @@
         }
         .entry-content{
             margin-top: 20px;
-        }
+        }*/
         .woocommerce{
             display: flex;
             .woocommerce-MyAccount-navigation{
@@ -95,9 +95,9 @@
                 }
             }
             &.woocommerce-MyAccount-navigation-link--customer-logout{
-                &::before{
+                /*&::before{
                     //background-image: url(../images/svg/car.svg); 
-                }
+                }*/
                 &:hover{
                     background-color: #000;
                     color: #fff;
