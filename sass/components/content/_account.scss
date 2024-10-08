@@ -1,6 +1,15 @@
 .woocommerce-account{
     article{
         @extend %container;
+        .entry-header{
+            h1{
+                font-size: 36px;
+                text-transform: uppercase;
+            }
+        }
+        .entry-content{
+            margin-top: 20px;
+        }
         .woocommerce{
             display: flex;
             .woocommerce-MyAccount-navigation{
@@ -86,9 +95,9 @@
                 }
             }
             &.woocommerce-MyAccount-navigation-link--customer-logout{
-                /*&::before{
+                &::before{
                     //background-image: url(../images/svg/car.svg); 
-                }*/
+                }
                 &:hover{
                     background-color: #000;
                     color: #fff;
@@ -174,7 +183,7 @@
             h3{
             margin: 0;
             margin-top: -60px;
-            font-size: 36px;
+            font-size: 25px;
             }
             a{
             position: absolute;
@@ -263,24 +272,57 @@
 //FORM FOR ALL ACCOUNT PAGE
 form{
     .form-row {
-        label {
-            &[for=password_current],&[for=password_1],&[for=password_2]{
-                &.focused{
-                    left: -8%;
-                }
-            }
+        position: relative;
+        margin-bottom: 10px;
+        input {
+          width: 100%;
+          padding: 20px 20px 8px 20px;
+          font-size: 16px;
+          border: 1px solid rgb(228,228,228);
+          outline: none;
+          background-color: rgb(244,244,244);
+          border-radius: 0;
+          // &:focus + label, &:not(:placeholder-shown) + label{
+          //   transform: scale3d(.6,.6,1);
+          //   position: absolute;
+          //   top: 0;
+          //   left: -10px;
+          // }
         }
+        label {
+          position: absolute;
+          top: 50%;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 20px;
+          font-size: 16px;
+          color: #000;
+          pointer-events: none;
+          transition: 0.3s ease all;
+          z-index: 1;
+          &.focused{
+            transform: scale3d(.6,.6,1);
+            position: absolute;
+            top: 2px;
+            left: -10px;
+          }
+          &[for=password_current],&[for=password_1],&[for=password_2]{
+            &.focused{
+                left: -8%;
+            }
 
+          }
+        }
     }
     .checkbox_wrapper{
       label{
         display: flex;
-        gap: 16px;
+        gap: 15px;
         input[type="checkbox"]{
           appearance: none;
           width: 24px;
           height: 24px;
-          border: 2px solid #424242;
+          border: 2px solid #000;
           flex-shrink: 0;
           display: inline-grid;
           place-content: center;
