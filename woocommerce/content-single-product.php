@@ -199,18 +199,12 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 				</div>
 
 				<?php
-				if ($product->get_stock_quantity() > 0){
-					$stock = esc_html_e( 'Immediately available', 'kare' );
-				}
-
-				if ($product->get_stock_quantity() <= 0){ 
-					$stock = esc_html_e( '60 business days', 'kare' ); 
-				}
-				
+				$stock = ($product->get_stock_quantity() > 0) ? ' Immediately available' : ' 60 business days';
 				?>
+
 				<div class="stock_shipping_availability">
 					<p class="product-shipping ?>">Shipping in: </p>
-					<p class="<?php echo ($product->get_stock_quantity() > 0) ? 'stock' : ''; ?>"><?php echo ' ' . $stock; ?></p>
+					<p class="<?php echo ($product->get_stock_quantity() > 0) ? 'stock' : ''; ?>"><?php echo esc_html( $stock ); ?></p>
 				</div>
 				<?php
 
@@ -248,8 +242,8 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 						<?php do_action( 'woocommerce_after_add_to_cart_quantity' );
 					?>
 			
-					<button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="single_add_to_cart_button button alt"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
-					
+					<button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="single_add_to_cart_button button alt" data-product_id="<?php echo esc_attr( $product->get_id() ); ?>"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
+
 					<button aria-label="link" type="button" title="Add to Wishlist" class="wishlist_btn">
 						<?php echo do_shortcode('[yith_wcwl_add_to_wishlist]'); ?>
 					</button>
@@ -285,8 +279,8 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 					<!-- List of qualities in the product -->
 					<div class="list_qualities_pdts">
 						<?php
-						if( have_rows( 'list_item_product', $product->get_id() ) ):
-							while( have_rows( 'list_item_product', $product->get_id() ) ): the_row();
+						if( have_rows( 'list_item_product', 'option' ) ):
+							while( have_rows( 'list_item_product', 'option' ) ): the_row();
 							// Get sub field value.
 							$list_item = get_sub_field('list_item',);
 							?>

@@ -1,4 +1,5 @@
 <?php 
+add_filter('show_admin_bar', '__return_false');
 
 function admin_bar(){
 
@@ -6,7 +7,7 @@ function admin_bar(){
       add_filter( 'show_admin_bar', '__return_true' , 1000 );
     }
   }
-  add_action('init', 'admin_bar' );
+//   add_action('init', 'admin_bar' );
 
 //Modify the account menu Label and Add SVG Icons
 function custom_woocommerce_account_menu_items_svg_icons_and_labels( $items ) {

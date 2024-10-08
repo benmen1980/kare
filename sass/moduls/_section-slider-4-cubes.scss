@@ -1,9 +1,18 @@
 .section_slider_4_cubes {
-    padding-top: 1.25rem;;
-    padding-bottom: 2.5rem;
+    padding-top: 20px;
+    padding-bottom: 40px;
     h2 {
         font-weight: 400;
+        padding-right: 16px;
+        padding-bottom: 16px;
+        text-align: left;
+        @include media(">desktop") {
+            padding: 0;
+            padding-bottom: 8px;
+            text-align: center;
+        }
     }
+
     .tabs_wrapper_cubes{
         position: relative;
         width: 100%;
@@ -16,8 +25,12 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                width: 395px !important;
-                height: 298px;
+                width: 285px !important;
+                height: 450px;
+                @include media(">desktop") {
+                    width: 395px !important;
+                    height: 298px;
+                }
                 img {
                     width: 100%;
                     height: 100%;
@@ -26,11 +39,37 @@
                 }
 
                 h4 {
+                    z-index: 2;
                     margin: 0;
-                    margin-top: 1rem;
+                    margin-bottom: 24px;
+                    @include media(">desktop") {
+                        margin: 0;
+                        margin-top: 16px;
+                    }
+                    @include media("<=desktop") {
+                        padding: 24px;
+                        padding-bottom: 64px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        justify-content: flex-end;
+                        position: absolute;
+                        /* top: 0; */
+                        right: 0;
+                        bottom: 0;
+                        left: 0;
+                        height: 100%;
+                        white-space: nowrap;
+                        overflow: hidden !important;
+                        text-overflow: ellipsis !important;
+                    }
                     a {
                         font-weight: 400;
                         text-decoration: none;
+                        color: #fff;
+                        @include media(">desktop") {
+                            color: inherit;
+                        }
                         &:hover {
                             text-decoration: underline;
                         }
@@ -53,7 +92,7 @@
             bottom: 0;
             margin-top: auto;
             margin-bottom: auto;
-            padding-bottom: 3rem;
+            padding-bottom: 48px;
             &.swiper-button-disabled {
                 opacity: 0;
                 animation: a-pointer-events 1s linear forwards;
@@ -110,7 +149,7 @@
             right: 0;
             left: 0;
             bottom: 0;
-            height: 1.25rem;
+            height: 20px;
 
             .swiper-pagination {
                 position: absolute;
@@ -137,7 +176,7 @@
                     opacity: 1;
                     cursor: pointer;
                     transform: scale(1);    
-                    margin: 0 .3rem;
+                    margin: 0 5px;
 
                     &.swiper-pagination-bullet-active{
                         background-color: #000;

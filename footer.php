@@ -34,9 +34,9 @@
 
 			</div>
 			<div class="footer-container  first-container-footer background-gray">
-				<div class="contain-footer container">
+				<div class="first-footer contain-footer container">
 					<h3 class="text"><?php esc_html_e( 'POPULAR CATEGORIES', 'kare' ); ?></h3>
-					<div class="">
+					<div class="bg-gray">
 						<?php
 							wp_nav_menu(
 								array(
@@ -52,6 +52,20 @@
 			</div><!-- .first-container-footer -->
 			<div class="footer-container second-container-footer background-dark-gray">
 				<div class="second-footer container contain-footer">
+					<div class="customer_service_footer_menu">
+						<ul class="footer-menu"> 
+							<li class="menu-item menu-item-has-children">
+								<a href="#">
+									<?php echo get_field('footer_title','option'); ?>
+								</a>
+								<ul class="sub-menu">
+									<li>	
+										<?php echo get_field('footer_desc','option'); ?>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 					<?php
 						wp_nav_menu(
 							array(
@@ -64,7 +78,7 @@
 				</div>
 			</div><!-- .second-container-footer -->
 			<div class="footer-container  third-container-footer background-gray">
-			<div class="contain-footer container">
+			<div class="third-footer contain-footer container">
 					<h3 class="text"><?php esc_html_e( 'IMPORTANT LINKS', 'kare' ); ?></h3>
 					<div class="">
 						<?php

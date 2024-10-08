@@ -1,0 +1,426 @@
+//order-received page
+.woocommerce-order-received {
+
+    .site-main {
+        @extend %container;
+        padding: 0;
+
+        article{
+            margin-bottom:0;
+        }
+
+        .entry-header {
+            display: none;
+        }
+
+        .entry-content {
+            margin: 20px 0;
+
+            
+            .woocommerce {
+                background-color: #f4f4f4;
+                margin-bottom: 20px;
+                padding-bottom: 100px;
+                @include media(">desktop") {
+                    padding: 40px;
+                    display: flex;
+                }
+            
+                .woocommerce-order {            
+                    position: relative;
+                    display: flex;
+                    flex-wrap: wrap;
+                    flex-direction: column;
+                    padding: 40px;
+                    margin: 0;
+                    background-color: #fff;
+                    box-shadow: 0 1px 3px rgba(0, 0, 0, .08) !important;
+                    flex-grow: 1;
+
+                    p.woocommerce-notice.woocommerce-notice--success.woocommerce-thankyou-order-received {
+                        font-weight: 700;
+                        font-size: 28px;
+                        margin: 32px 0;
+                        order: 4;
+                    }
+
+                    .wc-order-confirmation {
+                        order: 5;
+                        background-color: #fff;
+                        box-shadow: 0 1px 4px rgba(0, 0, 0, .1) !important;
+                        padding: 20px;
+
+                        p.comment_txt {
+                            line-height: 1.5;
+                            margin-bottom: 32px;
+                        }
+
+
+                    }
+
+
+                    h2.wc-order-title {
+                        text-align: left;
+                        font-size: 28px;
+                        line-height: 1.5;
+                        margin-top: 0;
+                        padding-bottom: 20px;
+                        border-bottom: 1px dashed #e4e4e4;
+                        order: 1;
+                        @include media("<mobile") {
+                            margin: 0;
+                        }
+                    }
+
+                    section.woocommerce-order-details {
+                        display: none;
+                        order: 2;
+
+                        h2.woocommerce-order-details__title {
+                            margin: 0;
+                            text-align: left;
+                            font-size: 24px;
+                        }
+
+                        table.woocommerce-table.woocommerce-table--order-details.shop_table.order_details {
+                            font-size: 16px;
+                        }
+
+                    }
+
+                    section.woocommerce-customer-details {
+                        order: 3;
+                        section.woocommerce-columns.woocommerce-columns--2.woocommerce-columns--addresses.col2-set.addresses {
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: flex-start;
+                            padding-bottom: 20px;
+                            border-bottom: 1px dashed #e4e4e4;
+                            @include media("<mobile") {
+                                flex-direction: column;
+                                border-bottom: 0;
+                            }
+
+                            .woocommerce-column {
+                                width: 100%;
+                                @include media(">desktop") {
+                                    width: 50%;
+                                    &.woocommerce-column--billing-address {
+                                        border-right: 1px dashed #e4e4e4;
+                                        margin-right: 40px;
+                                    }
+                                }
+                                @include media("<mobile") {
+                                    border-bottom: 1px dashed #e4e4e4;
+                                    padding: 20px 0;
+                                }
+
+                                h2.woocommerce-column__title {
+                                    font-size: 18px;
+                                    line-height: 1.5;
+                                    text-align: left;
+                                    margin: 0;
+                                    margin-bottom: 20px;
+                                }
+
+                                address {
+                                    margin: 0;
+                                    font-size: 14px;
+                                    line-height: 21px;
+                                }
+                            }
+
+                            
+
+                        }
+
+                    }
+                    
+
+                }
+
+                .woocommerce-review-order {
+                    flex-shrink: 0;
+                    @include media(">desktop") {
+                        width: 25%;
+                        padding-left: 20px;
+                    }
+
+                    .woocommerce-review-order-wrapper {
+                        position: sticky;
+                        top: 20px;
+                        margin: 0;
+                        padding: 0;
+                        display: flex;
+                        flex-direction: column;
+
+                    
+                        section.wc-order-mini {
+                            margin-top: 20px;
+                            padding: 0;
+                            padding-top: 20px;
+                            background-color: #fff;
+                            border: none;
+                            box-shadow: 0 1px 3px rgba(0, 0, 0, .08) !important;
+                            @include media(">desktop") {
+                                background-color: transparent;
+                                margin: 0;
+                                border: 1px solid #e4e4e4;
+                            }
+
+                            div.order-header {
+                                padding: 0;
+
+                                h5 {
+                                    padding: 0 20px;
+                                }
+
+                                .order-pdts {
+                                    position: relative;
+                                    width: 100%;
+
+                                    button {
+                                        display: flex;
+                                        background-color: #f4f4f4;
+                                        color: #000;
+                                        padding: 8px 20px; 
+                                        text-align: left; 
+                                        border-width: 0 0 1px;
+                                        border-radius: 0;
+                                        font-weight: 400;
+                                        width: 100%;
+                                        @include media("<mobile") {
+                                            background-color: #fff;
+                                        }
+                                        &:hover {
+                                            color: #000;
+                                            background-color: #f4f4f4;
+                                            border-color: #e10915;
+                                            @include media("<mobile") {
+                                                background-color: #fff;
+                                            }
+                                        }
+
+                                        span {
+                                            text-transform: none;
+                                            flex-grow: 1;
+                                            margin-right: 8px;
+                                        }
+
+                                        svg {
+                                            flex-shrink: 0;
+                                            width: auto;
+
+                                            &.rotatesvg {
+                                                transform: rotate(180deg);
+                                                transition: transform 0.3s ease;
+                                            }
+                                        }
+
+                                    }
+
+                                    div.wc-order-mini-wrapper {
+                                        height: 0px;
+                                        overflow: hidden;
+                                        transition-property: all;
+                                        transition-timing-function: cubic-bezier(.4,0,.2,1);
+                                        transition-duration: .3s;
+
+                                        &.open-cart {
+                                            height: 40vh !important;
+                                            max-height: 50vh !important;
+                                        }
+                                        .product {
+                                            max-height: 100%;
+                                            border-color: #e4e4e4;
+                                            padding: 20px;
+                                            overflow: auto;
+                                            border-top-width: 1px;
+
+                                            .order-item {
+                                                position: relative;
+                                                width: 100%;
+                                                &:not(:first-child) {
+                                                    margin-top: 16px;
+                                                }
+                                                
+
+                                                p{
+                                                    margin: 0;
+                                                    padding: 0;
+                                                }
+
+                                                .order-product-thumbnail {
+                                                    width: 100%;
+                                                    position: relative;
+                                                    @extend %center-flex;                              
+                                                    cursor: pointer;
+                                                    color: #424242;
+                                                    border: 1px solid #e4e4e4;
+                                                    background-color: #fff;
+                                                    text-transform: uppercase;
+                                                    transition-property: background-color, border-color, color, fill, stroke;
+                                                    transition-duration: .3s;
+                                                    padding: 16px;
+                                                    
+                                                    &:hover {
+                                                        border-color: #e10915;  
+                                                    }
+                                                    
+                                                    a {
+                                                        width: 100%;
+                                                        height: 128px;
+                                                        display: inline-block;
+                                                        img {
+                                                            width: 100%;
+                                                            height: 100%;
+                                                            object-fit: contain;
+                                                            display: inline-block;
+                                                        }
+                                                    }
+                                                }
+
+                                                .product-name {
+                                                    font-size: 16px; 
+                                                    font-weight: 700;
+                                                    margin-top: 20px;
+                                                    // margin-bottom: 8px;
+                                                    text-decoration: none;
+                                                    display: flex;
+                                                    justify-content: space-between;
+
+                                                    &:hover {
+                                                        text-decoration: underline;
+                                                        strong {
+                                                            text-decoration: none;
+                                                        }
+                                                    }
+                
+                                                }
+
+                                                .delivery_and_price_wrapper {
+                                                    margin-top: 20px;
+                                                    font-size: 14px;
+                                                    line-height: 21px;
+                                                                    
+                                                    .product-delivery, 
+                                                    .product-price,
+                                                    .product-price-discont {
+                                                        display: flex;
+                                                        justify-content: space-between;
+                                                        margin-top: 8px;
+                                                    }
+
+                                                    .product-delivery {
+                                                        margin: 0;
+                                                    }
+                                                    .stock {
+                                                        color: #026805;
+                                                        display: inline-block;
+                                                    }
+                
+                                                    .bold {
+                                                        font-weight: 700;
+                                                    }
+                
+                                                    .red {
+                                                        color: #e10915;
+                                                    }
+                                                }
+                
+                                                hr {
+                                                    margin-top: 20px;
+                                                    margin-bottom: 8px;
+                                                    border-top: 1px dashed #e4e4e4;
+                                                    height: 0;
+                                                }
+                
+                                                .product-total {
+                                                    display: flex;
+                                                    justify-content: space-between;
+                    
+                                                    p{
+                                                        font-size: 16px;
+                                                        line-height: 24px;
+                                                    }
+                    
+                                                    .bold {
+                                                        font-weight: 700;
+                                                    }
+                    
+                                                    .red {
+                                                        color: #e10915;
+                                                    }
+                                                }
+                
+                                                .product-discount-message {
+                                                    margin-top: 20px;
+                                                    padding: 24px 20px;
+                                                    border: 1px dashed #026805;
+                                                    p {
+                                                        margin: 0;
+                                                        padding: 0;
+                                                        font-size: 16px;
+                                                        bdi,
+                                                        .discount-percentage {
+                                                            font-weight: 700;
+                                                            color: #e10915;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                            
+
+                            }
+                        }
+
+                        section.wc-order-total {
+                            padding: 20px;
+                            margin-top: 20px;
+                            font-size: 14px;
+                            line-height: 21px;
+                            border: none;
+                            background-color: #fff;
+                            box-shadow: 0 1px 3px rgba(0, 0, 0, .08) !important;
+                            @include media(">desktop") {
+                                background-color: transparent;
+                                border: 1px solid #e4e4e4;
+                            }
+
+                            h5 {
+                                margin-bottom: 8px;
+                            }
+
+                            p {
+                                margin: 0;
+                                padding-bottom: 40px;
+                            }
+
+                            ul.woocommerce-order-overview.woocommerce-thankyou-order-details.order_details {
+                                list-style: none;
+                                margin: 0px;
+                                padding: 0;
+                                font-size: 14px;
+                                line-height: 21px;
+        
+                                li{
+                                    display: flex;
+                                    justify-content: space-between;
+                                    padding-bottom: 8px;
+
+                                    strong {
+                                        font-weight: 400;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

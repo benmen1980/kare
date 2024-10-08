@@ -3,31 +3,28 @@ var $=jQuery.noConflict();
 
 jQuery(document).on("ready", function(){
 
-    $(document).ready(function() {
-        
-        //add class to label in login form for adding css 
-        // On input focus
-        $('.form-row .input-text').focus(function() {
-            console.log('enter focus!');
-            $(this).closest('.form-row').find('label').addClass('focused');
-        });
+    // console.log(typeof jQuery);  
     
-        // On input blur
-        $('.form-row .input-text').blur(function() {
-            // Remove the class if the input is empty
-            if ($(this).val() === "") {
-                $(this).closest('.form-row').find('label').removeClass('focused');
-            }
-        });
-    
-        // Check on page load if inputs have text
-        $('.form-row .input-text').each(function() {
-            if ($(this).val() !== "") {
-                $(this).closest('.form-row').find('label').addClass('focused');
-            }
-        });
+    //add class to label in login form for adding css 
+    // On input focus
+    $('.form-row .input-text').focus(function() {
+        $(this).closest('.form-row').find('label').addClass('focused');
     });
-    
+
+    // On input blur
+    $('.form-row .input-text').blur(function() {
+        // Remove the class if the input is empty
+        if ($(this).val() === "") {
+            $(this).closest('.form-row').find('label').removeClass('focused');
+        }
+    });
+
+    // Check on page load if inputs have text
+    $('.form-row .input-text').each(function() {
+        if ($(this).val() !== "") {
+            $(this).closest('.form-row').find('label').addClass('focused');
+        }
+    });   
 
     //logout with popup
     $('.custom_logout a').on('click', function(e) {
@@ -62,21 +59,31 @@ jQuery(document).on("ready", function(){
         }
     }
 
-    $(window).on('scroll', throttle(function() {
-        let st = $(this).scrollTop();
-        let btn = $('#btnSkipArrow');
+    //Remove placeholder text in form fields in checkout page
+    jQuery(document).ready(function($) {
+        $('form.checkout .form-row input, form.checkout textarea, form.checkout select').each(function() {
+            $(this).removeAttr('placeholder');
+        });
+    });
 
-        if (st >= scrollThreshold) {
-            if (!btn.hasClass('show')) {
-                btn.css('display', 'block'); // Show the element before starting the transition
-                setTimeout(function() {
-                    btn.removeClass('hide');
-                    btn.addClass('show');
-                }, 10); // Small delay to ensure the display change is applied
+    $(window).on('scroll', throttle(function() {
+        if (window.innerWidth >= 1024) {
+
+            let st = $(this).scrollTop();
+            let btn = $('#btnSkipArrow');
+
+            if (st >= scrollThreshold) {
+                if (!btn.hasClass('show')) {
+                    btn.css('display', 'block'); // Show the element before starting the transition
+                    setTimeout(function() {
+                        btn.removeClass('hide');
+                        btn.addClass('show');
+                    }, 10); // Small delay to ensure the display change is applied
+                }
+            } else {
+                btn.removeClass('show');
+                btn.addClass('hide');
             }
-        } else {
-            btn.removeClass('show');
-            btn.addClass('hide');
         }
     }, 100)); // Executes the function every 100ms
 
@@ -220,7 +227,14 @@ jQuery(document).on("ready", function(){
         } else if (container.querySelector('#module_slide_cube')) {
             swiperOptions = Object.assign({}, defaultSwiperOptions, {
                 spaceBetween: 16,
-                slidesPerView: 4
+                slidesPerView: 4,
+                breakpoints: {
+                    768: { 
+                        slidesPerView: 1.5,
+                        slidesPerGroup: 1,
+                        spaceBetween: 16
+                    }
+                }
             });
         }
 
@@ -374,38 +388,12 @@ jQuery(document).on("ready", function(){
         }
     }); */
 
-    //open wishlist popup in header
-    $('.open_wishlist_popup').on('click', function() {
-        $('#wishlist_sidebar').addClass('active');
-        if ($('#overlay').length === 0) {
-            $('body').append('<div id="overlay"></div>');
-        }
-        $('#overlay').fadeIn(); // Show the overlay
-    });
-
-    $('#close_wishlist').on('click', function() {
-        $('#wishlist_sidebar').removeClass('active');
-        $('#overlay').fadeOut(function() {
-            $(this).remove(); // Remove overlay after fade out
-        });
-    });
-
-    // Close the wishlist sidebar if clicked outside
-    $(document).mouseup(function(e) {
-        var container = $("#wishlist_sidebar");
-        if (!container.is(e.target) && container.has(e.target).length === 0) {
-            container.removeClass('active');
-            $('#overlay').fadeOut(function() {
-                $(this).remove(); // Remove overlay after fade out
-            });
-        }
-    });
-
     //open account popup in header
     $('.open_account_popup').on('click', function() {
         $('#login_sidebar').addClass('active');
         if ($('#overlay').length === 0) {
             $('body').append('<div id="overlay"></div>');
+            $('body').css('overflow', 'hidden');
         }
         $('#overlay').fadeIn(); // Show the overlay
     });
@@ -415,6 +403,7 @@ jQuery(document).on("ready", function(){
         $('#overlay').fadeOut(function() {
             $(this).remove(); // Remove overlay after fade out
         });
+        $('body').css('overflow', '');
     });
     
     // Close the sidebar if clicked outside
@@ -425,8 +414,142 @@ jQuery(document).on("ready", function(){
             $('#overlay').fadeOut(function() {
                 $(this).remove(); // Remove overlay after fade out
             });
+            $('body').css('overflow', '');
         }
     });
+
+    //open wishlist popup in header
+    $('.open_wishlist_popup').on('click', function() {
+        $('#wishlist_sidebar').addClass('active');
+        if ($('#overlay').length === 0) {
+            $('body').append('<div id="overlay"></div>');
+            $('body').css('overflow', 'hidden');
+        }
+        $('#overlay').fadeIn(); // Show the overlay
+    });
+
+    $('#close_wishlist').on('click', function() {
+        $('#wishlist_sidebar').removeClass('active');
+        $('#overlay').fadeOut(function() {
+            $(this).remove(); // Remove overlay after fade out
+        });
+        $('body').css('overflow', '');
+    });
+
+    // Close the wishlist sidebar if clicked outside
+    $(document).mouseup(function(e) {
+        var container = $("#wishlist_sidebar");
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
+            container.removeClass('active');
+            $('#overlay').fadeOut(function() {
+                $(this).remove(); // Remove overlay after fade out
+            });
+            $('body').css('overflow', '');
+        }
+    });
+
+    //open mobile menu
+    if ($(window).width() < 1024) {
+         $('button.menu-toggle').on('click', function() {
+            $('#mobile_menu_sidebar').addClass('active_left');
+            if ($('#overlay').length === 0) {
+                $('body').append('<div id="overlay"></div>');
+                $('body').css('overflow', 'hidden');
+            }
+            $('#overlay').fadeIn(); // Show the overlay
+        });
+
+        $('#close_menu').on('click', function() {
+            $('#mobile_menu_sidebar').removeClass('active_left');
+            $('#overlay').fadeOut(function() {
+                $(this).remove(); // Remove overlay after fade out
+            });
+            $('body').css('overflow', '');
+        });     
+
+        // Close the wishlist sidebar if clicked outside
+        $(document).mouseup(function(e) {
+            var container = $("#mobile_menu_sidebar");
+            if (!container.is(e.target) && container.has(e.target).length === 0) {
+                container.removeClass('active_left');
+                $('#overlay').fadeOut(function() {
+                    $(this).remove(); // Remove overlay after fade out
+                });
+                $('body').css('overflow', '');
+            }
+        });
+
+        // Open sub-menu on clicking main menu item
+        $('#primary-menu > li > a').on('click', function(event) {
+            event.preventDefault(); 
+
+            const parentLi = $(this).parent();
+            const submenu = parentLi.find('ul.sub-menu');
+        
+            if (parentLi.hasClass('active-nemu')) {
+
+                submenu.stop().animate({ left: '500px', opacity: 0 }, 300, function() {
+                    submenu.removeClass('sub-menu-active'); 
+                });
+                parentLi.removeClass('active-nemu');
+
+            } else {
+                $('#primary-menu > li.active-nemu').each(function() {
+                    const activeSubmenu = $(this).find('ul.sub-menu.sub-menu-active');
+                    $(this).removeClass('active-nemu');
+                    activeSubmenu.stop().animate({ right: '-500px', opacity: 0 }, 300, function() {
+                        activeSubmenu.removeClass('sub-menu-active');
+                    });
+                });
+        
+                // open sub-menu
+                parentLi.addClass('active-nemu');
+                $(this).css({ left: '-500px', opacity: 0 })
+                       .stop().animate({ left: '0', opacity: 1 }, 300);
+                
+                submenu.addClass('sub-menu-active')
+                       .css({ left: '-500px', opacity: 0 })
+                       .stop().animate({ left: '0', opacity: 1 }, 300);
+            }
+        });
+
+         // Close submenu on back arrow or close icon click
+        $('#primary-menu > li > a::after', '#primary-menu > li > a::before').on('click', function() {
+            const parentLi = $(this).closest('li');
+            const submenu = parentLi.find('ul.sub-menu');
+
+            submenu.css({ right: '0', opacity: 1 })
+                .stop().animate({ right: '-500px', opacity: 0 }, 300, function() {
+                submenu.removeClass('sub-menu-active');
+            });
+            parentLi.removeClass('active-nemu');
+        });
+
+        $('.visible-mobile').append('<p class="add_text">...or discover categories:</p>');
+        $('.visible-mobile a').text('show all');
+    }
+
+
+    // Close mini-cart popup when clicking close button or clicking outside
+    $('#close_mini_cart').on('click', function() {
+        $('#modal_mini_cart').removeClass('active');
+        $('#overlay').fadeOut(function() {
+            $(this).remove(); // Remove overlay after fade out
+        });
+        $('body').css('overflow', '');
+    });
+    
+    $(document).mouseup(function(e) {
+        var miniCartContainer = $("#modal_mini_cart");
+
+        if (!miniCartContainer.is(e.target) && miniCartContainer.has(e.target).length === 0) {
+            miniCartContainer.removeClass('active');
+            $('#overlay').fadeOut(function() {
+                $(this).remove(); // Remove overlay after fade out
+            });
+        }
+    });
+
 
     //open account popup to write product reviews
     $('.open_account_button').click(function(e) {
@@ -467,6 +590,7 @@ jQuery(document).on("ready", function(){
     document.querySelectorAll('.delete_item').forEach(function(element) {
         element.closest('.wishlist_btn').classList.add('wishlist_btn_black');
     });
+
     $(document).on('click', '.yith-wcwl-add-button a', function(e) {
         e.preventDefault();
         
@@ -478,6 +602,83 @@ jQuery(document).on("ready", function(){
             $wishlistButton.addClass('wishlist_btn_black');
         }
     });
+
+    // Capture the "Enter" keypress in the search input field
+    $('#search-input').on('keypress', function(event) {
+        if(event.which === 13) { // 13 is the Enter key
+            event.preventDefault(); // Prevent the default form submission
+            $('#search-button').click(); // Trigger the hidden button click
+        }
+    });
+
+    $('.dropdown-toggle').on('click', function() {
+        $(this).siblings().slideToggle();
+        $(this).siblings().toggleClass('active-menu'); 
+
+        $(this).toggleClass('rotate180');
+    });
+
+    // Check if the current page is the cart page
+    if (window.location.href.indexOf("cart") > -1) {
+
+        // disable the coupon button, if the input field is empty
+        const couponInputs = document.querySelectorAll('.coupon_code'); // Select all coupon code input fields
+        const applyButtons = document.querySelectorAll('.coupon_button'); // Select all related apply buttons
+
+        couponInputs.forEach(function (couponInput, index) {
+            applyButtons[index].classList.add('disable');
+
+            couponInput.addEventListener('input', function () {
+                if (couponInput.value.trim() === '') {
+                    applyButtons[index].setAttribute('disabled', true);
+                    applyButtons[index].classList.add('disable');
+                } else {
+                    applyButtons[index].removeAttribute('disabled');
+                    applyButtons[index].classList.remove('disable');
+                }
+            });
+        });
+    }
+
+    // Check if the current page is the checkout page
+    if (window.location.href.indexOf('checkout') > -1) {
+        //Open the product display in the checkout form
+        function toggleCart() {
+            $('#show_pdts').on('click', function() {
+                $(this).siblings('.wc-cart-mini-wrapper').toggleClass('open-cart');
+                
+                // rotation of the arrow 
+                $(this).find('svg').toggleClass('rotate180');
+            });
+        }
+    
+        toggleCart();
+    
+        $(document.body).on('updated_checkout', function() {
+            toggleCart();
+        });
+
+    }
+
+    // Check if the current page is the order recived page
+    if (window.location.href.indexOf("order-received") !== -1) {
+        console.log("This is the order confirmation page.");
+
+        function toggleCartOrder() {
+            $('#show_pdts_recived').on('click', function() {
+                $(this).siblings('.wc-order-mini-wrapper').toggleClass('open-cart');
+                
+                // rotation of the arrow 
+                $(this).find('svg').toggleClass('rotatesvg');
+            });
+        }
+
+        toggleCartOrder();
+
+        $(document.body).on('updated_checkout', function() {
+            toggleCartOrder();
+        });
+    }
 
     document.querySelector('.share_wishlist_btn').addEventListener('click', function() {
         var copyTarget = document.querySelector('.copy-target').value;
@@ -496,74 +697,6 @@ jQuery(document).on("ready", function(){
         });   
         
     });
-
-
-    if (window.location.href.indexOf("cart") > -1) {
-        const quantityWrapper = document.querySelectorAll('.quantity-wrapper');
-
-        quantityWrapper.forEach(function(wrapper) {
-            const button = wrapper.querySelector('.btn_quantity_wrapper');
-            const options = wrapper.querySelector('.custom_options');
-            const allOption = wrapper.querySelectorAll('.custom_option');
-            const selectedValueSpan = wrapper.querySelector('.selected_value');
-            const hiddenInput = wrapper.querySelector('.custom_select_hidden');
-            const form = wrapper.closest('form');
-    
-            // הצגת הרשימה בעת לחיצה על ה-custom_select_wrapper
-            button.addEventListener('click', function () {
-                options.classList.toggle('open');
-            });
-    
-            // בחירת כמות מתוך הרשימה
-            allOption.forEach(function(option) {
-                option.addEventListener('click', function () {
-                    const selectedValue = option.getAttribute('data-value');
-                    selectedValueSpan.textContent = selectedValue; // עדכון הכמות המוצגת
-                    hiddenInput.value = selectedValue; // עדכון הכמות בשדה הנסתר
-    
-                    // סימון הכמות שנבחרה
-                    allOption.forEach(function(opt) {
-                        opt.classList.remove('selected');
-                    });
-                    option.classList.add('selected');
-                    options.classList.remove('open');
-
-                    // הגשת הטופס באופן אוטומטי לעדכון העגלה
-                    const updateCartButton = form.querySelector('button[name="update_cart"]');
-                    if (updateCartButton) {
-                        // הסרת ה-disable אם הכפתור קיים
-                        updateCartButton.removeAttribute('disabled');
-                        // הגשת הטופס
-                        form.submit();
-                    } else {
-                        console.error('הכפתור update_cart לא נמצא בטופס.');
-                    }
-                    
-
-                });
-            });
-    
-            // סגירת הרשימה אם לוחצים מחוץ ל-wrapper
-            document.addEventListener('click', function(event) {
-                if (!wrapper.contains(event.target)) {
-                    options.classList.remove('open');
-                }
-            });
-        });
-
-        const couponInput = document.getElementById('coupon_code');
-        const applyButton = document.querySelector('.coupon_button');
-
-        // בדוק את השדה בכל פעם שהמשתמש מקליד משהו
-        couponInput.addEventListener('input', function () {
-            if (couponInput.value.trim() === '') {
-                applyButton.setAttribute('disabled', true);
-            } else {
-                applyButton.removeAttribute('disabled');
-                applyButton.classList.remove('disable');
-            }
-        });
-    }
 
 });
 

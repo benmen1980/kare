@@ -80,7 +80,7 @@
 .page-content,
 .entry-content,
 .entry-summary {
-	margin: 1.5em 0 0;
+	margin: 20px 0 0;
 }
 
 .page-links {
@@ -96,6 +96,12 @@ body {
 	height: 100vh;
     text-align: left;
     overflow-x: hidden;
+
+    &.fixed-position {
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
 }
 
 .center-flex{
@@ -111,12 +117,112 @@ body {
 
 }
 
-main {
-    padding-bottom: 6.25rem;
+main#main-site {
+    padding-bottom: 100px;
 }
 
 *, :after, :before {
     position: relative;
     box-sizing: border-box;
     border: 0 solid;
+}
+
+//FORM FOR ALL SITE PAGE
+form{
+    .form-row {
+        position: relative;
+        margin-bottom: 10px;
+        input {
+          width: 100%;
+          padding: 20px 20px 8px 20px;
+          font-size: 16px;
+          border: 1px solid #e4e4e4;
+          outline: none;
+          background-color: #f4f4f4;
+          border-radius: 0;
+        }
+        label {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 20px;
+          font-size: 16px;
+          color: #000;
+          pointer-events: none;
+          transition: 0.3s ease all;
+          z-index: 1;
+          &.focused{
+            transform: scale3d(.65,.65,1);
+            position: absolute;
+            top: 3px;
+            left: -10px;
+          }
+        }
+    }
+}
+.woocommerce-notices-wrapper, .woocommerce-NoticeGroup {
+
+    .woocommerce-error {
+        background-color: #e10915;
+        color: #fff;
+        border: 0;
+        font-size: 16px;
+        list-style-type: none;
+        padding: 16px 16px 16px 36px;
+        margin: 0 0 20px 0;
+        position: relative;
+        &::before {
+            content: '';
+            background-image: url("../images/svg/alert.svg");
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 10px;
+            width: 20px;
+            height: 20px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: invert(1);
+        }
+        a {
+        &:hover {
+            color: #fff;
+            opacity: .7;
+        }
+        }
+    }
+
+    .woocommerce-message {
+        background-color: #026805;
+        color: #fff;
+        border: 0;
+        font-size: 16px;
+        list-style-type: none;
+        padding: 16px 16px 16px 36px;
+        margin: 0 0 20px 0;
+        position: relative;
+        &::before {
+            content: '';
+            background-image: url("../images/svg/check-circle.svg");
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 10px;
+            width: 20px;
+            height: 20px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: invert(1);
+        }
+        a {
+            color: #fff;
+            
+            &:hover {
+                color: #fff;
+                opacity: .7;
+            }
+        }
+    }
 }

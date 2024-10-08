@@ -15,236 +15,357 @@
  * @version 7.9.0
  */
 
-defined( 'ABSPATH' ) || exit; 
+defined( 'ABSPATH' ) || exit;
 
 // Get the cart object
 $cart = WC()->cart;
 
 // Calculate the total quantity of items in the cart
 $total_quantity = $cart->get_cart_contents_count();
-?>
 
-<?php do_action( 'woocommerce_before_cart' ); ?>
+do_action( 'woocommerce_before_cart' ); ?>
 
 <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 	<?php do_action( 'woocommerce_before_cart_table' ); ?>
 
-	<div class="shop_table shop_table_responsive cart woocommerce-cart-form__contents shop_cart" cellspacing="0">
+	<div class="cart_content_wrap shop_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="0">
 
-		<div class="comment_cart">
-			<h4 class="qty_products"><?php echo esc_html_e('Shopping cart (' . $total_quantity . ' products)', 'kare'); ?></h4>
-			<p class="comment_txt"><?php echo get_field('comment_txt','option'); ?></p>
-		</div>
-		<!-- <thead>
-			<tr>
-				<th class="product-remove"><span class="screen-reader-text"><?php// esc_html_e( 'Remove item', 'woocommerce' ); ?></span></th>
-				<th class="product-thumbnail"><span class="screen-reader-text"><?php// esc_html_e( 'Thumbnail image', 'woocommerce' ); ?></span></th>
-				<th class="product-name"><?php// esc_html_e( 'Product', 'woocommerce' ); ?></th>
-				<th class="product-price"><?php// esc_html_e( 'Price', 'woocommerce' ); ?></th>
-				<th class="product-quantity"><?php// esc_html_e( 'Quantity', 'woocommerce' ); ?></th>
-				<th class="product-subtotal"><?php// esc_html_e( 'Subtotal', 'woocommerce' ); ?></th>
-			</tr>
-		</thead> -->
-		<!-- <tbody> -->
+		<div class="pdts_content">
+
+			<div class="comment_cart white_bg">
+				<h4 class="qty_products"><?php echo esc_html_e('Shopping cart (' . $total_quantity . ' products)', 'kare'); ?></h4>
+				<p class="comment_txt"><?php echo get_field('comment_txt','option'); ?></p>
+			</div>
+
 			<?php do_action( 'woocommerce_before_cart_contents' ); ?>
-
 			<?php
-			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) : ?>
-				<?php
+			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 				$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
-				$product_permalink = $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '';
-				?>
-			
-				<div class="cart-product-item">
+				/**
+				 * Filter the product name.
+				 *
+				 * @since 2.1.0
+				 * @param string $product_name Name of the product in the cart.
+				 * @param array $cart_item The product in the cart.
+				 * @param string $cart_item_key Key for the product in the cart.
+				 */
+				$product_name = apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key );
+
+				if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
+					$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
+				}?>
+				<div class="woocommerce-cart-form__cart-item <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
 					<div class="cart-product-thumbnail">
 						<?php
-						$thumbnail = $_product->get_image();
-						if ( ! $product_permalink ) {
+						$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );?>
+						
+						<?php if ( ! $product_permalink ) { 
 							echo $thumbnail; // PHPCS: XSS ok.
 						} else {
-							printf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $thumbnail ); // PHPCS: XSS ok.
-						}
+						printf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $thumbnail ); // PHPCS: XSS ok.
+						?>
+						<?php }
 						?>
 					</div>
+
 					<div class="cart-product-details">
-						<a href="<?php echo $product_permalink ?>" class="cart-product-name">
+						<div class="product_name" data-title="<?php esc_attr_e( 'Product', 'woocommerce' ); ?>">
 							<?php
-							echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) );
+							if ( ! $product_permalink ) {
+								echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . '&nbsp;' );
+							} else {
+								//echo $_product->get_name();
+								echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $_product->get_name() ), $cart_item, $cart_item_key ) );
+							}
+
+							do_action( 'woocommerce_after_cart_item_name', $cart_item, $cart_item_key );
+
+							// Meta data.
+							echo wc_get_formatted_cart_item_data( $cart_item ); // PHPCS: XSS ok.
+
+							// Backorder notification.
+							if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) ) {
+								echo wp_kses_post( apply_filters( 'woocommerce_cart_item_backorder_notification', '<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'woocommerce' ) . '</p>', $product_id ) );
+							}
 							?>
-						</a>
-						<div class="cart-product-meta">
-							<div class="remove_and_qty">
-								<p><?php _e( 'Crowd:', 'woocommerce' ); ?></p>
-								<div class="cart-product-quantity-remove">
-									<a href="<?php echo esc_url( wc_get_cart_remove_url( $cart_item_key ) ); ?>" class="remove" aria-label="<?php esc_attr_e( 'Remove this item', 'woocommerce' ); ?>">
-										<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/bin.svg'); ?>
-									</a>
-									<!-- <select class="quantity-dropdown" name="cart[<?php echo $cart_item_key; ?>][qty]" > -->
-										<?php
-										// $max_quantity = $_product->get_max_purchase_quantity();
-										// $min_quantity = 1;
-										// $pack_quantity = get_post_meta($product_id, 'quantity_product_order', true);
-										// $quantity = isset($pack_quantity) && $pack_quantity > 1 ? $pack_quantity : $min_quantity; 
+						</div>
 
-										
-										$max_quantity = apply_filters('woocommerce_quantity_input_max', $_product->get_max_purchase_quantity(), $_product);
-										$min_quantity = apply_filters('woocommerce_quantity_input_min', $_product->get_min_purchase_quantity(), $_product);
-										$pack_quantity = get_post_meta($product_id, 'quantity_product_order', true);
-										$quantity = isset($pack_quantity) && $pack_quantity > 1 ? $pack_quantity : $min_quantity;
+						<div class="remove_and_qty cart_product_quantity_remove_wrapper">
+							<p><?php _e( 'Crowd:', 'woocommerce' ); ?></p>
+							<div class="cart-product-quantity-remove">
 
-										$selected_quantity = $cart_item['quantity'];
-				
-										// for ($i = $quantity; $i <= min(24, $max_quantity); $i += $quantity) {
-										// 	echo '<option value="' . esc_attr($i) . '"' . selected($cart_item['quantity'], $i, false) . '>' . esc_html($i) . '</option>';
-										// }				
-										?>	
-										<form class="update-cart-form" method="post" action="<?php echo esc_url( wc_get_cart_url() ); ?>">
-											<div class="quantity-wrapper">
-												<button aria-label="button" type="button" class="btn_quantity_wrapper">
-													<span class="selected_value"><?php echo esc_html($selected_quantity); ?></span> <!-- ברירת מחדל: הספרה 1 -->
-													<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-down.svg'); ?>
-												</button>
-												<ul class="custom_options">
-													<?php for ($i = $quantity; $i <= min(24, $max_quantity); $i += $quantity) { ?>
-														<li class="custom_option <?php echo $i == $selected_quantity ? 'selected' : ''; ?>" data-value="<?php echo esc_attr($i); ?>">
-															<?php echo esc_html($i); ?>
-														</li>
-													<?php } ?>
-												</ul>
-												<input type="hidden" name="cart[<?php echo $cart_item_key; ?>][qty]" class="custom_select_hidden" value="<?php echo esc_html($selected_quantity); ?>">
+								<?php
+									echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+										'woocommerce_cart_item_remove_link',
+										sprintf(
+											'<a href="%s" class="button_underline" aria-label="%s" data-product_id="%s" data-product_sku="%s"> %s</a>',
+											esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
+											esc_html__( 'Remove this item', 'woocommerce' ),
+											esc_attr( $product_id ),
+											esc_attr( $_product->get_sku() ),
+											file_get_contents(get_template_directory() . '/dist/images/svg/bin.svg') // קובץ ה-SVG
+										),
+										$cart_item_key
+									);
+								?>
 
-											</div>
-   											<!-- <button type="submit" class="button" name="update_cart" value="Update cart" style="display: none;">Update cart</button> -->
-											<button type="submit" class="button <?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>" style="display:none;"><?php esc_html_e( 'Update cart', 'woocommerce' ); ?></button>
+								<div class="product-quantity" data-title="<?php esc_attr_e( 'Quantity', 'woocommerce' ); ?>">
+									<?php
+									if ( $_product->is_sold_individually() ) {
+										$min_quantity = 1;
+										$max_quantity = 1;
+									} else {
+										$min_quantity = 0;
+										$max_quantity = $_product->get_max_purchase_quantity();
+									}
 
-										</form>
-															
-									<!-- </select> -->
+									$product_quantity = woocommerce_quantity_input(
+										array(
+											'input_name'   => "cart[{$cart_item_key}][qty]",
+											'input_value'  => $cart_item['quantity'],
+											'max_value'    => $max_quantity,
+											'min_value'    => $min_quantity,
+											'product_name' => $product_name,
+										),
+										$_product,
+										false
+									);
+
+									echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item ); // PHPCS: XSS ok.
+									?>
 								</div>
-							</div>
-							
-							<?php
-								$stock = ($_product->get_stock_quantity() > 0) ? 'Immediately available' : '60 business days';
-							?>
-							<div class="delivery_and_price">
-								<div class="delivery_wrapper">
-									<p><?php _e( 'Delivery time:', 'woocommerce' ); ?> </p>
-									<p class="shipping_availability bold <?php echo ($_product->get_stock_quantity() > 0) ? 'stock' : ''; ?>"><?php echo esc_html( $stock ); ?></p>
-								</div>
-								<?php if ( empty($_product->get_sale_price()) ) : ?>
-									<div class="price_wrapper">
-										<p><?php _e( 'Unit price:', 'woocommerce' ); ?> </p>
-										<p><?php echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); ?></p>
-									</div>
-								<?php else : ?>
-									<div class="price_wrapper">
-										<p><?php _e( 'Unit price:', 'woocommerce' ); ?> </p>
-										<p><?php echo esc_html_e( 'RRP*: ', 'kare' ) . '<del>' . wc_price( $_product->get_regular_price() ) . '</del>'; ?></p>
-									</div>
-									<div class="price_discount_wrapper">
-										<p><?php _e( 'Price after discount:', 'woocommerce' ); ?> </p>
-										<p class="bold red"><?php echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); ?></p>
-
-										
-									</div>
-								<?php endif; ?>
 							</div>
 						</div>
-						<hr>
-						<div class="cart-product-price">
-							<p><?php _e( 'Total including VAT:', 'woocommerce' ); ?></p> 
-							<?php 
-							$quantity = $cart_item['quantity'];
-							$regular_price = $_product->get_regular_price(); // מחיר רגיל
-							$sale_price = $_product->get_sale_price(); // מחיר מבצע
-							
-							$subtotal = $sale_price ? $sale_price * $quantity : $regular_price * $quantity;
-							$discounted_price_total = wc_get_price_to_display( $_product ) * $cart_item['quantity'];
-							?>
-							<p class="bold red"><?php echo wc_price( $discounted_price_total ); ?></p>
-						</div>	
+
 						<?php
-							$regular_price = $_product->get_regular_price();
-							$sale_price = $_product->get_sale_price();
-							if ( $regular_price && $sale_price && $regular_price > $sale_price ) : ?>
-								<div class="discount_message_wrapper">
-									<p>
+							$stock = ($_product->get_stock_quantity() > 0) ? 'Immediately available' : '60 business days';
+						?>
+						<div class="delivery_and_price_wrapper">
+							<div class="product-delivery">
+								<p><?php _e( 'Delivery time:', 'woocommerce' ); ?> </p>
+								<p class="shipping_availability bold <?php echo ($_product->get_stock_quantity() > 0) ? 'stock' : ''; ?>"><?php echo esc_html( $stock ); ?></p>
+							</div>
+
+							<?php if ( $_product->is_on_sale() ) : ?>
+								<div class="product-price" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
+									<p><?php _e( 'Unit price:', 'woocommerce' ); ?> </p>
+									<p><?php _e( 'RRP*: ', 'woocommerce' ); ?> 
+										<del> <?php echo wc_price( $_product->get_regular_price() ); ?> </del>
+									</p>
+								</div>
+								<div class="product-price-discont" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
+									<p><?php _e( 'Price after discount:', 'woocommerce' ); ?> </p>
+									<p class="bold red">
 										<?php
-											$savings = $regular_price - $sale_price;
-											$percentage = round( ( $savings / $regular_price ) * 100 );
-											
-											$percentage_class = '<span class="discount-percentage">' . $percentage . '%</span>';
-											echo sprintf( __( 'Congratulations! You have just saved %s, which is %s !', 'woocommerce' ), wc_price( $savings ), $percentage_class );
+											echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
 										?>
 									</p>
-								</div>	
-							<?php endif;
-						?>						
+								</div>
+							<?php else : ?>
+								<div class="product-price" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
+									<p><?php _e( 'Unit price:', 'woocommerce' ); ?> </p>
+									<p><?php
+										echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
+									?></p>
+								</div>
+							<?php endif; ?>
+						</div>
+
+						<hr>
+				
+						<div class="product-subtotal" data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>">
+							<p><?php _e( 'Total including VAT:', 'woocommerce' ); ?></p>
+							<p class="bold red"><?php
+								echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
+							?></p>
+						</div>
+
+						<?php if ( $_product->is_on_sale() ) : ?>
+							<div class="product-discount-message white-bg">
+								<p>
+									<?php
+										$qty = $cart_item['quantity'];
+										$regular_price = $_product->get_regular_price();
+										$sale_price = $_product->get_sale_price();
+										$savings = ($regular_price * $qty) - ($sale_price * $qty);
+										$percentage = round( ( $savings / $regular_price ) * 100 );
+										
+										$percentage_class = '<span class="discount-percentage">' . $percentage . '%</span>';
+										echo sprintf( __( 'Congratulations! You have just saved %s, which is %s !', 'woocommerce' ), wc_price( $savings ), $percentage_class );
+									?>
+								</p>
+							</div>	
+						<?php endif; ?>
 					</div>
 				</div>
-			<?php endforeach;						 
+			<?php
+			}
 			?>
 
-			<?php do_action( 'woocommerce_cart_contents' ); ?>
-
-			<!-- <tr> -->
-				<!-- <td colspan="6" class="actions"> -->
-				<?php if ( wc_coupons_enabled() ) { ?>
-					<div class="coupon">
-						<label for="coupon_code" class="screen-reader-text"><?php esc_html_e( 'Coupon:', 'woocommerce' ); ?></label>
-						<input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Enter voucher code here...', 'woocommerce' ); ?>" />
-						<button type="submit" class="button disable coupon_button" name="apply_coupon" disabled value="<?php esc_attr_e( 'Activate voucher code', 'woocommerce' ); ?>">
-							<?php esc_html_e( 'Activate voucher code', 'woocommerce' ); ?>
-						</button>
-						<?php do_action( 'woocommerce_cart_coupon' ); ?>
-					</div>
-				<?php } ?>
-
-				<?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
-
-				<div class="cart-collaterals">
-					<?php
-						/**
-						 * Cart collaterals hook.
-						 *
-						 * @hooked woocommerce_cross_sell_display
-						 * @hooked woocommerce_cart_totals - 10
-						 */
-						do_action( 'woocommerce_cart_collaterals' );
-					?>
+			<div class="delivery_cost_wrapper white_bg">
+				<h5 class="title"><?php _e( 'Delivery costs', 'woocommerce' ); ?></h5>
+				<div class="delivery_price">
+					<p class="text">
+						<?php _e( '** Detailed list in the next step', 'woocommerce' ); ?>
+					</p>
+					<p class="price">
+						<span><?php _e( 'Price:', 'woocommerce' ); ?></span>
+						<?php 
+							$order_total = WC()->cart->cart_contents_total;
+							$shipping_amount  = get_field('shipping_cost','option');
+							$max_sum_shippping = get_field('max_sum_shippping', 'option');
+							// Define the shipping rate based on the order amount
+							if ($order_total <= $max_sum_shippping) {
+								$shipping_cost = $shipping_amount; // Set the shipping cost for orders under $50
+							} else {
+								$shipping_cost = 0; // Set free shipping for orders of $50 or more
+							}
+							echo wc_price( $shipping_cost ); 
+						?>
+					</p>
 				</div>
+			</div>
+			<?php do_action( 'woocommerce_cart_contents' ); ?>
+			<div class="coupon_wrapper">
+				<div colspan="6" class="actions">
+					<h5 class="title"><?php _e( 'Voucher code', 'woocommerce' ); ?></h5>
+					
+					<?php if ( wc_coupons_enabled() ) { ?>
+						<div class="coupon">
+							<div class="form-row">
+								<label for="coupon_code" class="">
+									<span> <?php esc_html_e( 'Enter voucher code here...', 'woocommerce' ); ?> </span>
+								</label> 
+								<input type="text" name="coupon_code" class="input-text coupon_code" id="coupon_code" value="" placeholder=" " /> 
+							</div>
+							<button type="submit" class="coupon_button <?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"><?php esc_html_e( 'Activate voucher code', 'woocommerce' ); ?></button>
+							<?php do_action( 'woocommerce_cart_coupon' ); ?>
+						</div>
+					<?php } ?>
 
+					<button type="submit" class="button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>"><?php esc_html_e( 'Update cart', 'woocommerce' ); ?></button>
 
 					<?php do_action( 'woocommerce_cart_actions' ); ?>
 
 					<?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
-				<!-- </td> -->
-			<!-- </tr> -->
-
+				</div>
+			</div>
 			<?php do_action( 'woocommerce_after_cart_contents' ); ?>
-		<!-- </tbody> -->
+			
+			<?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
+			<div class="cart_summary_inpdts_content">
+				<div class="cart_summary_content">
+					<?php
+					/**
+					 * Cart collaterals hook.
+					 *
+					 * @hooked woocommerce_cross_sell_display
+					 * @hooked woocommerce_cart_totals - 10
+					 */
+					do_action( 'woocommerce_cart_collaterals' );
+					?>
+					<div class="desc_under_total">
+						<?php echo get_field('desc_under_summary'); ?>
+					</div>
+				</div>
+			</div>
+
+			
+			<?php
+				$cart_total_before_discounts = WC()->cart->get_subtotal();
+				$cart_total_before_discounts = 800;
+				$discount_total = WC()->cart->get_discount_total();
+				$discount_total = 600;
+				$shipping_total = WC()->cart->get_shipping_total();
+				$cart_total_after_discounts = WC()->cart->total;
+
+				if ($cart_total_before_discounts > 0 && $discount_total > 0) { ?>
+					<div class="product-discount-message">
+						<p>
+							<?php
+								$discount_percentage = ($discount_total / $cart_total_before_discounts) * 100;
+								$discount_percentage = round($discount_percentage, 2); 
+								
+								// הצגת ההודעה
+								$discount_percentage = '<span class="discount-percentage">' . $discount_percentage . '%</span>';
+								echo sprintf( __( 'Congratulations! You have just saved %s , which is %s !', 'woocommerce' ), wc_price( $discount_total ), $discount_percentage );			
+							?>
+						</p>
+					</div>
+				<?php } ?>	
+		</div>
+	</div>
+
+	<?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
+	<div class="cart_summary">
+		<div class="cart_summary_content">
+			<?php
+			/**
+			 * Cart collaterals hook.
+			 *
+			 * @hooked woocommerce_cross_sell_display
+			 * @hooked woocommerce_cart_totals - 10
+			 */
+			do_action( 'woocommerce_cart_collaterals' );
+			?>
+			<div class="coupon_wrapper">
+				<div class="coupon_summary" colspan="6" class="actions">
+				<h5 class="title"><?php _e( 'Voucher code', 'woocommerce' ); ?></h5>
+					<?php if ( wc_coupons_enabled() ) { ?>
+						<div class="coupon form-row">
+							<label for="coupon_code" class="">
+								<span> <?php esc_html_e( 'Enter voucher code here...', 'woocommerce' ); ?> </span>
+							</label> 
+							<input type="text" name="coupon_code" class="input-text coupon_code" id="coupon_code" value="" placeholder=" " /> 
+							<button type="submit" class="coupon_button  <?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"><?php esc_html_e( 'Activate voucher code', 'woocommerce' ); ?></button>
+							<?php do_action( 'woocommerce_cart_coupon' ); ?>
+						</div>
+					<?php } ?>
+
+					<?php do_action( 'woocommerce_cart_actions' ); ?>
+
+					<?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
+				</div>
+			</div>
+			<div class="another_data">
+				<h5><?php _e( 'Do you need help?', 'woocommerce' ); ?></h5>
+				<button type="button" aria-label="link" class="contact_mail">
+					<a aria-label="link" href="mailto:<?php echo get_field('contact_email','option'); ?>"  target="_blank"><?php _e( 'Contact us', 'woocommerce' ); ?></a>
+				</button>
+
+				<hr>
+				
+				<h5><?php _e( 'Useful links', 'woocommerce' ); ?></h5>
+				<button type="button" aria-label="link" class="back_to back_to_home_page">
+					<a aria-label="link" href="<?php echo home_url(); ?>"  target=""><?php _e( 'Back to home page', 'woocommerce' ); ?></a>
+				</button>
+				<?php
+					// $privacy_policy_page_id = get_option('wp_page_for_privacy_policy'); 
+					// $privacy_policy_url = get_permalink($privacy_policy_page_id);
+				?>
+				<button type="button" aria-label="link" class="back_to back_to_privact">
+					<a aria-label="link" href="<?php echo home_url(); ?>"  target=""><?php _e( 'Terms and Conditions', 'woocommerce' ); ?></a>
+				</button>
+				<button type="button" aria-label="link" class="back_to back_to_faq">
+					<a aria-label="link" href="<?php home_url(); ?>"  target=""><?php _e( 'Faq', 'woocommerce' ); ?></a>
+				</button>
+			</div>
+			<div class="desc_under_total">
+				<?php echo get_field('desc_under_summary'); ?>
+			</div>
+		</div>
 	</div>
 	<?php do_action( 'woocommerce_after_cart_table' ); ?>
 </form>
 
-<?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
-
-<div class="cart-collaterals">
-	<?php
-		/**
-		 * Cart collaterals hook.
-		 *
-		 * @hooked woocommerce_cross_sell_display
-		 * @hooked woocommerce_cart_totals - 10
-		 */
-		do_action( 'woocommerce_cart_collaterals' );
-	?>
-</div>
-
 <?php do_action( 'woocommerce_after_cart' ); ?>
 
-<!-- <div class="box_delivery container">
-	<div class="title">+++ DELIVERY AREA +++</div>
-	<p>Delivery area only Germany. Other countries: kare-design.com</p>
-</div> -->
+<section class="delivery_message_wrapper">
+	<div class="delivery_message">
+		<div class="title_message">
+			<h2> <?php _e( '+++ DELIVERY AREA +++', 'woocommerce' ); ?></h2>
+		</div>
+		<p><?php _e( 'Delivery area only Israel. To other countries: kare-design.com', 'woocommerce' ); ?></p>
+	</div>
+</section>

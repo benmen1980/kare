@@ -9,7 +9,7 @@ if(is_category() || is_product_category()) {
 else{
     // var_dump('2');
     $choose_module = get_field('choose_module');
-    $post_id = $post_id;
+    $post_id = get_the_ID();
 } 
 
 if($choose_module): 

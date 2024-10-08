@@ -6,15 +6,18 @@
 
     .woocommerce-breadcrumb {
         @extend %container;
-        padding: 1.25rem 0;
+        padding: 20px 16px;
         display: block;
         text-align: left;
         font-size: 10px;
         line-height: 16px;
         text-transform: capitalize;
+        @include media(">=phone") {
+            padding: 20px 0;
+        }
         @media (min-width: 1025px) {
             font-size: 12px;
-            line-height: 1.125rem;
+            line-height: 18px;
         }
         a {
             display: inline-flex;
@@ -39,19 +42,22 @@
             @media (min-width: 1840px) {
                 width: 1640px;
             }
-            display: flex;
             padding: 0;
+            @include media(">=phone") {
+                padding-bottom: 24px; 
+                display: flex;               
+            }
             .l_side {
                 display: flex;
                 flex-direction: column;
-                margin: 0 1rem;
-                height: 30rem;
-                @media (min-width: 480px) {
+                margin: 0 -16px;
+                height: 480px;
+                @include media(">=phone") {
                     width: 50%;
-                    top: 1.25rem;
+                    top: 20px;
                     position: sticky;
-                    min-height: 40rem;
-                    max-height: 42rem;
+                    min-height: 640px;
+                    max-height: 672px;
                     margin: 0;
                     height: 75vh;
                 }
@@ -73,7 +79,9 @@
                         position: relative;
                         width: 100%;
                         height: calc(100% - 116px);
-                        border: solid 1px #e4e4e4;
+                        @include media(">=phone") {
+                            border: solid 1px #e4e4e4;
+                        }
 
                         .gallery-thumbnail-slider {
                             width: 100%;
@@ -95,7 +103,7 @@
                                     display: flex !important;
                                     align-items: center !important;
                                     justify-content: center !important;  
-                                    padding: 1rem;
+                                    padding: 16px;
                                     cursor: pointer;
                                 
                                     img {
@@ -121,6 +129,7 @@
                                 padding-bottom: 0;
                                 &.swiper-button-disabled {
                                     opacity: 0;
+                                    display: none;
                                     animation: a-pointer-events 1s linear forwards;
                                 }
                             
@@ -168,11 +177,14 @@
                     }             
 
                     .small_img_slider_wrapper {
-                        padding: 0;
-                        margin-top: 1rem;
+                        padding: 0 16px;
+                        margin-top: 16px;
                         position: relative;
                         flex-grow: 1;
                         max-width: 100%;
+                        @include media(">=phone") {
+                            padding: 0;
+                        }
 
                         .swiper_img_slider.thumb-slider {
                             margin: 0 auto;
@@ -242,6 +254,7 @@
                                 padding-bottom: 0;
                                 &.swiper-button-disabled {
                                     opacity: 0;
+                                    display: none;
                                     animation: a-pointer-events 1s linear forwards;
                                     z-index: -1;
                                 }
@@ -487,8 +500,8 @@
                             &:hover {
                                 background-color: #000;
                                 color: #fff;
-                                i {
 
+                                i {
                                     color: #fff;
                                     content: url('/wp-content/themes/kare/dist/images/svg/heart-outline.svg');
                                     filter: brightness(0) saturate(100%) invert(99%) sepia(1%) saturate(46%) hue-rotate(113deg) brightness(117%) contrast(100%);
@@ -756,6 +769,7 @@
                     // padding-bottom: 32px;
                     &.swiper-button-disabled {
                         opacity: 0;
+                        display: none;
                         animation: a-pointer-events 1s linear forwards;
                     }
                 
@@ -1074,4 +1088,123 @@
     left: inherit;
     top: inherit;
     bottom: 20px;
+}
+
+#modal_mini_cart {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: -500px;
+    background-color: #fff;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.25);
+    transition: right 0.3s ease-in-out;
+    z-index: 9999;
+    &.active {
+        right: 0;
+    }
+    
+    @include media(">=phone") {
+        width: 415px;
+        right: -430px;
+    }  
+    
+    .sidebar-content {
+        .top_sidebar{
+            padding: 8px 16px;
+            border-bottom: 1px solid rgb(228, 228, 228);
+            .top_sidebar_title{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .close {
+                    font-size: 24px;
+                    cursor: pointer;
+                    transition-property: background-color,border-color,color,fill,stroke;
+                    transition-duration: .3s;
+                    background-color: #fff;
+                    border-radius: 0;
+                    padding: 13px 17px;
+                    &:hover{
+                        background-color: #000;
+                        img{
+                            filter: invert(100%) brightness(100%);
+                        }
+                    }
+                }
+                h2 {
+                    margin: 0px;
+                    font-size: 16px
+                }
+            }
+
+            #wc-add-product-notices{
+                padding: 8px 0;
+                .woocommerce-message {
+                    background-color: transparent;
+                    color: inherit;
+                    font-size: 12px;
+                    font-weight: 700;
+                    list-style-type: none;
+                    position: relative;
+                    margin: 0;
+                    &::before {
+                        content: '';
+                        background-image: url("../images/svg/check.svg");
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        left: 10px;
+                        width: 20px;
+                        height: 20px;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        filter: brightness(0) saturate(100%) invert(24%) sepia(55%) saturate(2418%) hue-rotate(88deg) brightness(94%) contrast(105%);
+                    }
+                }
+            }
+            .continue_shop_btn {
+                text-transform: uppercase;
+                @extend %black-btn; 
+                text-decoration: none;
+                text-align: center;
+                display: inline-flex;                      
+                align-items: center;
+                font-weight: 700;
+                background-color: #026805;
+                margin-bottom: 8px;
+                width: 100%;
+                        
+                &:hover {
+                    color: #026805;
+                    border-color: #026805;
+                    background-color: #fff;
+                }
+                    
+                svg {
+                    display: inline-block;
+                    flex-shrink: 0;
+                    text-decoration: none;
+                    margin-right: 8px;
+                }
+                
+            }
+        }
+        
+        .bottom_sidebar{
+            display: flex;
+            justify-content: flex-end;
+            flex-grow: 1;
+            flex-direction: column;
+            // overflow-y: auto;
+            padding-bottom: 100px;
+            height: calc(100vh - 201px);
+            @include media(">desktop") {
+                padding-bottom: 0;
+            }
+        }
+       
+    }
 }

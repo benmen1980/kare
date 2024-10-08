@@ -1,0 +1,13 @@
+$breakpoints: (phone: 480px, mobile: 768px, tablet: 940px, desktop: 1024px);
+
+@include media("<=tablet") {
+    .hidden-mobile {
+        display: none !important; 
+    }
+}
+
+@include media(">tablet") {
+    .hidden-desktop {
+        display: none !important;
+    }
+}

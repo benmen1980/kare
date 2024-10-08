@@ -17,6 +17,7 @@
         text-align: center;
         font-size: 16px;
     }
+
     .woocommerce-error {
       background-color: rgb(225,9,21);
       color: #fff;
@@ -40,6 +41,13 @@
         background-position: center;
         filter: invert(1);
       }
+
+        
+    .woocommerce-message {
+      background-color: #0c6c40;
+      color: #fff;
+      border: 0;
+      border-right: .6180469716em solid rgba(0, 0, 0, .15);
       a {
         &:hover {
           color: #fff;
