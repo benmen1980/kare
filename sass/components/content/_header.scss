@@ -188,10 +188,10 @@ header {
                         &#search-input {
                             border: none;
                             &:active {
-                                border: none;
+                                outline-style: solid;
                             }
                             &:focus-visible {
-                                border: none;
+                                outline-style: solid;
                             }
                         }
                     }
@@ -433,13 +433,13 @@ header {
         width: 100%;
         position: fixed;
         top: 0;
-        right: -500px;
+        right: calc(-100% - 20px);
         background-color: #fff;
         box-shadow: -2px 0 8px rgba(0, 0, 0, 0.25);
         transition: right 0.3s ease-in-out;
         z-index: 9999;
         &.open_left {
-            left: -500px;
+            left: calc(-100% - 20px);
             right: auto;
             box-shadow: 2px 0 8px rgba(0, 0, 0, 0.25);
             transition: left 0.3s ease-in-out;

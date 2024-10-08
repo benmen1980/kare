@@ -12,9 +12,9 @@
         font-size: 10px;
         line-height: 16px;
         text-transform: capitalize;
-        @include media(">=phone") {
-            padding: 20px 0;
-        }
+        // @include media(">=phone") {
+        //     padding: 20px 0;
+        // }
         @media (min-width: 1025px) {
             font-size: 12px;
             line-height: 18px;
@@ -34,7 +34,7 @@
         justify-content: space-between;
         
         @media (min-width: 480px) {
-            padding-bottom: 1.5rem !important;
+            padding-bottom: 24px !important;
         }
 
         .top_details {
@@ -42,7 +42,7 @@
             @media (min-width: 1840px) {
                 width: 1640px;
             }
-            padding: 0;
+            // padding: 0;
             @include media(">=phone") {
                 padding-bottom: 24px; 
                 display: flex;               
@@ -50,7 +50,7 @@
             .l_side {
                 display: flex;
                 flex-direction: column;
-                margin: 0 -16px;
+                margin: 0;
                 height: 480px;
                 @include media(">=phone") {
                     width: 50%;
@@ -125,7 +125,7 @@
                                 transition-duration: .3s;
                                 top: 0;
                                 bottom: 0;
-                                margin: auto 1.5rem;
+                                margin: auto 24px;
                                 padding-bottom: 0;
                                 &.swiper-button-disabled {
                                     opacity: 0;
@@ -134,7 +134,7 @@
                                 }
                             
                                 &.large-slider-nav-prev {
-                                    margin-left: 2.5rem;
+                                    margin-left: 40px;
                                     left: 0;
                                     svg.w-dir-left {
                                         transform: rotate(-180deg);
@@ -142,7 +142,7 @@
                                 }
                          
                                 &.large-slider-nav-next {
-                                    margin-right: 2.5rem;
+                                    margin-right: 40px;
                                     right: 0;
                                 }
                            
@@ -160,7 +160,7 @@
                                         border-color: rgb(228,228,228);
                                         background-color: rgb(255,255,255);
                                         justify-content: center;
-                                        padding: 1rem 1.5rem;
+                                        padding: 16px 24px;
                                         transition-property: background-color, border-color, color, fill, stroke;
                                         transition-duration: .3s;
                                         border-width: 1px;
@@ -169,7 +169,7 @@
                                     svg {
                                         display: inline-block;
                                         flex-shrink: 0;
-                                        margin: 0 -.5rem;
+                                        margin: 0 -8px;
                                     }
                                 }
                             }
@@ -214,9 +214,9 @@
 
                                     .product_zoom_thumbnail_item{
                                         @extend %center-flex;
-                                        width: 6.25rem;
-                                        height: 6.25rem;
-                                        padding: .5rem;
+                                        width: 100px;
+                                        height: 100px;
+                                        padding: 8px;
                                         border: solid 1px #e4e4e4;
                                         background-color: #fff;
                                         overflow: hidden;
@@ -284,7 +284,7 @@
                                         border-color: rgb(228,228,228);
                                         background-color: rgb(255,255,255);
                                         justify-content: center;
-                                        padding: 1rem 1.5rem;
+                                        padding: 16px 24px;
                                         transition-property: background-color, border-color, color, fill, stroke;
                                         transition-duration: .3s;
                                         border-width: 1px;
@@ -293,7 +293,7 @@
                                     svg {
                                         display: inline-block;
                                         flex-shrink: 0;
-                                        margin: 0 -.5rem;
+                                        margin: 0 -8px;
                                     }
                                 }
                             }
@@ -304,15 +304,15 @@
             }
 
             .r_side {
-                padding: 1.25rem 1rem 1.5rem 1rem;
+                padding: 20px 16px 24px 16px;
                 box-sizing: border-box;
                 @media (min-width: 480px) {
                     padding-top: 0;
                     width: 50%;
                 }
                 @media (min-width: 1025px) {
-                    padding-right: 2.5rem;
-                    padding-left: 2.5rem;
+                    padding-right: 40px;
+                    padding-left: 40px;
                     width: 41.666667%;
                 }
                 @media (min-width: 1420px) {
@@ -324,19 +324,19 @@
                     .product-sku {
                         margin: 0;
                         font-size: $font-size-base;
-                        line-height: 1.3125rem;
-                        padding-bottom: .25rem;
+                        line-height: 21px;
+                        padding-bottom: 4px;
                     }
             
                     h1 {
                         font-size: 20px;
-                        line-height: 1.875rem;
+                        line-height: 30px;
                         margin: 0;
                     }
             
                     .wc_tags{
-                        margin-bottom: -.5rem;
-                        margin-top: .5rem;
+                        margin-bottom: -8px;
+                        margin-top: 8px;
                         display: flex;
                         flex-wrap: wrap;
 
@@ -344,11 +344,11 @@
                             background-color: #fff;
                             color: #000;
                             border: solid 1px #e4e4e4;
-                            border-radius: .25rem;
-                            padding: .25rem .5rem;
-                            margin: 0 .5rem .5rem 0;
+                            border-radius: 4px;
+                            padding: 4px 8px;
+                            margin: 0 8px 8px 0;
                             font-size: 14px;
-                            line-height: 1.3125rem;
+                            line-height: 21px;
                             cursor: pointer;
                             box-sizing: border-box;
                         }
@@ -419,6 +419,9 @@
                         .custom_select_wrapper {
                             position: relative;
                             margin-right: 8px;
+                            @include media("<=desktop") {
+                                display: none;
+                            }
 
                             .btn_quantity_wrapper {
                                 display: flex;
@@ -558,13 +561,13 @@
                     }
             
                     .about_product {
-                        margin-top: 1.25rem;
+                        margin-top: 20px;
                         .list_qualities_pdts {
                             display: flex;            
                             flex-direction: column;
                             .item_pdt {
                                 display: flex;
-                                margin-bottom: .25rem;
+                                margin-bottom: 4px;
                                 svg {
                                     width: 18px;
                                     height: 18px;
@@ -574,26 +577,26 @@
                                 }
                                 .text_item {
                                     padding: 0;
-                                    padding-left: .5rem;
+                                    padding-left: 8px;
                                     margin: 0 0 4px 4px;
                                     font-size: $font-size-base;
-                                    line-height: 1.3125rem;
+                                    line-height: 21px;
                                     text-transform: uppercase;
                                     vertical-align: inherit;
                                 }
                             }
                         }
                         h5 {
-                            margin-top: 1.25rem;
-                            margin-bottom: 0.5rem;
+                            margin-top: 20px;
+                            margin-bottom: 8px;
                         }
                         .woocommerce-product-details__short-description {
                             ul {
                             margin: 0; 
-                            padding-left: 1rem;
+                            padding-left: 16px;
                             li {
                                     font-size: $font-size-base;
-                                    line-height: 1.3125rem;
+                                    line-height: 21px;
             
                             }
                             }
@@ -614,14 +617,24 @@
 
         .accordion_wrapper {
             width: 100%;
-            margin: 2.5rem auto;
+            margin-top: 8px;
+            margin-bottom: 24px;            
             padding: 0;
             display: block;
+            @include media(">phone") {
+                margin: 40px auto;
+            }
+            @include media(">desktop") {
+                max-width: 100%;
+            }
             h2 {
+                @include media("<=desktop") {
+                    display: none;
+                }
                 margin: 0;
-                margin-bottom: 1rem;
+                margin-bottom: 16px;
                 font-size: 36px;
-                line-height: 3rem;
+                line-height: 48px;
                 text-align: center;
                 font-weight: 400;
             }           
@@ -629,13 +642,19 @@
         }
 
         .related_products_section {
-            padding: 0;
-            padding-top: 30px;
+            padding: 30px 16px 0 16px;
+            @include media(">desktop") {
+                padding: 0;
+                padding-top: 30px;
+            }
             h2 {
                 margin: 32px 0 4px 0;
                 padding: 0;
                 font-weight: 400;
-                text-align: center;
+                text-align: left;
+                @include media(">desktop") {
+                    text-align: center;
+                }
             }
 
             .appropriate_categories {
@@ -694,9 +713,12 @@
 
             .interesting_products {               
                 h3 {
-                    text-align: center;
+                    text-align: left;
                     margin: 0;
                     margin-bottom: 16px;
+                    @include media(">desktop") {
+                        text-align: center;
+                    }
                 }
 
                 .interesting_category_wrapper {
@@ -774,12 +796,12 @@
                     }
                 
                     &.swiper-nav-prev {
-                        margin-left: 2.5rem;
+                        margin-left: 40px;
                         left: 0;
                     }
                 
                     &.swiper-nav-next {
-                        margin-right: 2.5rem;
+                        margin-right: 40px;
                         right: 0;
                     }
                 
@@ -797,7 +819,7 @@
                             border-color: rgb(228,228,228);
                             background-color: rgb(255,255,255);
                             justify-content: center;
-                            padding: 1rem 1.5rem;
+                            padding: 16px 24px;
                             transition-property: background-color, border-color, color, fill, stroke;
                             transition-duration: .3s;
                             border-width: 1px;
@@ -806,7 +828,7 @@
                         svg {
                             display: inline-block;
                             flex-shrink: 0;
-                            margin: 0 -.5rem;
+                            margin: 0 -8px;
 
                             &.w-dir-left {
                                 transform: rotate(-180deg);
@@ -821,7 +843,7 @@
                     right: 0;
                     left: 0;
                     bottom: 0;
-                    height: 1.25rem;
+                    height: 20px;
                 
                     .swiper-pagination {
                         position: absolute;
@@ -847,7 +869,7 @@
                             opacity: 1;
                             cursor: pointer;
                             transform: scale(1);    
-                            margin: 0 .3rem;
+                            margin: 0 5px;
                 
                             &.swiper-pagination-bullet-active{
                                 background-color: #000;
@@ -876,7 +898,7 @@
                 @extend %center-flex;
                 width: 100%;
                 max-width: 100%;
-                padding: 1.25rem;
+                padding: 20px;
                 font-size: $font-size-button;                            
                 text-align: center;
                 text-transform: uppercase;
@@ -889,7 +911,7 @@
                 }
 
                 .title {
-                    margin-right: .5rem;
+                    margin-right: 8px;
                     flex-grow: 1;
                 }
                 svg {
@@ -912,12 +934,19 @@
                 display: block;
             }
             .data_wrapper {
-                padding: 3.75rem 0;
+                padding: 20px 8px;
                 font-size: $font-size-base;
-                line-height: 1.3125rem;
+                line-height: 21px;
+                @include media(">desktop") {
+                    padding: 60px 8px;
+                }
+                @include media(">phone") {
+                    font-size: 16px;
+                    line-height: 24px;
+                }
 
                 h3 {
-                    margin-bottom: .5rem;
+                    margin-bottom: 8px;
                     text-align: center;
                     font-weight: 400;
                 }
@@ -926,22 +955,26 @@
                     list-style: none;
                     margin: 0;
                     padding: 0;
-                    font-size: $font-size-button;
-                    line-height: 1.5rem;
+                    font-size: 14px;
+                    line-height: 21px;
+                    @include media(">desktop") {
+                        font-size: $font-size-button;
+                        line-height: 24px;
+                    }
 
                     li {
-                        padding: .25rem 0;
+                        padding: 4px 0;
                         display: flex;
 
                         span {
                             width: 50%;
                             &.description_bold {
                                 text-align: right;
-                                padding-right: .5rem;
+                                padding-right: 8px;
                                 font-weight: 700;
                             }
                             &.answer {
-                                padding-left: .5rem;
+                                padding-left: 8px;
                             }
                         }
                     }
@@ -949,7 +982,7 @@
             }
 
             .video_wrapper {
-                padding: 1.25rem;
+                padding: 20px;
 
                 .video_container {
                     max-width: 768px;
@@ -960,7 +993,10 @@
             .dimensions_wrapper{
                 @extend %center-flex;
                 flex-wrap: wrap;
-                padding: 3.75rem 0;
+                padding: 20px 0;
+                @include media(">desktop") {
+                    padding: 20px 0;
+                }
 
                 img {
                     display: inline-block;
@@ -975,28 +1011,33 @@
             }
 
             .description_wrapper {
-                padding: 3.75rem 0;
+                padding-top: 20px;
+                padding-bottom: 20px;
                 font-size: $font-size-base;
-                line-height: 1.3125rem;
+                line-height: 21px;
+                @include media(">desktop") {
+                    padding-top: 60px;
+                    padding-bottom: 60px;
+                }
                 h3 {
                     margin: 0;
-                    padding-bottom: 1.25rem;
+                    padding-bottom: 20px;
                     text-align: left;
                     font-weight: 500;
                 }
                 .text_description {
                     font-size: $font-size-button;
-                    line-height: 1.5rem;
+                    line-height: 24px;
                 }
             }
 
             .delivery_wrapper {
 
                 .text_delivery {
-                    padding: 1.25rem;
+                    padding: 20px;
                     p, span{
                         font-size: $font-size-button;
-                        line-height: 1.5rem;
+                        line-height: 24px;
                     }
                 }
                 
@@ -1004,7 +1045,10 @@
 
             .reviews_wrapper {
                 .customer_reviews {
-                    padding: 60px 0;
+                    padding: 20px 0;
+                    @include media(">desktop") {
+                     padding: 60px 0;
+                    }
 
                     .btn_white_hover {
                         @extend %white-btn;
@@ -1043,18 +1087,29 @@
             }
 
             .downloads_wrapper {
-                padding: 3.75rem 0;
+                padding-top: 20px;
+                padding-bottom: 20px;                
                 display: flex;
-                flex-direction: row;
+                flex-direction: column;
                 align-items: center;
                 justify-content: space-between;
+                @include media(">desktop") {
+                    padding-top: 60px;
+                    padding-bottom: 60px;   
+                    flex-direction: row;
+                }
                 
                 h6 {
                     white-space: nowrap;
                 }
                 .btn_white_hover {
                     @extend %white-btn;
-                    width: 20rem;
+                    width: 100%;
+                    margin-top: 8px;
+                    @include media(">desktop") {
+                        margin-top: 0;
+                        width: 320px;
+                    }
                     &:hover {
                         background-color: #000;
                         color: #fff;
@@ -1095,9 +1150,8 @@
     width: 100%;
     position: fixed;
     top: 0;
-    right: -500px;
+    right: calc(-100% - 20px);
     background-color: #fff;
-    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.25);
     transition: right 0.3s ease-in-out;
     z-index: 9999;
     &.active {
@@ -1107,6 +1161,7 @@
     @include media(">=phone") {
         width: 415px;
         right: -430px;
+        box-shadow: -2px 0 8px rgba(0, 0, 0, 0.25);
     }  
     
     .sidebar-content {

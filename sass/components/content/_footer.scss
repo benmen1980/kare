@@ -99,12 +99,14 @@
                             text-decoration: none;
                             background-color: #fff;
                             margin-right: 8px;
-                            margin-left: 16px;
                             padding: 20px;
                             @include media(">=phone") {
                                   background-color: transparent;  
                                   margin: 0;
                                   padding: 0;
+                            }
+                            &:nth-child(2) {
+                                margin-left: 16px;
                             }
                             &:first-child {
                                 padding-bottom: 16px;
@@ -453,6 +455,7 @@
                         
                             &:not(.dropdown-toggle) {
                                 display: none;
+                                margin: 0;
                             }
                         }
                     } 
@@ -474,9 +477,11 @@
         @extend %container;
         padding: 2.5rem !important;
         flex-direction: column !important;
-        padding-bottom: 5.75rem !important;
+        padding-bottom: 100px !important;
         p{
-            padding-top: 1rem;
+            padding-top: 16px;
+            font-size: 12px;
+            line-height: 18px;
             @include media("<=phone") {
                 text-align: left;
             }

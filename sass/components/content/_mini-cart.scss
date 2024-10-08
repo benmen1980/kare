@@ -161,7 +161,7 @@
                             padding: 12px 20px;
                             text-align: left;
                             &:focus-visible {
-                                border: 1px solid #e4e4e4 !important;
+                                outline-style: solid;
                             }
                             /*&:hover {
                                 background-color: #000;

@@ -252,7 +252,7 @@
 					</a>
 				</div>	
 				<div class="bottom_sidebar widget_shopping_cart_content">
-					<?php woocommerce_mini_cart(); ?>
+					<?php  woocommerce_mini_cart(); ?>
 				</div>
 			</div>
 		</div>

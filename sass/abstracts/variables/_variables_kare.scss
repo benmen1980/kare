@@ -42,6 +42,7 @@ button {
     font-family: $font-family;
     font-weight: 400;
     font-size: 16px;
+    line-height: 24px;
     color: #fff;
     background-color: $color-background-button;
     border: none;
@@ -100,7 +101,7 @@ button {
     border-radius: 0;
     font-family: $font-family;
     font-size: $font-size-button;
-    line-height: 20px;
+    line-height: 24px;
     color: $color-text;
     text-align: center;
     border: $border-width solid #e4e4e4;
@@ -121,6 +122,7 @@ button {
     border: none;
     font-family: $font-family;
     font-size: $font-size-base;
+    line-height: 21px;
     color: $color-text;
     text-align: left;
 }

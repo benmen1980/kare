@@ -3,11 +3,15 @@
     width: 100%;
     height: 100%;
     &:not(.empty) {
-        height: 605px;
+        height: 245px;
+        @include media(">desktop") {
+            height: 605px;
+        }
     }
     & > .section-image-text {
         width: 100%;
-        height: 100%;    
+        height: 100%;   
+        display: inline-block;
         img {
             width: 100%;
             height: 100%;
@@ -23,15 +27,21 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 80px;
+            font-size: 24px;
             font-weight: 400;
-            line-height: 16px;
+            line-height: 36px;
             text-align: center;
             text-transform: none;
             text-shadow: 2px 2px 13px #000;
             color: #fff;
-            padding: 0 3.75rem;  
-            z-index: 2;        
+            padding: 0 24px;  
+            z-index: 2;  
+            max-width: 1420px;
+            @include media(">desktop") {
+                font-size: 80px;  
+                line-height: 1;    
+                padding: 0 60px;
+            }      
         }
     }
 
@@ -39,27 +49,45 @@
         margin: 0;
         .only_text {
             width: auto;
-            font-size: $font-size-heading2;
+            font-size: 24px;
             font-weight: 700;
-            line-height: 48px;
-            text-align: center;
+            line-height: 36px;
+            text-align: left;
             text-transform: uppercase;
             text-shadow: none;
             color: #000; 
-            padding: 0 3.75rem;          
-            padding-top: 1rem;
+            padding: 0 16px;          
+            padding-top: 16px;
             margin: 0;
+            @include media(">desktop") {
+                padding: 0 60px;
+                font-size: $font-size-heading2;
+                line-height: 48px;
+                text-align: center;
+            } 
         }
     }
 
 }
 
 .breadcrumb_section {
-    padding: 0 1rem;
+    padding: 0 16px;
     .woocommerce-breadcrumb {
-        margin: 1rem 0;
+        margin-top: 8px;
+        margin-bottom: 16px;
+        font-size: 10px;
+        line-height: 16px;
+        text-transform: capitalize;
+        text-align: right;
         @extend %center-flex;
-        justify-content: center;
+        justify-content: flex-start;
+        @include media(">desktop") {
+            justify-content: center;
+            font-size: 12px;
+            line-height: 20px;
+            text-align: center;
+            margin: 16px 0;
+        }
         .w-breadcrumb {
             font-size: 10px;
             line-height: 16px;
@@ -87,30 +115,176 @@
 }*/
 
 .slider_cat_section {
-    margin-bottom: 2.5rem;
+    margin-bottom: 40px;
+    padding-left: 16px;
+    @include media(">desktop") {
+        padding: 0;
+    }
     .slider_cat {
-        margin-bottom: 2.5rem;
+        margin-bottom: 40px;
+        padding-right: 0;
     
         h5 {
-            text-align: center;
-            margin-top: .5rem;
-            margin-bottom: .25rem;
+            text-align: left;
+            margin-top: 8px;
+            margin-bottom: 4px;
+            @include media(">desktop") {
+                text-align: center;
+            }
+
         }
         .section_modules_wrapper {
-            margin-bottom: 6.25rem;
-            margin-top: 3.75rem;
+            margin-bottom: 20px;
+            @media (min-width: 1420px) {
+                margin-bottom: 100px;
+                margin-top: 60px;
+            }
             .section_slider_cat_wrap {
                 padding: 0;
+            }
+            .tabs_wrapper.rounded_btn {
+                position: relative;
+                .swiper_slide_cat {
+                    @extend %center-flex;
+
+                    #rounded_btn {
+                        justify-content: flex-start;
+                        @include media(">desktop") {
+                            justify-content: center;
+                        }
+                                                           
+                        .swiper-slide {
+                            max-width: 100%;
+                            a {
+                                width: 100px;
+                                display: block;
+                                text-align: center !important;
+                                // margin-bottom: 16px;
+                                text-decoration: none;
+                                @media (min-width: 1420px) {
+                                    width: 144px;
+                                }
+                                &:hover {
+                                    text-decoration: underline;
+                                }
+        
+                                div {
+                                    // height: calc(100% - 43px);
+                                    // padding: 1.25rem 2rem !important;
+                                    background-color: $color-background-gray;
+                                    border-radius: 100%;
+                                    @extend %center-flex;
+                                    width: 100px;
+                                    height: 100px;
+                                    margin-bottom: 16px;
+                                    @media (min-width: 1420px) {
+                                        width: 144px;
+                                    height: 144px;
+                                    }
+                                    img {
+                                        display: inline-block;
+                                        object-fit: contain;
+                                        mix-blend-mode: darken ;
+                                        width: 60px;
+                                        height: 60px;
+                                        @media (min-width: 1420px) {
+                                            height: 100px;
+                                            width: 100px;
+                                        }
+                                        
+                                    }
+                                }
+        
+                                span {
+                                    display: block;
+                                    word-break: break-word;
+                                    overflow: hidden ;
+                                    text-align: center;
+                                    font-size: 12px;
+                                    font-weight: 700 ;
+                                    line-height: 18px ;
+                                    padding: 0 4px;
+                                }
+                            }
+                        }
+                    }
+
+                    .swiper-nav {
+                        z-index: 1;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        will-change: opacity;
+                        position: absolute;
+                        transition-property: opacity;
+                        transition-duration: .3s;
+                        top: 0;
+                        bottom: 0;
+                        margin-top: auto;
+                        margin-bottom: auto;
+                        padding-bottom: 48px;
+                        &.swiper-button-disabled {
+                            opacity: 0;
+                            animation: a-pointer-events 1s linear forwards;
+                        }
+        
+                        &.swiper-nav-prev {
+                            margin-left: 40px;
+                            left: 0;
+                        }
+        
+                        &.swiper-nav-next {
+                            margin-right: 40px;
+                            right: 0;
+                        }
+        
+                        .w-btn {
+                            position: relative;
+                            display: inline-flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                            max-width: 100%;
+                            text-align: left;
+                            cursor: pointer; 
+        
+                            &.w-color-white {
+                                color: rgb(66,66,66);
+                                border-color: #e4e4e4;
+                                background-color: #fff;
+                                justify-content: center;
+                                padding: 16px 24px;
+                                transition-property: background-color, border-color, color, fill, stroke;
+                                transition-duration: .3s;
+                                border-width: 1px;
+                                border-radius: 0;
+                                &:hover {
+                                    background-color: #000;  
+                                    color: #fff;
+                                }
+                            }
+                            svg {
+                                display: inline-block;
+                                flex-shrink: 0;
+                                margin: 0 -8px;
+                                &.w-dir-left {
+                                    transform: rotate(-180deg);
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
 }
 
-.container {
+.container-archive-product {
+    padding-left: 0;
+    padding-right: 0;
     .filtering_wrapper {
         @extend %center-flex;
-        padding: 0 1rem;
-        margin-top: 1.5rem;
+        padding: 0 16px;
+        margin-top: 24px;
         @media (min-width: 480px) {
             flex-wrap: wrap;
         }
@@ -121,8 +295,8 @@
             background-color: #fff;
             border: solid 1px #e4e4e4;
             border-radius: 0;
-            padding: 1rem 1.5rem;
-            margin: .25rem;
+            padding: 16px 24px;
+            margin: 4px;
             flex-shrink: 0;
             max-width: 100%;
             text-align: left;
@@ -138,7 +312,7 @@
 
             }
             svg {
-                margin-left: 0.5rem;
+                margin-left: 8px;
                 display: inline-block;
                 width: 24px;
                 height: 24px;
@@ -147,22 +321,30 @@
     }
 
     .child_category_wrapper {
+        .woocommerce-notices-wrapper, 
+        .woocommerce-result-count,
+        .woocommerce-ordering {
+            padding: 0 16px;
+        }
         ul.products {
             display: flex;
             flex-wrap: wrap;
             margin: 0 -1px;
-            margin-top: 2rem;
+            margin-top: 8px;
+            @include media(">phone") {
+                margin-top: 32px;
+            }
 
             .section_modules_wrapper {
                 width: 100%; 
                 .module_banner_promotion .banner_promotion_wrapper {
-                    margin-bottom: 2rem;
+                    margin-bottom: 32px;
                 }
             }
         }
 
         .woocommerce-no-products-found {
-            padding-bottom: 2.5rem;
+            padding-bottom: 40px;
 
             .woocommerce-info {
                 background-color: transparent;
@@ -173,8 +355,33 @@
     }
 
     div.module_half_wrapper {
+        .module_50_50_content.module_50_50 {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            @include media(">desktop") {
+                display: flex;
+                align-items: flex-start;
+            }
+        }
         h2 {
-            text-align: left ;
+            font-size: 20px;
+            line-height: 30px;
+            text-align: left !important;
+            font-weight: 400;
+            strong {
+                font-weight: normal;
+            }
+            &.title_hero_content:not(:first-child) {
+                display: block;
+
+            }
+            @include media("<=desktop") {
+                text-align: left !important;
+            }
+            @include media(">desktop") {
+                font-size: 24px;
+                line-height: 36px;
+            }
         }
     }
 }

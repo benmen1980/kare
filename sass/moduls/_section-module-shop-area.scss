@@ -1,0 +1,41 @@
+.module_shop_content {
+    padding: 0 16px;
+    padding-top: 40px;
+    @include media(">desktop") {
+        display: flex;
+        align-items: center;
+        padding: 0;
+        padding-top: 20px;
+        height: 400px;
+    }
+    /*.img_block {
+        display: flex !important;
+        height: 100%;
+    }*/
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        display: inline-block;
+    }
+    
+    
+
+    .w-1-2 {
+        align-content: center;
+
+        h4 {
+            margin: 0;
+            margin-bottom: 8px;
+            @include media("<=desktop") {
+                text-align: left !important;
+            }
+        }
+
+        p {
+            @include media("<=desktop") {
+                text-align: left !important;
+            } 
+        }
+    }
+}

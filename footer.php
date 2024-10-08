@@ -97,7 +97,7 @@
 			<div class="footer-container bottom-footer background-white">
 				<img src="<?php echo get_template_directory_uri();?>/dist/images/logo-black.png" alt="KARE - Buy KARE furniture" width="83" height="14" class="text-black">
 				<?php
-				$text_area_content = get_field('regulations_service_text'); 
+				$text_area_content = get_field('regulations_service_text','option'); 
 				if( $text_area_content ) {
 					echo '<p class="regulations-service-text text-center">';
 					echo wp_kses_post( $text_area_content ); 

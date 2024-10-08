@@ -341,10 +341,11 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 				$video_url = $product_details['url_video'];
 				$img_link = $product_details['img_link'];
 				$txt_description = $product_details['more_description'];
-				$delivery_information = $product_details['delivery_information'];
 				$file_download = $product_details['file_download'];
 
-			endif; ?>
+			endif; 
+			$delivery_information = get_field('delivery_information', 'option');;
+			?>
 
 			<div class="accordion_item">
 				<div class="accordion_title">
@@ -521,7 +522,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 	<section class="related_products_section container">
 		<?php if ($categories_fits) : ?>
 			<section class="appropriate_categories">
-				<h2 class="title_wrapper"> <b><?php echo esc_html_e('This fits:'); ?></b></h2>
+				<h2 class="title_wrapper"> <b><?php echo esc_html_e('This fits:', 'kare'); ?></b></h2>
 				<div class="more_categories_wrapper">
 					<?php
 
@@ -548,7 +549,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 			</section>
 		<?php endif; ?>
 		<section class="more_same_category">
-			<h2 class="title_wrapper"><b><?php echo esc_html_e('More'); ?></b> <?php echo esc_html($category->name);?></h2>
+			<h2 class="title_wrapper"><b><?php echo esc_html_e('More', 'kare'); ?></b> <?php echo esc_html($category->name);?></h2>
 			<div class="same_category_wrapper">
 				<?php
 				$args = array(
@@ -623,7 +624,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 			$query = new WP_Query( $args );
 		
 			if ( $query->have_posts() ) { ?>
-				<h2 class="title_wrapper"><b><?php echo esc_html_e('Bestseller'); ?></b> <?php echo esc_html($category->name);?></h2>
+				<h2 class="title_wrapper"><b><?php echo esc_html_e('Bestseller', 'kare'); ?></b> <?php echo esc_html($category->name);?></h2>
 				<div class="same_category_wrapper">
 					<div class="tabs_wrapper">
 						<div class="swiper_slide_pdts swiper_slide_bestseller_category swiper-container">
@@ -658,7 +659,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 			?>
 		</section>
 		<section class="interesting_products">
-			<h3 class="title_wrapper"><?php echo esc_html_e('Interesting products for you'); ?> </h3>
+			<h3 class="title_wrapper"><?php echo esc_html_e('Interesting products for you', 'kare'); ?> </h3>
 			<div class="interesting_category_wrapper">
 				<a href="<?php echo get_term_link($category->term_id); ?>" class="interesting_category" title="<?php echo $category->name;?>" aria-lable="link">
 					<?php echo $category->name;?>
@@ -666,7 +667,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 			</div>
 		</section>
 		<section class="bestseller_products">
-			<h2 class="title_wrapper"><b><?php echo esc_html_e('Bestseller'); ?></b></h2>
+			<h2 class="title_wrapper"><b><?php echo esc_html_e('Bestseller', 'kare'); ?></b></h2>
 			<div class="same_category_wrapper">
 				<?php
 				$args = array(

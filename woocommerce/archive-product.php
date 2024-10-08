@@ -32,6 +32,19 @@ $img_cat_bg = get_field('img_link_bg', 'product_cat_' . $category_id);
 $choose_module = get_field('choose_module', 'category_'. $category_id .'');
 $post_id = 'category_'. $category_id;
 
+
+$parent_category_id = $category_id;
+$child_categories = get_terms( array(
+    'taxonomy' => 'product_cat',
+    'child_of' => $parent_category_id,
+    'hide_empty' => false, // can be set to true if you want to hide empty
+) );
+
+// echo "<pre>"; 
+// print_r($child_categories);
+// echo "</pre>";
+
+
 ?>
 <header class="woocommerce-products-header<?php echo empty($img_cat_bg) ? ' empty' : '';?>">
 	<?php if (!empty($img_cat_bg)) : ?>
@@ -63,48 +76,51 @@ $post_id = 'category_'. $category_id;
 	</div>
 </section>
 
-<?php if (!empty($choose_module)) :
-	foreach ($choose_module as $module) :
-		if (isset($module['module_list']) && $module['module_list'] === 'module_slider_categories') : ?>
-			<section class="section_wrap slider_cat_section">
-				<div class="slider_cat container">
-					<h5>Categories in "<?php echo $current_term_name ?>"</h5>
-					<div class="section_modules_wrapper">
-						<?php  
-							while(the_repeater_field('choose_module',  $post_id)): 
-								$mod = get_sub_field('module_list');
-								$mod = explode(':', $mod);
-								switch ($mod[0]) {
-									case 'module_slider_categories':
-										get_template_part('modules/section','module_slider_categories');
-										break;
-								}
-								// break;
-							endwhile;
-							// get_template_part('modules/section','module_slider_categories');
-							
-							/*get_template_part('modules/section', 'case');
-							$choose_module = get_field('choose_module', 'category_'. $category_id .'');
-
-							if (!empty($choose_module)) {
-								foreach ($choose_module as $module) {
-									if (isset($module['module_list']) && $module['module_list'] === 'module_slider_categories') {
-										get_template_part('modules/section','module_slider_categories');
-										break; // יציאה מהלולאה לאחר מציאת המודול המתאים
-									}
-								}
-							}*/
-						?>
+<?php if ( !empty($child_categories) && ! is_wp_error( $child_categories ) ) : ?>
+	<section class="section_wrap slider_cat_section">
+		<div class="slider_cat container">
+			<h5><?php echo sprintf( __( 'Categories in "%s"', 'kare' ), $current_term_name ); ?></h5>
+			<div class="section_modules_wrapper">
+				<div class="tabs_wrapper swiper rounded_btn">
+					<div class="swiper_slide_cat swiper-container categoty-slider">
+						<div id="rounded_btn" class="slider_categories swiper-wrapper">
+							<?php foreach ($child_categories as $child_category) :
+								$cat_name = esc_html($child_category->name); 
+								$cat_link = esc_url( get_term_link($child_category->term_id ));
+								$cat_img_link = get_field('img_link_cat', 'product_cat_' . $child_category->term_id); 
+							?>   
+							<div class="swiper-slide">
+								<a href="<?php echo $cat_link; ?>" class="image_btn" title="<?php echo $cat_name;?>" aria-lable="link">
+									<div class="w-card-category-wrapper" >
+										<img src="<?php echo !empty($cat_img_link) ? $cat_img_link : ''?>" alt="<?php echo $cat_name;?>" width="150" height="150"/>
+									</div>
+									<span><?php echo $cat_name;?></span>  
+								</a>
+							</div>
+							<?php endforeach; ?>
+						</div>
+						<!-- arrows -->
+						<div class="swiper-nav swiper-nav-prev swiper-button-disabled">
+							<button aria-label="vorherige" type="button" class="w-btn w-color w-color-white">
+								<?php echo str_replace('<svg', '<svg class="w-dir-left"', file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg')); ?>
+							</button>
+						</div>
+						<div class="swiper-nav swiper-nav-next">
+							<button aria-label="button" type="button" class="w-btn w-color w-color-white">
+								<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg'); ?>
+							</button>
+						</div>
 					</div>
 				</div>
-			</section>
-		<?php endif;
-	endforeach;
+			</div>
+		</div>
+	</section>
+<?php
 endif;
 ?>
 
-<div class="container">
-	<div class="filtering_wrapper">
+<div class="container container-archive-product">
+	<!-- <div class="filtering_wrapper">
 		<button class="btn_filter_pdts">
 			<span class="filter_name">delivery time</span>
 			<svg></svg>
@@ -125,7 +141,7 @@ endif;
 			<span class="filter_name">All filters</span>
 			<svg></svg>
 		</button>
-	</div>
+	</div> -->
 	<div class="product_sorting_wrapper"></div>
 	<div class="child_category_wrapper" id="<?php echo 'term-'.$category_id;?>">
 		

@@ -45,6 +45,9 @@ if($choose_module):
             case 'module_register_newsletter':
                 get_template_part('modules/section','module_register_newsletter');
                 break;
+            case 'module_shop_area':
+                get_template_part('modules/section','module_shop_area');
+                break;
         }
     endwhile;
 endif;

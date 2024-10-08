@@ -1,0 +1,159 @@
+.contact-page {
+    .top-txt-img-contact {
+        position: relative;
+        width: 100%;
+        height: 245px;
+        @include media(">desktop") {
+            height: 605px;
+        }       
+  
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            @media (min-width: 1025px) {
+                display: block;
+            } 
+            z-index: 1;           
+        }
+
+        h1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 36px;
+            text-align: center;
+            text-transform: none;
+            text-shadow: 2px 2px 13px #000;
+            color: #fff;
+            padding: 0 24px;  
+            z-index: 2;  
+            max-width: 1420px;
+            @include media(">desktop") {
+                font-size: 80px;  
+                line-height: 1;    
+                padding: 0 60px;
+            }
+        }
+    }
+
+    .breadcrumb_page {
+        .woocommerce-breadcrumb {
+            margin-top: 20px;
+            margin-bottom: 40px;
+            padding: 0 16px;
+            font-size: 10px;
+            line-height: 16px;
+            text-transform: capitalize;
+            text-align: right;
+            @extend %center-flex;
+            justify-content: flex-start;
+            
+            @include media(">desktop") {
+                justify-content: center;
+                font-size: 12px;
+                line-height: 20px;
+                text-align: center;
+            }
+            
+            .w-breadcrumb {
+                a {
+                    display: inline-flex;
+                    text-decoration: none;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+
+    .description-contact {
+        h3 {
+            padding-bottom: 40px;
+            padding-bottom: 20px;
+            font-weight: 400;
+            margin: 0;
+            @include media(">desktop") {
+                 text-align: center;
+            }
+        }
+        .store-details-wrapper {
+            display: flex;
+            flex-direction: column-reverse;;
+            @include media(">desktop") {
+                flex-direction: row;
+                padding-bottom: 40px;
+            }
+
+            .l-side {
+                flex-direction: column; 
+                flex: 1 1 0%;
+                overflow: hidden;
+                height: min-content;
+                background-color: #F4F4F4;
+                padding: 40px 16px;
+                @include media(">desktop") {
+                    margin-right: 20px; 
+                    padding: 40px;
+                }
+
+                h2 {
+                    margin: 0;
+                    font-weight: 400;
+                    font-size: 20px;
+                    line-height: 31px;
+                    text-align: left;
+                    @include media(">desktop") {
+                        font-size: 24px;
+                        line-height: 36px;
+                        text-align: center;
+                    }
+                }
+                .txt-store-desc {
+                    margin-top: 16px;
+                }
+
+            }
+
+            .r-side {
+                border: 1px solid #e4e4e4;
+                display: flex;
+                flex-wrap: wrap;
+                align-self: flex-start;
+                order: 9999;
+                margin-bottom: 24px;
+                padding: 16px;
+                width: auto;
+                @include media(">phone") {
+                    order: 9999;
+                    text-align: center;
+                }
+                @include media(">desktop") {
+                    margin-bottom: 0;
+                    padding: 32px;
+                    text-align: left;
+                    width: 415px;
+                }
+
+                .store-details {
+                    margin-bottom: 16px;
+                    p {
+                        font-size: 16px;
+                        line-height: 26px;
+                        margin: 0;
+                    }
+
+                    h4 {
+                        margin: 0;
+                        margin-bottom: 4px;
+                    }
+                }
+            }
+        }
+    }
+
+}
