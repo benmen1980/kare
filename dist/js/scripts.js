@@ -183,6 +183,13 @@ jQuery(document).on("ready", function(){
         slidesPerView: 8.5,
         slidesPerGroup: 1,
         spaceBetween: 3,
+       /* breakpoints: {
+            768: { 
+                slidesPerView: 1.5,
+                slidesPerGroup: 1,
+                spaceBetween: 16
+            }
+        },*/
         pagination: {
             el: '.swiper-pagination',
             clickable: true,

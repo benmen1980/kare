@@ -105,8 +105,10 @@
                                   margin: 0;
                                   padding: 0;
                             }
-                            &:nth-child(2) {
-                                margin-left: 16px;
+                            @include media("<=phone") {
+                                &:nth-child(2) {
+                                    margin-left: 16px;
+                                }
                             }
                             &:first-child {
                                 padding-bottom: 16px;

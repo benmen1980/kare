@@ -1172,6 +1172,53 @@ form .form-row label.focused {
   opacity: 0.7;
 }
 
+.post-526 h1.entry-title, .post-3 h1.entry-title, .post-523 h1.entry-title {
+  margin: 24px auto;
+  max-width: 1420px;
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+  font-weight: 700;
+  text-align: left;
+  color: #000;
+  text-transform: uppercase;
+  text-shadow: none;
+  font-size: 24px;
+  line-height: 36px;
+}
+@media (min-width: 1025px) {
+  .post-526 h1.entry-title, .post-3 h1.entry-title, .post-523 h1.entry-title {
+    font-size: 36px;
+    line-height: 48px;
+    padding-left: 60px;
+    padding-right: 60px;
+    text-align: center;
+  }
+}
+.post-526 .entry-content, .post-3 .entry-content, .post-523 .entry-content {
+  margin: 16px;
+  direction: rtl;
+  text-align: right;
+  font-family: sans-serif;
+  text-align: justify;
+}
+@media (min-width: 1025px) {
+  .post-526 .entry-content, .post-3 .entry-content, .post-523 .entry-content {
+    padding: 16px 60px;
+  }
+}
+.post-526 h4, .post-3 h4, .post-523 h4 {
+  font-family: sans-serif;
+}
+.post-526 ul, .post-3 ul, .post-523 ul {
+  font-family: sans-serif;
+  font-size: 14px;
+}
+.post-526 ul li, .post-3 ul li, .post-523 ul li {
+  margin-bottom: 8px;
+}
+
 /* Comments
 --------------------------------------------- */
 .comment-content a {
@@ -2493,8 +2540,10 @@ div.container .section_wrap {
     padding: 0;
   }
 }
-.site-info .footer-container .contain-footer ul.first-section-footer > li > ul.sub-menu > li:nth-child(2), .site-info .footer-container .contain-footer ul.third-section-footer > li > ul.sub-menu > li:nth-child(2) {
-  margin-left: 16px;
+@media (max-width: 480px) {
+  .site-info .footer-container .contain-footer ul.first-section-footer > li > ul.sub-menu > li:nth-child(2), .site-info .footer-container .contain-footer ul.third-section-footer > li > ul.sub-menu > li:nth-child(2) {
+    margin-left: 16px;
+  }
 }
 .site-info .footer-container .contain-footer ul.first-section-footer > li > ul.sub-menu > li:first-child, .site-info .footer-container .contain-footer ul.third-section-footer > li > ul.sub-menu > li:first-child {
   padding-bottom: 16px;
