@@ -3463,6 +3463,13 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
 
 /* My Account Page
 --------------------------------------------- */
+.woocommerce-account article .entry-header h1 {
+  font-size: 36px;
+  text-transform: uppercase;
+}
+.woocommerce-account article .entry-content {
+  margin-top: 20px;
+}
 .woocommerce-account article .woocommerce {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3472,6 +3479,7 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
   width: 20%;
   margin-right: 20px;
 }
+
 .my_account_menu_wrapper .woocommerce-MyAccount-navigation li.woocommerce-MyAccount-navigation-link--customer-logout {
   display: none;
 }
@@ -3637,7 +3645,7 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
 .woocommerce-edit-address .woocommerce-MyAccount-content .woocommerce-Address .woocommerce-Address-title h3 {
   margin: 0;
   margin-top: -60px;
-  font-size: 36px;
+  font-size: 25px;
 }
 .woocommerce-edit-address .woocommerce-MyAccount-content .woocommerce-Address .woocommerce-Address-title a {
   position: absolute;
@@ -3745,6 +3753,9 @@ form .form-row label.focused {
   top: 2px;
   left: -10px;
 }
+form .form-row label[for=password_current].focused, form .form-row label[for=password_1].focused, form .form-row label[for=password_2].focused {
+  left: -8%;
+}
 form .checkbox_wrapper label {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3839,16 +3850,6 @@ form button {
           filter: invert(1);
 }
 .register_page .woocommerce-error a:hover {
-  color: #fff;
-  opacity: 0.7;
-}
-.register_page .woocommerce-message {
-  background-color: #0c6c40;
-  color: #fff;
-  border: 0;
-  border-right: 0.6180469716em solid rgba(0, 0, 0, 0.15);
-}
-.register_page .woocommerce-message a:hover {
   color: #fff;
   opacity: 0.7;
 }

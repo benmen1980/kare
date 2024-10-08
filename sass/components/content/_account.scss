@@ -1,15 +1,21 @@
 .woocommerce-account{
     article{
         @extend %container;
+        .entry-header{
+            h1{
+                font-size: 36px;
+                text-transform: uppercase;
+            }
+        }
+        .entry-content{
+            margin-top: 20px;
+        }
         .woocommerce{
             display: flex;
             .woocommerce-MyAccount-navigation{
                 width: 20%;
                 margin-right: 20px;
             } 
-            .woocommerce-MyAccount-content{
-                
-            }
         }
     }
   
@@ -177,7 +183,7 @@
             h3{
             margin: 0;
             margin-top: -60px;
-            font-size: 36px;
+            font-size: 25px;
             }
             a{
             position: absolute;
@@ -299,6 +305,12 @@ form{
             position: absolute;
             top: 2px;
             left: -10px;
+          }
+          &[for=password_current],&[for=password_1],&[for=password_2]{
+            &.focused{
+                left: -8%;
+            }
+
           }
         }
     }
