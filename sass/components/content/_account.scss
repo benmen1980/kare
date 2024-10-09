@@ -1,20 +1,31 @@
 .woocommerce-account{
     article{
         @extend %container;
-        /**.entry-header{
+        .entry-header{
             h1{
                 font-size: 36px;
                 text-transform: uppercase;
+                @include media("<=desktop") {
+                    font-size: 24px;
+                }
             }
         }
         .entry-content{
             margin-top: 20px;
-        }*/
+        }
         .woocommerce{
             display: flex;
+            @include media("<=desktop") {
+                flex-direction: column-reverse;
+            }
             .woocommerce-MyAccount-navigation{
                 width: 20%;
                 margin-right: 20px;
+                @include media("<=desktop") {
+                    width: 100%;
+                    margin-right: 0;
+                    margin-top: 100px;
+                }
             } 
         }
     }
@@ -169,31 +180,38 @@
 .woocommerce-edit-address{
     .woocommerce-MyAccount-content{
         width: 40%;
+        @include media("<=desktop") {
+            width: 100%;
+        }
         .woocommerce-Address{
         width: 414px;
         height: auto;
         background-color: rgb(244, 244, 244);
         position: relative;
         padding: 16px 0 16px 0px;
-        margin-top: 50px;
+        margin-top: 60px;
+        @include media("<=desktop") {
+            width: 100%;
+        }
         &.u-column2{
             margin-top: 100px;
         }
         .woocommerce-Address-title{
             position: static;
-            height: 60px;
-            h3{
+            height: 70px;
+            h3,h2{
             margin: 0;
-            margin-top: -60px;
+            margin-top: -70px;
             font-size: 25px;
+            text-align: left;
             }
             a{
             position: absolute;
-            color: transparent; /* Hide the text */
+            color: transparent; 
             text-decoration: none;
-            padding-left: 20px; /* Adjust based on icon size */
+            padding-left: 20px; 
             display: inline-block;
-            font-size: 0; /* Hide text visually without removing it */
+            font-size: 0;
             width: 56px;
             height: 56px;
             background-color: #fff;
@@ -363,6 +381,9 @@ form{
     &.woocommerce-orders{
         .woocommerce-MyAccount-content{
             width: calc(80% - 20px); 
+            @include media("<=desktop") {
+                width: 100%;
+            }
         }
         .shop_table{
             border: 0;
@@ -423,8 +444,14 @@ form{
     }
     &.woocommerce-view-order{
         font-size: 14px;
+        header .header-menu{
+            top: 80px;
+        }
         .woocommerce-MyAccount-content{
             width: calc(80% - 20px);
+            @include media("<=desktop") {
+                width: 100%;
+            }
             .woocommerce-order-details{
                 h2{
                     font-size: 16px;
@@ -464,6 +491,8 @@ form{
                                 &.product-thumbnail{
                                     img{
                                         max-width: 100px;
+                                        max-height: 100px;
+                                        object-fit: contain;
                                     }
                                     
                                 }

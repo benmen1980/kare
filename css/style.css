@@ -5065,25 +5065,41 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
 
 /* My Account Page
 --------------------------------------------- */
-.woocommerce-account article {
-  /**.entry-header{
-      h1{
-          font-size: 36px;
-          text-transform: uppercase;
-      }
+.woocommerce-account article .entry-header h1 {
+  font-size: 36px;
+  text-transform: uppercase;
+}
+@media (max-width: 1024px) {
+  .woocommerce-account article .entry-header h1 {
+    font-size: 24px;
   }
-  .entry-content{
-      margin-top: 20px;
-  }*/
+}
+.woocommerce-account article .entry-content {
+  margin-top: 20px;
 }
 .woocommerce-account article .woocommerce {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
+@media (max-width: 1024px) {
+  .woocommerce-account article .woocommerce {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+}
 .woocommerce-account article .woocommerce .woocommerce-MyAccount-navigation {
   width: 20%;
   margin-right: 20px;
+}
+@media (max-width: 1024px) {
+  .woocommerce-account article .woocommerce .woocommerce-MyAccount-navigation {
+    width: 100%;
+    margin-right: 0;
+    margin-top: 100px;
+  }
 }
 
 .my_account_menu_wrapper .woocommerce-MyAccount-navigation li.woocommerce-MyAccount-navigation-link--customer-logout {
@@ -5244,33 +5260,44 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
 .woocommerce-edit-address .woocommerce-MyAccount-content {
   width: 40%;
 }
+@media (max-width: 1024px) {
+  .woocommerce-edit-address .woocommerce-MyAccount-content {
+    width: 100%;
+  }
+}
 .woocommerce-edit-address .woocommerce-MyAccount-content .woocommerce-Address {
   width: 414px;
   height: auto;
   background-color: rgb(244, 244, 244);
   position: relative;
   padding: 16px 0 16px 0px;
-  margin-top: 50px;
+  margin-top: 60px;
+}
+@media (max-width: 1024px) {
+  .woocommerce-edit-address .woocommerce-MyAccount-content .woocommerce-Address {
+    width: 100%;
+  }
 }
 .woocommerce-edit-address .woocommerce-MyAccount-content .woocommerce-Address.u-column2 {
   margin-top: 100px;
 }
 .woocommerce-edit-address .woocommerce-MyAccount-content .woocommerce-Address .woocommerce-Address-title {
   position: static;
-  height: 60px;
+  height: 70px;
 }
-.woocommerce-edit-address .woocommerce-MyAccount-content .woocommerce-Address .woocommerce-Address-title h3 {
+.woocommerce-edit-address .woocommerce-MyAccount-content .woocommerce-Address .woocommerce-Address-title h3, .woocommerce-edit-address .woocommerce-MyAccount-content .woocommerce-Address .woocommerce-Address-title h2 {
   margin: 0;
-  margin-top: -60px;
+  margin-top: -70px;
   font-size: 25px;
+  text-align: left;
 }
 .woocommerce-edit-address .woocommerce-MyAccount-content .woocommerce-Address .woocommerce-Address-title a {
   position: absolute;
-  color: transparent; /* Hide the text */
+  color: transparent;
   text-decoration: none;
-  padding-left: 20px; /* Adjust based on icon size */
+  padding-left: 20px;
   display: inline-block;
-  font-size: 0; /* Hide text visually without removing it */
+  font-size: 0;
   width: 56px;
   height: 56px;
   background-color: #fff;
@@ -5421,6 +5448,11 @@ form button {
 .woocommerce-account.woocommerce-orders .woocommerce-MyAccount-content {
   width: calc(80% - 20px);
 }
+@media (max-width: 1024px) {
+  .woocommerce-account.woocommerce-orders .woocommerce-MyAccount-content {
+    width: 100%;
+  }
+}
 .woocommerce-account.woocommerce-orders .shop_table {
   border: 0;
   text-align: right;
@@ -5471,8 +5503,16 @@ form button {
 .woocommerce-account.woocommerce-view-order {
   font-size: 14px;
 }
+.woocommerce-account.woocommerce-view-order header .header-menu {
+  top: 80px;
+}
 .woocommerce-account.woocommerce-view-order .woocommerce-MyAccount-content {
   width: calc(80% - 20px);
+}
+@media (max-width: 1024px) {
+  .woocommerce-account.woocommerce-view-order .woocommerce-MyAccount-content {
+    width: 100%;
+  }
 }
 .woocommerce-account.woocommerce-view-order .woocommerce-MyAccount-content .woocommerce-order-details h2 {
   font-size: 16px;
@@ -5517,6 +5557,9 @@ form button {
 }
 .woocommerce-account.woocommerce-view-order .woocommerce-MyAccount-content .woocommerce-order-details .woocommerce-table--order-details tbody tr td.product-thumbnail img {
   max-width: 100px;
+  max-height: 100px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .woocommerce-account.woocommerce-view-order .woocommerce-MyAccount-content .woocommerce-order-details .woocommerce-table--order-details tbody tr td.product-name > a {
   font-weight: bold;
