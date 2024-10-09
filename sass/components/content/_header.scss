@@ -562,168 +562,7 @@ header {
                         .woocommerce-error {
                             display: none;
                         }
-
-                        .wishlist_table {
-                            width: 100%;
-                            border-collapse: collapse;
-
-                            thead {
-                                display: none;
-                            }
-                        
-                            .wishlist-items-wrapper {
-                                @extend %flex-start;
-                                flex-wrap: wrap;
-
-                                tr {
-                                    position: relative;
-                                    margin-top: 20px;
-                                    padding-bottom: 20px;
-                                    border-bottom: 1px dashed #e4e4e4;
-                                    display: grid;
-                                    justify-items: end;
-                                    justify-content: space-between;
-                                    width: 100%;
-                                
-                                    td {
-                                        vertical-align: middle;
-                                        padding: 0;
-                                        border: none;
-                                        
-                                        &.product-thumbnail {
-                                            grid-row: 1 / 4;
-                                            width: 144px;
-                                            height: 144px;
-                                            max-width: 144px;
-                                            padding: 16px;
-                                            margin-right: 16px;
-                                            border: 1px solid #e4e4e4;
-                                            background-color: #f4f4f4;
-                                            flex-shrink: 0;
-                                            a {
-                                                width: 100%;
-                                                height: 100%;
-                                                max-width: 100%;
-                                                img {
-                                                    width: 100%;
-                                                    height: 100%;
-                                                    object-fit: contain;
-                                                    mix-blend-mode: darken;
-                                                }
-                                            }
-                                        
-                                        }
-                                        &.product-name,
-                                        &.product-price,
-                                        &.product-add-to-cart {
-                                            display: block;
-                                            grid-column: 2 / 3;
-                                            margin: 0;
-                                            padding: 0;
-                                        }
-
-                                        &.product-name {
-                                            height: 35px;
-                                            overflow: hidden;
-                                            font-size: 14px;
-                                            font-weight: 700;
-                                            line-height: 1.2;
-                                            text-align: end;
-                                            a {
-                                                text-decoration: none;
-                                                &:hover {
-                                                    text-decoration: underline;
-                                                }
-                                            }
-                                            
-                                        }
-
-                                        &.product-price {
-                                            font-size: 20px;
-                                            line-height: 30px;
-                                            text-transform: uppercase;
-                                            color: #e10915;
-                                            font-weight: 700;
-                                            margin-top: -28px;
-                                            text-align: end;
-                                            del {
-                                                font-size: 12px;
-                                                line-height: 18px;
-                                                color: black;
-                                                display: block;
-                                            }
-                                            ins {
-                                                background: transparent;
-                                            }
-                                        }
-
-                                        &.product-add-to-cart { 
-                                            padding-top: 4px;
-                                            margin-top: -70px;
-                                            display: flex;
-                                            justify-content: flex-end;
-                                            text-align: center;
-                                            align-items: flex-end;
-                                            a {
-                                                display: inline-block;
-                                                position: relative;
-                                                width: 54px !important;
-                                                height: 54px !important;
-                                                // line-height: 54px;
-                                                padding: 16px 24px !important;
-                                                border: 1px solid #e4e4e4 !important;
-                                                text-indent: -9999px;
-                                                white-space: nowrap;
-                                                overflow: hidden;
-                                                margin: 0 !important;
-                                                &:hover {
-                                                    background-color: #000;
-                                                    color: #fff;
-                                                }
-
-                                                &.add_to_cart_button {
-                                                    margin-right: 10px !important;
-                                                }
-                                            
-                                                &::before {
-                                                    content: "";
-                                                    display: inline-block;
-                                                    width: 20px !important;
-                                                    height: 20px !important;
-                                                    vertical-align: middle;
-                                                    background-size: auto;
-                                                    background-repeat: no-repeat;
-                                                    margin: auto;
-                                                    position: absolute;
-                                                    top: 50%;
-                                                    left: 50%;
-                                                    transform: translate(-50%, -50%);  
-                                                    filter: invert(35%) sepia(10%) saturate(0%) hue-rotate(180deg) brightness(94%) contrast(92%);                                                                                  
-                                                }
-
-                                                &.add_to_cart_button::before {
-                                                    background-image: url('/wp-content/themes/kare/dist/images/svg/cart.svg');
-                                                }
-                                            
-                                                &.remove_from_wishlist::before {
-                                                    background-image: url('/wp-content/themes/kare/dist/images/svg/bin.svg');
-                                                }
-
-                                                &:hover::before {
-                                                    filter: brightness(0) invert(1);
-                                                }
-                                            } 
-                                        }                                   
-                                    }
-                                }
-                            }
-
-                        }
-                        .yith_wcwl_wishlist_footer {
-                            display: none;
-                        }
-    
-                        
+   
                     }
                 }
             }
@@ -1025,6 +864,165 @@ header {
    
 }
 
+.wishlist_table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        display: none;
+    }
+
+    .wishlist-items-wrapper {
+        @extend %flex-start;
+        flex-wrap: wrap;
+
+        tr {
+            position: relative;
+            margin-top: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #e4e4e4;
+            display: grid;
+            justify-items: end;
+            justify-content: space-between;
+            width: 100%;
+        
+            td {
+                vertical-align: middle;
+                padding: 0;
+                border: none;
+                
+                &.product-thumbnail {
+                    grid-row: 1 / 4;
+                    width: 144px;
+                    height: 144px;
+                    max-width: 144px;
+                    padding: 16px;
+                    margin-right: 16px;
+                    border: 1px solid #e4e4e4;
+                    background-color: #f4f4f4;
+                    flex-shrink: 0;
+                    a {
+                        width: 100%;
+                        height: 100%;
+                        max-width: 100%;
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: contain;
+                            mix-blend-mode: darken;
+                        }
+                    }
+                
+                }
+                &.product-name,
+                &.product-price,
+                &.product-add-to-cart {
+                    display: block;
+                    grid-column: 2 / 3;
+                    margin: 0;
+                    padding: 0;
+                }
+
+                &.product-name {
+                    height: 35px;
+                    overflow: hidden;
+                    font-size: 14px;
+                    font-weight: 700;
+                    line-height: 1.2;
+                    text-align: end;
+                    a {
+                        text-decoration: none;
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                    
+                }
+
+                &.product-price {
+                    font-size: 20px;
+                    line-height: 30px;
+                    text-transform: uppercase;
+                    color: #e10915;
+                    font-weight: 700;
+                    margin-top: -28px;
+                    text-align: end;
+                    del {
+                        font-size: 12px;
+                        line-height: 18px;
+                        color: black;
+                        display: block;
+                    }
+                    ins {
+                        background: transparent;
+                    }
+                }
+
+                &.product-add-to-cart { 
+                    padding-top: 4px;
+                    margin-top: -70px;
+                    display: flex;
+                    justify-content: flex-end;
+                    text-align: center;
+                    align-items: flex-end;
+                    a {
+                        display: inline-block;
+                        position: relative;
+                        width: 54px !important;
+                        height: 54px !important;
+                        // line-height: 54px;
+                        padding: 16px 24px !important;
+                        border: 1px solid #e4e4e4 !important;
+                        text-indent: -9999px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        margin: 0 !important;
+                        &:hover {
+                            background-color: #000;
+                            color: #fff;
+                        }
+
+                        &.add_to_cart_button {
+                            margin-right: 10px !important;
+                        }
+                    
+                        &::before {
+                            content: "";
+                            display: inline-block;
+                            width: 20px !important;
+                            height: 20px !important;
+                            vertical-align: middle;
+                            background-size: auto;
+                            background-repeat: no-repeat;
+                            margin: auto;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);  
+                            filter: invert(35%) sepia(10%) saturate(0%) hue-rotate(180deg) brightness(94%) contrast(92%);                                                                                  
+                        }
+
+                        &.add_to_cart_button::before {
+                            background-image: url('/wp-content/themes/kare/dist/images/svg/cart.svg');
+                        }
+                    
+                        &.remove_from_wishlist::before {
+                            background-image: url('/wp-content/themes/kare/dist/images/svg/bin.svg');
+                        }
+
+                        &:hover::before {
+                            filter: brightness(0) invert(1);
+                        }
+                    } 
+                }                                   
+            }
+        }
+    }
+
+}
+.yith_wcwl_wishlist_footer {
+    display: none;
+}
 .mini-cart-wrapper {
     width: 400px;
     height: 100%;
