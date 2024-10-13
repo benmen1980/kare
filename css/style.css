@@ -1548,7 +1548,6 @@ header .nav-top-wrapper .w-1-3 #btn-header-search #product-searchform input {
 header .nav-top-wrapper .w-1-3 #btn-header-search #product-searchform input:hover {
   background-color: #fff;
   color: #000000;
-  pointer-events: none;
   border: none;
 }
 header .nav-top-wrapper .w-1-3 #btn-header-search #product-searchform input#search-input {
@@ -6535,6 +6534,8 @@ form button {
 .woocommerce-cart .site-main .entry-content .woocommerce form.woocommerce-cart-form .cart_summary .cart_summary_content .coupon_wrapper .coupon.form-row label.focused {
   top: 3px;
   left: -25px;
+  -webkit-transform: inherit;
+          transform: inherit;
 }
 .woocommerce-cart .site-main .entry-content .woocommerce form.woocommerce-cart-form .cart_summary .cart_summary_content .coupon_wrapper .coupon:has(input:focus) label {
   position: static;
