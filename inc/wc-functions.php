@@ -278,3 +278,8 @@ function custom_join_for_sku_search( $join, $wp_query ) {
     return $join;
 }
 add_filter( 'posts_join', 'custom_join_for_sku_search', 10, 2 );
+
+/**
+ * Changes to the order-details page
+ */
+remove_action( 'woocommerce_order_details_before_order_table', 'woocommerce_order_details_table', 10 );

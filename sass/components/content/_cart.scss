@@ -475,9 +475,26 @@
                                         margin-bottom: 0;
                                         margin-right: 8px;
                                     }
-
+                                    
                                     label.focused {
                                         left: -25px;
+                                    }
+
+                                    label span {
+                                        transition: 0.3s ease all;
+                                    }
+
+                                    &:has(input:focus) label {
+                                        position: static;
+                                        transition: 0.3s ease all;
+                                        span {
+                                            transform: scale3d(.6, .6, 1);
+                                            position: absolute;
+                                            top: 2px;
+                                            left: -25px;
+                                            z-index: 2; 
+                                            transition: 0.3s ease all;
+                                        } 
                                     }
     
                                     input {
@@ -645,6 +662,19 @@
                                         top: 3px;
                                         left: -25px;
                                     }
+                                }
+
+                                &:has(input:focus) label {
+                                    position: static;
+                                    transition: 0.3s ease all;
+                                    span {
+                                        transform: scale3d(.6, .6, 1);
+                                        position: absolute;
+                                        top: 2px;
+                                        left: -25px;
+                                        z-index: 2; 
+                                        transition: 0.3s ease all;
+                                    } 
                                 }
 
                                 input {
