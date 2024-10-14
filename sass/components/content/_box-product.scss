@@ -187,6 +187,10 @@
                 justify-content: space-between;
                 p {
                     margin: 0;
+
+                    &.sale_price .woocommerce-Price-amount {
+                        text-decoration: line-through;
+                    }
                 }
             }
             a {

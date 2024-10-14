@@ -181,6 +181,66 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 					</div>
 				<?php }
 
+				$main_module = get_post_meta($product->get_id(), 'main_module', true);
+
+				if ( $main_module ) : ?>
+
+					<div class="similar_pdt_wrapper">
+						<?php
+							$query_args = array(
+								'post_type' => 'product',
+								'post_status' => array('publish', 'draft'),
+								'post__not_in' => array($product->get_id()),
+								'meta_query' => array(
+									array(
+										'key' => 'main_module',
+										'value' => $main_module
+									)
+								)
+							);
+							
+							// The Query
+							$the_query = new WP_Query( $query_args );
+							$similar_ids = [$product->get_id()];
+						
+							// Loop through similar products
+							if ( $the_query->have_posts() ) :
+								while ( $the_query->have_posts() ) :
+									$the_query->the_post();
+									$similar_ids[] = get_the_ID();
+								endwhile;
+								/* Restore original Post Data */
+								wp_reset_postdata();
+							endif;
+						?>
+					
+						<div class="swiper tabs_wrapper">
+							<div class="similar-pdt-swiper">
+								<div class="swiper-wrapper">
+									<?php foreach ($similar_ids as $pdt_id) :
+
+										$similar_product = wc_get_product($pdt_id);
+										$image_url = wp_get_attachment_url($similar_product->get_image_id());
+										$product_url = get_permalink($pdt_id);
+										$product_name = $similar_product->get_name();
+											
+										if ($image_url) : ?>
+											<div class="swiper-slide">
+												<div class="similar-image-pdt">
+													<a href="<?php echo esc_url($product_url); ?>" class="varition_image" title="<?php echo esc_attr($product_name); ?>" aria-lable="link">
+														<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($product_name);?>" width="80" height="80"/>
+													</a>
+												</div>
+											</div>									
+										<?php endif;
+									endforeach; ?>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				<?php endif; 
+
 				woocommerce_template_single_rating();
 				?>
 
@@ -199,7 +259,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 				</div>
 
 				<?php
-				$stock = ($product->get_stock_quantity() > 0) ? ' Immediately available' : ' 60 business days';
+					$stock = ($product->get_stock_quantity() > 0) ? ' Immediately available' : ' 60 business days';
 				?>
 
 				<div class="stock_shipping_availability">

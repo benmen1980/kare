@@ -235,13 +235,13 @@ jQuery(document).on("ready", function(){
             swiperOptions = Object.assign({}, defaultSwiperOptions, {
                 spaceBetween: 16,
                 slidesPerView: 4,
-                breakpoints: {
+                /*breakpoints: {
                     768: { 
                         slidesPerView: 1.5,
                         slidesPerGroup: 1,
                         spaceBetween: 16
                     }
-                }
+                }*/
             });
         }
 
@@ -269,6 +269,11 @@ jQuery(document).on("ready", function(){
             bullet.style.opacity = 0.5 + (0.5 / (distance + 1));
         });
     }
+
+    const swiper = new Swiper('.similar-pdt-swiper', {
+        slidesPerView: 4,
+        spaceBetween: 20,
+    });
 
     /*function updatePagination(swiper) {
         var paginationEl = swiper.pagination.el;

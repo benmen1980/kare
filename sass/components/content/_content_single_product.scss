@@ -353,6 +353,55 @@
                             box-sizing: border-box;
                         }
                     }
+
+                    .similar_pdt_wrapper {
+                        margin-top: 16px;
+                        padding-bottom: 32px;
+                        position: relative;
+                        max-width: 100%;
+
+                        
+
+                        .swiper-slide {
+                            .similar-image-pdt {
+                                background-color: #fff;
+                                border: 1px solid #e4e4e4;
+                                height: 100px;
+                                width: 100px;
+                                text-align: center;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                cursor: pointer;
+                                &:hover {
+                                    border-color: #e10915;
+                                }
+                                
+    
+                                a.varition_image {
+                                    background-color: transparent;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    padding: 8px;
+                                    width: 100%;
+                                    height: 100%;
+    
+                                    img {
+                                        display: inline-block;
+                                        height: auto;
+                                        max-height: 100%;
+                                        object-fit: scale-down;
+                                    }
+                                }
+                            }
+                            &:first-child {
+                                .similar-image-pdt {
+                                    border-color: #e10915; 
+                                }
+                            }
+                        }
+                    }
                     
                     .pdt_price_wrapper {
                         display: flex;
@@ -487,7 +536,7 @@
 
                         .wishlist_btn {
                             @extend %white-btn;
-                            padding: 16px;
+                            padding: 19px;
                             width: 58px;
                             height: 58px;
                             &.wishlist_btn_black {
@@ -503,6 +552,7 @@
                             &:hover {
                                 background-color: #000;
                                 color: #fff;
+                                padding: 16px;
 
                                 i {
                                     color: #fff;
