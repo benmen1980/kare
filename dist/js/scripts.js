@@ -179,18 +179,30 @@ jQuery(document).on("ready", function(){
     }
 
     // General Swiper Initialization (for other galleries)
+
+    // Updated function to calculate slidesPerView dynamically based on a given slide width
+    // Function to calculate slidesPerView dynamically based on a fixed slide width
+    function calculateSlidesPerView(containerWidth, slideWidth, spaceBetween) {
+        return containerWidth / (slideWidth + spaceBetween);
+    }
+
+    // Define an object with IDs and their corresponding widths
+    const slideWidths = {
+        'rounded_btn': 144, 
+        'module_slider_pdts': 266, 
+        'module_pdts_content': 198,
+        'module_slide_cube': 395,
+    };
+
     var defaultSwiperOptions = {
-        slidesPerView: 8.5,
         slidesPerGroup: 1,
         spaceBetween: 3,
-        /*breakpoints: {
-            768: { 
-                slidesPerView: 1.5,
-                //slidesPerGroup: 1,
-                spaceBetween: 16,
-                width: 300
+        breakpoints: {
+            1024: { 
+                slidesPerView: 8.5,
+                slidesPerGroup: 1,
             }
-        },*/
+        },
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
@@ -204,51 +216,45 @@ jQuery(document).on("ready", function(){
         },
         on: {
             init: function () {
-                updatePagination(this);
+                // Get the parent element's ID
+                const parentId = this.el.querySelector('.swiper-wrapper').id; // Get the ID from the child container
+
+                // Set slide width based on the specific container's ID
+                let slideWidth = slideWidths[parentId] || 192; // Defaults to 192 if ID not in slideWidths
+                this.params.slidesPerView = calculateSlidesPerView(this.el.clientWidth, slideWidth, this.params.spaceBetween);
+                this.update();
+                updatePagination(this);  // Call pagination update
             },
             slideChange: function () {
-                updatePagination(this);
-            }
+                updatePagination(this); // Update pagination on slide change
+            },
+            resize: function () {
+                // Get the parent element's ID
+                const parentId = this.el.querySelector('.swiper-wrapper').id; // Get the ID from the child container
+
+                // Dynamically adjust slidesPerView on window resize
+                let slideWidth = slideWidths[parentId] || 192; // Defaults to 192 if ID not in slideWidths
+                 this.params.slidesPerView = calculateSlidesPerView(this.el.clientWidth, slideWidth, this.params.spaceBetween);
+                this.update();
+                updatePagination(this); // Update pagination on resize
+            },
+           
         }
     };
 
     var swiperContainers = document.querySelectorAll('.swiper-container');
 
     swiperContainers.forEach(function(container) {
-        var swiperOptions = defaultSwiperOptions;
+        var swiperOptions = Object.assign({}, defaultSwiperOptions);
 
         if (container.querySelector('#rounded_btn')) {
-            swiperOptions = Object.assign({}, defaultSwiperOptions, {
-                spaceBetween: 8,
-                slidesPerView: 10
-            });
+            swiperOptions.spaceBetween = 8;
         } else if (container.querySelector('#module_slider_pdts')) {
-            swiperOptions = Object.assign({}, defaultSwiperOptions, {
-                spaceBetween: 8,
-                slidesPerView: 6
-            });
+            swiperOptions.spaceBetween = 8;
         } else if (container.querySelector('#module_pdts_content')) {
-            swiperOptions = Object.assign({}, defaultSwiperOptions, {
-                spaceBetween: 2,
-                slidesPerView: 4
-            });
+            swiperOptions.spaceBetween = 2;
         } else if (container.querySelector('#module_slide_cube')) {
-            swiperOptions = Object.assign({}, defaultSwiperOptions, {
-                spaceBetween: 16,
-                slidesPerView: 1,
-                breakpoints: {
-                    768: { 
-                        slidesPerView: 1.5,
-                        //slidesPerGroup: 1,
-                        spaceBetween: 16,
-                    },
-                    1024: { 
-                        slidesPerView: 4,
-                        //slidesPerGroup: 1,
-                        spaceBetween: 16,
-                    }
-                }
-            });
+            swiperOptions.spaceBetween = 16;
         }
 
         if (swiperOptions) {
