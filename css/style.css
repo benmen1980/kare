@@ -5437,15 +5437,6 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
   display: block;
   width: 100%;
 }
-.woocommerce-account form#yith-wcwl-form .wishlist_table[data-pagination=no] tbody tr {
-  height: auto;
-  border: 0;
-  display: block;
-  font-weight: bold;
-  background-color: transparent;
-  font-size: 16px;
-  text-transform: uppercase;
-}
 .woocommerce-account form#yith-wcwl-form .wishlist_table thead {
   display: none;
 }
@@ -5509,6 +5500,15 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
 }
 .woocommerce-account form#yith-wcwl-form .wishlist_table tbody tr td.product-add-to-cart a:hover {
   background-color: #000;
+}
+.woocommerce-account form#yith-wcwl-form .wishlist_table tbody tr:has(> td.wishlist-empty) {
+  height: auto;
+  border: 0;
+  display: block;
+  font-weight: bold;
+  background-color: transparent;
+  font-size: 16px;
+  text-transform: uppercase;
 }
 .woocommerce-account form#yith-wcwl-form .woocommerce-message {
   background-color: #026805;
