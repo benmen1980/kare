@@ -183,11 +183,12 @@ jQuery(document).on("ready", function(){
         slidesPerView: 8.5,
         slidesPerGroup: 1,
         spaceBetween: 3,
-       /* breakpoints: {
+        /*breakpoints: {
             768: { 
                 slidesPerView: 1.5,
-                slidesPerGroup: 1,
-                spaceBetween: 16
+                //slidesPerGroup: 1,
+                spaceBetween: 16,
+                width: 300
             }
         },*/
         pagination: {
@@ -234,19 +235,26 @@ jQuery(document).on("ready", function(){
         } else if (container.querySelector('#module_slide_cube')) {
             swiperOptions = Object.assign({}, defaultSwiperOptions, {
                 spaceBetween: 16,
-                slidesPerView: 4,
-                /*breakpoints: {
+                slidesPerView: 1,
+                breakpoints: {
                     768: { 
                         slidesPerView: 1.5,
-                        slidesPerGroup: 1,
-                        spaceBetween: 16
+                        //slidesPerGroup: 1,
+                        spaceBetween: 16,
+                    },
+                    1024: { 
+                        slidesPerView: 4,
+                        //slidesPerGroup: 1,
+                        spaceBetween: 16,
                     }
-                }*/
+                }
             });
         }
 
         if (swiperOptions) {
             new Swiper(container, swiperOptions);
+            console.log(container);
+            console.log(swiperOptions);
         }
     });
 
