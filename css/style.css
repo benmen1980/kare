@@ -1548,7 +1548,6 @@ header .nav-top-wrapper .w-1-3 #btn-header-search #product-searchform input {
 header .nav-top-wrapper .w-1-3 #btn-header-search #product-searchform input:hover {
   background-color: #fff;
   color: #000000;
-  pointer-events: none;
   border: none;
 }
 header .nav-top-wrapper .w-1-3 #btn-header-search #product-searchform input#search-input {
@@ -1616,7 +1615,6 @@ header .nav-top-wrapper .w-1-3 .shopping-cart {
 header .nav-top-wrapper .w-1-3 .shopping-cart:hover {
   background-color: #fff;
   color: #000000;
-  pointer-events: none;
   border: none;
   text-decoration: underline;
 }
@@ -6383,6 +6381,25 @@ form button {
 .woocommerce-cart .site-main .entry-content .woocommerce form.woocommerce-cart-form .cart_content_wrap .pdts_content .coupon_wrapper .coupon div.form-row label.focused {
   left: -25px;
 }
+.woocommerce-cart .site-main .entry-content .woocommerce form.woocommerce-cart-form .cart_content_wrap .pdts_content .coupon_wrapper .coupon div.form-row label span {
+  -webkit-transition: 0.3s ease all;
+  transition: 0.3s ease all;
+}
+.woocommerce-cart .site-main .entry-content .woocommerce form.woocommerce-cart-form .cart_content_wrap .pdts_content .coupon_wrapper .coupon div.form-row:has(input:focus) label {
+  position: static;
+  -webkit-transition: 0.3s ease all;
+  transition: 0.3s ease all;
+}
+.woocommerce-cart .site-main .entry-content .woocommerce form.woocommerce-cart-form .cart_content_wrap .pdts_content .coupon_wrapper .coupon div.form-row:has(input:focus) label span {
+  -webkit-transform: scale3d(0.6, 0.6, 1);
+          transform: scale3d(0.6, 0.6, 1);
+  position: absolute;
+  top: 2px;
+  left: -25px;
+  z-index: 2;
+  -webkit-transition: 0.3s ease all;
+  transition: 0.3s ease all;
+}
 .woocommerce-cart .site-main .entry-content .woocommerce form.woocommerce-cart-form .cart_content_wrap .pdts_content .coupon_wrapper .coupon div.form-row input {
   background-color: #fff;
   border: 1px solid #e4e4e4;
@@ -6572,6 +6589,23 @@ form button {
 .woocommerce-cart .site-main .entry-content .woocommerce form.woocommerce-cart-form .cart_summary .cart_summary_content .coupon_wrapper .coupon.form-row label.focused {
   top: 3px;
   left: -25px;
+  -webkit-transform: inherit;
+          transform: inherit;
+}
+.woocommerce-cart .site-main .entry-content .woocommerce form.woocommerce-cart-form .cart_summary .cart_summary_content .coupon_wrapper .coupon:has(input:focus) label {
+  position: static;
+  -webkit-transition: 0.3s ease all;
+  transition: 0.3s ease all;
+}
+.woocommerce-cart .site-main .entry-content .woocommerce form.woocommerce-cart-form .cart_summary .cart_summary_content .coupon_wrapper .coupon:has(input:focus) label span {
+  -webkit-transform: scale3d(0.6, 0.6, 1);
+          transform: scale3d(0.6, 0.6, 1);
+  position: absolute;
+  top: 2px;
+  left: -25px;
+  z-index: 2;
+  -webkit-transition: 0.3s ease all;
+  transition: 0.3s ease all;
 }
 .woocommerce-cart .site-main .entry-content .woocommerce form.woocommerce-cart-form .cart_summary .cart_summary_content .coupon_wrapper .coupon input {
   margin-right: 0;
@@ -7429,6 +7463,9 @@ form button {
   margin: 20px 0;
   border-top: 1px dashed #e4e4e4;
   height: 0;
+}
+.woocommerce-checkout ul.order_details {
+  display: none;
 }
 
 /* Order received Page
