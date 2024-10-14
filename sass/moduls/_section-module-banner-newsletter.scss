@@ -9,6 +9,7 @@
         position: relative;
         @media screen and (max-width: 1023px) {
             flex-wrap: wrap;
+            padding: 20px 16px;
         }
         .newsletter_content {
             flex-basis: 73%;
@@ -54,6 +55,9 @@
             @media screen and (max-width: 1023px) {
                 flex-basis: 100%;
                 max-width: 100%;
+            }
+            @media screen and (max-width: 767px) {
+                min-width: unset;
             }
             label{
                 &.visually-hidden {
