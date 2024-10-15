@@ -271,45 +271,72 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 				// woocommerce_template_single_add_to_cart(); ?>
 				<?php do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
-				<form class="cart" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data'>
-					<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
-			
-					<?php
-						do_action( 'woocommerce_before_add_to_cart_quantity' );
+				<?php
+				$kare_stock = get_post_meta($product->get_id(), 'kare_general_stock', true);
+				$stock_available = get_post_meta($product->get_id(), '_stock', true);
+
+				if ( ( !empty($kare_stock) || $kare_stock > 0) || intval($stock_available) > 0 ) :
+				?>
+
+					<form class="cart" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data'>
+						<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
 				
-						$max_quantity = apply_filters( 'woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product );
-						$min_quantity = apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product );
-						$pack_quantity = get_post_meta($product->get_id(), 'quantity_product_order', true);
-						$quantity = isset($pack_quantity) && $pack_quantity > 1 ? $pack_quantity : $min_quantity; 
+						<?php
+							do_action( 'woocommerce_before_add_to_cart_quantity' );
+					
+							$max_quantity = apply_filters( 'woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product );
+							$min_quantity = apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product );
+							$pack_quantity = get_post_meta($product->get_id(), 'quantity_product_order', true);
+							$quantity = isset($pack_quantity) && $pack_quantity > 1 ? $pack_quantity : $min_quantity; 
 
+							?>
+
+							<div class="custom_select_wrapper">
+								<button aria-label="button" type="button" class="btn_quantity_wrapper">
+									<span class="selected_value"><?php echo esc_html($quantity); ?></span> <!-- ברירת מחדל: הספרה 1 -->
+									<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-down.svg'); ?>
+								</button>
+								<ul class="custom_options">
+									<?php for ($i = $quantity; $i <= min(24, $max_quantity); $i += $quantity) { ?>
+										<li class="custom_option <?php echo $i == $quantity ? 'selected' : ''; ?>" data-value="<?php echo esc_attr($i); ?>">
+											<?php echo esc_html($i); ?>
+										</li>
+									<?php } ?>
+								</ul>
+								<input type="hidden" name="quantity" class="custom_select_hidden" value="<?php echo esc_html($quantity); ?>"> <!-- ברירת מחדל: ערך 1 -->
+							</div>
+
+							<?php do_action( 'woocommerce_after_add_to_cart_quantity' );
 						?>
+				
+						<button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="single_add_to_cart_button button alt" data-product_id="<?php echo esc_attr( $product->get_id() ); ?>"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
 
-						<div class="custom_select_wrapper">
-							<button aria-label="button" type="button" class="btn_quantity_wrapper">
-								<span class="selected_value"><?php echo esc_html($quantity); ?></span> <!-- ברירת מחדל: הספרה 1 -->
-								<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-down.svg'); ?>
+						<button aria-label="link" type="button" title="Add to Wishlist" class="wishlist_btn">
+							<?php echo do_shortcode('[yith_wcwl_add_to_wishlist]'); ?>
+						</button>
+		
+						<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
+					</form>
+
+					<?php else : ?>
+					<section class="notification_content">
+						<p><?php the_field('title_before_form','option'); ?></p>
+						<div class="notification_and_btn">
+							<div class="notification_form">
+								<?php 
+								$cf7_form_id = get_field('select_cf7_form_pdt','option'); // Get the selected form ID from ACF
+								if( $cf7_form_id ) {
+									echo do_shortcode('[contact-form-7 id="' . $cf7_form_id . '"]');
+								}
+								?>
+							</div>
+							<button aria-label="link" type="button" title="Add to Wishlist" class="wishlist_btn">
+								<?php echo do_shortcode('[yith_wcwl_add_to_wishlist]'); ?>
 							</button>
-							<ul class="custom_options">
-								<?php for ($i = $quantity; $i <= min(24, $max_quantity); $i += $quantity) { ?>
-									<li class="custom_option <?php echo $i == $quantity ? 'selected' : ''; ?>" data-value="<?php echo esc_attr($i); ?>">
-										<?php echo esc_html($i); ?>
-									</li>
-								<?php } ?>
-							</ul>
-							<input type="hidden" name="quantity" class="custom_select_hidden" value="<?php echo esc_html($quantity); ?>"> <!-- ברירת מחדל: ערך 1 -->
 						</div>
-
-						<?php do_action( 'woocommerce_after_add_to_cart_quantity' );
-					?>
-			
-					<button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="single_add_to_cart_button button alt" data-product_id="<?php echo esc_attr( $product->get_id() ); ?>"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
-
-					<button aria-label="link" type="button" title="Add to Wishlist" class="wishlist_btn">
-						<?php echo do_shortcode('[yith_wcwl_add_to_wishlist]'); ?>
-					</button>
-	
-					<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
-				</form>
+					</section>
+							
+				<?php endif; ?>
 		
 				<?php do_action( 'woocommerce_after_add_to_cart_form' ); 
 				
