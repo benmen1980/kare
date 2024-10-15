@@ -1186,6 +1186,7 @@ form .form-row label.focused {
   text-shadow: none;
   font-size: 24px;
   line-height: 36px;
+  margin-bottom: 0;
 }
 @media (min-width: 1025px) {
   .post-526 h1.entry-title, .post-3 h1.entry-title, .post-523 h1.entry-title {
@@ -1207,6 +1208,9 @@ form .form-row label.focused {
   .post-526 .entry-content, .post-3 .entry-content, .post-523 .entry-content {
     padding: 16px 60px;
   }
+}
+.post-526 section .woocommerce-breadcrumb, .post-3 section .woocommerce-breadcrumb, .post-523 section .woocommerce-breadcrumb {
+  margin-top: 0;
 }
 .post-526 h4, .post-3 h4, .post-523 h4 {
   font-family: sans-serif;
@@ -2594,7 +2598,7 @@ div.container .section_wrap {
   font-size: 14px;
 }
 .site-info .footer-container .contain-footer.first-footer {
-  padding: 20px 16px;
+  padding: 20px 16px 60px 16px;
 }
 @media (max-width: 480px) {
   .site-info .footer-container .contain-footer.first-footer {

@@ -242,6 +242,7 @@ form{
         text-shadow: none;
         font-size: 24px;
         line-height: 36px;
+        margin-bottom: 0;
         @include media(">desktop") {
             font-size: 36px;
             line-height: 48px;
@@ -260,6 +261,10 @@ form{
         @include media(">desktop") {
             padding: 16px 60px;
         }
+    }
+
+    section .woocommerce-breadcrumb {
+        margin-top: 0;
     }
 
     h4 {
