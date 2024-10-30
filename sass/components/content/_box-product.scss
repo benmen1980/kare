@@ -140,7 +140,7 @@
                     }
                 }
 
-                .wc_tag_bestseller{
+                .wc_tag{
                     padding-left: 8px;
                     padding-bottom: 4px;
                     position: absolute;
@@ -149,11 +149,11 @@
                     z-index: 2;
                     display: flex;
                     flex-wrap: wrap;
-                    @include media(">phone") {
+                    /*@include media(">phone") {
                         padding-left: 24px;
-                    }
+                    }*/
                     
-                    .text_tag_bestseller{
+                    .text_tag{
                         background-color: #fff;
                         color: #000;
                         border: solid 1px #000;
@@ -162,7 +162,6 @@
                         margin: 4px 4px 0 0;
                         font-size: 10px;
                         line-height: 16px;
-                        cursor: pointer;
                         @include media(">phone") {
                             font-size: 12px;
                             line-height: 18px;

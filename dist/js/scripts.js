@@ -192,11 +192,15 @@ jQuery(document).on("ready", function(){
         'module_slider_pdts': 266, 
         'module_pdts_content': 198,
         'module_slide_cube': 395,
+        'slide_same_cat_pdts': 233,
+        'slide_bestseller_cat_pdts': 233,
+        'slide_bestseller_products': 233,
     };
 
     var defaultSwiperOptions = {
         slidesPerGroup: 1,
         spaceBetween: 3,
+        centerInsufficientSlides: true,
         breakpoints: {
             1024: { 
                 slidesPerView: 8.5,
@@ -205,6 +209,7 @@ jQuery(document).on("ready", function(){
         },
         pagination: {
             el: '.swiper-pagination',
+            type: 'bullets',
             clickable: true,
             renderBullet: function (index, className) {
                 return '<span class="' + className + '"></span>';
@@ -217,11 +222,13 @@ jQuery(document).on("ready", function(){
         on: {
             init: function () {
                 // Get the parent element's ID
-                const parentId = this.el.querySelector('.swiper-wrapper').id; // Get the ID from the child container
+                const parentId = this.el.querySelector('.swiper-wrapper').id; 
+                let slideWidth = slideWidths[parentId] || 192; 
+                const containerWidth = this.el.clientWidth;
 
-                // Set slide width based on the specific container's ID
-                let slideWidth = slideWidths[parentId] || 192; // Defaults to 192 if ID not in slideWidths
-                this.params.slidesPerView = calculateSlidesPerView(this.el.clientWidth, slideWidth, this.params.spaceBetween);
+                // Set slides per view based on width and space
+                this.params.slidesPerView = calculateSlidesPerView(containerWidth, slideWidth, this.params.spaceBetween);
+
                 this.update();
                 updatePagination(this);  // Call pagination update
             },
@@ -229,12 +236,13 @@ jQuery(document).on("ready", function(){
                 updatePagination(this); // Update pagination on slide change
             },
             resize: function () {
-                // Get the parent element's ID
-                const parentId = this.el.querySelector('.swiper-wrapper').id; // Get the ID from the child container
-
-                // Dynamically adjust slidesPerView on window resize
+                const parentId = this.el.querySelector('.swiper-wrapper').id; 
                 let slideWidth = slideWidths[parentId] || 192; // Defaults to 192 if ID not in slideWidths
-                 this.params.slidesPerView = calculateSlidesPerView(this.el.clientWidth, slideWidth, this.params.spaceBetween);
+                const containerWidth = this.el.clientWidth;
+
+                // Recalculate slidesPerView on resize
+                this.params.slidesPerView = calculateSlidesPerView(containerWidth, slideWidth, this.params.spaceBetween);
+
                 this.update();
                 updatePagination(this); // Update pagination on resize
             },
@@ -253,8 +261,11 @@ jQuery(document).on("ready", function(){
             swiperOptions.spaceBetween = 8;
         } else if (container.querySelector('#module_pdts_content')) {
             swiperOptions.spaceBetween = 2;
+            swiperOptions.centerInsufficientSlides = false;
         } else if (container.querySelector('#module_slide_cube')) {
             swiperOptions.spaceBetween = 16;
+        } else if (container.querySelector('.more_slide_products')) {
+            swiperOptions.spaceBetween = 2;
         }
 
         if (swiperOptions) {
@@ -288,131 +299,6 @@ jQuery(document).on("ready", function(){
         slidesPerView: 4,
         spaceBetween: 20,
     });
-
-    /*function updatePagination(swiper) {
-        var paginationEl = swiper.pagination.el;
-
-        // Verify if paginationEl is an array and take the first element
-        if (Array.isArray(paginationEl)) {
-            paginationEl = paginationEl[0];
-        }
-
-        // Verify if paginationEl is a valid DOM element
-        if (!paginationEl || !paginationEl.querySelectorAll) {
-            // console.error('Invalid pagination element');
-            return;
-        }
-
-        var bullets = paginationEl.querySelectorAll('.swiper-pagination-bullet');
-
-        var activeIndex = swiper.activeIndex;
-        bullets.forEach((bullet, index) => {
-            var distance = Math.abs(activeIndex - index);
-            var size = 16 - (distance * 5); // Adjust formula as needed
-            size = size < 4 ? 4 : size; // Set minimum size
-            bullet.style.width = size + 'px';
-            bullet.style.height = size + 'px';
-            bullet.style.opacity = 0.5 + (0.5 / (distance + 1)); // Adjust opacity as needed
-        });
-    }
-
-    var defaultSwiperOptions = {
-        slidesPerView: 8.5,
-        slidesPerGroup: 1,
-        spaceBetween: 3,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-            renderBullet: function (index, className) {
-                return '<span class="' + className + '"></span>';
-            },
-        },
-        navigation: {
-            nextEl: '.swiper-nav-next',
-            prevEl: '.swiper-nav-prev',
-        },
-        on: {
-            init: function () {
-                updatePagination(this);
-            },
-            slideChange: function () {
-                updatePagination(this);
-            }
-        }
-    };
-
-    var swiperContainers = document.querySelectorAll('.swiper-container');
-
-    swiperContainers.forEach(function(container) {
-        var swiperOptions;
-        // Check if parent element has 'rounded_btn' ID
-        if (container.querySelector('#rounded_btn')) {
-            swiperOptions = Object.assign({}, defaultSwiperOptions, {
-                spaceBetween: 8,
-                slidesPerView: 10
-            });
-        }
-        // Additional check for the element with ID's 
-        if (container.querySelector('#module_slider_pdts')) {
-            swiperOptions = Object.assign({}, defaultSwiperOptions, {
-                spaceBetween: 8,
-                slidesPerView: 6,
-                on: { // Explicitly define the events here
-                    init: function () {
-                        updatePagination(this);
-                    },
-                    slideChange: function () {
-                        updatePagination(this);
-                    }
-                }
-            });
-        } else if (container.querySelector('#module_pdts_content')) {
-            swiperOptions = Object.assign({}, defaultSwiperOptions, {
-                spaceBetween: 2,
-                slidesPerView: 4,
-                on: { // Explicitly define the events here
-                    init: function () {
-                        updatePagination(this);
-                    },
-                    slideChange: function () {
-                        updatePagination(this);
-                    }
-                }
-            });
-        } else if (container.querySelector('#module_slide_cube')) {
-            swiperOptions = Object.assign({}, defaultSwiperOptions, {
-                spaceBetween: 16,
-                slidesPerView: 4,
-                on: { // Explicitly define the events here
-                    init: function () {
-                        updatePagination(this);
-                    },
-                    slideChange: function () {
-                        updatePagination(this);
-                    }
-                }
-            });
-        } /*else if (container.querySelector('#slider_img_gallery_small')) {
-            swiperOptions = Object.assign({}, defaultSwiperOptions, {
-                spaceBetween: 20,
-                slidesPerView: 9.15,
-                on: { // Explicitly define the events here
-                    init: function () {
-                        updatePagination(this);
-                    },
-                    slideChange: function () {
-                        updatePagination(this);
-                    }
-                }
-            });
-        } * else {
-            swiperOptions = defaultSwiperOptions;
-        };
-        // Initialize your swiper instance here if swiperOptions is defined
-        if (swiperOptions) {
-            new Swiper(container, swiperOptions);
-        }
-    }); */
 
     //open account popup in header
     $('.open_account_popup').on('click', function() {
@@ -726,7 +612,38 @@ jQuery(document).on("ready", function(){
 
 });
 
-// After loading Swiper, check the number of slides
+// Management of a drop-down menu with a click, and automatic checking of the display location
+$(document).ready(function() {
+    const $dropdownButton = $('.pagination-current');
+    const $dropdownMenu = $('.pagination-options');
+
+    if ($dropdownButton.length && $dropdownMenu.length) {
+        $dropdownButton.on('click', function(event) {
+            event.stopPropagation();
+
+            $dropdownMenu.toggleClass('open');
+
+            const buttonRect = $dropdownButton[0].getBoundingClientRect();
+            const dropdownHeight = $dropdownMenu.outerHeight();
+
+            if (buttonRect.bottom + dropdownHeight > $(window).height()) {
+                $dropdownMenu.addClass('open-up');
+            } else {
+                $dropdownMenu.removeClass('open-up');
+            }
+        });
+
+        // Close the menu
+        $(document).on('click', function(event) {
+            if (!$dropdownButton.is(event.target) && !$dropdownMenu.is(event.target) && $dropdownMenu.has(event.target).length === 0) {
+                $dropdownMenu.removeClass('open'); // הסרת הכלאס כאשר לוחצים מחוץ לרשימה
+            }
+        });
+    }
+});
+
+
+/*// After loading Swiper, check the number of slides
 document.addEventListener('DOMContentLoaded', function () {
     // Find all elements with same ID
     var swiperWrappers = document.querySelectorAll('#module_slider_pdts');
@@ -742,7 +659,7 @@ document.addEventListener('DOMContentLoaded', function () {
             swiperWrapper.style.justifyContent = 'flex-start';
         }
     });
-});
+});*/
 
 
 

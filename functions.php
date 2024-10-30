@@ -207,6 +207,11 @@ require get_template_directory() . '/inc/acf-fuctions.php';
  */
 require get_template_directory() . '/inc/wc-functions.php';
 
+/**
+ * Woocommerce Functions
+ */
+require get_template_directory() . '/inc/crons-functions.php';
+
 // /**
 //  * ACF Functions
 //  */

@@ -154,12 +154,7 @@ section.section_slider_categories {
             }
 
             .swiper-pagination-wrapper {
-                position: absolute;
                 @extend %center-flex;
-                right: 0;
-                left: 0;
-                bottom: 0;
-                height: 20px;
 
                 .swiper-pagination {
                     position: absolute;
@@ -172,8 +167,8 @@ section.section_slider_categories {
                     font-size: 0;
                     color: #000;
                     @extend %center-flex;
-                    margin-left: -50px;
-
+                    left: auto;
+                    
                     .swiper-pagination-bullet  {
                         position: relative;
                         display: inline-block;

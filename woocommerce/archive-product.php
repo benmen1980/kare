@@ -40,10 +40,12 @@ $child_categories = get_terms( array(
     'hide_empty' => false, // can be set to true if you want to hide empty
 ) );
 
-// echo "<pre>"; 
-// print_r($child_categories);
-// echo "</pre>";
+global $wp_query;
 
+$total_products = $wp_query->found_posts;
+$per_page = $wp_query->get('posts_per_page');
+$current_page = max(1, $wp_query->get('paged'));
+$total_pages = $wp_query->max_num_pages;
 
 ?>
 <header class="woocommerce-products-header<?php echo empty($img_cat_bg) ? ' empty' : '';?>">
@@ -142,9 +144,31 @@ endif;
 			<svg></svg>
 		</button>
 	</div> -->
-	<div class="product_sorting_wrapper"></div>
-	<div class="child_category_wrapper" id="<?php echo 'term-'.$category_id;?>">
-		
+	<div class="product_sorting_wrapper">
+		<div class="hidden"></div>
+		<div class="product-count">
+			<span class="number-pdts">
+				<?php echo sprintf(
+							esc_html__('%s Products', 'kare'),
+							$total_products
+						); 
+				?>
+			</span>
+			<span> | </span>
+			<span class="number-page">
+				<?php echo sprintf(
+							esc_html__('%s of %s', 'kare'),
+							$current_page,
+							$total_pages
+						); 
+				?>
+			</span>
+		</div>
+		<div class="sorting-options">
+			<?php woocommerce_catalog_ordering(); ?>
+		</div>
+	</div>
+	<div class="child_category_wrapper" id="<?php echo 'term-'.$category_id;?>">	
 		<?php
 			if ( woocommerce_product_loop() ) {
 				
@@ -218,6 +242,45 @@ endif;
 			}
 		?>
 	</div>
+
+	<!-- load more pages of same category -->
+	<?php if ($total_pages > 1) : ?>
+		<div class="load_more_pdts_wrapper">
+
+			<!-- Previous Button -->
+			<?php if ($current_page > 1): ?>
+				<a href="<?php echo get_pagenum_link($current_page - 1); ?>" class="pagination-prev btn_white_hover">
+					<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-md.svg'); ?>
+					<span class="prev"><?php echo esc_html_e('Previous', 'kare'); ?></span>
+				</a>
+			<?php endif; ?>
+				
+			<!-- Dropdown Pagination -->
+			<div class="pagination-dropdown">
+				<button class="pagination-current">
+					<span><?php echo $current_page . ' of ' . $total_pages; ?></span>
+					<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-down.svg'); ?>
+				</button>
+				<ul class="pagination-options">
+					<?php for ($i = 1; $i <= $total_pages; $i++): ?>
+						<li><a href="<?php echo get_pagenum_link($i); ?>" <?php echo ($i === $current_page) ? 'class="active"' : ''; ?>>
+							<?php echo $i; ?>
+						</a></li>
+					<?php endfor; ?>
+				</ul>
+			</div>
+				
+			<!-- Next Button -->
+			<?php if ($current_page < $total_pages): ?>
+				<a href="<?php echo get_pagenum_link($current_page + 1); ?>" class="pagination-next btn_white_hover">
+					<span class="next"><?php echo esc_html_e('Next', 'kare'); ?></span>
+					<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-md.svg'); ?>
+				</a>
+			<?php endif; ?>
+				
+		</div>	
+	<?php endif; ?>
+
 	<div class="module_half_wrapper">
 	<?php
 		if($choose_module): 

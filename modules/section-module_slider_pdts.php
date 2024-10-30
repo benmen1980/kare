@@ -66,7 +66,7 @@
                 </div>
                 <!-- dropping points-->
                 <div class="swiper-pagination-wrapper">
-                    <div class="swiper-pagination swiper-pagination-black swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic" style="width: 100px;">
+                    <div class="swiper-pagination swiper-pagination-black swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
                     </div>
                 </div>
             </div>

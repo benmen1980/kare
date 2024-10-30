@@ -349,7 +349,6 @@
                             margin: 0 8px 8px 0;
                             font-size: 14px;
                             line-height: 21px;
-                            cursor: pointer;
                             box-sizing: border-box;
                         }
                     }
@@ -920,17 +919,22 @@
 
             .tabs_wrapper {
                 position: relative;
+                width: 100%;
+                overflow: hidden;
+                div.more_slide_products {
+                    padding-bottom: 40px;
+                }
                 .swiper-slide {
                     .search_suggestions_product {
-                        width: 233px !important;
+                        width: 100% !important;
                         .box_product {
                             .product_img_wrapper {
-                            height: 208px;
-                            max-height: 208px;
+                            height: 66%;
+                            max-height: 66%;
                             }
                             .product_details_wrapper {
-                                height: 107px;
-                                max-height: 107px;
+                                height: 34%;
+                                max-height: 34%;
                                 padding: 8px;
                                 a.product_details{
                                     display: block;
@@ -1016,12 +1020,12 @@
                 }
                 
                 .swiper-pagination-wrapper {
-                    position: absolute;
+                    // position: absolute;
                     @extend %center-flex;
-                    right: 0;
-                    left: 0;
-                    bottom: 0;
-                    height: 20px;
+                    // right: 0;
+                    // left: 0;
+                    // bottom: 0;
+                    // height: 20px;
                 
                     .swiper-pagination {
                         position: absolute;
@@ -1034,6 +1038,7 @@
                         font-size: 0;
                         color: #000;
                         @extend %center-flex;
+                        left: auto;
                 
                         .swiper-pagination-bullet  {
                             position: relative;

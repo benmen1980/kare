@@ -202,7 +202,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 							// The Query
 							$the_query = new WP_Query( $query_args );
 							$similar_ids = [$product->get_id()];
-						
+				
 							// Loop through similar products
 							if ( $the_query->have_posts() ) :
 								while ( $the_query->have_posts() ) :
@@ -217,22 +217,24 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 						<div class="swiper tabs_wrapper">
 							<div class="similar-pdt-swiper">
 								<div class="swiper-wrapper">
-									<?php foreach ($similar_ids as $pdt_id) :
+									<?php foreach($similar_ids as $pdt_id) :
 
 										$similar_product = wc_get_product($pdt_id);
-										$image_url = wp_get_attachment_url($similar_product->get_image_id());
-										$product_url = get_permalink($pdt_id);
-										$product_name = $similar_product->get_name();
-											
-										if ($image_url) : ?>
-											<div class="swiper-slide">
-												<div class="similar-image-pdt">
-													<a href="<?php echo esc_url($product_url); ?>" class="varition_image" title="<?php echo esc_attr($product_name); ?>" aria-lable="link">
-														<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($product_name);?>" width="80" height="80"/>
-													</a>
-												</div>
-											</div>									
-										<?php endif;
+										if ($similar_product && $similar_product->get_status() === 'publish') :
+											$image_url = wp_get_attachment_url($similar_product->get_image_id());
+											$product_url = get_permalink($pdt_id);
+											$product_name = $similar_product->get_name();
+												
+											if ($image_url) : ?>
+												<div class="swiper-slide">
+													<div class="similar-image-pdt">
+														<a href="<?php echo esc_url($product_url); ?>" class="varition_image" title="<?php echo esc_attr($product_name); ?>" aria-label="link">
+															<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($product_name);?>" width="80" height="80"/>
+														</a>
+													</div>
+												</div>									
+											<?php endif;
+										endif;
 									endforeach; ?>
 								</div>
 							</div>
@@ -284,7 +286,11 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 						<?php
 							do_action( 'woocommerce_before_add_to_cart_quantity' );
 					
-							$max_quantity = apply_filters( 'woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product );
+							$max_quantity = $product->get_max_purchase_quantity();
+							if ($max_quantity == 0) {
+								$max_quantity = !empty($kare_stock) ? intval($kare_stock) : 0;
+							}
+							$max_quantity = apply_filters('woocommerce_quantity_input_max', $max_quantity, $product);
 							$min_quantity = apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product );
 							$pack_quantity = get_post_meta($product->get_id(), 'quantity_product_order', true);
 							$quantity = isset($pack_quantity) && $pack_quantity > 1 ? $pack_quantity : $min_quantity; 
@@ -410,9 +416,10 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 	<section class="accordion_wrapper">
 		<h2><b><?php echo esc_html_e('Product'); ?></b> <?php echo esc_html_e(' details'); ?></h2>
 		<section class="accordion_details_wrapper">
-			<?php if(get_field('product_details')):  
+			<?php 
+			if ( get_field('product_details') ):  
 				$product_details = get_field('product_details'); // Getting the main set of fields
-				
+
 				// getting the fields from the internal field group 'pdt_information'
 				$pdt_information = $product_details['pdt_information'];
 				$item_number = $pdt_information['item_number'];
@@ -426,7 +433,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 
 				// Getting additional fields from the main field group
 				$video_url = $product_details['url_video'];
-				$img_link = $product_details['img_link'];
+				$img_link = $product_details['img_dimensions_link'];
 				$txt_description = $product_details['more_description'];
 				$file_download = $product_details['file_download'];
 
@@ -657,7 +664,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 				if ( $query->have_posts() ) { ?>
 					<div class="tabs_wrapper">
                         <div class="swiper_slide_pdts swiper_slide_category swiper-container">
-                            <div id="slide_bestseller_products" class="slider_products_content swiper-wrapper">
+                            <div id="slide_same_cat_pdts" class="more_slide_products slider_products_content swiper-wrapper">
 								<?php while ( $query->have_posts() ) {
 									$query->the_post();
 									get_template_part('page-templates/box-product');
@@ -678,7 +685,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 							</div>
 							<!-- dropping points-->
 							<div class="swiper-pagination-wrapper">
-								<div class="swiper-pagination swiper-pagination-black swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic" style="width: 100px;">
+								<div class="swiper-pagination swiper-pagination-black swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
 								</div>
 							</div>
 						</div>
@@ -715,7 +722,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 				<div class="same_category_wrapper">
 					<div class="tabs_wrapper">
 						<div class="swiper_slide_pdts swiper_slide_bestseller_category swiper-container">
-							<div id="slide_bestseller_products" class="slider_products_content swiper-wrapper">
+							<div id="slide_bestseller_cat_pdts" class="more_slide_products slider_products_content swiper-wrapper">
 								<?php while ( $query->have_posts() ) {
 									$query->the_post();
 									get_template_part('page-templates/box-product');
@@ -736,7 +743,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 							</div>
 							<!-- dropping points-->
 							<div class="swiper-pagination-wrapper">
-								<div class="swiper-pagination swiper-pagination-black swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic" style="width: 100px;">
+								<div class="swiper-pagination swiper-pagination-black swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
 								</div>
 							</div>
 						</div>
@@ -775,7 +782,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 				if ( $query->have_posts() ) { ?>
 					<div class="tabs_wrapper">
                         <div class="swiper_slide_pdts swiper_slide_bestseller_products swiper-container">
-                            <div id="slide_bestseller_products" class="slider_products_content swiper-wrapper">
+                            <div id="slide_bestseller_products" class="more_slide_products slider_products_content swiper-wrapper">
 								<?php while ( $query->have_posts() ) {
 									$query->the_post();
 									get_template_part('page-templates/box-product');
@@ -796,7 +803,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 							</div>
 							<!-- dropping points-->
 							<div class="swiper-pagination-wrapper">
-								<div class="swiper-pagination swiper-pagination-black swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic" style="width: 100px;">
+								<div class="swiper-pagination swiper-pagination-black swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
 								</div>
 							</div>
 						</div>

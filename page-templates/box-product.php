@@ -59,11 +59,14 @@ if(!is_category() && !is_product_category()) : ?>
                             </div>
                         <?php } ?>
 
-                        <?php if(has_term( '29', 'product_tag',$product->get_id() )){ 
-                                $term_data = get_term_by('id', '29', 'product_tag');
-                            ?>                       
-                            <div class="wc_tag_bestseller">
-                                <div class="text_tag_bestseller"> <?php echo $term_data->name; ?></div>
+                        <?php 
+                        $product_tags = get_the_terms( $product->get_id(), 'product_tag' );
+
+                        if ( $product_tags && !is_wp_error( $product_tags ) ) { ?>
+                            <div class="wc_tag">
+                                <?php foreach ( $product_tags as $tag ) { ?>
+                                    <div class="text_tag"> <?php echo esc_html( $tag->name ); ?> </div>
+                                <?php } ?>
                             </div>
                         <?php } ?>    
                     </div>
