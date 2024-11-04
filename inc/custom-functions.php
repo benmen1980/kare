@@ -145,3 +145,66 @@ function custom_redirection_after_registration( $redirection_url ){
 
     return $redirection_url; // Always return something
 }
+
+//use of the plugin is 'advanced-dynamic-pricing-woocommerce-pro' together with the Priority plugin
+add_filter('adp_is_to_compensate_trd_party_adj_for_fixed_price', '__return_false');
+
+
+/*
+// upload list of city name to the DB - one size
+function upload_city_name_file() {
+    global $wpdb;
+
+    // Define the table name
+    $table_cities_and_settelments = $wpdb->prefix . 'list_of_cities_and_towns';
+
+    // SQL query to create the table if it doesn't exist
+    $charset_collate = $wpdb->get_charset_collate();
+    $sql = "CREATE TABLE IF NOT EXISTS $table_cities_and_settelments (
+        id INT AUTO_INCREMENT,
+        name_he VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+        name_en VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+        PRIMARY KEY (id)
+    ) $charset_collate;";
+
+    // Execute the query
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+
+    // Path to your CSV file
+    $file_name = 'cities_name.csv';
+    $upload_dir = wp_upload_dir();
+    $csv_file_path = $upload_dir['path'] . '/' . $file_name;  
+
+    if (file_exists($csv_file_path)) {
+
+        // Open the CSV file for reading
+        if (($handle = fopen($csv_file_path, 'r')) !== false) {
+            // Skip the header row (optional)
+            fgetcsv($handle);
+
+            // Prepare the SQL insert statement with placeholders
+            $insert_query = "INSERT INTO $table_cities_and_settelments (name_he, name_en) VALUES (%s, %s)";
+
+            // Read each line in the CSV file
+            while (($data = fgetcsv($handle)) !== false) {
+                // Trim spaces from the city names
+                $name_he = trim($data[0]);
+                $name_en = trim($data[1]);
+
+                // Insert the row into the table
+                $wpdb->query($wpdb->prepare($insert_query, $name_he, $name_en));
+            }
+            fclose($handle);
+        }
+    }
+
+}
+
+add_action('upload_city_name_file_hook', 'upload_city_name_file');
+
+if (!wp_next_scheduled('upload_city_name_file_hook')) {
+
+    $res = wp_schedule_event(time(), 'daily', 'upload_city_name_file_hook');
+
+}*/

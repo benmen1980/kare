@@ -227,6 +227,35 @@ form{
     }
 }
 
+//wpcf7 form design
+.wpcf7-form {
+    .wpcf7-not-valid-tip {
+        margin-top: 8px;
+        color: #e10915;
+    }
+
+    &.sent {
+        .wpcf7-response-output {
+            color: #026805;
+            border: none;
+        }
+    }
+    &.invalid {
+        .wpcf7-response-output {
+            color: #e10915;
+            border: none;
+        }
+    }
+    .wpcf7-response-output {
+        border: none !important;
+        font-size: 14px;
+        line-height: 21px;
+        bottom: 0;
+    }
+ 
+}
+
+
 .post-526, .post-3, .post-523 {
     h1.entry-title {
         margin: 24px auto;

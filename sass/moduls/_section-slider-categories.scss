@@ -155,39 +155,48 @@ section.section_slider_categories {
 
             .swiper-pagination-wrapper {
                 @extend %center-flex;
-
+            
                 .swiper-pagination {
                     position: absolute;
-                    text-align: center;
+                    display: block;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
                     transition: opacity .3s;
                     transform: translateZ(0);
                     z-index: 10;
                     white-space: nowrap;
-                    overflow: hidden;
                     font-size: 0;
-                    color: #000;
-                    @extend %center-flex;
-                    left: auto;
-                    
+                    overflow: hidden;
+            
                     .swiper-pagination-bullet  {
                         position: relative;
                         display: inline-block;
                         border-radius: 50%;
-                        border: 1px solid rgb(66,66,66);
-                        width: 10px;
-                        height: 10px;
-                        transition: width 0.3s, height 0.3s, opacity 0.3s;
+                        border: 1px solid #424242;
+                        width: 16px;
+                        height: 16px;
+                        transition-property: all;
+                        transition-duration: .2s;
+                        background: #000;
                         background-color: transparent;
                         opacity: 1;
                         cursor: pointer;
-                        transform: scale(1);    
-                        margin: 0 5px;
+                        transform: scale(.33);    
+                        margin: 0 3px;
 
+                        &.swiper-pagination-bullet-active-next, &.swiper-pagination-bullet-active-prev {
+                            transform: scale(.66);
+                        }
+
+                        &.swiper-pagination-bullet-active-next-next, &.swiper-pagination-bullet-active-prev-prev {
+                            transform: scale(.33);
+                        }
+            
                         &.swiper-pagination-bullet-active{
+                            transform: scale(1);
                             background-color: #000;
                             border-width: 1px;
-                            width: 15px;
-                            height: 15px;  
                         }
                     }
                 }

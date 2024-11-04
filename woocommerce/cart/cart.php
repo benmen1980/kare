@@ -189,7 +189,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 										$regular_price = $_product->get_regular_price();
 										$sale_price = $_product->get_sale_price();
 										$savings = ($regular_price * $qty) - ($sale_price * $qty);
-										$percentage = round( ( $savings / $regular_price ) * 100 );
+										$percentage = round( ( ($savings / $regular_price) / $qty) * 100 );
 										
 										$percentage_class = '<span class="discount-percentage">' . $percentage . '%</span>';
 										echo sprintf( __( 'Congratulations! You have just saved %s, which is %s !', 'woocommerce' ), wc_price( $savings ), $percentage_class );
@@ -209,9 +209,9 @@ do_action( 'woocommerce_before_cart' ); ?>
 					<p class="text">
 						<?php _e( '** Detailed list in the next step', 'woocommerce' ); ?>
 					</p>
-					<p class="price">
-						<span><?php _e( 'Price:', 'woocommerce' ); ?></span>
-						<?php 
+					<!-- <p class="price">
+						<span><?php // _e( 'Price:', 'woocommerce' ); ?></span>
+						<?php /*
 							$order_total = WC()->cart->cart_contents_total;
 							$shipping_amount  = get_field('shipping_cost','option');
 							$max_sum_shippping = get_field('max_sum_shippping', 'option');
@@ -221,9 +221,9 @@ do_action( 'woocommerce_before_cart' ); ?>
 							} else {
 								$shipping_cost = 0; // Set free shipping for orders of $50 or more
 							}
-							echo wc_price( $shipping_cost ); 
+							echo wc_price( $shipping_cost ); */
 						?>
-					</p>
+					</p>-->
 				</div>
 			</div>
 			<?php do_action( 'woocommerce_cart_contents' ); ?>
@@ -273,13 +273,21 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 			
 			<?php
-				$cart_total_before_discounts = WC()->cart->get_subtotal();
-				$cart_total_before_discounts = 800;
-				$discount_total = WC()->cart->get_discount_total();
-				$discount_total = 600;
-				$shipping_total = WC()->cart->get_shipping_total();
-				$cart_total_after_discounts = WC()->cart->total;
+				$cart_total_before_discounts = 0;
 
+				foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+					$product = $cart_item['data'];
+					$quantity = $cart_item['quantity'];
+
+					$regular_price = $product->get_regular_price();
+				
+					$cart_total_before_discounts += $regular_price * $quantity;
+				}
+
+				$cart_total_after_discounts =  WC()->cart->get_subtotal();
+				$discount_total = ($cart_total_before_discounts) - ($cart_total_after_discounts);
+				$shipping_total = '0';
+				
 				if ($cart_total_before_discounts > 0 && $discount_total > 0) { ?>
 					<div class="product-discount-message">
 						<p>

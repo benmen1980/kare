@@ -23,7 +23,7 @@ if ( ! wp_doing_ajax() ) {
 ?>
 <div id="payment" class="woocommerce-checkout-payment">
 	<?php if ( WC()->cart->needs_payment() ) : ?>
-		<h3 class="payment-title"><?php echo esc_html_e( 'Payment method:', 'woocommerce' ); ?></h3>
+		<h3 class="payment-title"><?php echo esc_html_e( 'Payment method', 'woocommerce' ); ?></h3>
 
 		<ul class="wc_payment_methods payment_methods methods">
 			<?php

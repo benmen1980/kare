@@ -8,7 +8,7 @@
         @extend %container;
         padding: 0;
 
-        .entry-header {
+        .entry-header, .section_wrap.breadcrumb_section{
             display: none;
         }
 
@@ -59,6 +59,7 @@
                                 &.order-total td{
                                     font-size: 20px;
                                     color: #e10915;
+                                    font-weight: 700;
                                 }
 
                                 th, td{
@@ -83,6 +84,10 @@
                                         margin: 0;
                                         text-align: end;
                                         margin-top: 8px;
+                                    }
+                                    &.shipping-message {
+                                        margin: 0;
+                                        text-align: end;
                                     }
                                 }
                             }
@@ -368,6 +373,10 @@
                                         display: flex;
                                         justify-content: space-between;
                                         margin-top: 8px;
+
+                                        ins {
+                                            background: transparent;
+                                        }
                                     }
                                     .stock {
                                         color: #026805;
@@ -381,6 +390,12 @@
                                     .red {
                                         color: #e10915;
                                     }
+
+                                    .product-price-discont .bold.red {
+                                        del {
+                                            display: none;
+                                        }
+                                    }
                                 }
 
                                 hr {
@@ -393,6 +408,14 @@
                                 .product-subtotal {
                                     display: flex;
                                     justify-content: space-between;
+
+                                    del {
+                                        display: none;
+                                    }
+
+                                    ins {
+                                        background: transparent;
+                                    }
     
                                     p{
                                         font-size: 16px;

@@ -8,6 +8,8 @@ define( 'THEME_VERSION', $theme_data->Version );
 
 
 function kare_custom_scripts() {
+    wp_enqueue_script( 'jquery-ui-autocomplete' );
+
     wp_enqueue_style( 'kare-style-min', get_template_directory_uri() . '/dist/css/style.min.css' );
     wp_enqueue_style( 'kare-style', get_template_directory_uri() . '/dist/css/style.min.css' );
     wp_enqueue_style( 'slick-css', get_template_directory_uri() . '/dist/css/slick.css' );
@@ -26,7 +28,7 @@ add_action( 'wp_enqueue_scripts', 'kare_custom_scripts' );
 /**
  * Enqueue  Admin Scripts
  */
-function gant_admin_script( $hook ) {
+function kare_admin_script( $hook ) {
     wp_enqueue_style( 'admin_styles', get_template_directory_uri() . '/dist/css/admin.css', false, '1.0' );
 }
-add_action( 'admin_enqueue_scripts', 'gant_admin_script' );
+add_action( 'admin_enqueue_scripts', 'kare_admin_script' );

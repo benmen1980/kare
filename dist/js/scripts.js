@@ -3,8 +3,8 @@ var $=jQuery.noConflict();
 
 jQuery(document).on("ready", function(){
 
-    // console.log(typeof jQuery);  
-    
+    // console.log(typeof jQuery);
+       
     //add class to label in login form for adding css 
     // On input focus
     $('.form-row .input-text').focus(function() {
@@ -97,26 +97,28 @@ jQuery(document).on("ready", function(){
 
         //add the selected quantity of the product to the cart
         const selectWrapper = document.querySelector('.custom_select_wrapper');
-        const selectTrigger = selectWrapper.querySelector('.btn_quantity_wrapper');
-        const options = selectWrapper.querySelector('.custom_options');
-        const hiddenInput = selectWrapper.querySelector('.custom_select_hidden');
-        const selectedValue = selectWrapper.querySelector('.selected_value');
+        if (selectWrapper) {
+            const selectTrigger = selectWrapper.querySelector('.btn_quantity_wrapper');
+            const options = selectWrapper.querySelector('.custom_options');
+            const hiddenInput = selectWrapper.querySelector('.custom_select_hidden');
+            const selectedValue = selectWrapper.querySelector('.selected_value');        
 
-        selectTrigger.addEventListener('click', function() {
-            options.classList.toggle('open');
-        });
+            selectTrigger.addEventListener('click', function() {
+                options.classList.toggle('open');
+            });
 
-        options.addEventListener('click', function(e) {
-            if (e.target.classList.contains('custom_option')) {
-                hiddenInput.value = e.target.getAttribute('data-value');
-                selectedValue.textContent = e.target.textContent;
-                options.classList.remove('open');
-                document.querySelectorAll('.custom_option').forEach(option => {
-                    option.classList.remove('selected');
-                });
-                e.target.classList.add('selected');
-            }
-        });
+            options.addEventListener('click', function(e) {
+                if (e.target.classList.contains('custom_option')) {
+                    hiddenInput.value = e.target.getAttribute('data-value');
+                    selectedValue.textContent = e.target.textContent;
+                    options.classList.remove('open');
+                    document.querySelectorAll('.custom_option').forEach(option => {
+                        option.classList.remove('selected');
+                    });
+                    e.target.classList.add('selected');
+                }
+            });
+        }
 
         // Initialize the large gallery (main-slider)
         const largeGallery = new Swiper('.main-slider', {
@@ -133,8 +135,19 @@ jQuery(document).on("ready", function(){
 
         // Initialize the small gallery (thumb-slider)
         const smallGallery = new Swiper('.thumb-slider', {
-            slidesPerView: 9.15,
+            slidesPerView: 3.5,
             spaceBetween: 20,
+            breakpoints: {
+                800: { 
+                    slidesPerView: 4,
+                },
+                1024: { 
+                    slidesPerView: 6,
+                },
+                1440: { 
+                    slidesPerView: 9.15,
+                }
+            },
             navigation: {
                 nextEl: '.small-slider-nav-next',
                 prevEl: '.small-slider-nav-prev',
@@ -211,6 +224,8 @@ jQuery(document).on("ready", function(){
             el: '.swiper-pagination',
             type: 'bullets',
             clickable: true,
+            dynamicBullets: true,
+            dynamicMainBullets: 1,  
             renderBullet: function (index, className) {
                 return '<span class="' + className + '"></span>';
             },
@@ -226,25 +241,28 @@ jQuery(document).on("ready", function(){
                 let slideWidth = slideWidths[parentId] || 192; 
                 const containerWidth = this.el.clientWidth;
 
+                if (parentId === 'rounded_btn' && window.innerWidth < 768) {
+                    slideWidth = 100;
+                }
+
                 // Set slides per view based on width and space
                 this.params.slidesPerView = calculateSlidesPerView(containerWidth, slideWidth, this.params.spaceBetween);
 
                 this.update();
-                updatePagination(this);  // Call pagination update
-            },
-            slideChange: function () {
-                updatePagination(this); // Update pagination on slide change
             },
             resize: function () {
                 const parentId = this.el.querySelector('.swiper-wrapper').id; 
                 let slideWidth = slideWidths[parentId] || 192; // Defaults to 192 if ID not in slideWidths
                 const containerWidth = this.el.clientWidth;
 
+                if (parentId === 'rounded_btn' && window.innerWidth < 768) {
+                    slideWidth = 100;
+                }
+
                 // Recalculate slidesPerView on resize
                 this.params.slidesPerView = calculateSlidesPerView(containerWidth, slideWidth, this.params.spaceBetween);
 
                 this.update();
-                updatePagination(this); // Update pagination on resize
             },
            
         }
@@ -275,29 +293,17 @@ jQuery(document).on("ready", function(){
         }
     });
 
-    function updatePagination(swiper) {
-        var paginationEl = swiper.pagination.el;
-        if (Array.isArray(paginationEl)) {
-            paginationEl = paginationEl[0];
-        }
-        if (!paginationEl || !paginationEl.querySelectorAll) {
-            return;
-        }
-        var bullets = paginationEl.querySelectorAll('.swiper-pagination-bullet');
-        var activeIndex = swiper.activeIndex;
-        bullets.forEach((bullet, index) => {
-            var distance = Math.abs(activeIndex - index);
-            var size = 16 - (distance * 5);
-            size = size < 4 ? 4 : size;
-            bullet.style.width = size + 'px';
-            bullet.style.height = size + 'px';
-            bullet.style.opacity = 0.5 + (0.5 / (distance + 1));
-        });
-    }
-
-    const swiper = new Swiper('.similar-pdt-swiper', {
+    const swiperSimilarPdt = new Swiper('.similar-pdt-swiper', {
         slidesPerView: 4,
         spaceBetween: 20,
+    });
+
+    const swiperSameCat = new Swiper('.swiper_more_same_cat', {
+        spaceBetween: 8,
+        slidesPerView: 'auto',
+        slidesPerGroup: 1,
+        centerInsufficientSlides: true,
+        // setWrapperSize: true,
     });
 
     //open account popup in header
@@ -392,7 +398,7 @@ jQuery(document).on("ready", function(){
         });
 
         // Open sub-menu on clicking main menu item
-        $('#primary-menu > li > a').on('click', function(event) {
+        $('#primary-menu > li.menu-item-has-children > a').on('click', function(event) {
             event.preventDefault(); 
 
             const parentLi = $(this).parent();
@@ -610,6 +616,25 @@ jQuery(document).on("ready", function(){
         
     });
 
+    //Opening the search input in the phone
+    $(document).on('click', function(event) {
+        if (!$(event.target).closest('#btn-header-search, #product-searchform').length) {
+            $('#product-searchform').removeClass('open-search');
+        }
+    });
+
+    $('#btn-header-search').on('click', function(event) {
+        event.stopPropagation();
+        $(this).find('#product-searchform').addClass('open-search');
+    });
+
+    // Hiding the second delivery area when empty
+    $('.woocommerce-shipping-fields').each(function() {
+        if ($(this).text().trim() === '') {
+            $(this).addClass('empty');
+        }
+    });
+
 });
 
 // Management of a drop-down menu with a click, and automatic checking of the display location
@@ -660,6 +685,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });*/
-
-
-

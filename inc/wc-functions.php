@@ -81,12 +81,12 @@ function custom_coupon_error_message( $err, $err_code, $coupon ) {
     );
   
     $args = apply_filters( 'woocommerce_quantity_input_args', wp_parse_args( $args, $defaults ), $product );
-   
+
     // Apply sanity to min/max args - min cannot be lower than 0.
     $args['min_value'] = isset($pack_quantity) && $pack_quantity >= 1 ? $pack_quantity : max( $args['min_value'], 1 );
 
     // Note: change 20 to whatever you like
-    $args['max_value'] = 0 > $args['max_value'] ? $args['max_value'] : 24;
+    $args['max_value'] = 24 > $args['max_value'] ? $args['max_value'] : 24;
   
     // Max cannot be lower than min if defined.
     if ( '' !== $args['max_value'] && $args['max_value'] < $args['min_value'] ) {
@@ -122,6 +122,26 @@ function custom_coupon_error_message( $err, $err_code, $coupon ) {
    
 }
 
+//Update the max quantity according to the available stock or according to the sand stock
+add_filter('woocommerce_quantity_input_args', 'custom_quantity_input_args', 10, 2);
+function custom_quantity_input_args($args, $product) {
+    $kare_stock = get_post_meta($product->get_id(), 'kare_general_stock', true);
+    $stock_available = get_post_meta($product->get_id(), '_stock', true);
+    $backorders_status = get_post_meta($product->get_id(), '_backorders', true);
+
+    $max_quantity = $product->get_max_purchase_quantity();
+    if ($stock_available <= 0) {
+        if ( $backorders_status === 'yes' ) {
+            $max_quantity = !empty($kare_stock) ? intval($kare_stock) : 0;
+        }  else {
+            $max_quantity = 0; 
+        }
+    } else {
+        $max_quantity = apply_filters( 'woocommerce_quantity_input_max', $max_quantity, $product );
+    }
+    $args['max_value'] = $max_quantity;
+    return $args;
+}
 /**
  * @snippet       Automatically Update Cart on Quantity Change - WooCommerce
  * @how-to        Get CustomizeWoo.com FREE
@@ -135,47 +155,12 @@ function custom_coupon_error_message( $err, $err_code, $coupon ) {
  function bbloomer_cart_refresh_update_qty() {
     if ( is_cart() || ( is_cart() && is_checkout() ) ) {
        wc_enqueue_js( "
-          $('div.woocommerce').on('change', 'select.qty', function(){
-             $('[name=\'update_cart\']').trigger('click');
-          });
+        $('div.woocommerce').on('change', 'select.qty', function(){
+            $('[name=\'update_cart\']').trigger('click');
+        });
        " );
     }
  }
-
- /**
-* @snippet       Tiered Shipping Rates | WooCommerce
-* @how-to        Get CustomizeWoo.com FREE
-* @author        Rodolfo Melogli
-* @testedwith    WooCommerce 5.0
-* @community     https://businessbloomer.com/club/
-*/
- 
-add_filter('woocommerce_package_rates', 'custom_shipping_price_based_on_order_amount', 10, 2);
-function custom_shipping_price_based_on_order_amount($rates, $package) {
-    // Get the order total amount
-    $order_total = WC()->cart->cart_contents_total;
-    $shipping_amount  = get_field('shipping_cost','option');
-    $max_sum_shippping = get_field('max_sum_shippping', 'option');
-    // Define the shipping rate based on the order amount
-    if ($order_total <= $max_sum_shippping) {
-        $shipping_cost = $shipping_amount; // Set the shipping cost for orders under $50
-    } else {
-        $shipping_cost = 0; // Set free shipping for orders of $50 or more
-    }
-    // Loop through the shipping rates
-    foreach ($rates as $rate_key => $rate) {
-        // Update the shipping cost for the specific shipping method
-        if ($rate->method_id === 'flat_rate') {
-            $rates[$rate_key]->cost = $shipping_cost;
-            if($rates[$rate_key]->cost == 0){
-                $rates[ $rate_key ]->label .= ' (free)';
-            }
-        }
-    }
-
-    return $rates;
-}
-
 
 /**
  * Changes to the checkout page
@@ -196,7 +181,117 @@ function remove_checkout_fields_placeholder( $fields ) {
     // unset( $fields['billing']['billing_address_2'] );
     // unset( $fields['shipping']['shipping_address_2'] );
 
+    $fields['billing']['billing_city'] = array(
+        'type'        => 'text', // Keep it as text for autocomplete
+        'label'       => __('City', 'woocommerce'), // Set the label
+        'required'    => true,
+        'autocomplete' => 'none', // Prevent browser autocomplete
+    );
+
+    $chosen_methods = WC()->session->get('chosen_shipping_methods');
+    if (!empty($chosen_methods)) {
+        foreach ($chosen_methods as $method) {
+            if ( strpos( $method, 'local_pickup' ) !== false ) {
+                unset( $fields['billing']['billing_country'] );
+                unset( $fields['billing']['billing_address_1'] );
+                unset( $fields['billing']['billing_address_2'] );
+                unset( $fields['billing']['billing_postcode'] );
+                unset( $fields['billing']['billing_city'] );
+                unset( $fields['shipping'] );
+                add_filter( 'woocommerce_cart_needs_shipping_address', '__return_false' );
+
+            }
+        }
+    }
+
     return $fields;
+}
+
+// Make the postcode field optional
+add_filter( 'woocommerce_default_address_fields', 'make_postcode_optional' );
+function make_postcode_optional( $fields ) {
+    $fields['postcode']['required'] = false;
+    return $fields;
+}
+
+//Calculating Shipping cost per product by class-shipping
+add_filter('woocommerce_package_rates', 'custom_shipping_cost_per_product_class', 10, 2);
+function custom_shipping_cost_per_product_class($rates, $package) {
+
+    $shipping_cost = 0.0;
+
+    foreach ($package['contents'] as $item_id => $values) {
+
+        // Get the product object
+        $product = $values['data'];
+        $quantity = $values['quantity'];
+
+        // Get the shipping class
+        $shipping_class = $product->get_shipping_class();
+
+        // Define shipping cost based on shipping class
+        switch ($shipping_class) {
+            case 'small':
+                $shipping_cost += (float) get_field('small_shipping_cost', 'option') * $quantity;
+                break;
+            case 'medium':
+                $shipping_cost += (float) get_field('medium_shipping_cost', 'option') * $quantity;
+                break;
+            case 'large':
+                $shipping_cost += (float) get_field('large_shipping_cost', 'option');
+                break;
+            default:
+                $shipping_cost += 0; // Default cost
+                break;
+        }
+    }
+
+    // Retrieve the entered city from the checkout fields
+    $entered_city = WC()->customer->get_shipping_city();
+
+    if (!empty($entered_city)) {
+        $city_shipping_cost = get_shipping_cost_by_city($entered_city);
+        $shipping_cost += $city_shipping_cost;
+    }
+
+    $order_total = WC()->cart->cart_contents_total;
+    $max_sum_shipping = get_field('max_sum_shippping', 'option');
+    if ($max_sum_shipping && $order_total >= $max_sum_shipping) {
+        $shipping_cost = 0; // Set the shipping cost for orders under $50
+    }   
+
+    // Here you can set the cost to the shipping method or modify it
+    foreach ($rates as $rate_key => $rate) {
+        // Assuming you want to add this cost to a specific shipping method
+        if ($rate->method_id === 'flat_rate') {
+            $rates[$rate_key]->cost = $shipping_cost;
+        }
+    }       
+    
+    return $rates;
+}
+
+function get_shipping_cost_by_city($city_name) {
+    $cities_cost_list = get_field('list_cities_cost', 'option'); 
+
+    // Default cost if no match is found
+    $default_shipping_cost = 0;
+
+    if ($cities_cost_list) {
+        foreach ($cities_cost_list as $city) {
+            if (strcasecmp($city['city_name'], $city_name) == 0) { 
+                return $city['cost']; // Return the matching city's shipping cost
+            }
+        }
+    }
+
+    return $default_shipping_cost;
+}
+
+// remove cost in the method name
+add_filter( 'woocommerce_cart_shipping_method_full_label', 'custom_shipping_method_name_only', 10, 2 );
+function custom_shipping_method_name_only( $label, $method ) {
+    return $method->get_label();
 }
 
 // Remove the charge from the diplot position
@@ -291,3 +386,17 @@ add_filter( 'posts_join', 'custom_join_for_sku_search', 10, 2 );
  * Changes to the order-details page
  */
 remove_action( 'woocommerce_order_details_before_order_table', 'woocommerce_order_details_table', 10 );
+
+add_filter('woocommerce_is_purchasable', 'allow_purchase_if_acf_stock', 10, 2);
+
+function allow_purchase_if_acf_stock($is_purchasable, $product) {
+    // בדיקת המלאי בשדה ה-ACF
+    $kare_stock = get_post_meta($product->get_id(), 'kare_general_stock', true);
+
+    // אם המלאי בשדה ACF גדול מאפס, מאפשרים רכישה
+    if (!empty($kare_stock) || $kare_stock > 0) {
+        return true;
+    }
+
+    return $is_purchasable;
+}

@@ -112,6 +112,8 @@ $total_pages = $wp_query->max_num_pages;
 								<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg'); ?>
 							</button>
 						</div>
+						<!-- scrollbar -->
+						<div class="swiper-scrollbar"></div>
 					</div>
 				</div>
 			</div>

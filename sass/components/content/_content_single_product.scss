@@ -586,6 +586,11 @@
                     }
 
                     .notification_content {
+                        margin-top: 16px;
+                        p {
+                            color: #e10915;
+                            font-weight: 700;
+                        }
 
                         .notification_and_btn {
                             display: flex;
@@ -649,8 +654,7 @@
                                     margin: 0;
                                     bottom: 5px;
                                     padding: 0;
-                                    //border: 0;
-                                    font-size: 20px;
+                                    font-size: 14px;
                                 }
                                 .wpcf7-form.invalid{
                                     .wpcf7-response-output{
@@ -661,9 +665,10 @@
 
                             .wishlist_btn {
                                 @extend %white-btn;
-                                padding: 19px;
+                                padding: 16px;
                                 width: 58px;
                                 height: 58px;
+                                vertical-align: middle !important;
                                 &.wishlist_btn_black {
                                     background-color: #000;
                                     .delete_item {
@@ -679,9 +684,9 @@
                                     color: #fff;
                                     padding: 16px;
 
-                                    i {
-                                        color: #fff;
-                                        content: url('/wp-content/themes/kare/dist/images/svg/heart-outline.svg');
+                                    a {
+                                        color: #fff !important;
+                                        // content: url('/wp-content/themes/kare/dist/images/svg/heart-outline.svg');
                                         filter: brightness(0) saturate(100%) invert(99%) sepia(1%) saturate(46%) hue-rotate(113deg) brightness(117%) contrast(100%);
                                     }
                                 }
@@ -820,7 +825,7 @@
 
         .related_products_section {
             padding: 30px 16px 0 16px;
-            @include media(">desktop") {
+            @media (min-width: 1440px) {
                 padding: 0;
                 padding-top: 30px;
             }
@@ -838,37 +843,52 @@
                 .more_categories_wrapper {
                     @extend %center-flex;
                     padding-bottom: 32px;
+                    position: relative;
+                    width: 100%;
+                    overflow: hidden;
 
-                    .more_categories_fits {
-                        margin-right: 8px;
-                    
-                        a.category_btn {
-                            display: flex;
-                            align-items: center;
-                            flex-direction: row;
-                            flex-wrap: wrap;
-                            background-color: #f4f4f4;
-                            padding: 16px;
-                            text-decoration: none;
-                            &:hover {
-                                text-decoration: underline;
-                            }
+                    .swiper_more_same_cat {
+                        width: 100%;
+                        overflow: hidden;
 
-                            .card_category_wrapper {
-                                margin-right: 16px;
-
-                                img {
-                                    display: block;
-                                    mix-blend-mode: darken;
+                        #slide_same_cat {
+                            // width: 100%;
+                            // overflow: hidden;
+                            .more_categories_fits { 
+                                width: auto;
+    
+                                a.category_btn {
+                                    display: flex;
+                                    align-items: center;
+                                    flex-direction: row;
+                                    flex-wrap: wrap;
+                                    background-color: #f4f4f4;
+                                    padding: 16px;
+                                    text-decoration: none;
+                                    &:hover {
+                                        text-decoration: underline;
+                                    }
+    
+                                    .card_category_wrapper {
+                                        margin-right: 16px;
+                                        width: 50px;
+                                        height: 50px;
+    
+                                        img {
+                                            display: block;
+                                            mix-blend-mode: darken;
+                                        }
+                                    }
+    
+                                    p {
+                                        margin: 0;
+                                        font-size: 16px;
+                                    }
                                 }
-                            }
-
-                            p {
-                                margin: 0;
-                                font-size: 16px;
                             }
                         }
                     }
+                    
                 }
             }
 
@@ -1029,36 +1049,45 @@
                 
                     .swiper-pagination {
                         position: absolute;
-                        text-align: center;
+                        display: block;
+                        bottom: 0;
+                        left: 50%;
+                        transform: translateX(-50%);
                         transition: opacity .3s;
                         transform: translateZ(0);
                         z-index: 10;
                         white-space: nowrap;
-                        overflow: hidden;
                         font-size: 0;
-                        color: #000;
-                        @extend %center-flex;
-                        left: auto;
+                        overflow: hidden;
                 
                         .swiper-pagination-bullet  {
                             position: relative;
                             display: inline-block;
                             border-radius: 50%;
-                            border: 1px solid rgb(66,66,66);
-                            width: 10px;
-                            height: 10px;
-                            transition: width 0.3s, height 0.3s, opacity 0.3s;
+                            border: 1px solid #424242;
+                            width: 16px;
+                            height: 16px;
+                            transition-property: all;
+                            transition-duration: .2s;
+                            background: #000;
                             background-color: transparent;
                             opacity: 1;
                             cursor: pointer;
-                            transform: scale(1);    
-                            margin: 0 5px;
+                            transform: scale(.33);    
+                            margin: 0 3px;
+
+                            &.swiper-pagination-bullet-active-next, &.swiper-pagination-bullet-active-prev {
+                                transform: scale(.66);
+                            }
+
+                            &.swiper-pagination-bullet-active-next-next, &.swiper-pagination-bullet-active-prev-prev {
+                                transform: scale(.33);
+                            }
                 
                             &.swiper-pagination-bullet-active{
+                                transform: scale(1);
                                 background-color: #000;
                                 border-width: 1px;
-                                width: 15px;
-                                height: 15px;  
                             }
                         }
                     }
@@ -1348,6 +1377,9 @@
     }  
     
     .sidebar-content {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
         .top_sidebar{
             padding: 8px 16px;
             border-bottom: 1px solid rgb(228, 228, 228);

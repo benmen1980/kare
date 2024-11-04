@@ -187,8 +187,15 @@ $total_quantity = $cart->get_cart_contents_count();
 
 			<?php do_action( 'woocommerce_review_order_before_shipping' ); ?>
 
-			<?php wc_cart_totals_shipping_html(); ?>
+			<?php //wc_cart_totals_shipping_html(); ?>
 
+			<div class="checkout-shipping-totals shipping">
+				<p><?php esc_html_e( 'Shipping cost:', 'woocommerce' ); ?></p>
+				<p class="shipping-cost" data-title="<?php esc_attr_e( 'Shipping', 'woocommerce' ); ?>">
+					<?php echo wc_price( WC()->cart->get_shipping_total() ); ?>
+				</p>
+			</div>
+			
 			<?php do_action( 'woocommerce_review_order_after_shipping' ); ?>
 
 		<?php endif; ?>

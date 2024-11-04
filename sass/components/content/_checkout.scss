@@ -9,7 +9,7 @@
             margin-bottom:0;
         }
 
-        .entry-header {
+        .entry-header, .section_wrap.breadcrumb_section {
             display: none;
         }
 
@@ -79,32 +79,112 @@
                         padding: 20px 60px;
                     }
 
-                    .col-1 .woocommerce-billing-fields {
-                        padding-bottom: 20px;
-                        border-bottom: 1px dashed #e4e4e4;
-                        
-                        p.form-row{
-                            width: 100%;
-                            margin: 0;
-                            margin-top: 20px;
-                            float: none;
-
-                            &#billing_country_field label{
-                                position: relative;
-                                margin-right: 10px;
-                                left: 0;
-                                transform: inherit;
+                    .col-1 {
+                        .woocommerce-delivery-option {
+                            .delivery-option {
+                                width: 100%;
+                                padding: 16px;
+                                border: 1px solid #e4e4e4;
+                                outline: none;
+                                background-color: #f4f4f4;
+                                border-radius: 0;
+                                margin-bottom: 20px;
                             }
 
-                            &#billing_company_field label.focused {
-                                left: -25px;
-                            } 
+                            .delivery-message {
+                                color: #e10915;
+                                font-weight: 700;
+                            }
 
-                            &#billing_phone_field label.focused {
-                                left: 0px;
-                            }                            
+                            label.woocommerce-form__label.woocommerce-form__label-for-checkbox.checkbox {
+                                font-size: 16px;
+                                font-weight: 400;
+                                margin: 0;
+                                display: -webkit-box;
+                                display: -ms-flexbox;
+                                display: flex;
+                                -webkit-box-align: center;
+                                -ms-flex-align: center;
+                                align-items: center;
+                                gap: 16px;
+
+                                input[type="checkbox"]{
+                                    position: relative;
+                                    appearance: none;
+                                    width: 24px;
+                                    height: 24px;
+                                    border: 2px solid #424242;
+                                    flex-shrink: 0;
+                                    display: inline-grid;
+                                    place-content: center;
+                                    cursor: pointer;
+                                    &:checked{
+                                      background-color: rgb(66,66,66);
+                                      &:before{
+                                        content:url("../images/svg/check.svg");
+                                        width: 16px;
+                                        height: 20px;
+                                        color: #fff;
+                                        filter: invert(100%) brightness(100%);
+                                      }
+                                    }
+                                }
+                            }
+
+                        }
+
+                        .woocommerce-billing-fields {
+                            padding-bottom: 20px;
+                            border-bottom: 1px dashed #e4e4e4;
+                            
+                            p.form-row{
+                                width: 100%;
+                                margin: 0;
+                                margin-top: 20px;
+                                float: none;
+    
+                                &#billing_country_field label{
+                                    position: relative;
+                                    margin-right: 10px;
+                                    left: 0;
+                                    transform: inherit;
+                                }
+    
+                                &#billing_company_field label.focused {
+                                    left: -25px;
+                                } 
+    
+                                &#billing_phone_field label.focused {
+                                    left: 0px;
+                                } 
+                                
+                                
+                                &#billing_postcode_field label.focused {
+                                    left: -25px;
+                                }  
+                            
+                                &#billing_city_field ul {
+                                    list-style: none;
+                                    padding: 4px 24px;
+                                    margin: 0;
+                                    padding-left: 24px;
+                                    background-color: #F4F4F4;
+                                    top: 4px !important;
+                                    box-shadow: inset 2px 0 0 #026805;
+
+                                    li.ui-menu-item {
+                                        margin: 8px auto;
+                                        cursor: pointer;
+                                    }
+                                }
+
+                                &#billing_state_field {
+                                    display: none !important;
+                                }                            
+                            }
                         }
                     }
+                    
 
                     .col-2 {
                         margin-top: 20px;
@@ -119,6 +199,10 @@
                             outline: none;
                             background-color: #f4f4f4;
                             border-radius: 0;
+
+                            &.empty {
+                                display: none;
+                            }
 
                             h3 {
                                 font-size: 16px;
@@ -281,7 +365,7 @@
                                                     margin-right: 8px;
                                                     padding: 0;
                                                     &:checked{
-                                                      background-color: rgb(66,66,66);
+                                                      background-color: #424242;
                                                       &:before{
                                                         content:url("../images/svg/check.svg");
                                                         width: 16px;
@@ -490,10 +574,18 @@
                                                         display: flex;
                                                         justify-content: space-between;
                                                         margin-top: 8px;
+
+                                                        ins {
+                                                            background: transparent;
+                                                        }
                                                     }
 
                                                     .product-delivery {
                                                         margin: 0;
+                                                    }
+
+                                                    .shipping_availability {
+                                                        text-align: end;
                                                     }
                                                     .stock {
                                                         color: #026805;
@@ -507,6 +599,12 @@
                                                     .red {
                                                         color: #e10915;
                                                     }
+
+                                                    .product-price-discont .bold.red {
+                                                        del {
+                                                            display: none;
+                                                        }
+                                                    }
                                                 }
                 
                                                 hr {
@@ -519,6 +617,14 @@
                                                 .product-total {
                                                     display: flex;
                                                     justify-content: space-between;
+
+                                                    del {
+                                                        display: none;
+                                                    }
+                
+                                                    ins {
+                                                        background: transparent;
+                                                    }
                     
                                                     p{
                                                         font-size: 16px;
@@ -574,12 +680,15 @@
                                 margin: 0;
                             }
                             
-                            .cart-subtotal {
-                                margin-top: 32px;
-                                margin-bottom: 8px;
+                            .cart-subtotal, .checkout-shipping-totals {
+                                margin: 8px auto;
                                 display: flex;
                                 justify-content: space-between;
                                 align-items: center;
+                            }
+
+                            .cart-subtotal {
+                                margin-top: 32px;
                             }
 
                             ul, li {
@@ -660,4 +769,50 @@
         display: none;
     }
 
+}
+
+
+#shipping_method div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 16px auto;
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #e4e4e4;
+    outline: none;
+    background-color: #f4f4f4;
+    border-radius: 0;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+#shipping_method .shipping_method[type="radio"] {
+    position: relative;
+    margin-right: 8px;
+    padding: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border: 2px solid #424242;
+    flex-shrink: 0;
+    display: inline-grid;
+    place-content: center;
+    cursor: pointer;
+}
+
+#shipping_method .shipping_method[type="radio"]:checked {
+    background-color: #424242;
+}
+
+#shipping_method .shipping_method[type="radio"]:checked::after {
+    content:url("../images/svg/check.svg");
+    width: 16px;
+    height: 20px;
+    color: #fff;
+    filter: invert(100%) brightness(100%);
 }

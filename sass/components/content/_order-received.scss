@@ -9,7 +9,7 @@
             margin-bottom:0;
         }
 
-        .entry-header {
+        .entry-header, .section_wrap.breadcrumb_section {
             display: none;
         }
 
@@ -309,6 +309,10 @@
                                                         display: flex;
                                                         justify-content: space-between;
                                                         margin-top: 8px;
+
+                                                        ins {
+                                                            background: transparent;
+                                                        }
                                                     }
 
                                                     .product-delivery {
@@ -325,6 +329,12 @@
                 
                                                     .red {
                                                         color: #e10915;
+                                                    }
+
+                                                    .product-price-discont .bold.red {
+                                                        del {
+                                                            display: none;
+                                                        }
                                                     }
                                                 }
                 

@@ -149,9 +149,9 @@
                     z-index: 2;
                     display: flex;
                     flex-wrap: wrap;
-                    /*@include media(">phone") {
+                    @include media(">phone") {
                         padding-left: 24px;
-                    }*/
+                    }
                     
                     .text_tag{
                         background-color: #fff;
@@ -292,6 +292,9 @@ div.swiper-slide {
                 max-height: 64%;
                 .image_with_tags {
                     padding-top: 0%;
+                    .wc_tag{
+                        padding-left: 8px;
+                    }
                                
                     div.thumbnail {
                         padding: 14px;

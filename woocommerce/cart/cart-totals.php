@@ -26,10 +26,23 @@ defined( 'ABSPATH' ) || exit;
 
 	<table cellspacing="0" class="shop_table shop_table_responsive">
 
+		<?php 
+			$cart_total_before_discounts = 0;
+
+			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+				$product = $cart_item['data'];
+				$quantity = $cart_item['quantity'];
+
+				$regular_price = $product->get_regular_price();
+
+				$cart_total_before_discounts += $regular_price * $quantity;
+			}
+		?>
+
 		<tr class="cart-subtotal">
 			<th><?php esc_html_e( 'Order total:', 'woocommerce' ); ?></th>
 			<td data-title="<?php esc_attr_e( 'Order total', 'woocommerce' ); ?>">
-				<?php echo wc_price( WC()->cart->get_cart_contents_total() ); ?>
+				<?php echo wc_price( $cart_total_before_discounts ); ?>
 			</td>
 		</tr>
 
@@ -37,18 +50,25 @@ defined( 'ABSPATH' ) || exit;
 
 			<?php do_action( 'woocommerce_cart_totals_before_shipping' ); ?>
 
-			<?php wc_cart_totals_shipping_html(); ?>
+			<?php //wc_cart_totals_shipping_html(); ?>
+
+			<tr class="cart-shipping-totals shipping">
+				<th><?php esc_html_e( 'Shipping:', 'woocommerce' ); ?></th>
+				<td class="shipping-message" data-title="<?php esc_attr_e( 'Shipping', 'woocommerce' ); ?>">
+				<?php esc_html_e( 'Shipping cost calculation on the next page', 'woocommerce' ); ?>
+				</td>
+			</tr>
 
 			<?php do_action( 'woocommerce_cart_totals_after_shipping' ); ?>
 
-		<?php elseif ( WC()->cart->needs_shipping() && 'yes' === get_option( 'woocommerce_enable_shipping_calc' ) ) : ?>
+		<?php //elseif ( WC()->cart->needs_shipping() && 'yes' === get_option( 'woocommerce_enable_shipping_calc' ) ) : ?>
 
-			<tr class="shipping">
-				<th><?php esc_html_e( 'Delivery costs:', 'woocommerce' ); ?></th>
-				<td data-title="<?php  esc_attr_e( 'Delivery costs', 'woocommerce' ); ?>">
-					<?php woocommerce_shipping_calculator(); ?>
+			<!-- <tr class="shipping">
+				<th><?php // esc_html_e( 'Delivery costs:', 'woocommerce' ); ?></th>
+				<td data-title="<?php  // esc_attr_e( 'Delivery costs', 'woocommerce' ); ?>">
+					<?php // woocommerce_shipping_calculator(); ?>
 				</td>
-			</tr>
+			</tr> -->
 
 		<?php endif; ?>
 
@@ -69,14 +89,14 @@ defined( 'ABSPATH' ) || exit;
             <tr class="discount">
                 <th><?php _e( 'Discount:', 'woocommerce' ); ?></th>
                 <td data-title="<?php esc_attr_e( 'Discount', 'woocommerce' ); ?>">
-                    <?php echo wc_price( WC()->cart->get_discount_total() ); ?>
+                    <?php echo '-' . wc_price( WC()->cart->get_discount_total() ); ?>
                 </td>
             </tr>		
 		<?php elseif ( $discount_total > 0 ) : ?>
 			<tr class="discount">
 				<th><?php _e( 'Discount:', 'woocommerce' ); ?></th>
 				<td data-title="<?php esc_attr_e( 'Discount', 'woocommerce' ); ?>">
-					<?php echo wc_price( $discount_total ); ?>
+					<?php echo '-' . wc_price( $discount_total ); ?>
 				</td>
 			</tr>
         <?php endif; ?>
@@ -134,7 +154,13 @@ defined( 'ABSPATH' ) || exit;
 		<tr class="order-total">
 			<th><?php esc_html_e( 'Order total including VAT:', 'woocommerce' ); ?></th>
 			<td data-title="<?php esc_attr_e( 'Order total including VAT', 'woocommerce' ); ?>">
-				<?php wc_cart_totals_order_total_html(); ?>
+				<?php
+					if ( is_cart() ) {
+						echo wc_price( WC()->cart->get_subtotal() );
+					} else {
+						wc_cart_totals_order_total_html();
+					}
+				?>
 			</td>
 		</tr>
 

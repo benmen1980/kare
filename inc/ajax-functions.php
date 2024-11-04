@@ -59,3 +59,122 @@ function woocommerce_ajax_add_to_cart() {
 
     wp_die();
 }
+
+add_action('wp_enqueue_scripts', 'enqueue_city_autocomplete_script');
+
+function enqueue_city_autocomplete_script() {
+    if (is_checkout()) { // Only load on checkout page
+        wp_enqueue_script('autocomplete_script', get_template_directory_uri() . '/dist/js/ajax-scripts.js', array('jquery', 'jquery-ui-autocomplete'), null, true);
+        wp_localize_script('autocomplete_script', 'ajax_obj', array(
+            'ajax_url' => admin_url('admin-ajax.php')
+        ));
+    }
+}
+
+/**
+ * Get cities from databse 
+ */
+add_action( 'wp_ajax_autocomplete_city', 'autocomplete_city' );
+// for non-logged in users:
+add_action( 'wp_ajax_nopriv_autocomplete_city', 'autocomplete_city' );
+
+function autocomplete_city(){
+    $aa = $_REQUEST['city'];
+    if( empty(trim($_REQUEST['city']) ) ) {
+        wp_send_json(array(
+            'results' => [],
+            'success' =>  true
+        ));
+        wp_die();
+    }
+
+    global $wpdb;
+    $table_cities_and_settelments = $wpdb->prefix . 'list_of_cities_and_towns';
+
+    $search_term = $wpdb->esc_like(trim($_REQUEST['city']));
+
+
+    // search for any city starting with the string
+    $results = $wpdb->get_results( $wpdb->prepare(
+        "
+        SELECT id, name_en as value
+        FROM `$table_cities_and_settelments` 
+        WHERE name_he LIKE %s OR name_en LIKE %s
+        ORDER BY name_en
+        LIMIT 10
+        ",
+        ($search_term . '%'),
+        ($search_term . '%')
+    ) );
+
+    // if we didn't find any city, try searching for any city containing the string
+    if( !count($results) ) {
+        $results = $wpdb->get_results( $wpdb->prepare(
+            "
+            SELECT id, name_en as value
+            FROM `$table_cities_and_settelments` 
+            WHERE name_he LIKE %s OR name_en LIKE %s
+            ORDER BY name_en
+            LIMIT 10
+            ",
+            ('%' . $search_term . '%'),
+            ('%' . $search_term . '%')
+        ) );
+    }
+
+    wp_send_json(array(
+        'results' => $results,
+        'success' =>  true
+    ));
+    wp_die();
+}
+
+/**
+ * Update shipping cost when selecting a city 
+ */
+
+add_action('wp_ajax_get_shipping_cost', 'get_shipping_cost');
+add_action('wp_ajax_nopriv_get_shipping_cost', 'get_shipping_cost');
+
+function get_shipping_cost() {
+    $city_id = intval($_POST['city_id']);
+    $cities_cost_list = get_field('list_cities_cost', 'option'); 
+
+    $default_shipping_cost = 0.0;
+
+    if ($cities_cost_list) {
+        foreach ($cities_cost_list as $city) {
+            // Check if the entered city name matches any city name in the array
+            if (strcasecmp($city['city_name'], $city_name) == 0) { // Case-insensitive comparison
+                $default_shipping_cost = $city['cost']; // Return the matching city's shipping cost
+            }
+        }
+    }
+
+    wp_send_json_success(array('shipping_cost' => $shipping_cost));
+}
+
+
+add_action( 'wp_ajax_update_checkout_fields', 'update_checkout_fields_based_on_shipping' );
+add_action( 'wp_ajax_nopriv_update_checkout_fields', 'update_checkout_fields_based_on_shipping' );
+
+function update_checkout_fields_based_on_shipping() {
+    // Fetch the checkout fields with the custom logic applied
+    $selected_shipping_method = isset($_POST['ship_method']) ? sanitize_text_field($_POST['ship_method']) : '';
+
+    // קבלת השדות המותאמים
+    $fields = WC()->checkout()->get_checkout_fields();
+        
+    // בדיקה אם המשלוח שנבחר כולל את "local_pickup"
+    if (strpos($selected_shipping_method, 'local_pickup') !== false) {
+        unset($fields['billing']['billing_country']);
+        unset($fields['billing']['billing_address_1']);
+        unset($fields['billing']['billing_address_2']);
+        unset($fields['billing']['billing_postcode']);
+        unset($fields['billing']['billing_city']);
+        unset($fields['shipping']);
+        add_filter('woocommerce_cart_needs_shipping_address', '__return_false');
+    }
+    // Send the updated fields back to JavaScript
+    wp_send_json_success( $fields );
+}

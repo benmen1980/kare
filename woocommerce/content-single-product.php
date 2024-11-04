@@ -262,21 +262,23 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 
 				<?php
 					$stock = ($product->get_stock_quantity() > 0) ? ' Immediately available' : ' 60 business days';
+					$kare_stock = get_post_meta($product->get_id(), 'kare_general_stock', true);
+					$stock_available = get_post_meta($product->get_id(), '_stock', true);
+					$backorders_status = get_post_meta($product->get_id(), '_backorders', true);
 				?>
 
-				<div class="stock_shipping_availability">
-					<p class="product-shipping ?>">Shipping in: </p>
-					<p class="<?php echo ($product->get_stock_quantity() > 0) ? 'stock' : ''; ?>"><?php echo esc_html( $stock ); ?></p>
-				</div>
-				<?php
+				<?php if ( ( !empty($kare_stock) || $kare_stock > 0) || intval($stock_available) > 0 ) : ?>
+
+					<div class="stock_shipping_availability">
+						<p class="product-shipping ?>">Shipping in: </p>
+						<p class="<?php echo ($product->get_stock_quantity() > 0) ? 'stock' : ''; ?>"><?php echo esc_html( $stock ); ?></p>
+					</div>
+				<?php endif;
 
 				// woocommerce_template_single_add_to_cart(); ?>
 				<?php do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
 				<?php
-				$kare_stock = get_post_meta($product->get_id(), 'kare_general_stock', true);
-				$stock_available = get_post_meta($product->get_id(), '_stock', true);
-
 				if ( ( !empty($kare_stock) || $kare_stock > 0) || intval($stock_available) > 0 ) :
 				?>
 
@@ -287,10 +289,13 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 							do_action( 'woocommerce_before_add_to_cart_quantity' );
 					
 							$max_quantity = $product->get_max_purchase_quantity();
-							if ($max_quantity == 0) {
-								$max_quantity = !empty($kare_stock) ? intval($kare_stock) : 0;
+							if ($stock_available <= 0) {
+								if ( $backorders_status === 'yes' ) {
+									$max_quantity = !empty($kare_stock) ? intval($kare_stock) : 0;
+								}
+							} else {
+								$max_quantity = apply_filters('woocommerce_quantity_input_max', $max_quantity, $product);
 							}
-							$max_quantity = apply_filters('woocommerce_quantity_input_max', $max_quantity, $product);
 							$min_quantity = apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product );
 							$pack_quantity = get_post_meta($product->get_id(), 'quantity_product_order', true);
 							$quantity = isset($pack_quantity) && $pack_quantity > 1 ? $pack_quantity : $min_quantity; 
@@ -617,28 +622,33 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 		<?php if ($categories_fits) : ?>
 			<section class="appropriate_categories">
 				<h2 class="title_wrapper"> <b><?php echo esc_html_e('This fits:', 'kare'); ?></b></h2>
-				<div class="more_categories_wrapper">
-					<?php
+				<div class="more_categories_wrapper tabs_wrapper swiper">
+					<div class="swiper_more_same_cat">
+						<div id="slide_same_cat" class="swiper_slide_more_cat swiper-wrapper">
 
-					if ( $categories_fits ) {
-						foreach($categories_fits as $key => $cat){ 
-							$cat_name = $cat->name; 
-							$cat_link = get_term_link($cat->term_id);
-							$cat_img_link = get_field('img_link_cat', 'product_cat_' . $cat->term_id); 
-							?>
+							<?php
 
-							<div class="swiper-slide more_categories_fits">
-								<a href="<?php echo $cat_link; ?>" class="category_btn" title="<?php echo $cat_name;?>" aria-lable="link">
-									<div class="card_category_wrapper" >
-										<img src="<?php echo !empty($cat_img_link) ? $cat_img_link : ''?>" alt="<?php echo $cat_name;?>" width="50" height="50"/>
+							if ( $categories_fits ) {
+								foreach($categories_fits as $key => $cat){ 
+									$cat_name = $cat->name; 
+									$cat_link = get_term_link($cat->term_id);
+									$cat_img_link = get_field('img_link_cat', 'product_cat_' . $cat->term_id); 
+									?>
+
+									<div class="swiper-slide more_categories_fits">
+										<a href="<?php echo $cat_link; ?>" class="category_btn" title="<?php echo $cat_name;?>" aria-lable="link">
+											<div class="card_category_wrapper" >
+												<img src="<?php echo !empty($cat_img_link) ? $cat_img_link : ''?>" alt="<?php echo $cat_name;?>" width="50" height="50"/>
+											</div>
+											<p><?php echo $cat_name;?></p>
+										</a>
 									</div>
-									<p><?php echo $cat_name;?></p>
-								</a>
-							</div>
-						<?php
-						}
-					}
-					?>
+								<?php
+								}
+							}
+							?>
+						</div>
+					</div>
 				</div>
 			</section>
 		<?php endif; ?>
@@ -685,8 +695,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 							</div>
 							<!-- dropping points-->
 							<div class="swiper-pagination-wrapper">
-								<div class="swiper-pagination swiper-pagination-black swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
-								</div>
+								<div class="swiper-pagination swiper-pagination-black swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic" style="width: 100px;"></div>
 							</div>
 						</div>
 					</div>

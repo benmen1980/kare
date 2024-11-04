@@ -26,7 +26,7 @@
 	<div class="channel-kare">
 		<div class="center-flex">
 			<button aria-label="button" type="button" id="btnSkipArrow" class="w-btn skip-arrow">
-				<img src="<?php echo get_template_directory_uri();?>/dist/images/up-arrow-white.png" alt="Skip arrow to the top of the page" width="24" height="24" class="arrow-up">
+				<?php echo str_replace('<svg', '<svg class="arrow-up w-dir-up"', file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-md.svg')); ?>
 			</button>
 		</div>
 	</div>
@@ -38,6 +38,9 @@
 						<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/menu.svg'); ?>
 					</button>
 					<div id="btn-header-search" class="search">
+						<!-- <div class="visible-desktop"> -->
+						<?php echo str_replace('<svg', '<svg class="search-svg-btn"', file_get_contents(get_template_directory_uri() . '/dist/images/svg/search.svg')); ?>
+						<!-- </div> -->
 						<!-- <span><?php //esc_html_e( 'search...', 'kare' ); ?></span> -->
 						<!-- <?php //echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/search.svg'); ?> -->
 						<?php echo get_product_search_form(); ?>
