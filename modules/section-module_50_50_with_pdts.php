@@ -38,11 +38,13 @@
                 <div class="text_area_content">
                     <?php echo $text ?>
                 </div>
-                <div class="button_hero_content">
-                    <button aria-label="link" type="button" class="btn_black_hover">
-                        <a href="<?php echo $link_category; ?>" class="header-button "><?php echo $btn_text; ?></a>
-                    </button>
-                </div>
+                <?php if ( $btn_text ) : ?>
+                    <div class="button_hero_content">
+                        <button aria-label="link" type="button" class="btn_black_hover">
+                            <a href="<?php echo $link_category; ?>" class="header-button "><?php echo $btn_text; ?></a>
+                        </button>
+                    </div>
+                <?php endif; ?>
 
                 <div class="slider_pdts_content" style="max-height: 260px;">
 

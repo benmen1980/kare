@@ -13,9 +13,11 @@
             <img class="img_banner" src="<?php echo $banner_img; ?>" alt="<?php echo $button_txt; ?>"/>
         <?php //endif; ?>
         <!-- <div> -->
-        <button aria-label="" type="button" class="w-btn">
-            <a href="<?php echo $button_link; ?>" class="header-button "><?php echo $button_txt; ?></a>
-        </button>
+        <?php if ( $button_txt ) : ?>
+            <button aria-label="" type="button" class="w-btn">
+                <a href="<?php echo $button_link; ?>" class="header-button "><?php echo $button_txt; ?></a>
+            </button>
+        <?php endif; ?>
         <!-- </div> -->
         
     </div>

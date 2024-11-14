@@ -41,13 +41,14 @@ section.section_slider_categories {
                 width: auto;
                 max-width: 100%;
                 flex-shrink: 0;
+                padding-bottom: 40px;
             }
         }
 
         .tabs_wrapper.simple {
             position: relative;
             .swiper-container {
-                padding-bottom: 40px;
+                // padding-bottom: 40px;
                 .swiper-slide {
                     width: auto;
                     max-width: 100%;
@@ -163,7 +164,7 @@ section.section_slider_categories {
                     left: 50%;
                     transform: translateX(-50%);
                     transition: opacity .3s;
-                    transform: translateZ(0);
+                    // transform: translateZ(0);
                     z-index: 10;
                     white-space: nowrap;
                     font-size: 0;

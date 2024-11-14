@@ -133,7 +133,7 @@ function autocomplete_city(){
  * Update shipping cost when selecting a city 
  */
 
-add_action('wp_ajax_get_shipping_cost', 'get_shipping_cost');
+/*add_action('wp_ajax_get_shipping_cost', 'get_shipping_cost');
 add_action('wp_ajax_nopriv_get_shipping_cost', 'get_shipping_cost');
 
 function get_shipping_cost() {
@@ -152,10 +152,10 @@ function get_shipping_cost() {
     }
 
     wp_send_json_success(array('shipping_cost' => $shipping_cost));
-}
+}*/
 
 
-add_action( 'wp_ajax_update_checkout_fields', 'update_checkout_fields_based_on_shipping' );
+/*add_action( 'wp_ajax_update_checkout_fields', 'update_checkout_fields_based_on_shipping' );
 add_action( 'wp_ajax_nopriv_update_checkout_fields', 'update_checkout_fields_based_on_shipping' );
 
 function update_checkout_fields_based_on_shipping() {
@@ -177,4 +177,4 @@ function update_checkout_fields_based_on_shipping() {
     }
     // Send the updated fields back to JavaScript
     wp_send_json_success( $fields );
-}
+}*/

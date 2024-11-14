@@ -188,10 +188,18 @@ function remove_checkout_fields_placeholder( $fields ) {
         'autocomplete' => 'none', // Prevent browser autocomplete
     );
 
+    $fields['shipping']['shipping_city'] = array(
+        'type'        => 'text', // Keep it as text for autocomplete
+        'label'       => __('City', 'woocommerce'), // Set the label
+        'required'    => true,
+        'autocomplete' => 'none', // Prevent browser autocomplete
+    );
+
     $chosen_methods = WC()->session->get('chosen_shipping_methods');
     if (!empty($chosen_methods)) {
         foreach ($chosen_methods as $method) {
             if ( strpos( $method, 'local_pickup' ) !== false ) {
+                // print_r(' 11 ');
                 unset( $fields['billing']['billing_country'] );
                 unset( $fields['billing']['billing_address_1'] );
                 unset( $fields['billing']['billing_address_2'] );
@@ -208,8 +216,8 @@ function remove_checkout_fields_placeholder( $fields ) {
 }
 
 // Make the postcode field optional
-add_filter( 'woocommerce_default_address_fields', 'make_postcode_optional' );
-function make_postcode_optional( $fields ) {
+add_filter( 'woocommerce_default_address_fields', 'update_address_fields_func' );
+function update_address_fields_func( $fields ) {
     $fields['postcode']['required'] = false;
     return $fields;
 }
@@ -237,8 +245,14 @@ function custom_shipping_cost_per_product_class($rates, $package) {
             case 'medium':
                 $shipping_cost += (float) get_field('medium_shipping_cost', 'option') * $quantity;
                 break;
-            case 'large':
-                $shipping_cost += (float) get_field('large_shipping_cost', 'option');
+            case 'large1':
+                $shipping_cost += (float) get_field('large1_shipping_cost', 'option');
+                break;
+            case 'large2':
+                $shipping_cost += (float) get_field('large2_shipping_cost', 'option');
+                break;
+            case 'large3':
+                $shipping_cost += (float) get_field('large3_shipping_cost', 'option');
                 break;
             default:
                 $shipping_cost += 0; // Default cost
@@ -246,12 +260,24 @@ function custom_shipping_cost_per_product_class($rates, $package) {
         }
     }
 
-    // Retrieve the entered city from the checkout fields
-    $entered_city = WC()->customer->get_shipping_city();
+    // Retrieve the city for shipping or billing
+    $shipping_city = WC()->customer->get_shipping_city();
+    $billing_city = WC()->customer->get_billing_city();
+    // Determine which city to use
+    $city_name = !empty($shipping_city) ? $shipping_city : $billing_city;
+    // print_r( $city_name );
 
-    if (!empty($entered_city)) {
-        $city_shipping_cost = get_shipping_cost_by_city($entered_city);
-        $shipping_cost += $city_shipping_cost;
+    if (!empty($city_name)) {
+        // $city_shipping_cost = get_shipping_cost_by_city($entered_city);
+        $cities_cost_list = get_field('list_cities_cost', 'option'); 
+
+        if ($cities_cost_list) {
+            foreach ($cities_cost_list as $city) {
+                if (strcasecmp($city['city_name'], $city_name) == 0) { 
+                    $shipping_cost += $city['cost'];
+                }
+            }
+        }
     }
 
     $order_total = WC()->cart->cart_contents_total;
@@ -271,7 +297,7 @@ function custom_shipping_cost_per_product_class($rates, $package) {
     return $rates;
 }
 
-function get_shipping_cost_by_city($city_name) {
+/*function get_shipping_cost_by_city($city_name) {
     $cities_cost_list = get_field('list_cities_cost', 'option'); 
 
     // Default cost if no match is found
@@ -286,7 +312,7 @@ function get_shipping_cost_by_city($city_name) {
     }
 
     return $default_shipping_cost;
-}
+}*/
 
 // remove cost in the method name
 add_filter( 'woocommerce_cart_shipping_method_full_label', 'custom_shipping_method_name_only', 10, 2 );

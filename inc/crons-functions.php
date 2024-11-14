@@ -170,7 +170,7 @@ if (!wp_next_scheduled('upload_file_sftp_hook')) {
 
 function upload_file_image() 
 {
-    $file_name = 'webcatalog3.3.3.csv';
+    $file_name = 'webcatalog-cahirs4.csv';
     $upload_dir = wp_upload_dir();
     $file_path = $upload_dir['path'] . '/' . $file_name;   
 
@@ -349,6 +349,6 @@ add_action('init', function() {
 });
 
 // Register the actual hook for the scheduled event
-// add_action('upload_file_image_hook', 'upload_file_image');
+add_action('upload_file_image_hook', 'upload_file_image');
 
 ?>

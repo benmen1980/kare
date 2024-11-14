@@ -252,7 +252,26 @@
                                 }
     
                                 &#shipping_company_field label.focused {
-                                    left: -25px;
+                                    left: -28px;
+                                }
+
+                                &#shipping_postcode_field label.focused {
+                                    left: -28px;
+                                }
+
+                                &#shipping_city_field ul {
+                                    list-style: none;
+                                    padding: 4px 24px;
+                                    margin: 0;
+                                    padding-left: 24px;
+                                    background-color: #F4F4F4;
+                                    top: 4px !important;
+                                    box-shadow: inset 2px 0 0 #026805;
+
+                                    li.ui-menu-item {
+                                        margin: 8px auto;
+                                        cursor: pointer;
+                                    }
                                 }
                             }
                         }

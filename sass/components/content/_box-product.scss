@@ -234,22 +234,24 @@
                 }
             }
 
-            .stock {    
-                height: 24px;           
-                font-size: 12px;
-                line-height: 18px;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-end;
-                &.instock {
-                    color: rgb(2,104,5);
-                }
-                @include media(">phone") {
-                    height: 40px;
-                }
-            }
+            .stock_status {
+                height: 40px;
 
-
+                .stock {    
+                    height: 24px;           
+                    font-size: 12px;
+                    line-height: 18px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    &.instock {
+                        color: rgb(2,104,5);
+                    }
+                    @include media(">phone") {
+                        height: 40px;
+                    }
+                }
+            }           
         }
 
         

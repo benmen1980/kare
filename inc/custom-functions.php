@@ -205,6 +205,6 @@ add_action('upload_city_name_file_hook', 'upload_city_name_file');
 
 if (!wp_next_scheduled('upload_city_name_file_hook')) {
 
-    $res = wp_schedule_event(time(), 'daily', 'upload_city_name_file_hook');
+    $res = wp_schedule_event(time(), 'none', 'upload_city_name_file_hook');
 
 }*/

@@ -90,18 +90,21 @@ if (!is_category() && !is_product_category() && !is_shop() && !is_search()) : ?>
                         $availability = $product->get_availability(); 
                         $stock_status = $product->get_stock_status();
                         $stock_qty = $product->get_stock_quantity();
+                        $kare_stock = get_post_meta($product->get_id(), 'kare_general_stock', true);
                     ?>
-                    <div>
-                        <?php if ( $stock_qty > 0 ) : ?>
-                            <p class="stock instock"><?php esc_html_e( 'Immediately available', 'kare' ); ?></p>
-                        <?php else : ?>
-                            <p class="stock outofstock"><?php esc_html_e( '60 business days', 'kare' ); ?></p>
+                    <div class="stock_status">
+                        <?php if ( !empty($kare_stock) || $kare_stock > 0) :  ?>
+                            <?php if ( $stock_qty > 0 ) : ?>
+                                <p class="stock instock"><?php esc_html_e( 'Immediately available', 'kare' ); ?></p>
+                            <?php else : ?>
+                                <p class="stock outofstock"><?php esc_html_e( '60 business days', 'kare' ); ?></p>
+                            <?php endif ?>
                         <?php endif ?>
-                    </div>
+                    </div>                    
                 </a>
             </div>
         </div>
     </div>
-<?php if(!is_category() && !is_product_category()) : ?>
+<?php if (!is_category() && !is_product_category() && !is_shop() && !is_search()) : ?>
     </div>
 <?php endif; ?>

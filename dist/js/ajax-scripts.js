@@ -124,69 +124,73 @@ jQuery(document).ready(function($){
 });
 
 jQuery(document).ready(function($){
-    $('#billing_city').autocomplete({
-        source: function( request, response ) {
-            $.ajax( {
-                type: 'post',
-                url: ajax_obj.ajax_url,
-                data: {
-                    'action': 'autocomplete_city',
-                    city: request.term
-                },
-                success: function( data ) {
-                    response( data.results );
-                }
-            } );
-        },
-        create: function () {
-            $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
-                $(ul).addClass('for_city_autocomplete');
-                return $('<li class="ui-menu-item" data-id = "' + item.id + '"><div tabindex="-1" class="ui-menu-item-wrapper">' + item.value + '</div></li>').appendTo(ul); 
-            };
-        },
-        appendTo: "#billing_city_field",
-        minLength: 2,
-        autofocus: true,
-        select: function(event,ui){
-            event.stopPropagation(); // important - otherwise it won't allow to select from the list
-            if ( !ui.item ) { 
-                $(this).val('').attr('data-id', '');
-            } else {
-                $(this).val( ui.item.value ).attr('data-id', ui.item.id);
+    setupCityAutocomplete('billing_city', 'billing_city_field');
+    setupCityAutocomplete('shipping_city', 'shipping_city_field');
 
-                $('#billing_city').val(ui.item.value).attr('value', ui.item.value) // Set the value attribute explicitly
-                .attr('data-id', ui.item.id);
-
-                // Trigger WooCommerce to update checkout if necessary
-                $('body').trigger('update_checkout');
-            }
-
-            return false; // Prevents the default behavior
-        },
-        change: function(event,ui){
-            var selfInput = $(this); //stores the input field
-            if ( !ui.item ) { 
-                var writtenItem = new RegExp("^" + $.ui.autocomplete.escapeRegex($(this).val().toLowerCase()) + "$", "i"), 
-                    valid = false;
-
-                $('ul.for_city_autocomplete').children("li").each(function() {
-                    if($(this).text().toLowerCase().match(writtenItem)) {
-                        this.selected = valid = true;
-                        selfInput.val($(this).text()); // shows the item's name from the autocomplete
-                        selfInput.attr('data-id', $(this).data('id'));
-                        return false;
+    function setupCityAutocomplete(fieldId, fieldWrapper) {
+        $('#' + fieldId).autocomplete({
+            source: function(request, response) {
+                $.ajax({
+                    type: 'post',
+                    url: ajax_obj.ajax_url,
+                    data: {
+                        'action': 'autocomplete_city',
+                        city: request.term
+                    },
+                    success: function(data) {
+                        response(data.results);
                     }
                 });
-
-                if (!valid) { 
+            },
+            create: function() {
+                $(this).data('ui-autocomplete')._renderItem = function(ul, item) {
+                    $(ul).addClass('for_city_autocomplete');
+                    return $('<li class="ui-menu-item" data-id = "' + item.id + '"><div tabindex="-1" class="ui-menu-item-wrapper">' + item.value + '</div></li>').appendTo(ul);
+                };
+            },
+            appendTo: "#" + fieldWrapper,
+            minLength: 2,
+            autofocus: true,
+            select: function(event, ui) {
+                event.stopPropagation();
+                if (!ui.item) {
                     $(this).val('').attr('data-id', '');
+                } else {
+                    $(this).val(ui.item.value).attr('data-id', ui.item.id);
+    
+                    $('#' + fieldId).val(ui.item.value).attr('value', ui.item.value)
+                    .attr('data-id', ui.item.id);
+    
+                    $('body').trigger('update_checkout');
+                    $('form.checkout').trigger('change');
+                }
+                return false;
+            },
+            change: function(event, ui) {
+                var selfInput = $(this);
+                if (!ui.item) {
+                    var writtenItem = new RegExp("^" + $.ui.autocomplete.escapeRegex($(this).val().toLowerCase()) + "$", "i"),
+                        valid = false;
+    
+                    $('ul.for_city_autocomplete').children("li").each(function() {
+                        if ($(this).text().toLowerCase().match(writtenItem)) {
+                            this.selected = valid = true;
+                            selfInput.val($(this).text());
+                            selfInput.attr('data-id', $(this).data('id'));
+                            return false;
+                        }
+                    });
+    
+                    if (!valid) {
+                        $(this).val('').attr('data-id', '');
+                    }
                 }
             }
-        } 
-    });
+        });
+    }
 });
 
-jQuery(document).on('change', '#shipping_method input[type="radio"]', function() {
+/*jQuery(document).on('change', '#shipping_method input[type="radio"]', function() {
     // Trigger WooCommerce checkout update to revalidate fields
     var selectedShippingMethod = jQuery(this).val();
 
@@ -207,4 +211,4 @@ jQuery(document).on('change', '#shipping_method input[type="radio"]', function()
             }
         });
     
-});
+});*/

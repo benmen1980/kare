@@ -42,7 +42,7 @@ $calculator_text          = '';
 						?>
 					</div>
 				<?php endforeach; ?>
-				<!-- <p class="delivery-message" data-acf-shipping="<?php //echo esc_attr( get_field('shipping_note', 'option') ); ?>" data-acf-self="<?php //echo esc_attr( get_field('self_collection_note', 'option') ); ?>"><?php //echo esc_attr( get_field('shipping_note', 'option') ); ?></p> -->
+				<p class="delivery-message" data-acf-shipping="<?php echo esc_attr( get_field('shipping_note', 'option') ); ?>" data-acf-self="<?php echo esc_attr( get_field('self_collection_note', 'option') ); ?>"><?php //echo esc_attr( get_field('shipping_note', 'option') ); ?></p>
 			</div>
 			<?php if ( is_cart() ) : ?>
 				<p class="woocommerce-shipping-destination">

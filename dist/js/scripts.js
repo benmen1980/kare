@@ -598,23 +598,27 @@ jQuery(document).on("ready", function(){
         });
     }
 
-    document.querySelector('.share_wishlist_btn').addEventListener('click', function() {
-        var copyTarget = document.querySelector('.copy-target').value;
-        
-        navigator.clipboard.writeText(copyTarget).then(function() {
-            var notification = document.getElementById('copy-notification');
-            notification.style.display = 'block';
-            notification.style.opacity = '1';
+    const wishlistButton = document.querySelector('.share_wishlist_btn');
+
+    if (wishlistButton) {
+        wishlistButton.addEventListener('click', function() {
+            var copyTarget = document.querySelector('.copy-target').value;
             
-            setTimeout(function() {
-                notification.style.opacity = '0';
+            navigator.clipboard.writeText(copyTarget).then(function() {
+                var notification = document.getElementById('copy-notification');
+                notification.style.display = 'block';
+                notification.style.opacity = '1';
+                
                 setTimeout(function() {
-                    notification.style.display = 'none';
-                }, 500); 
-            }, 5000);
-        });   
+                    notification.style.opacity = '0';
+                    setTimeout(function() {
+                        notification.style.display = 'none';
+                    }, 500); 
+                }, 5000);
+            });  
+        });
         
-    });
+    };
 
     //Opening the search input in the phone
     $(document).on('click', function(event) {
@@ -634,6 +638,46 @@ jQuery(document).on("ready", function(){
             $(this).addClass('empty');
         }
     });
+
+    //Calculation of shipping costs and display of fields on the checkout page
+    if (window.location.href.indexOf("checkout") > -1) {
+
+        function toggleAddressFields(selectedMethod) {
+            const shippingMessage = $('.delivery-message').data('acf-shipping');
+            const selfMessage = $('.delivery-message').data('acf-self');
+
+            if (selectedMethod.includes('local_pickup')) {
+                $('.delivery-message').html(selfMessage);
+
+                // Hide the address fields for self-pickup
+                $('#billing_address_1_field, #billing_address_2_field, #billing_city_field, #billing_postcode_field, #billing_country_field, #billing_state_field').hide();
+                $('.woocommerce-shipping-fields').hide();
+
+                // Trigger the change event on page load to set the initial state
+                $('form.checkout').trigger('change');
+            } else {
+                $('.delivery-message').html(shippingMessage);
+
+                // Show the address fields for delivery
+                $('#billing_address_1_field, #billing_address_2_field, #billing_city_field, #billing_postcode_field, #billing_country_field, #billing_state_field').show();
+                $('.woocommerce-shipping-fields').show();
+            
+                // Trigger the change event on page load to set the initial state
+                $('form.checkout').trigger('change');
+            }
+        }
+
+        toggleAddressFields($('#shipping_method input[type="radio"]:checked').val());
+
+        // Listen for changes on the shipping method
+        $('form.checkout').on('change', 'input[name="shipping_method[0]"]', function() {
+            toggleAddressFields($(this).val());
+        });
+
+        // Trigger the change event on page load to set the initial state
+        $('form.checkout').trigger('change');
+    
+    }
 
 });
 

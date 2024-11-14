@@ -52,10 +52,13 @@
 
             .text_area_content {
                 padding-top: 8px;
+                padding-bottom: 16px;
                 max-height: 144px !important;
                 overflow-y: auto !important;
                 @include media(">desktop") { 
                     padding: 4px 0;
+                    padding-bottom: 24px;
+                    max-height: 180px !important;
                 }
                 p {
                     margin: 0;
@@ -63,10 +66,10 @@
             }
 
             .button_hero_content {
-                margin-top: 16px;
+                // margin-top: 16px;
                 width: 100%;
                 @include media(">desktop") { 
-                    margin-top: 24px;
+                    // margin-top: 24px;
                     width: auto;
                 }
                 button {
@@ -128,9 +131,14 @@
                                         margin-top: 4px;
                                     }
 
-                                    .stock {
-                                        height: auto !important;
+                                    .stock_status {
+                                        height: 16px;
+
+                                        .stock {
+                                            height: auto !important;
+                                        }
                                     }
+                                    
                                 }
                             }
                         }
