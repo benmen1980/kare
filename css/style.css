@@ -1245,9 +1245,10 @@ form .form-row label.focused {
   margin-bottom: 8px;
 }
 
-<<<<<<< HEAD
 .woocommerce-shop section.slider_cat_section {
-=======
+  display: none;
+}
+
 #lost-password-confirmation {
   z-index: 9999;
   position: fixed;
@@ -1271,7 +1272,6 @@ form .form-row label.focused {
   background-color: #026805;
 }
 #lost-password-confirmation p {
->>>>>>> 9a4e90fc809573e446272f92428917173a1fe44a
   display: none;
 }
 
