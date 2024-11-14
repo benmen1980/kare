@@ -177,10 +177,4 @@ function update_checkout_fields_based_on_shipping() {
     }
     // Send the updated fields back to JavaScript
     wp_send_json_success( $fields );
-<<<<<<< HEAD
 }*/
-=======
-}
-
-
->>>>>>> 9a4e90fc809573e446272f92428917173a1fe44a
