@@ -153,8 +153,16 @@
 					if ( !is_user_logged_in() ) {  ?>
 						<div class="bottom_sidebar">
 							<p><?php echo get_field('txt_before_login','option'); ?></p>
+							<?php do_action( 'woocommerce_login_form_start' ); ?>
 							<?php 
 							woocommerce_login_form();?>
+							<!-- Display WooCommerce notices (including login errors) -->
+							<?php if ( function_exists( 'wc_print_notices' ) ) { ?>
+								<div class="woocommerce-notices-wrapper">
+									<?php wc_print_notices(); ?>
+								</div>
+							<?php } ?>
+							
 							<a class="register_page" href="/register"><?php esc_html_e( 'Create new account', 'kare' ); ?></a>
 							<div class="accordion_details_wrapper">
 								<div class="accordion_item">
@@ -172,7 +180,12 @@
 								</div>
 							</div>
 						</div>
-						
+						<div class="custom-reset-password-form">
+							<?php  woocommerce_get_template( 'myaccount/form-lost-password.php' ); ?>
+						</div>
+						<div class="woocommerce-notices-wrapper">
+							<?php if ( function_exists( 'wc_print_notices' ) ) { wc_print_notices(); } ?>
+						</div>
 					<?php } else {?>
 						<div class="my_account_menu_wrapper">
 							<?php do_action( 'woocommerce_account_navigation' ); ?>
@@ -227,7 +240,7 @@
 
 		<div class="logout_popup">
 			<div class="logout_popup_content">
-				<p><?php esc_html_e( 'Would you like to unsubscribe?', 'kare' ); ?></p>
+				<p><?php esc_html_e( 'Would you like to logout?', 'kare' ); ?></p>
 				<div class="popup_btns">
 					<button id="confirm_logout"><?php esc_html_e( 'OK', 'kare' ); ?></button>
 					<button id="cancel_logout"><?php esc_html_e( 'CANCEL', 'kare' ); ?></button>
@@ -259,3 +272,4 @@
 				</div>
 			</div>
 		</div>
+		

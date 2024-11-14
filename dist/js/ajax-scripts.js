@@ -206,5 +206,7 @@ jQuery(document).on('change', '#shipping_method input[type="radio"]', function()
                 }
             }
         });
+
+        
     
 });

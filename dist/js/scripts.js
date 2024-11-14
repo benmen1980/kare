@@ -3,7 +3,9 @@ var $=jQuery.noConflict();
 
 jQuery(document).on("ready", function(){
 
-    // console.log(typeof jQuery);
+    
+
+
        
     //add class to label in login form for adding css 
     // On input focus
@@ -11,11 +13,20 @@ jQuery(document).on("ready", function(){
         $(this).closest('.form-row').find('label').addClass('focused');
     });
 
+    $('.form-row .input-text').each(function () {
+        if ($(this).val()) {
+            $(this).closest('.form-row').find('label').addClass('focused');
+        }
+    });
+
     // On input blur
     $('.form-row .input-text').blur(function() {
         // Remove the class if the input is empty
         if ($(this).val() === "") {
             $(this).closest('.form-row').find('label').removeClass('focused');
+        }
+        else{
+            $(this).closest('.form-row').find('label').addClass('focused');
         }
     });
 
@@ -316,12 +327,50 @@ jQuery(document).on("ready", function(){
         $('#overlay').fadeIn(); // Show the overlay
     });
 
+    if($("#login_sidebar .woocommerce-error").length > 0){
+        $('.open_account_popup').trigger('click');
+    }
+    var $loginForm = $(".bottom_sidebar");
+    var $resetForm = $(".custom-reset-password-form");
+    var $errors = $(".woocommerce-notices-wrapper .woocommerce-error");
+
+    // Toggle forms based on the login error flag
+    if (loginErrorData.loginError) {
+        console.log('enter login error!');
+        $loginForm.show();
+        $resetForm.hide();
+    } 
+    else{
+        
+        // if ($errors.length && $errors.text().toLowerCase().includes("invalid username or email")) {
+        //     console.log('enter invalid ');
+        //     $loginForm.hide();
+        //     $resetForm.show();
+        // }
+    
+        if($("#login_sidebar .woocommerce-error").length > 0){
+            console.log('pswd error!');
+            $('#login_sidebar .bottom_sidebar:visible').hide();
+
+            // Later in the script - Show it but only If it's not visible.  
+            $('#login_sidebar .custom-reset-password-form:hidden').show();
+        }
+    }
+
+    $("#login_sidebar .lost_password a").on('click', function(e) {
+        e.preventDefault();
+        $("#login_sidebar .bottom_sidebar").hide();
+        $("#login_sidebar .custom-reset-password-form").show();
+    });
     $('#close_sidebar').on('click', function() {
         $('#login_sidebar').removeClass('active');
         $('#overlay').fadeOut(function() {
             $(this).remove(); // Remove overlay after fade out
         });
         $('body').css('overflow', '');
+        $('#login_sidebar .custom-reset-password-form:visible').hide();
+        $('#login_sidebar .bottom_sidebar:hidden').show();
+
     });
     
     // Close the sidebar if clicked outside
@@ -509,6 +558,21 @@ jQuery(document).on("ready", function(){
         element.closest('.wishlist_btn').classList.add('wishlist_btn_black');
     });
 
+    // Check if URL contains `panel=reset-link-sent`
+    // if (window.location.href.indexOf("panel=reset-link-sent") > -1) {
+    //     // Create and display the message
+    //     $("#lost-password-confirmation").fadeIn();
+
+    //     // After 2 seconds, remove the message and update the URL
+    //     setTimeout(function() {
+    //         $("#lost-password-confirmation").fadeOut();
+            
+    //         // Remove `panel=reset-link-sent` from the URL
+    //         var newUrl = window.location.href.replace(/[?&]panel=reset-link-sent/, '');
+    //         history.replaceState(null, null, newUrl);
+    //     }, 2000); // 2-second delay
+    // }
+
     $(document).on('click', '.yith-wcwl-add-button a', function(e) {
         e.preventDefault();
         
@@ -634,6 +698,8 @@ jQuery(document).on("ready", function(){
             $(this).addClass('empty');
         }
     });
+
+
 
 });
 
