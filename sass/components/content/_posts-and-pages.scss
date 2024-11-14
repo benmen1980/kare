@@ -186,10 +186,11 @@ form{
             filter: invert(1);
         }
         a {
-        &:hover {
             color: #fff;
-            opacity: .7;
-        }
+            &:hover {
+                color: #fff;
+                opacity: .7;
+            }
         }
     }
 
@@ -311,6 +312,33 @@ form{
     
 }
 
+<<<<<<< HEAD
 .woocommerce-shop section.slider_cat_section {
     display: none;
+=======
+#lost-password-confirmation{
+    z-index: 9999;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    display: none;
+    .woocommerce-message{
+        max-width: 33rem;
+        border: 1px solid hsla(0,0%,100%,.5);
+        float: right;
+        font-size: 16px;
+        clear: both;
+        padding: 16px;
+        margin: 8px 16px;
+        color: #fff;
+        border-width: 1px;
+        pointer-events: auto;
+        background-color: #026805;
+    }
+    p{
+        display: none;
+    }
+>>>>>>> 9a4e90fc809573e446272f92428917173a1fe44a
 }

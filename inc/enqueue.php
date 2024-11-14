@@ -8,6 +8,12 @@ define( 'THEME_VERSION', $theme_data->Version );
 
 
 function kare_custom_scripts() {
+    if ( ! session_id() ) {
+        session_start();
+    }
+    
+    $login_error = isset( $_SESSION['login_error'] ) && $_SESSION['login_error'] === true;
+    
     wp_enqueue_script( 'jquery-ui-autocomplete' );
 
     wp_enqueue_style( 'kare-style-min', get_template_directory_uri() . '/dist/css/style.min.css' );
@@ -20,7 +26,9 @@ function kare_custom_scripts() {
     wp_enqueue_script( 'kare-scripts', get_template_directory_uri() . '/dist/js/scripts.js', array(), '1.0.1' );
     wp_enqueue_script( 'kare-slick', get_template_directory_uri() . '/dist/js/slick.min.js', array(), '', false );
     wp_enqueue_script('swiper-js', get_template_directory_uri() . '/dist/js/swiper-bundle.min.js', array('jquery'), '', true);
-
+    wp_localize_script( 'kare-scripts', 'loginErrorData', array(
+        'loginError' => $login_error
+    ) );
 }
 
 add_action( 'wp_enqueue_scripts', 'kare_custom_scripts' );

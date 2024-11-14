@@ -71,18 +71,44 @@ function flush_rewrite_rules_on_theme_switch() {
 }
 
 //Redirect Unauthenticated Users from login page to home with account popup open
-add_action('template_redirect', 'redirect_if_not_logged_in');
+//add_action('template_redirect', 'redirect_if_not_logged_in');
 function redirect_if_not_logged_in() {
     if (is_account_page() && !is_user_logged_in()) {
         // Redirect to the home page with a query parameter
         $redirect_url = add_query_arg('panel', 'account', home_url());
+        if ( is_wc_endpoint_url( 'lost-password' ) && isset( $_GET['reset-link-sent'] ) && $_GET['reset-link-sent'] === 'true' ) {
+            $redirect_url = add_query_arg('panel', 'reset-link-sent', home_url());
+        }
         wp_redirect($redirect_url);
         exit;
     }
 }
 
+
+add_action( 'woocommerce_login_failed', 'set_login_error_flag' );
+function set_login_error_flag( $username ) {
+    // Start session if not already started
+    if ( ! session_id() ) {
+        session_start();
+    }
+    $_SESSION['login_error'] = true;
+}
+
+// Clear the flag on successful login
+add_action( 'wp_login', 'clear_login_error_flag' );
+function clear_login_error_flag() {
+    if ( ! session_id() ) {
+        session_start();
+    }
+    unset( $_SESSION['login_error'] );
+}
+
+
+
+
+
 // on logout redirect to home page
-add_action('wp_logout','auto_redirect_after_logout');
+//add_action('wp_logout','auto_redirect_after_logout');
 
 function auto_redirect_after_logout(){
 
@@ -91,12 +117,13 @@ function auto_redirect_after_logout(){
 
 }
 // on login redirect to home page
-add_filter('woocommerce_login_redirect', 'redirect_to_home_after_login', 10, 3);
+add_filter('woocommerce_login_redirect', 'redirect_to_home_after_login', 10, 2);
 
 function redirect_to_home_after_login($redirect_to) {
-    // Always redirect to the home page after login
+     // Always redirect to the home page after login
     return home_url();
 }
+
 
 // Add the "Full Name" field to the registration form
 //add_action('woocommerce_register_form_start', 'add_full_name_field_to_registration_form');
@@ -208,3 +235,6 @@ if (!wp_next_scheduled('upload_city_name_file_hook')) {
     $res = wp_schedule_event(time(), 'none', 'upload_city_name_file_hook');
 
 }*/
+
+
+
