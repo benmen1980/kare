@@ -648,6 +648,29 @@ form{
 
           }
         }
+        .password-input {
+            position: relative;
+            display: block;
+            .show-password-input {
+              position: absolute;
+              top: -3px;
+              right: 10px;
+              cursor: pointer;
+              
+              &::after {
+                font-family: WooCommerce;
+                speak: never;
+                font-weight: 400;
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1;
+                -webkit-font-smoothing: antialiased;
+                content: "\e010";
+                text-decoration: none;
+                font-size: 16px;
+              }
+            }
+        }
     }
     .checkbox_wrapper{
       label{

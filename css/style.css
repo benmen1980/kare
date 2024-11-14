@@ -6245,6 +6245,28 @@ form .form-row label.focused {
 form .form-row label[for=password_current].focused, form .form-row label[for=password_1].focused, form .form-row label[for=password_2].focused {
   left: -8%;
 }
+form .form-row .password-input {
+  position: relative;
+  display: block;
+}
+form .form-row .password-input .show-password-input {
+  position: absolute;
+  top: -3px;
+  right: 10px;
+  cursor: pointer;
+}
+form .form-row .password-input .show-password-input::after {
+  font-family: WooCommerce;
+  speak: never;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  content: "\e010";
+  text-decoration: none;
+  font-size: 16px;
+}
 form .checkbox_wrapper label {
   display: -webkit-box;
   display: -ms-flexbox;
