@@ -703,7 +703,6 @@ jQuery(document).on("ready", function(){
         }
     });
 
-<<<<<<< HEAD
     //Calculation of shipping costs and display of fields on the checkout page
     if (window.location.href.indexOf("checkout") > -1) {
 
@@ -743,9 +742,6 @@ jQuery(document).on("ready", function(){
         $('form.checkout').trigger('change');
     
     }
-=======
-
->>>>>>> 9a4e90fc809573e446272f92428917173a1fe44a
 
 });
 
