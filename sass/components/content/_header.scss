@@ -610,6 +610,13 @@ header {
    
                     }
                 }
+                .woocommerce-notices-wrapper{
+                    .woocommerce-error{
+                        a{
+                            display: none;
+                        }
+                    }
+                }
             }
             .custom-reset-password-form{
                 padding: 20px;

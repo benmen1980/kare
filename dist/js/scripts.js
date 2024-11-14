@@ -2,10 +2,6 @@
 var $=jQuery.noConflict();
 
 jQuery(document).on("ready", function(){
-
-    
-
-
        
     //add class to label in login form for adding css 
     // On input focus
@@ -539,6 +535,22 @@ jQuery(document).on("ready", function(){
         url.searchParams.delete('panel');
         window.history.replaceState({}, document.title, url.pathname + url.search);
     }
+    console.log('check cache!!!');
+    // Check if URL contains `panel=reset-link-sent`
+    if (getQueryParam('panel') === "reset-link-sent") {
+        console.log('enter reset link!');
+        // Create and display the message
+        $("#lost-password-confirmation").fadeIn();
+
+        // After 2 seconds, remove the message and update the URL
+        setTimeout(function() {
+            $("#lost-password-confirmation").fadeOut();
+            
+            // Remove `panel=reset-link-sent` from the URL
+            var newUrl = window.location.href.replace(/[?&]panel=reset-link-sent/, '');
+            history.replaceState(null, null, newUrl);
+        }, 4000); // 2-second delay
+    }
     
     // opening and closing respectively of an accordion by clicking on the class "accordion_item" 
     $('.accordion_question').click(function() {
@@ -558,20 +570,7 @@ jQuery(document).on("ready", function(){
         element.closest('.wishlist_btn').classList.add('wishlist_btn_black');
     });
 
-    // Check if URL contains `panel=reset-link-sent`
-    // if (window.location.href.indexOf("panel=reset-link-sent") > -1) {
-    //     // Create and display the message
-    //     $("#lost-password-confirmation").fadeIn();
 
-    //     // After 2 seconds, remove the message and update the URL
-    //     setTimeout(function() {
-    //         $("#lost-password-confirmation").fadeOut();
-            
-    //         // Remove `panel=reset-link-sent` from the URL
-    //         var newUrl = window.location.href.replace(/[?&]panel=reset-link-sent/, '');
-    //         history.replaceState(null, null, newUrl);
-    //     }, 2000); // 2-second delay
-    // }
 
     $(document).on('click', '.yith-wcwl-add-button a', function(e) {
         e.preventDefault();

@@ -71,13 +71,14 @@ function flush_rewrite_rules_on_theme_switch() {
 }
 
 //Redirect Unauthenticated Users from login page to home with account popup open
-//add_action('template_redirect', 'redirect_if_not_logged_in');
+add_action('template_redirect', 'redirect_if_not_logged_in');
 function redirect_if_not_logged_in() {
     if (is_account_page() && !is_user_logged_in()) {
-        // Redirect to the home page with a query parameter
-        $redirect_url = add_query_arg('panel', 'account', home_url());
         if ( is_wc_endpoint_url( 'lost-password' ) && isset( $_GET['reset-link-sent'] ) && $_GET['reset-link-sent'] === 'true' ) {
             $redirect_url = add_query_arg('panel', 'reset-link-sent', home_url());
+        }
+        else{
+            $redirect_url = add_query_arg('panel', 'account', home_url());
         }
         wp_redirect($redirect_url);
         exit;

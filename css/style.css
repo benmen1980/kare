@@ -1245,9 +1245,10 @@ form .form-row label.focused {
   margin-bottom: 8px;
 }
 
-<<<<<<< HEAD
 .woocommerce-shop section.slider_cat_section {
-=======
+  display: none;
+}
+
 #lost-password-confirmation {
   z-index: 9999;
   position: fixed;
@@ -1271,7 +1272,6 @@ form .form-row label.focused {
   background-color: #026805;
 }
 #lost-password-confirmation p {
->>>>>>> 9a4e90fc809573e446272f92428917173a1fe44a
   display: none;
 }
 
@@ -2047,6 +2047,9 @@ header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .
   display: none;
 }
 header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .wishlist_content .woocommerce-error, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .wishlist_content .woocommerce-error, header .mobile_menu_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .wishlist_content .woocommerce-error {
+  display: none;
+}
+header .login_sidebar .sidebar-content .bottom_sidebar .woocommerce-notices-wrapper .woocommerce-error a, header .wishlist_sidebar .sidebar-content .bottom_sidebar .woocommerce-notices-wrapper .woocommerce-error a, header .mobile_menu_sidebar .sidebar-content .bottom_sidebar .woocommerce-notices-wrapper .woocommerce-error a {
   display: none;
 }
 header .login_sidebar .sidebar-content .custom-reset-password-form, header .wishlist_sidebar .sidebar-content .custom-reset-password-form, header .mobile_menu_sidebar .sidebar-content .custom-reset-password-form {
