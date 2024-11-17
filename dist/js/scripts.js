@@ -695,15 +695,9 @@ jQuery(document).on("ready", function(){
         $(this).find('#product-searchform').addClass('open-search');
     });
 
-    // Hiding the second delivery area when empty
-    $('.woocommerce-shipping-fields').each(function() {
-        if ($(this).text().trim() === '') {
-            $(this).addClass('empty');
-        }
-    });
-
     //Calculation of shipping costs and display of fields on the checkout page
-    if (window.location.href.indexOf("checkout") > -1) {
+    if (window.location.href.indexOf("checkout") > -1 && window.location.href.indexOf("order-received") === -1) {
+
 
         function toggleAddressFields(selectedMethod) {
             const shippingMessage = $('.delivery-message').data('acf-shipping');
@@ -741,6 +735,13 @@ jQuery(document).on("ready", function(){
         $('form.checkout').trigger('change');
     
     }
+
+    // Hiding the second delivery area when empty
+    $('.woocommerce-shipping-fields').each(function() {
+        if ($(this).text().trim() === '') {
+            $(this).addClass('empty');
+        }
+    });
 
 });
 
