@@ -2049,6 +2049,9 @@ header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .
 header .login_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .wishlist_content .woocommerce-error, header .wishlist_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .wishlist_content .woocommerce-error, header .mobile_menu_sidebar .sidebar-content .bottom_sidebar .wishlist_popup_content .wishlist_content .woocommerce-error {
   display: none;
 }
+header .login_sidebar .sidebar-content .bottom_sidebar .woocommerce-notices-wrapper .woocommerce-error a, header .wishlist_sidebar .sidebar-content .bottom_sidebar .woocommerce-notices-wrapper .woocommerce-error a, header .mobile_menu_sidebar .sidebar-content .bottom_sidebar .woocommerce-notices-wrapper .woocommerce-error a {
+  display: none;
+}
 header .login_sidebar .sidebar-content .custom-reset-password-form, header .wishlist_sidebar .sidebar-content .custom-reset-password-form, header .mobile_menu_sidebar .sidebar-content .custom-reset-password-form {
   padding: 20px;
   display: none;
@@ -6241,6 +6244,28 @@ form .form-row label.focused {
 }
 form .form-row label[for=password_current].focused, form .form-row label[for=password_1].focused, form .form-row label[for=password_2].focused {
   left: -8%;
+}
+form .form-row .password-input {
+  position: relative;
+  display: block;
+}
+form .form-row .password-input .show-password-input {
+  position: absolute;
+  top: -3px;
+  right: 10px;
+  cursor: pointer;
+}
+form .form-row .password-input .show-password-input::after {
+  font-family: WooCommerce;
+  speak: never;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  content: "\e010";
+  text-decoration: none;
+  font-size: 16px;
 }
 form .checkbox_wrapper label {
   display: -webkit-box;

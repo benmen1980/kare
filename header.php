@@ -273,3 +273,8 @@
 			</div>
 		</div>
 		
+	
+		<div id="lost-password-confirmation">
+			<?php woocommerce_get_template( 'myaccount/lost-password-confirmation.php' ); ?>
+		</div>
+		
