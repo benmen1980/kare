@@ -7,6 +7,7 @@ Template Name: Faq
 get_header();
 
 $post_id = get_the_ID();
+$choose_module = get_field('choose_module');
 
 $is_main_faq_page = false;
 if ( wp_get_post_parent_id( get_the_ID() ) == 0 ) {
@@ -135,10 +136,20 @@ $array_tabs = get_field('selected_tab', $post_id);
 
             <?php endif; ?>
 
-            <div class="moduls_container">
-                <div class="section_modules_wrapper">
-                    <?php get_template_part('modules/section','module_banner_promotion'); ?>
-                </div>
+            <div class="module_banner_promotion_wrapper">
+                <?php
+                    if($choose_module): 
+                        while(the_repeater_field('choose_module',  $post_id)): 
+                            $mod = get_sub_field('module_list');
+                            $mod = explode(':', $mod);
+                            switch ($mod[0]) {
+                                case 'module_banner_promotion':
+                                    get_template_part('modules/section','module_banner_promotion');
+                                    break;
+                            }
+                        endwhile;
+                    endif;
+                ?>
             </div>
             
         </div>
