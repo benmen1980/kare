@@ -571,7 +571,6 @@ jQuery(document).on("ready", function(){
         var accordionContent = accordionItem.find('.faq-item-content');
         var isActive = accordionContent.hasClass('active');
 
-        // Toggle the active class and the visibility of the content
         $('.faq-item-content').stop(true, true).slideUp().removeClass('active');
         $('.faq-question svg').removeClass('rotate180');
 
@@ -579,8 +578,6 @@ jQuery(document).on("ready", function(){
             accordionContent.stop(true, true).slideDown().addClass('active');
             $(this).find('svg').addClass('rotate180');
         }
-        // accordionContent.toggleClass('active');     
-
         
     });
 
