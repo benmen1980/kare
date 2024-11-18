@@ -71,7 +71,7 @@ $total_pages = $wp_query->max_num_pages;
 				'wrap_after'  => '</nav>',
 				'before'      => '',
 				'after'       => '',
-				'home'        => _x( 'Home', 'breadcrumb', 'woocommerce' ),
+				'home'        => _x( 'Home Page', 'breadcrumb', 'woocommerce' ),
 			));
 		}
 		?>

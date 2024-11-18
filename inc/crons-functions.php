@@ -164,13 +164,13 @@ function update_available_test($array)
 }
 
 // add_action('upload_file_sftp_hook', 'upload_file_sftp');
-if (!wp_next_scheduled('upload_file_sftp_hook')) {
+/*if (!wp_next_scheduled('upload_file_sftp_hook')) {
     $res = wp_schedule_event(time(), 'daily', 'upload_file_sftp_hook');
-}
+}*/
 
 function upload_file_image() 
 {
-    $file_name = 'webcatalog-cahirs4.csv';
+    $file_name = 'webcatalog-other18.csv';
     $upload_dir = wp_upload_dir();
     $file_path = $upload_dir['path'] . '/' . $file_name;   
 
@@ -186,7 +186,7 @@ function upload_file_image()
         // open the file and update model, manufacturer meta fields
         if (($handle = fopen($file_path, "r")) !== false) {
 
-            custom_log_test('open file');
+            custom_log_test('open file: '.$file_path);
 
             $row_count = 0;
             $preferred_size = '1400x1400';
@@ -349,6 +349,6 @@ add_action('init', function() {
 });
 
 // Register the actual hook for the scheduled event
-add_action('upload_file_image_hook', 'upload_file_image');
+// add_action('upload_file_image_hook', 'upload_file_image');
 
 ?>

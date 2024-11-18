@@ -565,6 +565,25 @@ jQuery(document).on("ready", function(){
        $(this).find('svg').toggleClass('rotate180');
     });
 
+    // Opening and closing respectively of accordion on the FAQ page
+    $('.faq-question').click(function() {
+        var accordionItem = $(this).closest('.accordion-faq-item');
+        var accordionContent = accordionItem.find('.faq-item-content');
+        var isActive = accordionContent.hasClass('active');
+
+        // Toggle the active class and the visibility of the content
+        $('.faq-item-content').stop(true, true).slideUp().removeClass('active');
+        $('.faq-question svg').removeClass('rotate180');
+
+        if (!isActive) {
+            accordionContent.stop(true, true).slideDown().addClass('active');
+            $(this).find('svg').addClass('rotate180');
+        }
+        // accordionContent.toggleClass('active');     
+
+        
+    });
+
     //Added a class to wishlist_btn if it is in the list
     document.querySelectorAll('.delete_item').forEach(function(element) {
         element.closest('.wishlist_btn').classList.add('wishlist_btn_black');

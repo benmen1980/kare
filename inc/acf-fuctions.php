@@ -43,3 +43,20 @@ function display_acf_menu_fields($item_output, $item, $depth, $args) {
 
     return $item_output;
 }
+
+// Filter to fill select field in drum options "faq_tabs"
+add_filter('acf/load_field/name=selected_tab', 'populate_faq_tabs');
+function populate_faq_tabs($field) {
+    $field['choices'] = [];
+
+    if (have_rows('faq_tabs', 'option')) {
+        while (have_rows('faq_tabs', 'option')) {
+            the_row();
+            $tab_slug = get_sub_field('faq_title');
+            $tab_title = get_sub_field('faq_title');
+            $field['choices'][$tab_slug] = $tab_title;
+        }
+    }
+
+    return $field;
+}
