@@ -134,6 +134,12 @@ $array_tabs = get_field('selected_tab', $post_id);
                 endwhile; ?>
 
             <?php endif; ?>
+
+            <div class="moduls_container">
+                <div class="section_modules_wrapper">
+                    <?php get_template_part('modules/section','module_banner_promotion'); ?>
+                </div>
+            </div>
             
         </div>
             
