@@ -143,11 +143,15 @@ function validate_woocommerce_registration_full_name_field( $username, $email, $
         $validation_errors->add( 'full_name_error', __( 'Please enter full name', 'woocommerce' ) );
     }
 
+    if (!empty($_POST['birth_date']) && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $_POST['birth_date'])) {
+        $validation_errors->add('birth_date_error', __('Invalid date format. Please use dd-mm-yyyy.', 'woocommerce'));
+    }
+
     return $validation_errors;
 }
 add_action( 'woocommerce_register_post', 'validate_woocommerce_registration_full_name_field', 10, 3 );
 
-// Save Full Name Field as First Name and Last Name
+// Save full name field as first name and last name and also additional acf fields
 function save_woocommerce_registration_full_name_field( $customer_id ) {
     if ( isset( $_POST['full_name'] ) ) {
         $full_name = sanitize_text_field( $_POST['full_name'] );
@@ -160,6 +164,14 @@ function save_woocommerce_registration_full_name_field( $customer_id ) {
         // Save the names
         update_user_meta( $customer_id, 'first_name', $first_name );
         update_user_meta( $customer_id, 'last_name', $last_name );
+    }
+
+    if (isset($_POST['birth_date'])) {
+        update_user_meta($customer_id, 'birth_date', sanitize_text_field($_POST['birth_date']));
+    }
+
+    if (isset($_POST['user_arrived_choice'])) {
+        update_user_meta($customer_id, 'user_arrived_choice', sanitize_text_field($_POST['user_arrived_choice']));
     }
 }
 add_action( 'woocommerce_created_customer', 'save_woocommerce_registration_full_name_field' );
@@ -230,12 +242,8 @@ function upload_city_name_file() {
 }
 
 add_action('upload_city_name_file_hook', 'upload_city_name_file');
-
 if (!wp_next_scheduled('upload_city_name_file_hook')) {
 
     $res = wp_schedule_event(time(), 'none', 'upload_city_name_file_hook');
 
 }*/
-
-
-

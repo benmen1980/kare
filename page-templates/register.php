@@ -51,8 +51,34 @@ get_header();
 
                 <?php else : ?>
 
-                    <p class="send_pswd_msg"><?php esc_html_e( 'סיסמה תישלח לכתובת המייל שלך.', 'kare' ); ?></p>
+                    <p class="send_pswd_msg"><?php esc_html_e( 'A password will be sent to your email address.', 'kare' ); ?></p>
 
+                <?php endif; ?>
+
+                <!-- Adding a date of birth field -->
+                <div class="form-row">
+                    <input type="date" class="woocommerce-Input woocommerce-Input--text input-text" name="birth_date" id="reg_birth_date" value="<?php echo ( ! empty( $_POST['birth_date'] ) ) ? esc_attr( wp_unslash( $_POST['birth_date'] ) ) : ''; ?>" />
+                    <label for="reg_birth_date" class="birth_date"><?php esc_html_e('Date of Birth', 'woocommerce'); ?></label>
+                </div>
+
+                <!-- Added a 'where did you come to us from' field -->
+                 <?php if (have_rows('user_arrived_choice', 'option')) : ?>
+                    <div class="form-row form-select">
+                        <label for="reg_user_arrived_choice" class="user_arrived_choice">
+                            <?php esc_html_e('Tell us how you came to us:', 'woocommerce'); ?>
+                        </label>
+                        <select name="user_arrived_choice" id="reg_user_arrived_choice" class="woocommerce-Input woocommerce-Input--select input-select">
+                            <option value=""><?php esc_html_e('Select an Option', 'woocommerce'); ?></option>
+
+                            <?php while (have_rows('user_arrived_choice', 'option')) : the_row();
+                                $tab_choice = get_sub_field('user_arrived'); ?>
+                                <option value="<?php echo esc_attr($tab_choice); ?>" >
+                                    <?php echo esc_html($tab_choice); ?>
+                                </option>                            
+                            <?php endwhile; ?>
+
+                        </select>
+                    </div>
                 <?php endif; ?>
 
                 <div class="checkbox_wrapper">
