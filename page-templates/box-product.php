@@ -99,6 +99,8 @@ if (!is_category() && !is_product_category() && !is_shop() && !is_search()) : ?>
                             <?php else : ?>
                                 <p class="stock outofstock"><?php esc_html_e( '60 business days', 'kare' ); ?></p>
                             <?php endif ?>
+                        <?php else : ?>
+                            <p class="stock coming_soon"><?php esc_html_e( 'coming soon', 'kare' ); ?></p>
                         <?php endif ?>
                     </div>                    
                 </a>

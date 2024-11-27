@@ -89,7 +89,7 @@
 					<div class="top_sidebar">
 						<h2><?php echo (!is_user_logged_in()) ? __( 'Login', 'kare' ) :  __( 'Wishlist', 'kare' ); ?></h2>
 						<button id="close_wishlist" class="close">
-							<img src="<?php echo get_template_directory_uri();?>/dist/images/svg/close.svg" alt="<?php esc_html_e( 'close whishlist sidebar', 'kare' ) ?>" width="18" height="18">
+							<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/close.svg'); ?>
 						</button>
 					</div>			
 					<?php 
@@ -120,10 +120,15 @@
 					<?php else : ?>
 						<div class="bottom_sidebar">
 							<div class="wishlist_popup_content"> 
-								<button type="button" aria-label="button" class="share_wishlist_btn">
-									<span><?php esc_html_e( 'Copy your wishlist URL and share it!', 'kare' ); ?></span>
-									<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/share-alt.svg'); ?>
-								</button>
+								<?php /*if (function_exists('yith_wcwl_get_products')) :
+									$wishlist_products = yith_wcwl_get_products();
+									if (!empty($wishlist_products)) :*/ ?>
+										<button type="button" aria-label="button" class="share_wishlist_btn">
+											<span><?php esc_html_e( 'Copy your wishlist URL and share it!', 'kare' ); ?></span>
+											<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/share-alt.svg'); ?>
+										</button>
+									<?php /*endif;
+								endif; */?>
 								<div class="wishlist_content">
 									<?php echo do_shortcode('[yith_wcwl_wishlist]'); ?>
 								</div>

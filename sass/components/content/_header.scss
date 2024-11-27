@@ -519,8 +519,15 @@ header {
                     background-color: #fff;
                     border-radius: 0;
                     padding: 13px 17px;
+                    svg {
+                        width: 18px;
+                        height: 18px;
+                    }
                     &:hover{
                         background-color: #000;
+                        svg{
+                            filter: invert(100%) brightness(100%);
+                        }
                         img{
                             filter: invert(100%) brightness(100%);
                         }
@@ -606,6 +613,31 @@ header {
 
                         .woocommerce-error {
                             display: none;
+                        }
+
+                        .woocommerce-message {
+                            background-color: #026805;
+                            color: #fff;
+                            border: 0;
+                            font-size: 16px;
+                            list-style-type: none;
+                            padding: 16px 16px 16px 36px;
+                            margin: 0 0 20px 0;
+                            position: relative;
+                            &::before {
+                                content: '';
+                                background-image: url("../images/svg/check-circle.svg");
+                                position: absolute;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                left: 10px;
+                                width: 20px;
+                                height: 20px;
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                                background-position: center;
+                                filter: invert(1);
+                            }
                         }
    
                     }
@@ -1082,7 +1114,14 @@ header {
                             filter: brightness(0) invert(1);
                         }
                     } 
-                }                                   
+                } 
+                
+                &.wishlist-empty {
+                    font-size: 16px;
+                    line-height: 24px;
+                    display: block;
+                    margin: auto;
+                }
             }
         }
     }

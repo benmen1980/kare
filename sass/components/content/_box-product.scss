@@ -244,9 +244,11 @@
                     display: flex;
                     flex-direction: column;
                     justify-content: flex-end;
-                    color: #026805;
                     &.instock {
                         color: #026805;
+                    }
+                    &.coming_soon {
+                        color: #e10915;
                     }
                     @include media(">phone") {
                         height: 40px;

@@ -445,7 +445,6 @@
                         display: flex;
                         flex-wrap: nowrap;
                         margin: 16px 0 20px;
-                        color: #026805;
                         .product-shipping {
                             font-size: 14px;
                             line-height: 20px;
@@ -459,6 +458,12 @@
                             display: inline-block !important;
                             margin: 0;
                         }
+                    }
+
+                    .stock_coming_soon {
+                        margin: 16px 0 20px;
+                        font-weight: 700;
+                        color: #e10915;
                     }
             
                     form.cart {

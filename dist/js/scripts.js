@@ -389,6 +389,21 @@ jQuery(document).on("ready", function(){
             $('body').css('overflow', 'hidden');
         }
         $('#overlay').fadeIn(); // Show the overlay
+
+        // Check wishlist items and toggle the share button visibility
+        const wishlistContainer = $('.wishlist_table');
+        const shareButton = $('.share_wishlist_btn');
+
+        if (wishlistContainer.length) {
+            const wishlistWrapper = wishlistContainer.find('.wishlist-items-wrapper');
+
+            if (wishlistWrapper.find('*[id*="yith-wcwl"]').length > 0) {
+                shareButton.show(); // Show the button if there are products
+            } else {
+                shareButton.hide(); // Hide the button if there are no products
+            }
+        }
+
     });
 
     $('#close_wishlist').on('click', function() {

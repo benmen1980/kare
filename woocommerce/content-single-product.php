@@ -273,6 +273,10 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 						<p class="product-shipping ?>">Shipping in: </p>
 						<p class="<?php echo ($product->get_stock_quantity() > 0) ? 'stock' : ''; ?>"><?php echo esc_html( $stock ); ?></p>
 					</div>
+				<?php else : ?>
+					<div class="stock_coming_soon">
+						<p class="coming_soon"><?php echo esc_html_e( 'coming soon', 'kare' ); ?></p>
+					</div>
 				<?php endif;
 
 				// woocommerce_template_single_add_to_cart(); ?>

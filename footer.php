@@ -15,7 +15,7 @@
 		<div class="site-info">
 			<div class="footer-container background-gray">
 				<div class="contain-footer min-p">
-					<h4 class="text-center w-full"><?php esc_html_e( 'Good reasons for KARE Online GmbH', 'kare' ); ?></h4>
+					<h4 class="text-center w-full"><?php esc_html_e( 'Good reasons for KARE Online Israel', 'kare' ); ?></h4>
 					<div class="center-flex justify-around">
 						<div class="text-center w-1-3">
 							<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/truck.svg'); ?>
