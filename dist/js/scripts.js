@@ -301,8 +301,14 @@ jQuery(document).on("ready", function(){
     });
 
     const swiperSimilarPdt = new Swiper('.similar-pdt-swiper', {
-        slidesPerView: 4,
-        spaceBetween: 20,
+        slidesPerView: 3.4,
+        spaceBetween: 10,
+        breakpoints: {
+            1024: { 
+                slidesPerView: 4,
+                spaceBetween: 20
+            }
+        },
     });
 
     const swiperSameCat = new Swiper('.swiper_more_same_cat', {

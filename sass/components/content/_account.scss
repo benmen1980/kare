@@ -2,13 +2,14 @@
     article{
         @extend %container;
         .entry-header{
-            h1{
+            display: none;
+           /* h1{
                 font-size: 36px;
                 text-transform: uppercase;
                 @include media("<=desktop") {
                     font-size: 24px;
                 }
-            }
+            }*/
         }
         .entry-content{
             margin-top: 20px;
@@ -34,6 +35,9 @@
         @include media("<=desktop") {
             width: 100%;
         }
+        mark {
+            background: none;
+        }
     }
     //EDIT PERSONAL DATA PAGE
     &.woocommerce-edit-account{
@@ -42,11 +46,14 @@
         }
         form{
             fieldset{
-            border: 1px solid #333;
-            margin: 20px 0;
-            legend{
-                font-size: 22px;
-            }
+                border: 1px solid #333;
+                margin: 20px 0;
+                legend{
+                    font-size: 22px;
+                }
+                span.password-input .show-password-input{
+                    top: 40%;
+                }
             }
         }
     }
@@ -205,12 +212,13 @@
                     }
                     &.woocommerce-orders-table__cell-order-actions{
                         a {
-                            border: 1px solid;
-                            padding: 8px 15px;
+                            padding: 8px 24px;
                             margin-left: 10px;
                             text-decoration: none;
-                            background-color: #f4f4f4;
-                            @extend %white-btn;
+                            // background-color: #f4f4f4;
+                            text-transform: uppercase;
+                            @extend %black-btn;
+                            color: #fff;
                             &:last-of-type {
                                 margin-left: 0;
                             }
@@ -659,7 +667,7 @@ form{
               
               &::after {
                 font-family: WooCommerce;
-                speak: never;
+                // speak: never;
                 font-weight: 400;
                 font-variant: normal;
                 text-transform: none;
