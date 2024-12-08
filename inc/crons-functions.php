@@ -295,6 +295,10 @@ function upload_file_image()
  
 }
 
+//לבדוק קודם אם מוסיף לFTP ואז למדיה ולכן יש את הספרה 1
+//לבדוק לפי מוצר ולעדכן במוצר את התמונה אם נמצאה
+
+
 // Helper function to download and attach images to WordPress
 function download_external_image($image_url, $description) {
 
@@ -349,6 +353,6 @@ add_action('init', function() {
 });
 
 // Register the actual hook for the scheduled event
-add_action('upload_file_image_hook', 'upload_file_image');
+// add_action('upload_file_image_hook', 'upload_file_image');
 
 ?>
