@@ -3405,7 +3405,7 @@ div.container .section_wrap {
   color: #026805;
 }
 .search_suggestions_product .box_product .product_details_wrapper .stock_status .stock.coming_soon {
-  color: #e10915;
+  color: #5e5e5e;
 }
 @media (min-width: 481px) {
   .search_suggestions_product .box_product .product_details_wrapper .stock_status .stock {
@@ -4620,7 +4620,6 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
 #primary .product .top_details .r_side .product-details .stock_coming_soon {
   margin: 16px 0 20px;
   font-weight: 700;
-  color: #e10915;
 }
 #primary .product .top_details .r_side .product-details form.cart {
   display: -webkit-box;
@@ -10347,6 +10346,7 @@ section.section_slider_categories .section_slider_cat_wrap .tabs_wrapper.rounded
 .module_half_half .hero_content .button_hero_content .header-button {
   color: #fff;
   text-decoration: none;
+  text-transform: uppercase;
 }
 .module_half_half .hero_content .button_hero_content .header-button:hover {
   color: #000000;
@@ -10676,6 +10676,7 @@ section.section_slider_pdts .section_slider_pdts_wrap .tabs_wrapper .swiper-pagi
 .module_half_half_with_pdts .w-1-2.second .hero_content .button_hero_content button .header-button {
   color: #fff;
   text-decoration: none;
+  text-transform: uppercase;
 }
 .module_half_half_with_pdts .w-1-2.second .hero_content .button_hero_content button .header-button:hover {
   color: #000000;
