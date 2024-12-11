@@ -17,6 +17,10 @@ jQuery(document).on("ready", function(){
 
     // On input blur
     $('.form-row .input-text').blur(function() {
+        if( $(this).val() ) {
+            $(this).closest('.form-row').find('label').addClass('focused');
+        }
+    
         // Remove the class if the input is empty
         if ($(this).val() === "") {
             $(this).closest('.form-row').find('label').removeClass('focused');
@@ -24,6 +28,7 @@ jQuery(document).on("ready", function(){
         else{
             $(this).closest('.form-row').find('label').addClass('focused');
         }
+
     });
 
     // Check on page load if inputs have text
@@ -31,7 +36,7 @@ jQuery(document).on("ready", function(){
         if ($(this).val() !== "") {
             $(this).closest('.form-row').find('label').addClass('focused');
         }
-    });   
+    });  
 
     //logout with popup
     $('.custom_logout a').on('click', function(e) {
@@ -720,17 +725,37 @@ jQuery(document).on("ready", function(){
         
     };
 
-    //Opening the search input in the phone
+    //open width search input
+    if (window.matchMedia('(min-width: 1024px)').matches) {
+        console.log('width search input');
+        const searchInput = $('#dgwt-wcas-search-input-1'); 
+        const parentDiv = $('#btn-header-search'); 
+        const childDiv = $('.dgwt-wcas-search-wrapp');
+
+        searchInput.on('focus', function() {
+            childDiv.animate({ width: '500px' }, 500, function() {
+                // childDiv.css('width', '100%'); 
+            });
+        });
+
+        searchInput.on('blur', function() {
+            childDiv.animate({ width: '250px' }, 500, function() {
+                // childDiv.css('width', '250px'); 
+            });
+        });
+    }
+
+    /*//Opening the search input in the phone
     $(document).on('click', function(event) {
-        if (!$(event.target).closest('#btn-header-search, #product-searchform').length) {
+        if (!$(event.target).closest('#btn-header-search, .dgwt-wcas-search-wrapp').length) {
             $('#product-searchform').removeClass('open-search');
         }
     });
 
-    $('#btn-header-search').on('click', function(event) {
+    $('#btn-header-search .search-svg-btn').on('click', function(event) {
         event.stopPropagation();
-        $(this).find('#product-searchform').addClass('open-search');
-    });
+        $(this).find('.dgwt-wcas-search-wrapp.dgwt-wcas-has-submit').addClass('open-search');
+    });*/
 
     //Calculation of shipping costs and display of fields on the checkout page
     if (window.location.href.indexOf("checkout") > -1 && window.location.href.indexOf("order-received") === -1) {
@@ -770,8 +795,22 @@ jQuery(document).on("ready", function(){
 
         // Trigger the change event on page load to set the initial state
         $('form.checkout').trigger('change');
+
+        //Trigger to open the "Forgot Password" pop-up
+        $(document).on('click', '.woocommerce-checkout .woocommerce form.woocommerce-form-login .lost_password a', function(event) {
+            
+            event.preventDefault();    
+            // Triggers the popup     
+            $('.open_account_popup').trigger('click'); 
+            $("#login_sidebar .lost_password a").trigger('click');
+        });
+        // Add class to element
+        $('.woocommerce-form-login-toggle').click(function() {
+            $(this).toggleClass('rotate180');
+        });
     
     }
+
 
     // Hiding the second delivery area when empty
     $('.woocommerce-shipping-fields').each(function() {

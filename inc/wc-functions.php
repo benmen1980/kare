@@ -166,7 +166,10 @@ function custom_quantity_input_args($args, $product) {
  * Changes to the checkout page
  */
 
- //Removes the coupon code form from the WooCommerce checkout page.
+// Remove the action that displays the login area
+// remove_action('woocommerce_before_checkout_form', 'woocommerce_checkout_login_form', 10);
+
+//Removes the coupon code form from the WooCommerce checkout page.
  function remove_checkout_coupon_form() {
     remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
 }

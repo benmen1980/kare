@@ -4,6 +4,11 @@
 
 #primary {
 
+    .woocommerce-notices-wrapper {
+        @extend %container;
+        margin-top: 20px;
+    }
+
     .woocommerce-breadcrumb {
         @extend %container;
         padding: 20px 16px;
@@ -242,59 +247,74 @@
                             }
 
                             .swiper-nav {
-                                z-index: 1;
-                                @extend %center-flex;
-                                will-change: opacity;
-                                position: absolute;
-                                transition-property: opacity;
-                                transition-duration: .3s;
-                                top: 0;
-                                bottom: 0;
-                                margin: auto 24px;
-                                padding-bottom: 0;
-                                &.swiper-button-disabled {
-                                    opacity: 0;
-                                    display: none;
-                                    animation: a-pointer-events 1s linear forwards;
-                                    z-index: -1;
-                                }
-                            
-                                &.small-slider-nav-prev {
-                                    left: 0;
-                                    svg.w-dir-left {
-                                        transform: rotate(-180deg);
-                                    }
-                                }
-
-                                &.small-slider-nav-next {
-                                    right: 0;
-                                }
-                            
-                                .w-btn {
-                                    position: relative;
-                                    display: inline-flex;
+                                display: none;
+                                @include media(">desktop") {
+                                    z-index: 1;
+                                    display: flex;
                                     align-items: center;
-                                    flex-shrink: 0;
-                                    max-width: 100%;
-                                    text-align: left;
-                                    cursor: pointer; 
+                                    justify-content: center;
+                                    will-change: opacity;
+                                    position: absolute;
+                                    transition-property: opacity;
+                                    transition-duration: .3s;
+                                    top: 0;
+                                    bottom: 0;
+                                    margin: auto 24px;
+                                    padding-bottom: 0;
+                                    &.swiper-button-disabled {
+                                        opacity: 0;
+                                        display: none;
+                                        animation: a-pointer-events 1s linear forwards;
+                                        z-index: -1;
+                                    }
                             
-                                    &.w-color-white {
-                                        color: rgb(66,66,66);
-                                        border-color: rgb(228,228,228);
-                                        background-color: rgb(255,255,255);
-                                        justify-content: center;
-                                        padding: 16px 24px;
-                                        transition-property: background-color, border-color, color, fill, stroke;
-                                        transition-duration: .3s;
-                                        border-width: 1px;
-                                        border-radius: 0;
+                                    &.small-slider-nav-prev {
+                                        left: 0;
+                                        svg.w-dir-left {
+                                            transform: rotate(-180deg);
+                                        }
                                     }
-                                    svg {
-                                        display: inline-block;
+
+                                    &.small-slider-nav-next {
+                                        right: 0;
+                                    }
+                                
+                                    .w-btn {
+                                        position: relative;
+                                        display: inline-flex;
+                                        align-items: center;
                                         flex-shrink: 0;
-                                        margin: 0 -8px;
+                                        max-width: 100%;
+                                        text-align: left;
+                                        cursor: pointer; 
+                                
+                                        &.w-color-white {
+                                            color: rgb(66,66,66);
+                                            border-color: rgb(228,228,228);
+                                            background-color: rgb(255,255,255);
+                                            justify-content: center;
+                                            padding: 16px 24px;
+                                            transition-property: background-color, border-color, color, fill, stroke;
+                                            transition-duration: .3s;
+                                            border-width: 1px;
+                                            border-radius: 0;
+                                        }
+                                        svg {
+                                            display: inline-block;
+                                            flex-shrink: 0;
+                                            margin: 0 -8px;
+                                        }
                                     }
+                                }
+                            }
+
+                            .swiper-scrollbar {
+                                bottom: 0;
+                                height: 4px;
+                                background-color: #c7c7c7;
+                                border-radius: 0;
+                                @include media(">desktop") {
+                                    display: none;
                                 }
                             }
                             

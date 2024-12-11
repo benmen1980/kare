@@ -133,6 +133,8 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 									<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg'); ?>
 								</button>
 							</div>
+							<!-- scrollbar -->
+							<div class="swiper-scrollbar"></div>
 						</div>
 					</div>
 				<?php endif;?>

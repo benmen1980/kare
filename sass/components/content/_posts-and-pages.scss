@@ -129,7 +129,7 @@ main#main-site {
 
 //FORM FOR ALL SITE PAGE
 form{
-    .form-row {
+    .form-row:not(.create-account) {
         position: relative;
         margin-bottom: 10px;
         input {

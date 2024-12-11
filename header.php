@@ -38,12 +38,8 @@
 						<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/menu.svg'); ?>
 					</button>
 					<div id="btn-header-search" class="search">
-						<!-- <div class="visible-desktop"> -->
-						<?php echo str_replace('<svg', '<svg class="search-svg-btn"', file_get_contents(get_template_directory_uri() . '/dist/images/svg/search.svg')); ?>
-						<!-- </div> -->
-						<!-- <span><?php //esc_html_e( 'search...', 'kare' ); ?></span> -->
-						<!-- <?php //echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/search.svg'); ?> -->
-						<?php echo get_product_search_form(); ?>
+						<?php //echo str_replace('<svg', '<svg class="search-svg-btn"', file_get_contents(get_template_directory_uri() . '/dist/images/svg/search.svg')); ?>
+						<?php echo do_shortcode('[fibosearch]'); ?>
 					</div>
 				</div>
 				<div class="logo-site center-flex w-1-3">
@@ -162,7 +158,7 @@
 							<?php 
 							woocommerce_login_form();?>
 							<!-- Display WooCommerce notices (including login errors) -->
-							<?php if ( function_exists( 'wc_print_notices' ) ) { ?>
+							<?php if ( function_exists( 'wc_print_notices' ) && isset($_POST['login']) ) { ?>
 								<div class="woocommerce-notices-wrapper">
 									<?php wc_print_notices(); ?>
 								</div>
@@ -189,7 +185,7 @@
 							<?php  woocommerce_get_template( 'myaccount/form-lost-password.php' ); ?>
 						</div>
 						<div class="woocommerce-notices-wrapper">
-							<?php if ( function_exists( 'wc_print_notices' ) ) { wc_print_notices(); } ?>
+							<?php if ( function_exists( 'wc_print_notices' ) && isset($_POST['wc_reset_password']) ) { wc_print_notices(); } ?>
 						</div>
 					<?php } else {?>
 						<div class="my_account_menu_wrapper">
@@ -278,8 +274,9 @@
 			</div>
 		</div>
 		
-	
-		<div id="lost-password-confirmation">
-			<?php woocommerce_get_template( 'myaccount/lost-password-confirmation.php' ); ?>
-		</div>
+		<?php if ( !is_user_logged_in() ) { ?>
+			<div id="lost-password-confirmation">
+				<?php woocommerce_get_template( 'myaccount/lost-password-confirmation.php' ); ?>
+			</div>
+		<?php } ?>
 		
