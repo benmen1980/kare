@@ -72,6 +72,65 @@ header.site-header{
     }
 }
 
+.banner-strip {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 32px;
+    position: relative;
+    width: 100%;
+    @include media(">desktop") {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .text-banner {
+        @extend %container;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @include media(">desktop") {
+            justify-content: center;
+        }
+
+        a{
+            font-size: 14px;
+            line-height: 21px;
+            margin-right: 20px;
+            text-align: left;
+            text-decoration: underline;
+            @include media(">desktop") {
+                font-size: 18px;
+                line-height: 28px;
+                margin-right: 40px;
+            }
+
+            &:hover {
+                text-decoration: underline;
+                font-weight: 700;
+            }
+        }
+    }
+    .close-banner {
+        right: 16px;
+        top: 50%;
+        position: absolute;
+        cursor: pointer;
+        transform: translateY(-50%);
+        display: inline-flex;
+        @include media(">desktop") {
+            top: 50%;
+            right: 20px;
+        }
+
+        svg {
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+    }
+}
+
 /*@keyframes fadeSlideUp {
     from {
         opacity: 0;

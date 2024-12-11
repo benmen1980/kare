@@ -155,11 +155,7 @@ defined( 'ABSPATH' ) || exit;
 			<th><?php esc_html_e( 'Order total including VAT:', 'woocommerce' ); ?></th>
 			<td data-title="<?php esc_attr_e( 'Order total including VAT', 'woocommerce' ); ?>">
 				<?php
-					if ( is_cart() ) {
-						echo wc_price( WC()->cart->get_subtotal() );
-					} else {
-						wc_cart_totals_order_total_html();
-					}
+					wc_cart_totals_order_total_html();
 				?>
 			</td>
 		</tr>

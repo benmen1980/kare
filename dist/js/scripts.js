@@ -759,8 +759,6 @@ jQuery(document).on("ready", function(){
 
     //Calculation of shipping costs and display of fields on the checkout page
     if (window.location.href.indexOf("checkout") > -1 && window.location.href.indexOf("order-received") === -1) {
-
-
         function toggleAddressFields(selectedMethod) {
             const shippingMessage = $('.delivery-message').data('acf-shipping');
             const selfMessage = $('.delivery-message').data('acf-self');
@@ -819,6 +817,13 @@ jQuery(document).on("ready", function(){
         }
     });
 
+    //Closing the banner strip in the header by clicking the close button
+    $('#close-banner').on('click', function () {
+        $('.banner-strip').slideUp(300, function () {
+            $(this).remove(); 
+        });
+    });
+
 });
 
 // Management of a drop-down menu with a click, and automatic checking of the display location
@@ -869,3 +874,45 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });*/
+
+jQuery(document).ready(function($) {
+    // Function to move the notice to the WooCommerce wrapper
+    function moveCouponNotice() {
+        // Find the new coupon notice
+        var $couponNotice = $('.coupon-error-notice');
+        
+        // Check if the notice exists and is visible
+        if ($couponNotice.length && $couponNotice.text().trim() !== '') {
+            // Get the content of the notice
+            var noticeText = $couponNotice.text().trim();
+
+            // Find the first WooCommerce notices wrapper
+            var $firstNoticeWrapper = $('.woocommerce-notices-wrapper').first();
+            // Check if the notice is already present in the first wrapper
+            if ($firstNoticeWrapper.find('li').filter(function() {
+                console.log('coupon');
+                return $(this).text().trim() === noticeText;
+            }).length > 0) {
+                return;
+            }
+            
+            // Determine if it's an error or success
+            var noticeType = $couponNotice.hasClass('coupon-error-notice') ? 'woocommerce-error' : 'woocommerce-message';
+
+            var $newNotice = $(
+                '<ul class="' + noticeType + '" role="alert">' +
+                    '<li>' + noticeText + '</li>' +
+                '</ul>'
+            );
+            $('.woocommerce-notices-wrapper').append($newNotice);
+
+            // Hide the original notice
+            $couponNotice.hide();
+        }
+    }
+
+    // Trigger the function after an AJAX action (WooCommerce uses these)
+    $(document.body).on('applied_coupon removed_coupon updated_cart_totals', function() {
+        moveCouponNotice();
+    });
+});

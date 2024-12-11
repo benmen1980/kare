@@ -30,6 +30,23 @@
 			</button>
 		</div>
 	</div>
+	<?php 
+	$text_banner_strip = get_field('text_strip','option');
+	$link_banner_strip = get_field('url_strip','option');
+
+	if ( $text_banner_strip && $link_banner_strip ) :
+	?>
+		<div class="banner-strip" style="background-color: <?php echo get_field('bg_color','option')?>;">
+			<div class="text-banner">
+				<a href="<?php echo $link_banner_strip; ?>" rel="noopener" aria-label="link" class="text-banner-strip" target="_blank" style="color: <?php echo get_field('text_color','option')?>;">
+					<span><?php echo $text_banner_strip; ?></span> 
+				</a>
+			</div>
+			<div id="close-banner" class="close-banner" style="color: <?php echo get_field('text_color','option')?>;">
+				<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/close.svg'); ?>
+			</div>
+		</div>
+	<?php endif; ?>
 	<main id="main-site" >
 		<header id="masthead" class="site-header">
 			<nav class="nav-top-wrapper">
