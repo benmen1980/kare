@@ -1,0 +1,34 @@
+.module_text_container {
+    .module_text_content {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        .background {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            @include media(">desktop") {
+                padding-left: 40px;
+                padding-right: 40px;
+                text-align: center;
+            }
+
+            h2 {
+                margin: 0;
+                text-transform: uppercase;
+                font-size: 20px;
+                line-height: 30px;
+                font-weight: 400;
+                @include media(">desktop") {
+                    font-size: 24px;
+                    line-height: 36px;
+                }
+            }
+
+            .module_description {
+                font-size: 14px;
+                line-height: 21px;
+                margin-top: 16px;
+            }
+        }
+    }
+
+}

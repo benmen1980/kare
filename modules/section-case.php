@@ -48,6 +48,15 @@ if($choose_module):
             case 'module_shop_area':
                 get_template_part('modules/section','module_shop_area');
                 break;
+            case 'module_text_container':
+                get_template_part('modules/section','module_text_container');
+                break;
+            case 'module_banner_celebrity':
+                get_template_part('modules/section','module_banner_celebrity');
+                break;
+            case 'module_banner_celebrity_sayings':
+                get_template_part('modules/section','module_banner_celebrity_sayings');
+                break;
         }
     endwhile;
 endif;

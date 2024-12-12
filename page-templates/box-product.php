@@ -1,7 +1,8 @@
 <?php 
 global $product; 
+$is_slider = get_query_var('is_archive_product_inspiration', true); 
 
-if (!is_category() && !is_product_category() && !is_shop() && !is_search()) : ?>
+if (!is_category() && !is_product_category() && !is_shop() && !is_search() && $is_slider !== false) : ?>
     <div class="swiper-slide">
 <?php endif; ?>
     <div class="search_suggestions_product">
@@ -107,6 +108,6 @@ if (!is_category() && !is_product_category() && !is_shop() && !is_search()) : ?>
             </div>
         </div>
     </div>
-<?php if (!is_category() && !is_product_category() && !is_shop() && !is_search()) : ?>
+<?php if (!is_category() && !is_product_category() && !is_shop() && !is_search() && $is_slider !== false) : ?>
     </div>
 <?php endif; ?>

@@ -1,10 +1,11 @@
 <section class="section_wrap module_shop_area">
-    <?php if(get_sub_field('shop_area')): while(the_repeater_field('shop_area')):  
-        $img_position = get_sub_field('img_position');
-        $store_img = get_sub_field('store_img_link');
-        $store_title = get_sub_field('store_title');
-        $store_desc = get_sub_field('store_desc');
-    ?>
+    <?php if(get_sub_field('shop_area')):  
+        $banner_shop_area = get_sub_field('shop_area');
+        $img_position = $banner_shop_area['img_position'];
+        $store_img = $banner_shop_area['store_img_link'];
+        $store_title = $banner_shop_area['store_title'];
+        $store_desc = $banner_shop_area['store_desc'];
+    endif; ?>
     <div class="module_shop_content module_50_50" style= "<?php echo ($img_position == "right") ? 'flex-direction:row-reverse':'flex-direction:row'?>;">
         <div class="w-1-2">
             <div class="hero_img_background">
@@ -27,7 +28,4 @@
         </div>
 
     </div>
-    <?php
-    endwhile; endif;
-    ?>
 </section>

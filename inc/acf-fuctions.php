@@ -60,3 +60,28 @@ function populate_faq_tabs($field) {
 
     return $field;
 }
+
+//Added an option to search by stock in the "post object" type field
+function acf_modify_post_object_query_for_sku_and_name( $args, $field, $post_id ) {
+    if ( isset( $args['s'] ) && !empty( $args['s'] ) ) {
+        global $wpdb;
+
+        $search_query = $args['s'];
+        $product_ids_by_sku = $wpdb->get_col( $wpdb->prepare("
+            SELECT post_id
+            FROM {$wpdb->postmeta}
+            WHERE meta_key = '_sku'
+            AND meta_value LIKE %s
+        ", '%' . $wpdb->esc_like( $search_query ) . '%' ) );
+
+        if ( !empty( $product_ids_by_sku ) ) {
+            $args['post__in'] = !empty( $args['post__in'] )
+                ? array_merge( $args['post__in'], $product_ids_by_sku )
+                : $product_ids_by_sku;
+        }
+    }
+
+    return $args;
+}
+add_filter( 'acf/fields/post_object/query', 'acf_modify_post_object_query_for_sku_and_name', 10, 3 );
+

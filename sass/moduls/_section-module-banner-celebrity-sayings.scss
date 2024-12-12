@@ -1,0 +1,51 @@
+.module_banner_celebrity_sayings {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #f4f4f4;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    @include media(">desktop") {
+        padding: 40px;
+    }
+
+    .celebrity_sayings_content {
+        max-width: 1025px;
+        text-align: center;
+        padding: 0 16px;
+        margin: 0 auto;
+
+        .text_celeb {
+            padding-bottom: 40px;            
+            p {
+                margin: 0;
+                font-size: 20px;
+                line-height: 30px;
+                font-style: italic;
+            }
+        }
+
+        img {
+            vertical-align: middle;
+            max-width: 100%;
+            display: inline-block;
+            border-radius: 99999px;
+            height: 100px;
+            width: 100px;
+            object-fit: contain;
+            opacity: 1;
+            transition-property: opacity;
+            transition-duration: .2s;
+        }
+
+        h4 {
+            margin: 0;
+            margin-top: 24px;
+        }
+
+        p {
+            margin: 0;
+            margin-top: 4px;
+        }
+    }
+
+}

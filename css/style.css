@@ -6621,27 +6621,50 @@ form button {
   background-position-y: 50%;
 }
 
-/* Inspiration Page
+/* Inspiration Archive Page
 --------------------------------------------- */
 .post-type-archive-inspiration h1 {
-  font-size: 36px;
-  text-align: center;
+  padding: 16px;
+  padding-bottom: 0;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: left;
   text-transform: uppercase;
+  margin: 0;
 }
-.post-type-archive-inspiration .inspiration_box_wrapper {
+@media (min-width: 1025px) {
+  .post-type-archive-inspiration h1 {
+    font-size: 36px;
+    line-height: 48px;
+    padding: 16px 60px 0 60px;
+    text-align: center;
+  }
+}
+.post-type-archive-inspiration .woocommerce-breadcrumb {
+  margin: 16px 0;
+}
+.post-type-archive-inspiration div.container {
+  padding-top: 16px;
+}
+.post-type-archive-inspiration div.container .inspiration_box_wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
-.post-type-archive-inspiration .inspiration_box_wrapper .trend_box_wraper {
-  width: calc(33.33% - 15px);
-  margin-right: 15px;
+.post-type-archive-inspiration div.container .inspiration_box_wrapper .trend_box_wraper {
+  width: 100%;
   position: relative;
   margin-bottom: 15px;
 }
-.post-type-archive-inspiration .inspiration_box_wrapper .trend_box_wraper a {
+@media (min-width: 1025px) {
+  .post-type-archive-inspiration div.container .inspiration_box_wrapper .trend_box_wraper {
+    width: calc(33.333% - 15px);
+    margin-right: 15px;
+  }
+}
+.post-type-archive-inspiration div.container .inspiration_box_wrapper .trend_box_wraper a {
   display: block;
   width: 100%;
   height: 100%;
@@ -6651,8 +6674,14 @@ form button {
   transition-property: opacity;
   -webkit-transition-duration: 0.3s;
           transition-duration: 0.3s;
+  min-height: 288px;
 }
-.post-type-archive-inspiration .inspiration_box_wrapper .trend_box_wraper a:after {
+@media (min-width: 1025px) {
+  .post-type-archive-inspiration div.container .inspiration_box_wrapper .trend_box_wraper a {
+    height: 400px;
+  }
+}
+.post-type-archive-inspiration div.container .inspiration_box_wrapper .trend_box_wraper a:after {
   content: "";
   z-index: 1;
   position: absolute;
@@ -6664,10 +6693,19 @@ form button {
   background: -webkit-gradient(linear, left bottom, left top, color-stop(-35%, rgba(0, 0, 0, 0.5)), color-stop(50%, transparent));
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) -35%, transparent 50%);
 }
-.post-type-archive-inspiration .inspiration_box_wrapper .trend_box_wraper a img {
+.post-type-archive-inspiration div.container .inspiration_box_wrapper .trend_box_wraper a img {
   height: 100%;
+  display: inline-block;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+  opacity: 1;
+  vertical-align: middle;
 }
-.post-type-archive-inspiration .inspiration_box_wrapper .trend_box_wraper p {
+.post-type-archive-inspiration div.container .inspiration_box_wrapper .trend_box_wraper p {
   position: absolute;
   left: 20px;
   bottom: 0px;
@@ -6675,7 +6713,7 @@ form button {
   color: #fff;
   z-index: 2;
 }
-.post-type-archive-inspiration .inspiration_box_wrapper .trend_box_wraper button {
+.post-type-archive-inspiration div.container .inspiration_box_wrapper .trend_box_wraper button {
   position: absolute;
   right: 20px;
   bottom: 20px;
@@ -6684,20 +6722,242 @@ form button {
           backdrop-filter: blur(10px);
   color: #fff;
   border: 1px solid #fff;
+  border-radius: 0;
   padding: 15px 8px;
   cursor: pointer;
   z-index: 2;
 }
-.post-type-archive-inspiration .inspiration_box_wrapper .trend_box_wraper button img {
+.post-type-archive-inspiration div.container .inspiration_box_wrapper .trend_box_wraper button img {
   -webkit-filter: invert(100%) brightness(100%);
           filter: invert(100%) brightness(100%);
 }
-.post-type-archive-inspiration .inspiration_box_wrapper .trend_box_wraper button:hover {
+.post-type-archive-inspiration div.container .inspiration_box_wrapper .trend_box_wraper button:hover {
   background-color: #fff;
 }
-.post-type-archive-inspiration .inspiration_box_wrapper .trend_box_wraper button:hover img {
+.post-type-archive-inspiration div.container .inspiration_box_wrapper .trend_box_wraper button:hover img {
   -webkit-filter: none;
           filter: none;
+}
+
+/* Inspiration Content Page
+--------------------------------------------- */
+.type-inspiration.inspiration .entry-header {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.type-inspiration.inspiration .entry-header:not(.empty) {
+  height: 245px;
+}
+@media (min-width: 1025px) {
+  .type-inspiration.inspiration .entry-header:not(.empty) {
+    height: 605px;
+  }
+}
+.type-inspiration.inspiration .entry-header > .section-image-text {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
+.type-inspiration.inspiration .entry-header > .section-image-text img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: 1;
+}
+@media (min-width: 1025px) {
+  .type-inspiration.inspiration .entry-header > .section-image-text img {
+    display: block;
+  }
+}
+.type-inspiration.inspiration .entry-header > .section-image-text .entry-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 36px;
+  text-align: center;
+  text-transform: none;
+  text-shadow: 2px 2px 13px #000;
+  color: #fff;
+  padding: 0 24px;
+  z-index: 2;
+  max-width: 1420px;
+}
+@media (min-width: 1025px) {
+  .type-inspiration.inspiration .entry-header > .section-image-text .entry-title {
+    font-size: 80px;
+    line-height: 1;
+    padding: 0 60px;
+  }
+}
+.type-inspiration.inspiration .entry-header.empty > .section-text {
+  margin: 0;
+}
+.type-inspiration.inspiration .entry-header.empty > .section-text .only_text {
+  width: auto;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+  text-align: left;
+  text-transform: uppercase;
+  text-shadow: none;
+  color: #000;
+  padding: 0 16px;
+  padding-top: 16px;
+  margin: 0;
+}
+@media (min-width: 1025px) {
+  .type-inspiration.inspiration .entry-header.empty > .section-text .only_text {
+    padding: 0 60px;
+    padding-top: 16px;
+    font-size: 36px;
+    line-height: 48px;
+    text-align: center;
+  }
+}
+.type-inspiration.inspiration .entry-content .moduls_container {
+  margin-top: 8px;
+  padding-top: 32px;
+}
+@media (min-width: 1025px) {
+  .type-inspiration.inspiration .entry-content .moduls_container {
+    padding-top: 60px;
+  }
+}
+.type-inspiration.inspiration .entry-content .questions-container {
+  padding-top: 20px;
+}
+.type-inspiration.inspiration .entry-content .questions-container .container .title-text {
+  margin: 0;
+  margin-bottom: 16px;
+}
+@media (min-width: 1025px) {
+  .type-inspiration.inspiration .entry-content .questions-container .container .title-text {
+    margin-bottom: 32px;
+  }
+}
+.type-inspiration.inspiration .entry-content .questions-container .container .accordion-faq-item {
+  width: 100%;
+  position: relative;
+}
+.type-inspiration.inspiration .entry-content .questions-container .container .accordion-faq-item .faq-item-title .faq-question {
+  padding: 20px;
+  position: relative;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
+  background-color: #f4f4f4;
+  border: none;
+  cursor: pointer;
+  -webkit-transition-property: background-color, border-color, color, fill, stroke;
+  transition-property: background-color, border-color, color, fill, stroke;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+.type-inspiration.inspiration .entry-content .questions-container .container .accordion-faq-item .faq-item-title .faq-question:hover {
+  background-color: #E4E4E4;
+}
+.type-inspiration.inspiration .entry-content .questions-container .container .accordion-faq-item .faq-item-title .faq-question .title {
+  margin-right: 8px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+.type-inspiration.inspiration .entry-content .questions-container .container .accordion-faq-item .faq-item-title .faq-question svg {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  display: inline-block;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+  vertical-align: middle;
+}
+.type-inspiration.inspiration .entry-content .questions-container .container .accordion-faq-item .faq-item-title .faq-question .rotate180 {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+.type-inspiration.inspiration .entry-content .questions-container .container .accordion-faq-item .faq-item-content {
+  overflow: hidden;
+  display: none;
+}
+.type-inspiration.inspiration .entry-content .questions-container .container .accordion-faq-item .faq-item-content.active {
+  display: block;
+}
+.type-inspiration.inspiration .entry-content .questions-container .container .accordion-faq-item .faq-item-content .faq_answer {
+  background-color: #f4f4f4;
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.type-inspiration.inspiration .entry-content .questions-container .container .accordion-faq-item .faq-item-content .faq_answer .text {
+  font-size: 14px;
+  line-height: 48px;
+}
+.type-inspiration.inspiration .entry-content .questions-container .container .accordion-faq-item .faq-item-content .faq_answer .text ul {
+  padding: 0;
+  margin: 0;
+  padding-left: 20px;
+}
+.type-inspiration.inspiration .show-archive-product {
+  padding-left: 0;
+  padding-right: 0;
+}
+.type-inspiration.inspiration .show-archive-product .product_sorting_wrapper {
+  margin-top: 8px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+@media (min-width: 480px) {
+  .type-inspiration.inspiration .show-archive-product .product_sorting_wrapper {
+    margin-top: 32px;
+  }
+}
+.type-inspiration.inspiration .show-archive-product .archive-product {
+  margin-top: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+@media (min-width: 480px) {
+  .type-inspiration.inspiration .show-archive-product .archive-product {
+    margin-top: 32px;
+  }
 }
 
 /* Cart Page
@@ -11652,4 +11912,183 @@ section.section_slider_pdts .section_slider_pdts_wrap .tabs_wrapper .swiper-pagi
   .module_shop_content .w-1-2 p {
     text-align: left !important;
   }
+}
+
+/* Module Text
+--------------------------------------------- */
+.module_text_container .module_text_content {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.module_text_container .module_text_content .background {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+@media (min-width: 1025px) {
+  .module_text_container .module_text_content .background {
+    padding-left: 40px;
+    padding-right: 40px;
+    text-align: center;
+  }
+}
+.module_text_container .module_text_content .background h2 {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 400;
+}
+@media (min-width: 1025px) {
+  .module_text_container .module_text_content .background h2 {
+    font-size: 24px;
+    line-height: 36px;
+  }
+}
+.module_text_container .module_text_content .background .module_description {
+  font-size: 14px;
+  line-height: 21px;
+  margin-top: 16px;
+}
+
+/* Module Banner Celebrity
+--------------------------------------------- */
+.module_banner_celebrity {
+  background-color: transparent;
+  padding: 0;
+  padding-top: 80px;
+  padding-bottom: 20px;
+  margin-top: 8px;
+}
+.module_banner_celebrity .module_celebrity_content {
+  background-color: #e4e4e4;
+}
+@media (min-width: 1025px) {
+  .module_banner_celebrity .module_celebrity_content {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+}
+.module_banner_celebrity .module_celebrity_content .container {
+  padding-left: 0;
+  padding-right: 0;
+}
+@media (min-width: 1025px) {
+  .module_banner_celebrity .module_celebrity_content .container .celeb_img_text {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+@media (min-width: 1025px) {
+  .module_banner_celebrity .module_celebrity_content .container .celeb_img_text .w-1-2 {
+    width: 50%;
+  }
+}
+.module_banner_celebrity .module_celebrity_content .container .celeb_img_text .w-1-2.l_side {
+  position: relative;
+}
+.module_banner_celebrity .module_celebrity_content .container .celeb_img_text .w-1-2.l_side .celeb_image_area {
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+@media (min-width: 1025px) {
+  .module_banner_celebrity .module_celebrity_content .container .celeb_img_text .w-1-2.l_side .celeb_image_area {
+    position: absolute;
+    margin: -60px 0;
+    padding: 0 24px;
+  }
+}
+.module_banner_celebrity .module_celebrity_content .container .celeb_img_text .w-1-2.l_side .celeb_image_area img {
+  display: inline-block;
+  mix-blend-mode: darken;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: right;
+     object-position: right;
+  border-radius: 99999px;
+}
+.module_banner_celebrity .module_celebrity_content .container .celeb_img_text .w-1-2.r_side {
+  padding: 40px 16px;
+  text-align: left;
+}
+.module_banner_celebrity .module_celebrity_content .container .celeb_img_text .w-1-2.r_side h2 {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 400;
+  text-align: left;
+}
+@media (min-width: 1025px) {
+  .module_banner_celebrity .module_celebrity_content .container .celeb_img_text .w-1-2.r_side h2 {
+    font-size: 24px;
+    line-height: 36px;
+  }
+}
+.module_banner_celebrity .module_celebrity_content .container .celeb_img_text .w-1-2.r_side .module_description {
+  font-size: 14px;
+  line-height: 21px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  max-height: 128px;
+  overflow: auto;
+}
+.module_banner_celebrity .module_celebrity_content .container .celeb_img_text .w-1-2.r_side .module_description p {
+  margin: 0;
+}
+
+/* Module Banner Celebrity Sayings
+--------------------------------------------- */
+.module_banner_celebrity_sayings {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #f4f4f4;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+@media (min-width: 1025px) {
+  .module_banner_celebrity_sayings {
+    padding: 40px;
+  }
+}
+.module_banner_celebrity_sayings .celebrity_sayings_content {
+  max-width: 1025px;
+  text-align: center;
+  padding: 0 16px;
+  margin: 0 auto;
+}
+.module_banner_celebrity_sayings .celebrity_sayings_content .text_celeb {
+  padding-bottom: 40px;
+}
+.module_banner_celebrity_sayings .celebrity_sayings_content .text_celeb p {
+  margin: 0;
+  font-size: 20px;
+  line-height: 30px;
+  font-style: italic;
+}
+.module_banner_celebrity_sayings .celebrity_sayings_content img {
+  vertical-align: middle;
+  max-width: 100%;
+  display: inline-block;
+  border-radius: 99999px;
+  height: 100px;
+  width: 100px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  opacity: 1;
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+}
+.module_banner_celebrity_sayings .celebrity_sayings_content h4 {
+  margin: 0;
+  margin-top: 24px;
+}
+.module_banner_celebrity_sayings .celebrity_sayings_content p {
+  margin: 0;
+  margin-top: 4px;
 }/*# sourceMappingURL=style.css.map */

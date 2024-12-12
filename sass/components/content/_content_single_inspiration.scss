@@ -1,0 +1,196 @@
+.type-inspiration.inspiration {
+    .entry-header {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        &:not(.empty) {
+            height: 245px;
+            @include media(">desktop") {
+                height: 605px;
+            }
+        }
+
+        & > .section-image-text {
+            width: 100%;
+            height: 100%;   
+            display: inline-block;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                @media (min-width: 1025px) {
+                    display: block;
+                } 
+                z-index: 1;           
+            }
+    
+            .entry-title {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 24px;
+                font-weight: 400;
+                line-height: 36px;
+                text-align: center;
+                text-transform: none;
+                text-shadow: 2px 2px 13px #000;
+                color: #fff;
+                padding: 0 24px;  
+                z-index: 2;  
+                max-width: 1420px;
+                @include media(">desktop") {
+                    font-size: 80px;  
+                    line-height: 1;    
+                    padding: 0 60px;
+                }      
+            }
+        }
+    
+        &.empty > .section-text {
+            margin: 0;
+            .only_text {
+                width: auto;
+                font-size: 24px;
+                font-weight: 700;
+                line-height: 36px;
+                text-align: left;
+                text-transform: uppercase;
+                text-shadow: none;
+                color: #000; 
+                padding: 0 16px;          
+                padding-top: 16px;
+                margin: 0;
+                @include media(">desktop") {
+                    padding: 0 60px;
+                    padding-top: 16px;
+                    font-size: $font-size-heading2;
+                    line-height: 48px;
+                    text-align: center;
+                } 
+            }
+        }
+    }
+
+    .entry-content {
+        .moduls_container {
+            margin-top: 8px;
+            padding-top: 32px;
+            @include media(">desktop") {
+                padding-top: 60px;
+            }
+        }
+
+        .questions-container {
+            padding-top: 20px;
+            .container {
+                .title-text {
+                    margin: 0;
+                    margin-bottom: 16px;
+                    @include media(">desktop") {
+                        margin-bottom: 32px;
+                    }
+                }
+                .accordion-faq-item {
+                    width: 100%;
+                    position: relative;
+                    .faq-item-title {
+                        .faq-question {
+                            padding: 20px;
+                            position: relative;
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 100%;
+                            max-width: 100%;
+                            padding: 20px;
+                            font-size: $font-size-button; 
+                            font-weight: 700;                           
+                            text-align: left;
+                            text-transform: uppercase;
+                            background-color: #f4f4f4;
+                            border: none;
+                            cursor: pointer;
+                            transition-property: background-color, border-color, color, fill, stroke;
+                            transition-duration: .3s;
+                            &:hover {
+                                background-color: #E4E4E4;
+                            }
+
+                            .title {
+                                margin-right: 8px;
+                                flex-grow: 1;
+                            }
+                            svg {
+                                flex-shrink: 0;
+                                display: inline-block;
+                                transform: rotate(0deg);
+                                transition: transform 0.3s ease;
+                                vertical-align: middle;
+                            }
+            
+                            .rotate180 {
+                                transform: rotate(180deg);
+                                transition: transform 0.3s ease;
+                            }
+                        }
+                    }
+
+                    .faq-item-content {
+                        overflow: hidden;
+                        display: none;
+                        // transition-property: all;
+                        // transition-timing-function: cubic-bezier(.4,0,.2,1);
+                        // transition-duration: .3s;
+                        &.active {
+                            display: block;
+                        }
+                        .faq_answer {
+                            background-color: #f4f4f4;
+                            padding: 20px;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+            
+                            .text {
+                                font-size: $font-size-base;
+                                line-height: 48px;
+
+                                ul {
+                                    padding: 0;
+                                    margin: 0;
+                                    padding-left: 20px;
+                                }
+                            }           
+
+                        }
+                    }
+                }
+                
+            }
+            
+        }
+    }
+
+    .show-archive-product {
+        padding-left: 0;
+        padding-right: 0;
+        .product_sorting_wrapper {
+            margin-top: 8px;
+            justify-content: center;
+            @include media(">=phone") {
+                margin-top: 32px;
+            }
+        }
+        .archive-product {
+            margin-top: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            @include media(">=phone") {
+                margin-top: 32px;
+            }
+        }
+
+    }
+
+}

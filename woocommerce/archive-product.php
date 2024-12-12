@@ -50,12 +50,12 @@ $total_pages = $wp_query->max_num_pages;
 ?>
 <header class="woocommerce-products-header<?php echo empty($img_cat_bg) ? ' empty' : '';?>">
 	<?php if (!empty($img_cat_bg)) : ?>
-		<setion class="section-image-text">	
+		<section class="section-image-text">	
 			<img calss="img_bg" src="<?php echo $img_cat_bg; ?>" alt="<?php echo woocommerce_page_title();?>"/>
 			<h1 class="woocommerce-products-header__title page-title text_image_background"><?php woocommerce_page_title(); ?></h1>
 		</section>
 	<?php else : ?>
-		<setion class="section-text">
+		<section class="section-text">
 			<h1 class="woocommerce-products-header__title page-title only_text"><?php woocommerce_page_title(); ?></h1>
 		</section>
 	<?php endif; ?>
