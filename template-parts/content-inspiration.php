@@ -5,7 +5,8 @@
 
     $per_page = get_option('posts_per_page');
     $current_page = max(1, get_query_var('paged', 1));
-    $total_products = count($array_pdts);
+    if ( ! empty( $array_pdts ) && is_array( $array_pdts ) )
+        $total_products = count($array_pdts);
     $total_pages = ceil($total_products / $per_page);
 ?>
 
