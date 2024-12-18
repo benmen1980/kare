@@ -86,7 +86,7 @@
         <section class="container-archive-product show-archive-product container">
 
             <div class="product_sorting_wrapper">
-                <div class="hidden"></div>
+                <!-- <div class="hidden"></div> -->
                 <div class="product-count">
                     <span class="number-pdts">
                         <?php echo sprintf(
@@ -105,8 +105,8 @@
                         ?>
                     </span>
                 </div>
-                <div class="sorting-options">
-                </div>
+                <!-- <div class="sorting-options">
+                </div> -->
             </div>
 
             <div class="archive-product">

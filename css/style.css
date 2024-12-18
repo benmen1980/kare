@@ -3049,10 +3049,12 @@ div.container .section_wrap {
   margin: 0;
   padding: 0;
 }
-.site-info .footer-container .contain-footer.second-footer .customer_service_footer_menu ul.footer-menu a {
-  text-decoration: none;
+.site-info .footer-container .contain-footer.second-footer .customer_service_footer_menu ul.footer-menu li > a {
   text-transform: uppercase;
   font-size: 20px;
+}
+.site-info .footer-container .contain-footer.second-footer .customer_service_footer_menu ul.footer-menu a {
+  text-decoration: none;
 }
 .site-info .footer-container .contain-footer.second-footer .customer_service_footer_menu ul.footer-menu a:hover {
   text-decoration: underline;

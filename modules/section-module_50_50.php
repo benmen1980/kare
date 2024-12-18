@@ -27,7 +27,7 @@
                 <?php endif; ?>
             </div>
             <div class="hero_img_background">
-                <a href="<?php echo $button_txt; ?>" class="img_block">
+                <a href="<?php echo (!empty($link)) ? $link : ''; ?>" class="img_block">
                     <img src="<?php echo $banner_img ?>" alt=" image">
                 </a>
             </div>

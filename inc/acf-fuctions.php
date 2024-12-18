@@ -61,27 +61,52 @@ function populate_faq_tabs($field) {
     return $field;
 }
 
-//Added an option to search by stock in the "post object" type field
-function acf_modify_post_object_query_for_sku_and_name( $args, $field, $post_id ) {
-    if ( isset( $args['s'] ) && !empty( $args['s'] ) ) {
+//Adding a search by SKU in the query of "post object" fields
+add_filter('acf/fields/post_object/query', 'acf_post_object_search_by_sku_and_status', 10, 3);
+
+function acf_post_object_search_by_sku_and_status($args, $field, $post_id) {
+    // Ensure the query includes only published products
+    $args['post_status'] = 'publish';
+
+    // Modify the WP_Query arguments for SKU search
+    add_filter('posts_where', function($where, $wp_query) {
         global $wpdb;
 
-        $search_query = $args['s'];
-        $product_ids_by_sku = $wpdb->get_col( $wpdb->prepare("
-            SELECT post_id
-            FROM {$wpdb->postmeta}
-            WHERE meta_key = '_sku'
-            AND meta_value LIKE %s
-        ", '%' . $wpdb->esc_like( $search_query ) . '%' ) );
+        // Get the search term from the query
+        $search_term = $wp_query->get('s');
 
-        if ( !empty( $product_ids_by_sku ) ) {
-            $args['post__in'] = !empty( $args['post__in'] )
-                ? array_merge( $args['post__in'], $product_ids_by_sku )
-                : $product_ids_by_sku;
+        // Add SKU search logic
+        if (!empty($search_term)) {
+            $where .= $wpdb->prepare(
+                " OR ({$wpdb->postmeta}.meta_key = '_sku' AND {$wpdb->postmeta}.meta_value LIKE %s)",
+                '%' . $wpdb->esc_like($search_term) . '%'
+            );
         }
-    }
+
+        return $where;
+    }, 10, 2);
+
+    // Join postmeta table for SKU search
+    add_filter('posts_join', function($join, $wp_query) {
+        global $wpdb;
+
+        if ($wp_query->get('s')) {
+            $join .= " LEFT JOIN {$wpdb->postmeta} ON {$wpdb->posts}.ID = {$wpdb->postmeta}.post_id";
+        }
+
+        return $join;
+    }, 10, 2);
+
+    // Prevent duplicate results
+    add_filter('posts_groupby', function($groupby, $wp_query) {
+        global $wpdb;
+
+        if ($wp_query->get('s')) {
+            $groupby = "{$wpdb->posts}.ID";
+        }
+
+        return $groupby;
+    }, 10, 2);
 
     return $args;
 }
-add_filter( 'acf/fields/post_object/query', 'acf_modify_post_object_query_for_sku_and_name', 10, 3 );
-

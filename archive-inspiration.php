@@ -1,4 +1,9 @@
-<?php get_header(); ?>
+<?php 
+
+get_header(); 
+
+?>
+
 <?php $archive_title = post_type_archive_title('', false); ?>
 <h1><?php echo $archive_title; ?></h1>
 <section class="section_wrap breadcrumb_section">
@@ -50,3 +55,9 @@
 		endif; ?>
 	</section>
 </div>
+
+<?php
+
+get_footer();
+
+?>

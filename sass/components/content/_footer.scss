@@ -243,12 +243,13 @@
                         list-style: none;
                         // text-decoration: none; 
                         margin: 0;
-                        padding: 0;       
-
-                        a {
-                            text-decoration: none;
+                        padding: 0;                      
+                        li > a {
                             text-transform: uppercase;
                             font-size: 20px;
+                        }
+                        a {
+                            text-decoration: none;
                             &:hover {
                                 text-decoration: underline;
                             }
