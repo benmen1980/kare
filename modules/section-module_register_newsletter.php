@@ -1,4 +1,4 @@
-<section class="section_wrap banner_register_newsletter">
+<section id="register_newsletter" class="section_wrap banner_register_newsletter">
     <div class="container register_newsletter_wrapper">
         <div class="newsletter_content">
             <h2><?php the_field('newsletter_heading','option'); ?></h2>
