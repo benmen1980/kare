@@ -83,7 +83,7 @@ get_header();
 
                 <div class="checkbox_wrapper">
                     <label for="checkbox_privacy">
-                        <input id="checkbox_privacy" class="kare-element" type="checkbox" name="checkbox_privacy">	
+                        <input id="checkbox_privacy" class="kare-element" type="checkbox" name="checkbox_privacy" value="<?php echo ( ! empty( $_POST['checkbox_privacy'] ) ) ? $_POST['checkbox_privacy'] : ''; ?>">	
                         <?php echo get_field('checkbox_privacy','option');?>
                     </label>
                 </div>
