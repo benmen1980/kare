@@ -17,7 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-if (isset($_POST['wc_reset_password'])) {
+if (isset($_POST['wc_reset_password']) && !isset($_GET['show-reset-form'])) {
     do_action( 'woocommerce_before_lost_password_form' );
 }
 ?>

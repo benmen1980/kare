@@ -74,8 +74,14 @@ function flush_rewrite_rules_on_theme_switch() {
 add_action('template_redirect', 'redirect_if_not_logged_in');
 function redirect_if_not_logged_in() {
     if (is_account_page() && !is_user_logged_in()) {
-        if ( is_wc_endpoint_url( 'lost-password' ) && isset( $_GET['reset-link-sent'] ) && $_GET['reset-link-sent'] === 'true' ) {
-            $redirect_url = add_query_arg('panel', 'reset-link-sent', home_url());
+        if ( is_wc_endpoint_url( 'lost-password' ) ) {
+            if(isset( $_GET['reset-link-sent'] ) && $_GET['reset-link-sent'] === 'true'){
+                $redirect_url = add_query_arg('panel', 'reset-link-sent', home_url());
+            }
+            // Allow access to the "lost-password" endpoint without redirecting
+            else{
+                return;
+            }
         }
         else{
             $redirect_url = add_query_arg('panel', 'account', home_url());
