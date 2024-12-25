@@ -6545,6 +6545,25 @@ form button {
   line-height: 24px;
 }
 
+.woocommerce-lost-password .entry-content .woocommerce {
+  display: block;
+}
+.woocommerce-lost-password .entry-content .woocommerce form {
+  max-width: 500px;
+  margin: auto;
+}
+@media (max-width: 768px) {
+  .woocommerce-lost-password .entry-content .woocommerce form {
+    max-width: 300px;
+  }
+}
+.woocommerce-lost-password .entry-content .woocommerce form .form-row label[for=password_1].focused, .woocommerce-lost-password .entry-content .woocommerce form .form-row label[for=password_2].focused {
+  left: -10px;
+}
+.woocommerce-lost-password .entry-content .woocommerce form .form-row .password-input .show-password-input {
+  top: 20px;
+}
+
 /* Register Page
 --------------------------------------------- */
 .register_page {

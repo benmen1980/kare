@@ -691,6 +691,28 @@ form{
     }  
 }
 
+//lost password
+.woocommerce-lost-password{
+    .entry-content{
+        .woocommerce{
+            display: block;
+            form{
+                max-width: 500px;
+                margin: auto;
+                @include media("<=mobile") {
+                    max-width: 300px;
+                }
+                .form-row label[for=password_1].focused,.form-row label[for=password_2].focused{
+                    left: -10px;
+                }
+                .form-row .password-input .show-password-input{
+                    top:20px;
+                }
+            }
+        }
+    }
+}
+
 
 
 

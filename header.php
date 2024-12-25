@@ -202,7 +202,7 @@
 							<?php  woocommerce_get_template( 'myaccount/form-lost-password.php' ); ?>
 						</div>
 						<div class="woocommerce-notices-wrapper">
-							<?php if ( function_exists( 'wc_print_notices' ) && isset($_POST['wc_reset_password']) ) { wc_print_notices(); } ?>
+							<?php if ( function_exists( 'wc_print_notices' ) && isset($_POST['wc_reset_password'])  && !isset($_GET['show-reset-form'])) { wc_print_notices(); } ?>
 						</div>
 					<?php } else {?>
 						<div class="my_account_menu_wrapper">
