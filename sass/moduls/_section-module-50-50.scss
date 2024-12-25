@@ -21,6 +21,15 @@
             margin-bottom: 16px;
             h2 {
                 text-align: left !important;
+                font-weight: 400;
+                text-decoration: none;
+                margin: 0;
+                a {
+                    text-decoration: none; 
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
             }
             @include media(">desktop") {
                 display: none;
@@ -28,30 +37,31 @@
             }
         }
 
-        a.link_content{
+        h2 {
+            font-size: 20px;
+            line-height: 30px;
+            font-weight: 400;
             text-decoration: none;
-            &:hover {
-                text-decoration: underline;   
+            color: #000;
+            margin: 0;
+            padding-top: 40px;
+            @include media(">desktop") { 
+                font-size: 24px;
+                line-height: 36px;
+                display: block;
+            }
+            &:first-child {
+                padding-top: 0;
             }
 
-            h2 {
-                font-size: 20px;
-                line-height: 30px;
-                font-weight: 400;
+            a {
                 text-decoration: none;
-                color: #000;
-                margin: 0;
-                padding-top: 40px;
-                @include media(">desktop") { 
-                    font-size: 24px;
-                    line-height: 36px;
-                    display: block;
-                }
-                &:first-child {
-                    padding-top: 0;
+                &:hover {
+                    text-decoration: underline;   
                 }
             }
         }
+        
 
         .hero_img_background {
             width: 100% !important;

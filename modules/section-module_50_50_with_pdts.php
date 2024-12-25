@@ -16,11 +16,11 @@
     <div class="module_50_50_with_pdts module_50_50" style="<?php echo ($img_position == "right") ? 'flex-direction:row-reverse':'flex-direction:row'?>;">
         <div class="w-1-2 first">
             <div class="visible_mobile">
-                <a class="link_content" href="<?php echo $link_category ?>">
-                    <h2 class="title_hero_content" style= "<?php echo ($img_position == "right") ? 'text-align: right;':'text-align: left;'?>">
-                        <?php echo $title ?>
-                    </h2>
-                </a>
+                <!-- <a class="link_content" href="<?php //echo $link_category ?>"> -->
+                <h2 class="title_hero_content" style= "<?php echo ($img_position == "right") ? 'text-align: right;':'text-align: left;'?>">
+                    <?php echo $title ?>
+                </h2>
+                <!-- </a> -->
             </div>
             <div class="hero_img_background">
                 <a href="<?php echo $btn_text; ?>" class="img_block">
@@ -30,11 +30,11 @@
         </div>
         <div class="w-1-2 second">
             <div class="hero_content" style= "<?php echo ($img_position == "right") ? 'padding-right: 16px; align-items: flex-end; text-align: right;':'padding-left: 16px; align-items: flex-start; text-align: left;'?>">
-                <a class="link_content" href="<?php echo $link_category ?>">
-                    <h2 class="title_hero_content" style= "<?php echo ($img_position == "right") ? 'text-align: right;':'text-align: left;'?>">
-                        <?php echo $title ?>
-                    </h2>
-                </a>
+                <!-- <a class="link_content" href="<?php //echo $link_category ?>"> -->
+                <h2 class="title_hero_content" style= "<?php echo ($img_position == "right") ? 'text-align: right;':'text-align: left;'?>">
+                    <?php echo $title ?>
+                </h2>
+                <!-- </a> -->
                 <div class="text_area_content">
                     <?php echo $text ?>
                 </div>

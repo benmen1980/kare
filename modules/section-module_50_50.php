@@ -14,17 +14,17 @@
     <div class="module_50_50_content module_50_50" style= "<?php echo ($img_position == "right") ? 'flex-direction:row-reverse':'flex-direction:row'?>;">
         <div class="w-1-2">
             <div class="visible_mobile">
-                <?php if(!empty($link)) : ?>
-                    <a class="link_content" href="<?php echo $link ?>">
-                        <h2 class="title_hero_content" style= "<?php echo ($img_position == "right") ? 'text-align: right;':'text-align: left;'?>">
-                            <?php echo $title_txt; ?>
+                <?php //if(!empty($link)) : ?>
+                    <!-- <a class="link_content" href="<?php //echo $link ?>">
+                        <h2 class="title_hero_content" style= "<?php //echo ($img_position == "right") ? 'text-align: right;':'text-align: left;'?>">
+                            <?php //echo $title_txt; ?>
                         </h2>
-                    </a>
-                <?php else : ?>
-                    <h2 class="title_hero_content" style= "<?php echo ($img_position == "right") ? 'text-align: right;':'text-align: left;'?>">
-                        <?php echo $title_txt; ?>
-                    </h2> 
-                <?php endif; ?>
+                    </a> -->
+                <?php //else : ?>
+                <h2 class="title_hero_content" style= "<?php echo ($img_position == "right") ? 'text-align: right;':'text-align: left;'?>">
+                    <?php echo $title_txt; ?>
+                </h2> 
+                <?php //endif; ?>
             </div>
             <div class="hero_img_background">
                 <a href="<?php echo (!empty($link)) ? $link : ''; ?>" class="img_block">
@@ -49,17 +49,17 @@
                 $title_txt = preg_replace('/<p[^>]*>(.*?)<\/p>/i', '$1', $title_txt_no_p); // Remove <p> tags
         
                 ?>
-                 <?php if(!empty($link)) : ?>
-                    <a class="link_content" href="<?php echo $link ?>">
-                        <h2 class="title_hero_content" style= "<?php echo ($img_position == "right") ? 'text-align: right;':'text-align: left;'?>">
-                            <?php echo $title_txt; ?>
+                 <?php //if(!empty($link)) : ?>
+                    <!-- <a class="link_content" href="<?php //echo $link ?>">
+                        <h2 class="title_hero_content" style= "<?php// echo ($img_position == "right") ? 'text-align: right;':'text-align: left;'?>">
+                            <?php //echo $title_txt; ?>
                         </h2>
-                    </a>
-                <?php else : ?>
-                    <h2 class="title_hero_content" style= "<?php echo ($img_position == "right") ? 'text-align: right;':'text-align: left;'?>">
-                        <?php echo $title_txt; ?>
-                    </h2> 
-                <?php endif; ?>
+                    </a> -->
+                <?php //else : ?>
+                <h2 class="title_hero_content" style= "<?php echo ($img_position == "right") ? 'text-align: right;':'text-align: left;'?>">
+                    <?php echo $title_txt; ?>
+                </h2> 
+                <?php //endif; ?>
                 <div class="text_area_content">
                     <?php echo $text_txt ?>
                 </div>

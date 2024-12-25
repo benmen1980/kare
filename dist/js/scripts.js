@@ -916,3 +916,19 @@ jQuery(document).ready(function($) {
         moveCouponNotice();
     });
 });
+
+
+//Adding a ticker to the form as a hidden field
+document.addEventListener("DOMContentLoaded", function () {
+    if (document.body.classList.contains("single-product")) {
+        const skuElement = document.querySelector(".product-sku");
+        const hiddenField = document.querySelector('input[name="product-sku"]');
+
+        if (skuElement && hiddenField) {
+            const fullText = skuElement.textContent.trim();
+            const sku = fullText.split(":")[1]?.trim();
+            hiddenField.value = sku;
+        }
+    }
+});
+
