@@ -175,6 +175,9 @@ function save_woocommerce_registration_full_name_field( $customer_id ) {
     if (isset($_POST['birth_date'])) {
         update_user_meta($customer_id, 'birth_date', sanitize_text_field($_POST['birth_date']));
     }
+    if (isset($_POST['checkbox_club'])) {
+        update_user_meta($customer_id, 'checkbox_club', 1);
+    }
 
     if (isset($_POST['user_arrived_choice'])) {
         update_user_meta($customer_id, 'user_arrived_choice', sanitize_text_field($_POST['user_arrived_choice']));

@@ -82,8 +82,8 @@ get_header();
                 <?php endif; ?>
 
                 <div class="checkbox_wrapper">
-                    <label for="checkbox_privacy">
-                        <input id="checkbox_privacy" class="kare-element" type="checkbox" name="checkbox_privacy" value="<?php echo ( ! empty( $_POST['checkbox_privacy'] ) ) ? $_POST['checkbox_privacy'] : ''; ?>">	
+                    <label for="checkbox_club">
+                        <input id="checkbox_club" class="kare-element" type="checkbox" name="checkbox_club" value="<?php echo ( ! empty( $_POST['checkbox_club'] ) ) ? $_POST['checkbox_club'] : ''; ?>">	
                         <?php echo get_field('checkbox_privacy','option');?>
                     </label>
                 </div>
