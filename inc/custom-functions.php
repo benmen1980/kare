@@ -145,12 +145,30 @@ function add_full_name_field_to_registration_form() {
 
 // Validate Full Name Field
 function validate_woocommerce_registration_full_name_field( $username, $email, $validation_errors ) {
+
     if ( isset( $_POST['full_name'] ) && empty( $_POST['full_name'] ) ) {
         $validation_errors->add( 'full_name_error', __( 'Please enter full name', 'woocommerce' ) );
     }
 
     if (!empty($_POST['birth_date']) && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $_POST['birth_date'])) {
         $validation_errors->add('birth_date_error', __('Invalid date format. Please use dd-mm-yyyy.', 'woocommerce'));
+    }
+    if (!empty($_POST['checkbox_club']) && empty($_POST['birth_date'])) {
+        $validation_errors->add('birthday_error', __('Birthday is required to join the KARE Friends.', 'kare'));
+    }
+    if (!empty($_POST['checkbox_club'] ) && empty($_POST['sex_selection'])) {
+        $validation_errors->add('gender_error', __('Gender is required to join the KARE Friends.', 'kare'));
+    }
+    if (empty($_POST['password'])) {
+        $validation_errors->add('pswd_error', __('Passord is required.', 'kare'));
+    }
+    if ( empty( $_POST['reg_phone'] ) ) {
+        $validation_errors->add( 'reg_phone_error', __( 'Phone number is required.', 'woocommerce' ) );
+    } else {
+        $phone = sanitize_text_field( $_POST['reg_phone'] );
+        if ( ! preg_match( '/^05\d{8}$/', $phone ) ) {
+            $validation_errors->add( 'reg_phone_error', __( 'Please enter a valid Israeli mobile phone number (e.g., 0501234567).', 'woocommerce' ) );
+        }
     }
 
     return $validation_errors;
@@ -175,12 +193,19 @@ function save_woocommerce_registration_full_name_field( $customer_id ) {
     if (isset($_POST['birth_date'])) {
         update_user_meta($customer_id, 'birth_date', sanitize_text_field($_POST['birth_date']));
     }
-    if (isset($_POST['checkbox_club'])) {
-        update_user_meta($customer_id, 'checkbox_club', 1);
-    }
 
     if (isset($_POST['user_arrived_choice'])) {
         update_user_meta($customer_id, 'user_arrived_choice', sanitize_text_field($_POST['user_arrived_choice']));
+    }
+    if (isset($_POST['sex_selection'])) {
+        update_user_meta($customer_id, 'sex_selection', sanitize_text_field($_POST['sex_selection']));
+    }
+    if (isset($_POST['checkbox_club'])) {
+        update_user_meta($customer_id, 'checkbox_club', 1);
+    }
+    if ( isset( $_POST['reg_phone'] ) ) {
+        $phone = sanitize_text_field( $_POST['reg_phone'] );
+        update_user_meta( $customer_id, 'billing_phone', $phone );
     }
 }
 add_action( 'woocommerce_created_customer', 'save_woocommerce_registration_full_name_field' );

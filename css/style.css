@@ -6617,7 +6617,7 @@ form button {
   top: 2px;
   left: -10px;
 }
-.register_page form .form-row.form-select label.user_arrived_choice {
+.register_page form .form-row.form-select label.user_choice {
   margin-top: 24px;
   display: block;
   position: static;
