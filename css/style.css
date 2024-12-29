@@ -6610,12 +6610,18 @@ form button {
   position: absolute;
   right: 5px;
 }
+.register_page form .form-row label.focused[for=reg_phone] {
+  left: 5px;
+}
+.register_page form .form-row label.focused[for=reg_password] {
+  left: 0px;
+}
 .register_page form .form-row label.birth_date {
   -webkit-transform: scale3d(0.6, 0.6, 1);
   transform: scale3d(0.6, 0.6, 1);
   position: absolute;
   top: 2px;
-  left: -10px;
+  left: -6px;
 }
 .register_page form .form-row.form-select label.user_choice {
   margin-top: 24px;

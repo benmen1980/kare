@@ -13,52 +13,28 @@ function custom_log_test( $message ) {
 require_once __DIR__ . '/../../../../vendor/autoload.php';
 use phpseclib3\Net\SFTP;
 
-// add_action('test_sftp_hook', 'test_sftp');
+add_action('test_sftp_hook', 'test_sftp');
 if (!wp_next_scheduled('test_sftp_hook')) {
     wp_schedule_event(time(), 'daily', 'test_sftp_hook');
 }
 
 function test_sftp() 
 {
+    error_log('hi');
     // SFTP server credentials
     $host = 'sftp.kare-design.com';
     $port = 22;
     $username = 'shop28144';
     $password = 'ri3aiSha';
     // $remote_file = 'shop28144/downloads/20241216_093000_item_masterdata_fn_il_xxx.csv.zip';
-    $remote_directory = 'shop28144/downloads/';
-    $local_directory = ABSPATH . 'wp-content/uploads/tmp/extracted_files';
-    $local_zip_file = $local_directory . '/item_masterdata.zip';
+    $remote_file = 'Public/webpictures/webcatalog3.csv';
+    $local_directory = ABSPATH . 'wp-content/uploads/tmp/webcatalog';
+    $dateKey = date('Y-m-d');
+    $local_file = ABSPATH . 'wp-content/uploads/tmp/webcatalog/webcatalog_'.$dateKey.'.csv';
 
     // Ensure the local directory exists
     if (!file_exists($local_directory)) {
         mkdir($local_directory, 0755, true);
-    }
-
-    // Checks if the folder is empty and if not deletes all the contents
-    $files = scandir($local_directory);
-    if (count($files) >= 2) {
-        
-        foreach ($files as $file) {
-            if ($file === '.' || $file === '..') {
-                continue;
-            }
-            error_log('The directory isn\'t empty.');
-
-            $file_path = $local_directory . DIRECTORY_SEPARATOR . $file;
-
-            if (is_file($file_path)) {
-                error_log('The directory isn\'t empty.');
-                unlink($file_path); // Deletes the file
-            } elseif (is_dir($file_path)) {
-                error_log('The directory isn\'t empty.');
-                // If it is a folder
-                clear_directory($file_path); // Empty the contents of the folder
-                rmdir($file_path); // Deletes the empty folder
-            }
-        }
-    } else {
-        error_log('The directory is empty. No files to delete.');
     }
 
     // Connect to the SFTP server
@@ -68,60 +44,57 @@ function test_sftp()
         return;
     } 
 
-    $files = $sftp->nlist($remote_directory);
-    if ($files === false) {
-        error_log("Failed to list files in the remote directory");
-        return;
+    // Check if the file exists on the remote server
+    if (!$sftp->file_exists($remote_file)) {
+        error_log('The file ' . $remote_file . 'does not exist on the remote server.');
     }
-    $pattern = "/.*item_masterdata_fn_il.*\.zip$/";
-    $remote_file = null;
 
-    foreach ($files as $file) {
-        if (preg_match($pattern, basename($file))) {
-            $remote_file = $file;
-            break;
-        }
-    }
-    error_log($remote_file);
-    
-    // Download the remote ZIP file
-    if (!$sftp->get($remote_directory . $remote_file, $local_zip_file)) {
+    // Download the remote file
+    if (!$sftp->get($remote_file, $local_file)) {
         error_log('Failed to download the remote file: ' . $remote_file);
     }
-   
-    // Extract the ZIP file
-    $zip = new ZipArchive();
-
-    if ($zip->open($local_zip_file) === TRUE) {
-        error_log('zip open');
-        $aaa = $zip->extractTo($local_directory);
-        error_log($aaa);
-
-        $zip->close();
-    } else {
-        die("Failed to extract the file.");
-        error_log('Failed to extract the file');
-    }
-
+    
+    //Find the latest file from the save directory
     $new_scandir_files = scandir($local_directory);
-    $pattern_csv_file = "/.*item_masterdata_fn_il.*\.csv$/";
-    $csv_masterdata_file = null;
+    $yesterday_date = date('Y-m-d', strtotime('-1 day'));
+    $old_file = ABSPATH . 'webcatalog_'.$yesterday_date.'.csv';
 
     foreach ($new_scandir_files as $csv_file) {
-        if (preg_match($pattern_csv_file, $csv_file)) {
-            $csv_masterdata_file = $local_directory . '/' . $csv_file;
-            error_log('csv_masterdata_file: '.$csv_masterdata_file);
+        if ($csv_file == $old_file) {
+            $previous_file = $local_directory . '/' . $csv_file;
+            error_log('previous_file: '.$previous_file);
             break;
         }
     }
 
+    $new_lines = [];
+    if ($previous_file && file_exists($previous_file)) {
+        error_log('in if');
+        // Compare the new file with the previous file
+        $previous_data = file($previous_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        $new_data = file($local_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+        $new_lines = array_diff($new_data, $previous_data);
+    } else {
+        // If no previous file, treat all lines as new
+        error_log('in else');
+        $new_lines = file($local_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    }
+    // כאן להפעיל את הקוד שלי על המערך  $new_lines
+    error_log($new_lines);
+    //Delete the old file if it exists
+    if ($previous_file && file_exists($previous_file)) {
+        unlink($previous_file);
+    }
+
+   
     // open the file and update model, manufacturer meta fields
-    if ($csv_masterdata_file &&  file_exists($csv_masterdata_file)) {
+    /*if ($csv_masterdata_file &&  file_exists($csv_masterdata_file)) {
         error_log('open the file');
         
         // unlink($csv_masterdata_file);
         // unlink($local_zip_file);
-    }
+    }*/
 
 }
 

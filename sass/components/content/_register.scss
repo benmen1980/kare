@@ -45,13 +45,22 @@
         
       }
     }
+
+    label.focused {
+      &[for="reg_phone"] {
+        left: 5px;
+      }
+      &[for="reg_password"] {
+        left: 0px;
+      }
+    }
   
     label.birth_date {
       -webkit-transform: scale3d(0.6, 0.6, 1);
       transform: scale3d(0.6, 0.6, 1);
       position: absolute;
       top: 2px;
-      left: -10px;
+      left: -6px;
     }
   
     &.form-select {
