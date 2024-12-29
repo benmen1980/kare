@@ -36,7 +36,7 @@ $post_id = 'category_'. $category_id;
 $parent_category_id = $category_id;
 $child_categories = get_terms( array(
     'taxonomy' => 'product_cat',
-    'child_of' => $parent_category_id,
+    'parent' => $parent_category_id,
     'hide_empty' => false, // can be set to true if you want to hide empty
 ) );
 
