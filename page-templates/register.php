@@ -89,8 +89,9 @@ get_header();
                             <option value=""><?php esc_html_e('Tell us how you came to us:', 'kare'); ?></option>
 
                             <?php while (have_rows('user_arrived_choice', 'option')) : the_row();
-                                $tab_choice = get_sub_field('user_arrived'); ?>
-                                <option value="<?php echo esc_attr($tab_choice); ?>" >
+                                $tab_choice = get_sub_field('user_arrived');
+                                $tab_priority = get_sub_field('user_arrived_priority'); ?>
+                                <option value="<?php echo esc_attr($tab_priority); ?>" >
                                     <?php echo esc_html($tab_choice); ?>
                                 </option>                            
                             <?php endwhile; ?>

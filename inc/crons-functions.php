@@ -2,108 +2,11 @@
 
 //Inventory synchronization from Kara file abroad
 
-//write to the error log as a dedicated file
-function custom_log_test( $message ) {
-    $log_file = ABSPATH . 'wp-content/crons/custom-log-image.txt'; 
-    $current_time = date( 'Y-m-d H:i:s' );
-    $formatted_message = $current_time . " - " . print_r( $message, true ) . "\r\n";
-    file_put_contents( $log_file, $formatted_message, FILE_APPEND );
-}
-
-require_once __DIR__ . '/../../../../vendor/autoload.php';
-use phpseclib3\Net\SFTP;
-
-add_action('test_sftp_hook', 'test_sftp');
-if (!wp_next_scheduled('test_sftp_hook')) {
-    wp_schedule_event(time(), 'daily', 'test_sftp_hook');
-}
-
-function test_sftp() 
-{
-    error_log('hi');
-    // SFTP server credentials
-    $host = 'sftp.kare-design.com';
-    $port = 22;
-    $username = 'shop28144';
-    $password = 'ri3aiSha';
-    // $remote_file = 'shop28144/downloads/20241216_093000_item_masterdata_fn_il_xxx.csv.zip';
-    $remote_file = 'Public/webpictures/webcatalog3.csv';
-    $local_directory = ABSPATH . 'wp-content/uploads/tmp/webcatalog';
-    $dateKey = date('Y-m-d');
-    $local_file = ABSPATH . 'wp-content/uploads/tmp/webcatalog/webcatalog_'.$dateKey.'.csv';
-
-    // Ensure the local directory exists
-    if (!file_exists($local_directory)) {
-        mkdir($local_directory, 0755, true);
-    }
-
-    // Connect to the SFTP server
-    $sftp = new SFTP($host, $port);
-    if (!$sftp->login($username, $password)) {
-        error_log('Failed to connect to SFTP server');
-        return;
-    } 
-
-    // Check if the file exists on the remote server
-    if (!$sftp->file_exists($remote_file)) {
-        error_log('The file ' . $remote_file . 'does not exist on the remote server.');
-    }
-
-    // Download the remote file
-    if (!$sftp->get($remote_file, $local_file)) {
-        error_log('Failed to download the remote file: ' . $remote_file);
-    }
-    
-    //Find the latest file from the save directory
-    $new_scandir_files = scandir($local_directory);
-    $yesterday_date = date('Y-m-d', strtotime('-1 day'));
-    $old_file = ABSPATH . 'webcatalog_'.$yesterday_date.'.csv';
-
-    foreach ($new_scandir_files as $csv_file) {
-        if ($csv_file == $old_file) {
-            $previous_file = $local_directory . '/' . $csv_file;
-            error_log('previous_file: '.$previous_file);
-            break;
-        }
-    }
-
-    $new_lines = [];
-    if ($previous_file && file_exists($previous_file)) {
-        error_log('in if');
-        // Compare the new file with the previous file
-        $previous_data = file($previous_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        $new_data = file($local_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-
-        $new_lines = array_diff($new_data, $previous_data);
-    } else {
-        // If no previous file, treat all lines as new
-        error_log('in else');
-        $new_lines = file($local_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-    }
-    // כאן להפעיל את הקוד שלי על המערך  $new_lines
-    error_log($new_lines);
-    //Delete the old file if it exists
-    if ($previous_file && file_exists($previous_file)) {
-        unlink($previous_file);
-    }
-
-   
-    // open the file and update model, manufacturer meta fields
-    /*if ($csv_masterdata_file &&  file_exists($csv_masterdata_file)) {
-        error_log('open the file');
-        
-        // unlink($csv_masterdata_file);
-        // unlink($local_zip_file);
-    }*/
-
-}
-
-
 // require_once ABSPATH . 'wp-content/lib/phpseclib/Net/SFTP.php';
 
-function upload_file_sftp() 
+/*function upload_file_sftp() 
 {
-    /*// SFTP server details
+    /// SFTP server details
     $host = 'sftp.kare-design.com';
     $username = 'shop28144';
     $password = 'ri3aiSha';
@@ -120,7 +23,7 @@ function upload_file_sftp()
         error_log('sucssesfully to login');
     }
 
-    wp_die();*/
+    wp_die();*
 
     // פרטי התחברות ל-SFTP
     $sftp_server = 'ftp.kare.de';
@@ -249,14 +152,9 @@ function update_available_test($array)
         // error_log('Now finish index number: ' . $index);
     }
 
-}
-
-// add_action('upload_file_sftp_hook', 'upload_file_sftp');
-/*if (!wp_next_scheduled('upload_file_sftp_hook')) {
-    $res = wp_schedule_event(time(), 'daily', 'upload_file_sftp_hook');
 }*/
 
-function upload_file_image() 
+/*function upload_file_image() 
 {
     $file_name = 'webcatalog-other19.csv';
     $upload_dir = wp_upload_dir();
@@ -381,66 +279,6 @@ function upload_file_image()
         custom_log_test('finish file');
     }
  
-}
-
-//לבדוק קודם אם מוסיף לFTP ואז למדיה ולכן יש את הספרה 1
-//לבדוק לפי מוצר ולעדכן במוצר את התמונה אם נמצאה
-
-
-// Helper function to download and attach images to WordPress
-function download_external_image($image_url, $description) {
-
-    $filename_without_extension = pathinfo($image_url, PATHINFO_FILENAME) ."-1";
-
-    // Check if image already exists in media library
-    $existing_image = get_posts([
-        'post_type'  => 'attachment',
-        'post_status' => 'inherit',
-        'posts_per_page' => 1,
-        'title'       => $filename_without_extension,
-    ]);
-
-    if ($existing_image) {
-        // Return existing image ID if found
-        return $existing_image[0]->ID;
-    }
-    
-    $temp_file = download_url($image_url);
-    if (is_wp_error($temp_file)) return false;
-
-    $file = [
-        'name'     => basename($image_url),
-        'type'     => mime_content_type($temp_file),
-        'tmp_name' => $temp_file,
-        'size'     => filesize($temp_file),
-    ];
-
-    // Upload image and attach to the media library
-    $attachment_id = media_handle_sideload($file, 0);
-    custom_log_test('attachment id: '.$attachment_id);
-
-    if (is_wp_error($attachment_id)) {
-        @unlink($temp_file);
-        return false;
-    }
-    return $attachment_id;
-}
-
-// Extract the order for sorting mood images (e.g., 'a', 'b')
-function parse_order($url) {
-    preg_match('/-mood-(a|b)/', $url, $matches);
-    return $matches[1] === 'a' ? 1 : 2;
-}
-
-// Schedule the upload_file_image function daily using wp_schedule_event
-add_action('init', function() {
-    // Only schedule the event if it hasn’t been scheduled already
-    if (!wp_next_scheduled('upload_file_image_hook')) {
-        wp_schedule_event(time(), 'daily', 'upload_file_image_hook');
-    }
-});
-
-// Register the actual hook for the scheduled event
-// add_action('upload_file_image_hook', 'upload_file_image');
+}*/
 
 ?>

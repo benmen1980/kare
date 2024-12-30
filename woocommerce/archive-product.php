@@ -23,9 +23,16 @@ get_header( 'shop' );
 // Get the current category object
 $current_category = get_queried_object();
 
-$taxonomy = $current_category->taxonomy;
-$current_term_name = $current_category->name;
-$category_id = $current_category->term_id;
+if ( $current_category ) {
+	$taxonomy = $current_category->taxonomy;
+	$current_term_name = $current_category->name;
+	$category_id = $current_category->term_id;
+}
+else {
+    $taxonomy = '';
+    $current_term_name = '';
+    $category_id = 0;
+}
 
 $img_cat_bg = get_field('img_link_bg', 'product_cat_' . $category_id);
 

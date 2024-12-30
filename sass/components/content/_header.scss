@@ -183,11 +183,13 @@ header {
                         flex-shrink: 0;
                         max-width: 100%;
                         text-align: left;
+                        z-index: 2;
                         cursor: pointer;
                     }
                 } 
                
                 #btn-header-search {
+                    z-index: 1;
                     @include media(">desktop") {
                         width: min-content;
                     } 
