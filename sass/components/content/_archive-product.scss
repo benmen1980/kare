@@ -231,6 +231,7 @@
                             &.swiper-button-disabled {
                                 opacity: 0;
                                 animation: a-pointer-events 1s linear forwards;
+                                z-index: 0;
                             }
             
                             &.swiper-nav-prev {
