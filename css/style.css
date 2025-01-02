@@ -10945,7 +10945,10 @@ section.section_slider_categories .section_slider_cat_wrap .tabs_wrapper.rounded
 .module_half_half .hero_content .text_area_content p {
   margin: 0;
 }
-.module_half_half .hero_content .text_area_content li {
+.module_half_half .hero_content .text_area_content ul {
+  margin: 0;
+}
+.module_half_half .hero_content .text_area_content ul li {
   font-size: 14px;
 }
 .module_half_half .hero_content .button_hero_content {
@@ -11290,7 +11293,10 @@ section.section_slider_pdts .section_slider_pdts_wrap .tabs_wrapper .swiper-pagi
 .module_half_half_with_pdts .w-1-2.second .hero_content .text_area_content p {
   margin: 0;
 }
-.module_half_half_with_pdts .w-1-2.second .hero_content .text_area_content li {
+.module_half_half_with_pdts .w-1-2.second .hero_content .text_area_content ul {
+  margin: 0;
+}
+.module_half_half_with_pdts .w-1-2.second .hero_content .text_area_content ul li {
   font-size: 14px;
 }
 .module_half_half_with_pdts .w-1-2.second .hero_content .button_hero_content {

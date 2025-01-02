@@ -240,3 +240,8 @@ if ( class_exists( 'WooCommerce' ) ) {
 // add_action( 'wp_enqueue_scripts', 'enqueue_woocommerce_scripts' );
 
 add_filter( 'yith_wcwl_is_wishlist_responsive', '__return_false' );
+
+
+if (is_user_logged_in()) {
+    show_admin_bar(true);
+}
