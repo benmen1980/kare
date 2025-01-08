@@ -22,9 +22,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 /*
  * @hooked WC_Emails::email_header() Output the email header
  */
-do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
+do_action( 'woocommerce_email_header', $email_heading, $email ); 
 
-<p class="order_header">לקוח/ה יקר/ה,</p>
+$order = $email->object;
+$billing_first_name = $order->get_billing_first_name();
+
+if ( ! empty( $billing_first_name ) ) {
+    $customer_name = $billing_first_name . ' היקר/ה';
+} else {
+    $customer_name = 'לקוח/ה יקר/ה';
+}
+?>
+
+<p class="order_header"><?php echo esc_html( $customer_name ); ?></p>
 
 <p class="order_text">
 	<p>תודה שבחרת לקנות ב-KARE ישראל!</p>
@@ -35,7 +45,7 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 	<ul>
 		<li style="margin-bottom: 4px;"><strong>מספר הזמנה:</strong> <?php echo $order->get_order_number(); ?></li>
 		<li style="margin-bottom: 4px;"><strong>תאריך הזמנה:</strong> <?php echo wc_format_datetime( $order->get_date_created() ); ?></li>
-		<li style="margin-bottom: 4px;"><strong>סך הכול:</strong> <?php echo $order->get_formatted_order_total(); ?></li>
+		<li style="margin-bottom: 4px;"><strong>סך הכול:</strong> <?php echo $order->get_formatted_order_total(); ?> <small>(כולל מע"מ)</small></li>
 	</ul>
 </div>
 
@@ -66,7 +76,7 @@ do_action( 'woocommerce_email_customer_details', $order, $sent_to_admin, $plain_
 	<p><strong>מה הלאה?</strong></p>
 	<ul>
 		<li style="margin-bottom: 4px;">אנו נעדכן אותך ברגע שהזמנתך תצא לדרך ותשלח אליך.</li>
-		<li style="margin-bottom: 4px;">בינתיים, אם יש לך שאלות או בקשות מיוחדות, אל תהסס/י לפנות אלינו.</li>
+		<li style="margin-bottom: 4px;">לשאלות או בקשות מיוחדות, ניתן לפנות אלינו דרך כתובת המייל.</li>
 	</ul>
 </div>
 <div class="contact_details_order" style="margin-bottom:40px;">

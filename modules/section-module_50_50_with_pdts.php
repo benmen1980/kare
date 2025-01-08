@@ -17,7 +17,7 @@
         <div class="w-1-2 first">
             <div class="visible_mobile">
                 <!-- <a class="link_content" href="<?php //echo $link_category ?>"> -->
-                <h2 class="title_hero_content" style= "<?php echo ($img_position == "right") ? 'text-align: right;':'text-align: left;'?>">
+                <h2 class="title_hero_content" style="<?php echo ($img_position == "right") ? 'text-align: right;':'text-align: left;'?>">
                     <?php echo $title ?>
                 </h2>
                 <!-- </a> -->
@@ -94,6 +94,8 @@
                                         <?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg'); ?>
                                     </button>
                                 </div>
+                                <!-- scrollbar -->
+                                <div class="swiper-scrollbar"></div>
                             
                             </div>
                             <?php endif; ?>

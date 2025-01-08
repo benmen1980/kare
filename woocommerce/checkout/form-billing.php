@@ -78,12 +78,29 @@ defined( 'ABSPATH' ) || exit;
 
 			<?php do_action( 'woocommerce_before_checkout_registration_form', $checkout ); ?>
 
+			<?php if (false) { ?>
+
+				<?php if ( $checkout->get_checkout_fields( 'account' ) ) : ?>
+
+					<div class="create-account">
+						<?php foreach ( $checkout->get_checkout_fields( 'account' ) as $key => $field ) : ?>
+							<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
+						<?php endforeach; ?>
+						<div class="clear"></div>
+					</div>
+
+				<?php endif; ?>
+			<?php }; ?>
+
 			<?php if ( $checkout->get_checkout_fields( 'account' ) ) : ?>
 
 				<div class="create-account">
-					<?php foreach ( $checkout->get_checkout_fields( 'account' ) as $key => $field ) : ?>
-						<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
-					<?php endforeach; ?>
+					<p>
+						<?php _e( 'To create an account, please visit the registration page.', 'kare' ); ?>
+						<a href="<?php echo esc_url( home_url( '/register/' ) ); ?>?redirect_to=checkout">
+							<?php _e( 'register here', 'kare' ); ?>
+						</a>
+					</p>
 					<div class="clear"></div>
 				</div>
 

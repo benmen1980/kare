@@ -226,11 +226,12 @@ jQuery(document).on("ready", function(){
         slidesPerGroup: 1,
         spaceBetween: 3,
         centerInsufficientSlides: true,
+        simulateTouch: true,
         breakpoints: {
             1024: { 
                 slidesPerView: 8.5,
                 slidesPerGroup: 1,
-            }
+            },
         },
         pagination: {
             el: '.swiper-pagination',
@@ -241,6 +242,10 @@ jQuery(document).on("ready", function(){
             renderBullet: function (index, className) {
                 return '<span class="' + className + '"></span>';
             },
+        },
+        scrollbar: {
+            el: '.swiper-scrollbar',
+            draggable: true,
         },
         navigation: {
             nextEl: '.swiper-nav-next',
@@ -303,6 +308,10 @@ jQuery(document).on("ready", function(){
             console.log(container);
             console.log(swiperOptions);
         }
+
+        container.addEventListener('wheel', (e) => {
+            e.stopPropagation();
+        });
     });
 
     const swiperSimilarPdt = new Swiper('.similar-pdt-swiper', {
@@ -323,6 +332,7 @@ jQuery(document).on("ready", function(){
         centerInsufficientSlides: true,
         // setWrapperSize: true,
     });
+    
 
     //open account popup in header
     $('.open_account_popup').on('click', function() {
@@ -440,6 +450,7 @@ jQuery(document).on("ready", function(){
     //open mobile menu
     if ($(window).width() < 1024) {
          $('button.menu-toggle').on('click', function() {
+            console.log('mobile');
             $('#mobile_menu_sidebar').addClass('active_left');
             if ($('#overlay').length === 0) {
                 $('body').append('<div id="overlay"></div>');

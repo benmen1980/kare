@@ -284,7 +284,9 @@ do_action( 'woocommerce_before_cart' ); ?>
 					$cart_total_before_discounts += $regular_price * $quantity;
 				}
 
-				$cart_total_after_discounts =  WC()->cart->get_subtotal();
+				$cart_total =  WC()->cart->get_total('edit');
+				$shipping_total = WC()->cart->get_shipping_total();
+				$cart_total_after_discounts = floatval($cart_total) - floatval($shipping_total);
 				$discount_total = ($cart_total_before_discounts) - ($cart_total_after_discounts);
 				$shipping_total = '0';
 				

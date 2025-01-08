@@ -84,66 +84,85 @@
         
 
         .swiper-nav {
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            will-change: opacity;
-            position: absolute;
-            transition-property: opacity;
-            transition-duration: .3s;
-            top: 0;
-            bottom: 0;
-            margin-top: auto;
-            margin-bottom: auto;
-            padding-bottom: 48px;
-            &.swiper-button-disabled {
-                opacity: 0;
-                animation: a-pointer-events 1s linear forwards;
-            }
-
-            &.swiper-nav-prev {
-                margin-left: 40px;
-                left: 0;
-            }
-
-            &.swiper-nav-next {
-                margin-right: 40px;
-                right: 0;
-            }
-
-            .w-btn {
-                position: relative;
-                display: inline-flex;
+            display: none;
+            @include media(">desktop") {
+                z-index: 1;
+                display: flex;
                 align-items: center;
-                flex-shrink: 0;
-                max-width: 100%;
-                text-align: left;
-                cursor: pointer; 
+                justify-content: center;
+                will-change: opacity;
+                position: absolute;
+                transition-property: opacity;
+                transition-duration: .3s;
+                top: 0;
+                bottom: 0;
+                margin-top: auto;
+                margin-bottom: auto;
+                padding-bottom: 48px;
+                &.swiper-button-disabled {
+                    opacity: 0;
+                    animation: a-pointer-events 1s linear forwards;
+                    z-index: 0;
+                }
 
-                &.w-color-white {
-                    color: rgb(66,66,66);
-                    border-color: rgb(228,228,228);
-                    background-color: rgb(255,255,255);
-                    justify-content: center;
-                    padding: 16px 24px;
-                    transition-property: background-color, border-color, color, fill, stroke;
-                    transition-duration: .3s;
-                    border-width: 1px;
-                    border-radius: 0;
-                    &:hover {
-                        background-color: #000;  
-                        color: #fff;
-                    }
+                &.swiper-nav-prev {
+                    margin-left: 40px;
+                    left: 0;
                 }
-                svg {
-                    display: inline-block;
+
+                &.swiper-nav-next {
+                    margin-right: 40px;
+                    right: 0;
+                }
+
+                .w-btn {
+                    position: relative;
+                    display: inline-flex;
+                    align-items: center;
                     flex-shrink: 0;
-                    margin: 0 -8px;
-                    &.w-dir-left {
-                        transform: rotate(-180deg);
+                    max-width: 100%;
+                    text-align: left;
+                    cursor: pointer; 
+
+                    &.w-color-white {
+                        color: rgb(66,66,66);
+                        border-color: #e4e4e4;
+                        background-color: #fff;
+                        justify-content: center;
+                        padding: 16px 24px;
+                        transition-property: background-color, border-color, color, fill, stroke;
+                        transition-duration: .3s;
+                        border-width: 1px;
+                        border-radius: 0;
+                        &:hover {
+                            background-color: #000;  
+                            color: #fff;
+                        }
+                    }
+                    svg {
+                        display: inline-block;
+                        flex-shrink: 0;
+                        margin: 0 -8px;
+                        &.w-dir-left {
+                            transform: rotate(-180deg);
+                        }
                     }
                 }
+            }
+        }
+        
+        .swiper-scrollbar {
+            bottom: 15.5%;
+            height: 4px;
+            background: transparent;
+            border-radius: 0;
+            @include media(">desktop") {
+                display: none;
+            }
+
+            .swiper-scrollbar-drag {
+                background: #c7c7c7;
+                border-radius: 0;
             }
         }
 

@@ -279,13 +279,19 @@
                             }
                         }
                     }
+
                     .swiper-scrollbar {
                         bottom: 0;
                         height: 4px;
-                        background-color: #c7c7c7;
+                        background: transparent;
                         border-radius: 0;
                         @include media(">desktop") {
                             display: none;
+                        }
+            
+                        .swiper-scrollbar-drag {
+                            background: #c7c7c7;
+                            border-radius: 0;
                         }
                     }
                 }

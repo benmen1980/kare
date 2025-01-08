@@ -145,7 +145,8 @@ function add_full_name_field_to_registration_form() {
 
 // Validate Full Name Field
 function validate_woocommerce_registration_full_name_field( $username, $email, $validation_errors ) {
-
+    var_dump($_POST['checkbox_club']);
+    var_dump('marga');
     if ( isset( $_POST['full_name'] ) && empty( $_POST['full_name'] ) ) {
         $validation_errors->add( 'full_name_error', __( 'Please enter full name', 'woocommerce' ) );
     }
@@ -153,10 +154,10 @@ function validate_woocommerce_registration_full_name_field( $username, $email, $
     if (!empty($_POST['birth_date']) && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $_POST['birth_date'])) {
         $validation_errors->add('birth_date_error', __('Invalid date format. Please use dd-mm-yyyy.', 'woocommerce'));
     }
-    if (!empty($_POST['checkbox_club']) && empty($_POST['birth_date'])) {
+    if (!empty($_POST['checkbox_club']) && isset($_POST['checkbox_club']) && empty($_POST['birth_date'])) {
         $validation_errors->add('birthday_error', __('Birthday is required to join the KARE Friends.', 'kare'));
     }
-    if (!empty($_POST['checkbox_club'] ) && empty($_POST['sex_selection'])) {
+    if (!empty($_POST['checkbox_club']) && isset($_POST['checkbox_club']) && empty($_POST['sex_selection'])) {
         $validation_errors->add('gender_error', __('Gender is required to join the KARE Friends.', 'kare'));
     }
     if (empty($_POST['password'])) {
@@ -213,11 +214,12 @@ add_action( 'woocommerce_created_customer', 'save_woocommerce_registration_full_
 
 //after registration, redirect to home page
 add_filter( 'woocommerce_registration_redirect', 'custom_redirection_after_registration', 10, 1 );
-function custom_redirection_after_registration( $redirection_url ){
+function custom_redirection_after_registration( $redirect ){
     // Change the redirection Url
-    $redirection_url = get_home_url(); // Home page
-
-    return $redirection_url; // Always return something
+    if ( isset( $_GET['redirect_to'] ) && 'checkout' === $_GET['redirect_to'] ) {
+        return wc_get_checkout_url(); //checkout page
+    }
+    return home_url(); // Home page
 }
 
 //use of the plugin is 'advanced-dynamic-pricing-woocommerce-pro' together with the Priority plugin
