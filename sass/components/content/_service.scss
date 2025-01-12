@@ -14,8 +14,8 @@
                 max-width: 1420px;
                 margin: 0;
                 padding: 0;
-                padding-left: 16px;
-                padding-right: 16px;
+                padding-inline-start: 16px;
+                padding-inline-end: 16px;
                 padding-top: 16px;
                 color: #000;
                 text-transform: uppercase;
@@ -26,8 +26,8 @@
                 @include media(">desktop") {
                     font-size: 36px;
                     line-height: 48px;
-                    padding-left: 60px;
-                    padding-right: 60px;
+                    padding-inline-start: 60px;
+                    padding-inline-end: 60px;
                     text-align: center;
                 }
 
@@ -41,7 +41,7 @@
             font-size: 10px;
             line-height: 16px;
             text-transform: capitalize;
-            text-align: right;
+            text-align: var(--dir-right);
             @extend %center-flex;
             justify-content: flex-start;
             
@@ -71,8 +71,8 @@
             padding-top: 40px;
             padding-bottom: 40px;
             @include media(">desktop") {
-                padding-left: 40px;
-                padding-right: 40px;
+                padding-inline-start: 40px;
+                padding-inline-end: 40px;
                 text-align: center;
             }
 
@@ -115,8 +115,8 @@
                     }
 
                     .container {
-                        padding-left: 0;
-                        padding-right: 0;
+                        padding-inline-start: 0;
+                        padding-inline-end: 0;
     
                         .return-img-text {
                             @include media(">desktop") {
@@ -133,8 +133,8 @@
                                     .image-retaurn-area{
                                         top: 0;
                                         bottom: 0;
-                                        left: 0;
-                                        right: 0;
+                                        inset-inline-start: 0;
+                                        inset-inline-end: 0;
                                         @include media(">desktop") {
                                             position: absolute;
                                             margin: -60px 0;
@@ -147,7 +147,7 @@
                                             width: 100%;
                                             height: 100%;
                                             object-fit: contain;
-                                            object-position: right
+                                            object-position: var(--dir-right);
                                         }
                                     }
                                 }

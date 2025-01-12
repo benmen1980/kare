@@ -6,18 +6,18 @@
 		display: none;
 		list-style: none;
 		margin: 0;
-		padding-left: 0;
+		padding-inline-start: 0;
 
 		ul {
 			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-			float: left;
+			float: var(--dir-left);
 			position: absolute;
 			top: 100%;
-			left: -999em;
+			inset-inline-start: -999em;
 			z-index: 99999;
 
 			ul {
-				left: -999em;
+				inset-inline-start: -999em;
 				top: 0;
 			}
 
@@ -26,7 +26,7 @@
 				&:hover > ul,
 				&.focus > ul {
 					display: block;
-					left: auto;
+					inset-inline-start: auto;
 				}
 			}
 
@@ -45,7 +45,7 @@
 
 		li:hover > ul,
 		li.focus > ul {
-			left: auto;
+			inset-inline-start: auto;
 		}
 	}
 

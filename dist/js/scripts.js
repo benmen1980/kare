@@ -1,8 +1,13 @@
 
 var $=jQuery.noConflict();
 
+// document.addEventListener('DOMContentLoaded', function () {
+//     if (!document.body.classList.contains('rtl')) {
+//         document.documentElement.setAttribute('dir', 'ltr');
+//     }
+// });
+
 jQuery(document).on("ready", function(){
-       
     //add class to label in login form for adding css 
     // On input focus
     $('.form-row .input-text').focus(function() {

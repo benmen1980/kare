@@ -32,7 +32,7 @@
                 h3 {
                     font-size: 18px;
                     line-height: 28px;
-                    text-align: left;
+                    text-align: var(--dir-left);
 
                     &#order_review_heading {
                         display: none;
@@ -49,7 +49,7 @@
                             font-size: 16px;
                             text-transform: uppercase;
                             font-weight: 700;
-                            padding-right: 24px;
+                            padding-inline-end: 24px;
                             background-color: #fff;
 
                             &:after{
@@ -185,7 +185,7 @@
     
                                     .shipping_method[type="radio"] {
                                         position: relative;
-                                        margin-right: 8px;
+                                        margin-inline-end: 8px;
                                         padding: 0;
                                         appearance: none;
                                         -webkit-appearance: none;
@@ -276,29 +276,29 @@
         
                                     &#billing_country_field label{
                                         position: relative;
-                                        margin-right: 10px;
-                                        left: 0;
+                                        margin-inline-end: 10px;
+                                        inset-inline-start: 0;
                                         transform: inherit;
                                     }
         
                                     &#billing_company_field label.focused {
-                                        left: -25px;
+                                        inset-inline-start: -25px;
                                     } 
         
                                     &#billing_phone_field label.focused {
-                                        left: 0px;
+                                        inset-inline-start: 0px;
                                     } 
                                     
                                     
                                     &#billing_postcode_field label.focused {
-                                        left: -25px;
+                                        inset-inline-start: -25px;
                                     }  
                                 
                                     &#billing_city_field ul {
                                         list-style: none;
                                         padding: 4px 24px;
                                         margin: 0;
-                                        padding-left: 24px;
+                                        padding-inline-start: 24px;
                                         background-color: #F4F4F4;
                                         top: 4px !important;
                                         box-shadow: inset 2px 0 0 #026805;
@@ -438,24 +438,24 @@
     
                                     &#shipping_country_field label{
                                         position: relative;
-                                        margin-right: 10px;
-                                        left: 0;
+                                        margin-inline-end: 10px;
+                                        inset-inline-start: 0;
                                         transform: inherit;
                                     }
         
                                     &#shipping_company_field label.focused {
-                                        left: -28px;
+                                        inset-inline-start: -28px;
                                     }
     
                                     &#shipping_postcode_field label.focused {
-                                        left: -28px;
+                                        inset-inline-start: -28px;
                                     }
     
                                     &#shipping_city_field ul {
                                         list-style: none;
                                         padding: 4px 24px;
                                         margin: 0;
-                                        padding-left: 24px;
+                                        padding-inline-start: 24px;
                                         background-color: #F4F4F4;
                                         top: 4px !important;
                                         box-shadow: inset 2px 0 0 #026805;
@@ -481,7 +481,7 @@
                                         top: 20px;
                                         &.focused {
                                             top: 3px;
-                                            left: -23px;
+                                            inset-inline-start: -23px;
                                         }
                                     }
         
@@ -550,7 +550,7 @@
                                                 label {
                                                     position: relative;
                                                     top: inherit;
-                                                    left: inherit;
+                                                    inset-inline-start: inherit;
                                                     display: flex;
                                                     justify-content: flex-start;
                                                     align-content: flex-start;
@@ -573,7 +573,7 @@
                                                         display: inline-grid;
                                                         place-content: center;
                                                         cursor: pointer;
-                                                        margin-right: 8px;
+                                                        margin-inline-end: 8px;
                                                         padding: 0;
                                                         &:checked{
                                                           background-color: #424242;
@@ -630,7 +630,7 @@
                         position: initial;
                         @include media(">desktop") {
                             width: 25%;
-                            padding-left: 20px;
+                            padding-inline-start: 20px;
                             margin-top: 0;
                         }
     
@@ -666,7 +666,7 @@
                                             background-color: #fff;
                                             color: #000;
                                             padding: 8px 20px; 
-                                            text-align: left; 
+                                            text-align: var(--dir-left);
                                             border-width: 0 0 1px;
                                             border-radius: 0;
                                             font-weight: 400;
@@ -680,7 +680,7 @@
                                             span {
                                                 text-transform: none;
                                                 flex-grow: 1;
-                                                margin-right: 8px;
+                                                margin-inline-end: 8px;
                                             }
     
                                             svg {

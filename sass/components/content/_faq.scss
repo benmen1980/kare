@@ -14,20 +14,20 @@
                 max-width: 1420px;
                 margin: 0;
                 padding: 0;
-                padding-left: 16px;
-                padding-right: 16px;
+                padding-inline-start: 16px;
+                padding-inline-end: 16px;
                 padding-top: 16px;
                 color: #000;
                 text-transform: uppercase;
                 text-shadow: none;
                 font-size: 24px;
                 line-height: 36px;
-                text-align: left;
+                text-align: var(--dir-left);
                 @include media(">desktop") {
                     font-size: 36px;
                     line-height: 48px;
-                    padding-left: 60px;
-                    padding-right: 60px;
+                    padding-inline-start: 60px;
+                    padding-inline-end: 60px;
                     text-align: center;
                 }
 
@@ -41,7 +41,7 @@
                 font-size: 10px;
                 line-height: 16px;
                 text-transform: capitalize;
-                text-align: right;
+                text-align: var(--dir-right);
                 @extend %center-flex;
                 justify-content: flex-start;
                 
@@ -74,7 +74,7 @@
             }
 
             a {
-                margin-right: 4px;
+                margin-inline-end: 4px;
                 padding: 8px 16px;
                 display: inline-flex;
                 font-size: 14px;
@@ -102,8 +102,8 @@
             .image-page {
                 padding-bottom: 160px;
                 @include media("<=desktop") {
-                    margin-right: -16px;
-                    margin-left: -16px;
+                    margin-inline-end: -16px;
+                    margin-inline-start: -16px;
                     max-width: none;
                 }
                 img {
@@ -148,7 +148,7 @@
                                     padding: 20px;
                                     font-size: $font-size-button; 
                                     font-weight: 700;                           
-                                    text-align: left;
+                                    text-align: var(--dir-left);
                                     text-transform: uppercase;
                                     background-color: #f4f4f4;
                                     border: none;
@@ -160,7 +160,7 @@
                                     }
 
                                     .title {
-                                        margin-right: 8px;
+                                        margin-inline-end: 8px;
                                         flex-grow: 1;
                                     }
                                     svg {
@@ -204,7 +204,7 @@
                                         margin-top: 16px;
                                         text-align: center;
                                         @include media(">desktop") {
-                                            text-align: left; 
+                                            text-align: var(--dir-left);
                                         }
                                         a {
                                             position: relative;
@@ -215,7 +215,7 @@
                                             flex-shrink: 0;
                                             width: 100%;
                                             max-width: 100%;
-                                            text-align: left;                                     
+                                            text-align: var(--dir-left);                                     
                                             text-transform: uppercase;
                                             text-decoration: none;
                                             color: #424242;

@@ -1,6 +1,9 @@
 ul,
 ol {
 	margin: 0 0 1.5em 3em;
+	[dir="rtl"] & {
+		margin: 0 3em 1.5em 0em;
+	}
 }
 
 ul {
@@ -14,7 +17,7 @@ ol {
 li > ul,
 li > ol {
 	margin-bottom: 0;
-	margin-left: 1.5em;
+	margin-inline-start: 1.5em;
 }
 
 dt {
@@ -23,4 +26,7 @@ dt {
 
 dd {
 	margin: 0 1.5em 1.5em;
+	[dir="rtl"] & {
+		margin: 0 0 1.5em 1.5em;
+	}
 }

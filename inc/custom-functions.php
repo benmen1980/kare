@@ -224,6 +224,18 @@ function custom_redirection_after_registration( $redirection_url ){
 add_filter('adp_is_to_compensate_trd_party_adj_for_fixed_price', '__return_false');
 
 
+function set_html_direction_attribute() {
+    // Check if the body has the 'rtl' class
+    if (is_rtl()) {
+        echo ' dir="rtl"';
+    } else {
+        echo ' dir="ltr"';
+    }
+}
+add_filter('language_attributes', 'set_html_direction_attribute');
+
+
+
 /*
 // upload list of city name to the DB - one size
 function upload_city_name_file() {

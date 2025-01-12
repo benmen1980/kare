@@ -98,7 +98,7 @@
                             list-style: none; 
                             text-decoration: none;
                             background-color: #fff;
-                            margin-right: 8px;
+                            margin-inline-end: 8px;
                             padding: 20px;
                             @include media(">=phone") {
                                   background-color: transparent;  
@@ -107,7 +107,7 @@
                             }
                             @include media("<=phone") {
                                 &:nth-child(2) {
-                                    margin-left: 16px;
+                                    margin-inline-start: 16px;
                                 }
                             }
                             &:first-child {
@@ -194,6 +194,9 @@
                             &:first-child {
                                 width: 100%;
                                 padding: 16px 21px 35px 16px;
+                                [dir="rtl"] & {
+                                    padding: 16px 16px 40px 21px;
+                                }
                                 background-color: $color-background-gray;
                             }
                         
@@ -278,7 +281,7 @@
                                 font-size: 16px;
                                 line-height: 1.5;
                                 text-align: justify;
-                                margin-right: 20px;
+                                margin-inline-end: 20px;
 
                                 a {
                                     font-size: 16px;
@@ -325,7 +328,7 @@
                         }
                         &:first-child ul li{
                             @include media(">=mobile", "<desktop") {
-                                margin-left: 0 !important;
+                                margin-inline-start: 0 !important;
                             }
                         }
                         & > ul.sub-menu {
@@ -354,12 +357,12 @@
                             & > li img.menu-icon-class {
                                 width: 24px !important;
                                 height: 24px !important;
-                                margin-right: 1rem;
+                                margin-inline-end: 1rem;
                             }
                             & > li {
                                 padding: 20px 0;
                                 @extend %flex-start;
-                                margin-left: 20px;
+                                margin-inline-start: 20px;
                                 border-bottom: 1px solid white;
                                 @include media("<=mobile") {
                                     padding: 16px;
@@ -436,7 +439,7 @@
                                 &::after {
                                     content: url(../images/svg/arrow-down.svg);  
                                     position: absolute;
-                                    right: 20px;
+                                    inset-inline-end: 20px;
                                     width: 24px;
                                     height: 24px;
                                     // background: url('../images/svg/arrow-down.svg') no-repeat center;
@@ -486,7 +489,7 @@
             font-size: 12px;
             line-height: 18px;
             @include media("<=phone") {
-                text-align: left;
+                text-align: var(--dir-left);
             }
         }
     }

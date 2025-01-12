@@ -25,7 +25,7 @@
         .text_image_background {
             position: absolute;
             top: 50%;
-            left: 50%;
+            inset-inline-start: 50%;
             transform: translate(-50%, -50%);
             font-size: 24px;
             font-weight: 400;
@@ -52,7 +52,7 @@
             font-size: 24px;
             font-weight: 700;
             line-height: 36px;
-            text-align: left;
+            text-align: var(--dir-left);
             text-transform: uppercase;
             text-shadow: none;
             color: #000; 
@@ -79,7 +79,7 @@
         font-size: 10px;
         line-height: 16px;
         text-transform: capitalize;
-        text-align: right;
+        text-align: var(--dir-right);
         @extend %center-flex;
         justify-content: flex-start;
         @include media(">desktop") {
@@ -123,10 +123,10 @@
     }
     .slider_cat {
         margin-bottom: 40px;
-        padding-right: 0;
+        padding-inline-end: 0;
     
         h5 {
-            text-align: left;
+            text-align: var(--dir-left);
             margin-top: 8px;
             margin-bottom: 4px;
             @include media(">desktop") {
@@ -235,13 +235,13 @@
                             }
             
                             &.swiper-nav-prev {
-                                margin-left: 40px;
-                                left: 0;
+                                margin-inline-start: 40px;
+                                inset-inline-start: 0;
                             }
             
                             &.swiper-nav-next {
-                                margin-right: 40px;
-                                right: 0;
+                                margin-inline-end: 40px;
+                                inset-inline-end: 0;
                             }
             
                             .w-btn {
@@ -250,7 +250,7 @@
                                 align-items: center;
                                 flex-shrink: 0;
                                 max-width: 100%;
-                                text-align: left;
+                                text-align: var(--dir-left);
                                 cursor: pointer; 
             
                                 &.w-color-white {
@@ -297,8 +297,8 @@
 
 
 .container-archive-product {
-    padding-left: 0;
-    padding-right: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
     .filtering_wrapper {
         @extend %center-flex;
         padding: 0 16px;
@@ -317,7 +317,7 @@
             margin: 4px;
             flex-shrink: 0;
             max-width: 100%;
-            text-align: left;
+            text-align: var(--dir-left);
             cursor: pointer;
             width: auto;
             box-sizing: border-box;
@@ -330,7 +330,7 @@
 
             }
             svg {
-                margin-left: 8px;
+                margin-inline-start: 8px;
                 display: inline-block;
                 width: 24px;
                 height: 24px;
@@ -343,8 +343,8 @@
         flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
-        padding-left: 16px;
-        padding-right: 16px;
+        padding-inline-start: 16px;
+        padding-inline-end: 16px;
         @include media(">phone") {
            display: flex;
         }
@@ -440,7 +440,7 @@
         h2 {
             font-size: 20px;
             line-height: 30px;
-            text-align: left !important;
+            text-align: var(--dir-left) !important;
             font-weight: 400;
             strong {
                 font-weight: normal;
@@ -450,7 +450,7 @@
 
             }
             @include media("<=desktop") {
-                text-align: left !important;
+                text-align: var(--dir-left) !important;
             }
             @include media(">desktop") {
                 font-size: 24px;
@@ -476,12 +476,12 @@
              }
             text-decoration: none;
             &.prev {
-                padding-right: 16px;
-                padding-left: 24px;     
+                padding-inline-end: 16px;
+                padding-inline-start: 24px;     
             }
             &.next {
-                padding-right: 24px;
-                padding-left: 16px;     
+                padding-inline-end: 24px;
+                padding-inline-start: 16px;     
             }
 
             
@@ -543,7 +543,7 @@
                 display: block;
                 position: absolute;
                 top: 110%;
-                left: 50%;
+                inset-inline-start: 50%;
                 transform: translate(-50%);
             }
 

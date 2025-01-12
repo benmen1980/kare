@@ -32,7 +32,7 @@ section.design_banner_wrapper {
         & > button {
             position: absolute;
             top: 50%;
-            left: 50%;
+            inset-inline-start: 50%;
             transform: translate(-50%, -50%);
             background-color: rgb(0 0 0 / 25%);
             backdrop-filter: blur(10px);
