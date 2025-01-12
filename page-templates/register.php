@@ -103,7 +103,7 @@ get_header();
 
                 <div class="checkbox_wrapper">
                     <label for="checkbox_club">
-                        <input id="checkbox_club" class="kare-element" type="checkbox" name="checkbox_club" value="<?php echo ( !empty( $_POST['checkbox_club'] ) ) ? '1' : ''; ?>">	
+                        <input id="checkbox_club" class="kare-element" type="checkbox" name="checkbox_club" value="1" <?php checked( !empty( $_POST['checkbox_club'] ) ); ?>>	
                         <?php echo get_field('checkbox_privacy','option');?>
                     </label>
                 </div>

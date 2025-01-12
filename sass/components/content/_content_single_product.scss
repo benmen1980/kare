@@ -475,8 +475,10 @@
                             margin: 0;
                             margin-inline-end: 4px !important;
                         }
-                        & > .stock {
+                        & > .instock {
                             color: #026805;
+                        }
+                        & > .stock {
                             font-weight: 700;
                             display: inline-block !important;
                             margin: 0;
@@ -1030,13 +1032,13 @@
                     }
                 
                     &.swiper-nav-prev {
-                        margin-inline-start: 40px;
-                        inset-inline-start: 0;
+                        margin-left: 40px;
+                        left: 0;
                     }
                 
                     &.swiper-nav-next {
-                        margin-inline-end: 40px;
-                        inset-inline-end: 0;
+                        margin-right: 40px;
+                        right: 0;
                     }
                 
                     .w-btn {
@@ -1045,7 +1047,7 @@
                         align-items: center;
                         flex-shrink: 0;
                         max-width: 100%;
-                        text-align: var(--dir-left);
+                        text-align: left;
                         cursor: pointer; 
                 
                         &.w-color-white {

@@ -412,6 +412,7 @@
 
                             ul.woocommerce-order-overview.woocommerce-thankyou-order-details.order_details {
                                 list-style: none;
+                                display: block;
                                 margin: 0px;
                                 padding: 0;
                                 font-size: 14px;
@@ -423,7 +424,14 @@
                                     padding-bottom: 8px;
 
                                     strong {
-                                        font-weight: 400;
+                                        font-weight: 700;
+                                    }
+
+                                    &.woocommerce-order-overview__delivery strong{
+                                        color: #026805;                                        
+                                    }
+                                    &.woocommerce-order-overview__total strong{
+                                        color: #e10915;                                        
                                     }
                                 }
                             }

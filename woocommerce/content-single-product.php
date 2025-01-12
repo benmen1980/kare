@@ -83,12 +83,12 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 						</div>
 						<!-- arrows -->
 						<div class="swiper-nav large-slider-nav-prev swiper-button-disabled">
-							<button aria-label="vorherige" type="button" class="w-btn w-color w-color-white">
+							<button aria-label="prev" type="button" class="w-btn w-color w-color-white">
 								<?php echo str_replace('<svg', '<svg class="w-dir-left"', file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg')); ?>
 							</button>
 						</div>
 						<div class="swiper-nav large-slider-nav-next">
-							<button aria-label="button" type="button" class="w-btn w-color w-color-white">
+							<button aria-label="next" type="button" class="w-btn w-color w-color-white">
 								<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg'); ?>
 							</button>
 						</div>
@@ -124,12 +124,12 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 							</div>
 							<!-- arrows -->
 							<div class="swiper-nav small-slider-nav-prev swiper-button-disabled">
-								<button aria-label="vorherige" type="button" class="w-btn w-color w-color-white">
+								<button aria-label="prev" type="button" class="w-btn w-color w-color-white">
 									<?php echo str_replace('<svg', '<svg class="w-dir-left"', file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg')); ?>
 								</button>
 							</div>
 							<div class="swiper-nav small-slider-nav-next">
-								<button aria-label="button" type="button" class="w-btn w-color w-color-white">
+								<button aria-label="next" type="button" class="w-btn w-color w-color-white">
 									<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg'); ?>
 								</button>
 							</div>
@@ -273,7 +273,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 
 					<div class="stock_shipping_availability">
 						<p class="product-shipping ?>">Shipping in: </p>
-						<p class="<?php echo ($product->get_stock_quantity() > 0) ? 'stock' : ''; ?>"><?php echo esc_html( $stock ); ?></p>
+						<p class="instock <?php echo ($product->get_stock_quantity() > 0) ? 'stock' : ''; ?>"><?php echo esc_html( $stock ); ?></p>
 					</div>
 				<?php else : ?>
 					<div class="stock_coming_soon">
@@ -690,15 +690,17 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 
 							<!-- arrows -->
 							<div class="swiper-nav swiper-nav-prev swiper-button-disabled">
-								<button aria-label="vorherige" type="button" class="w-btn w-color w-color-white">
+								<button aria-label="prev" type="button" class="w-btn w-color w-color-white">
 									<?php echo str_replace('<svg', '<svg class="w-dir-left"', file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg')); ?>
 								</button>
 							</div>
 							<div class="swiper-nav swiper-nav-next">
-								<button aria-label="button" type="button" class="w-btn w-color w-color-white">
+								<button aria-label="next" type="button" class="w-btn w-color w-color-white">
 									<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg'); ?>
 								</button>
 							</div>
+							<!-- scrollbar -->
+							<div class="swiper-scrollbar"></div>
 							<!-- dropping points-->
 							<div class="swiper-pagination-wrapper">
 								<div class="swiper-pagination swiper-pagination-black swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic" style="width: 100px;"></div>
@@ -747,15 +749,17 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 
 							<!-- arrows -->
 							<div class="swiper-nav swiper-nav-prev swiper-button-disabled">
-								<button aria-label="vorherige" type="button" class="w-btn w-color w-color-white">
+								<button aria-label="prev" type="button" class="w-btn w-color w-color-white">
 									<?php echo str_replace('<svg', '<svg class="w-dir-left"', file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg')); ?>
 								</button>
 							</div>
 							<div class="swiper-nav swiper-nav-next">
-								<button aria-label="button" type="button" class="w-btn w-color w-color-white">
+								<button aria-label="next" type="button" class="w-btn w-color w-color-white">
 									<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg'); ?>
 								</button>
 							</div>
+							<!-- scrollbar -->
+							<div class="swiper-scrollbar"></div>
 							<!-- dropping points-->
 							<div class="swiper-pagination-wrapper">
 								<div class="swiper-pagination swiper-pagination-black swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">
@@ -807,15 +811,17 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 
 							<!-- arrows -->
 							<div class="swiper-nav swiper-nav-prev swiper-button-disabled">
-								<button aria-label="vorherige" type="button" class="w-btn w-color w-color-white">
+								<button aria-label="prev" type="button" class="w-btn w-color w-color-white">
 									<?php echo str_replace('<svg', '<svg class="w-dir-left"', file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg')); ?>
 								</button>
 							</div>
 							<div class="swiper-nav swiper-nav-next">
-								<button aria-label="button" type="button" class="w-btn w-color w-color-white">
+								<button aria-label="next" type="button" class="w-btn w-color w-color-white">
 									<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-sm.svg'); ?>
 								</button>
 							</div>
+							<!-- scrollbar -->
+							<div class="swiper-scrollbar"></div>
 							<!-- dropping points-->
 							<div class="swiper-pagination-wrapper">
 								<div class="swiper-pagination swiper-pagination-black swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-bullets-dynamic">

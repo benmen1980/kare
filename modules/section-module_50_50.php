@@ -21,7 +21,7 @@
                         </h2>
                     </a> -->
                 <?php //else : ?>
-                <h2 class="title_hero_content" style= "<?php echo ($img_position == "right") ? 'text-align: right;':'text-align: left;'?>">
+                <h2 class="title_hero_content" style="<?php echo ($img_position == "right") ? 'text-align: right;':'text-align: left;'?>">
                     <?php echo $title_txt; ?>
                 </h2> 
                 <?php //endif; ?>
@@ -56,7 +56,7 @@
                         </h2>
                     </a> -->
                 <?php //else : ?>
-                <h2 class="title_hero_content" style= "<?php echo ($img_position == "right") ? 'text-align: right;':'text-align: left;'?>">
+                <h2 class="title_hero_content" style="<?php echo ($img_position == "right") ? 'text-align: right;':'text-align: left;'?>">
                     <?php echo $title_txt; ?>
                 </h2> 
                 <?php //endif; ?>
