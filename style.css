@@ -498,7 +498,7 @@ ol {
 li > ul,
 li > ol {
 	margin-bottom: 0;
-	margin-left: 1.5em;
+	margin-inline-start: 1.5em;
 }
 
 dt {
@@ -656,7 +656,7 @@ textarea {
 	display: none;
 	list-style: none;
 	margin: 0;
-	padding-left: 0;
+	padding-inline-start: 0;
 }
 
 .main-navigation ul ul {
@@ -664,12 +664,12 @@ textarea {
 	float: left;
 	position: absolute;
 	top: 100%;
-	left: -999em;
+	inset-inline-start: -999em;
 	z-index: 99999;
 }
 
 .main-navigation ul ul ul {
-	left: -999em;
+	inset-inline-start: -999em;
 	top: 0;
 }
 
@@ -685,7 +685,7 @@ textarea {
 
 .main-navigation ul li:hover > ul,
 .main-navigation ul li.focus > ul {
-	left: auto;
+	inset-inline-start: auto;
 }
 
 .main-navigation li {
@@ -924,7 +924,7 @@ textarea {
 	font-size: 0.875rem;
 	font-weight: 700;
 	height: auto;
-	left: 5px;
+	inset-inline-start: 5px;
 	line-height: normal;
 	padding: 15px 23px 14px;
 	text-decoration: none;
@@ -943,20 +943,20 @@ textarea {
 .alignleft {
 
 	/*rtl:ignore*/
-	float: left;
+	float: var(--dir-left);
 
 	/*rtl:ignore*/
-	margin-right: 1.5em;
+	margin-inline-end: 1.5em;
 	margin-bottom: 1.5em;
 }
 
 .alignright {
 
 	/*rtl:ignore*/
-	float: right;
+	float: var(--dir-right);
 
 	/*rtl:ignore*/
-	margin-left: 1.5em;
+	margin-inline-start: 1.5em;
 	margin-bottom: 1.5em;
 }
 
