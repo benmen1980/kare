@@ -15,18 +15,18 @@ table.shop_table_responsive {
 
 		td {
 			display: block;
-			text-align: right;
+			text-align: var(--dir-right);
 			clear: both;
 
 			&::before {
 				content: attr(data-title) ": ";
-				float: left;
+				float: var(--dir-left);
 			}
 
 			&.product-remove {
 
 				a {
-					text-align: left;
+					text-align: var(--dir-left);
 				}
 
 				&::before {
@@ -72,7 +72,7 @@ table.shop_table_responsive {
 
 			th,
 			td {
-				text-align: left;
+				text-align: var(--dir-left);
 			}
 
 			td {

@@ -3,12 +3,12 @@
 	.col2-set {
 
 		.form-row-first {
-			float: left;
+			float: var(--dir-left);
 			margin-right: $columns__margin;
 		}
 
 		.form-row-last {
-			float: right;
+			float: var(--dir-right);
 			margin-right: 0;
 		}
 

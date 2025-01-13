@@ -13,8 +13,8 @@
         }
 
         .container {
-            padding-left: 0;
-            padding-right: 0;
+            padding-inline-start: 0;
+            padding-inline-end: 0;
 
             .celeb_img_text {
                 @include media(">desktop") {
@@ -32,7 +32,7 @@
                             top: 0;
                             bottom: 0;
                             // left: 0;
-                            right: 0;
+                            inset-inline-end: 0;
                             @include media(">desktop") {
                                 position: absolute;
                                 margin: -60px 0;

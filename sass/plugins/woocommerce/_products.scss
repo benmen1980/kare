@@ -24,15 +24,15 @@ ul.products {
 		li.product {
 
 			@include column-width(3);
-			float: left;
-			margin-right: $columns__margin;
+			float: var(--dir-left);
+			margin-inline-end: $columns__margin;
 
 			&.first {
 				clear: both;
 			}
 
 			&.last {
-				margin-right: 0;
+				margin-inline-end: 0;
 			}
 		}
 	}

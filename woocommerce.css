@@ -17,17 +17,17 @@ table.shop_table_responsive tbody th {
 
 table.shop_table_responsive tr td {
 	display: block;
-	text-align: right;
+	text-align: var(--dir-right);
 	clear: both;
 }
 
 table.shop_table_responsive tr td::before {
 	content: attr(data-title) ": ";
-	float: left;
+	float: var(--dir-left);
 }
 
 table.shop_table_responsive tr td.product-remove a {
-	text-align: left;
+	text-align: var(--dir-left);
 }
 
 table.shop_table_responsive tr td.product-remove::before {
@@ -56,7 +56,7 @@ table.shop_table_responsive tr td.download-actions .button {
 
 	table.shop_table_responsive tr th,
 	table.shop_table_responsive tr td {
-		text-align: left;
+		text-align: var(--dir-left);
 	}
 
 	table.shop_table_responsive tr td {
@@ -94,8 +94,8 @@ ul.products li.product .button {
 
 	ul.products li.product {
 		width: 30.79667%;
-		float: left;
-		margin-right: 3.8%;
+		float: var(--dir-left);
+		margin-inline-end: 3.8%;
 	}
 
 	ul.products li.product.first {
@@ -103,7 +103,7 @@ ul.products li.product .button {
 	}
 
 	ul.products li.product.last {
-		margin-right: 0;
+		margin-inline-end: 0;
 	}
 
 	ul.products.columns-1 li.product {
@@ -141,13 +141,13 @@ ul.products li.product .button {
 
 .single-product div.product .woocommerce-product-gallery {
 	position: relative;
-	float: left;
+	float: var(--dir-left);
 }
 
 .single-product div.product .woocommerce-product-gallery .woocommerce-product-gallery__trigger {
 	position: absolute;
 	top: 2em;
-	right: 1em;
+	inset-inline-end: 1em;
 	display: block;
 	z-index: 99;
 }
@@ -164,7 +164,7 @@ ul.products li.product .button {
 .single-product div.product .woocommerce-product-gallery .flex-control-thumbs li {
 	list-style: none;
 	cursor: pointer;
-	float: left;
+	float: var(--dir-left);
 }
 
 .single-product div.product .woocommerce-product-gallery .flex-control-thumbs li img {
@@ -184,7 +184,7 @@ ul.products li.product .button {
 }
 
 .single-product div.product .woocommerce-product-gallery.woocommerce-product-gallery--columns-2 .flex-control-thumbs li:nth-child(2n) {
-	margin-right: 0;
+	margin-inline-end: 0;
 }
 
 .single-product div.product .woocommerce-product-gallery.woocommerce-product-gallery--columns-2 .flex-control-thumbs li:nth-child(2n+1) {
@@ -196,7 +196,7 @@ ul.products li.product .button {
 }
 
 .single-product div.product .woocommerce-product-gallery.woocommerce-product-gallery--columns-3 .flex-control-thumbs li:nth-child(3n) {
-	margin-right: 0;
+	margin-inline-end: 0;
 }
 
 .single-product div.product .woocommerce-product-gallery.woocommerce-product-gallery--columns-3 .flex-control-thumbs li:nth-child(3n+1) {
@@ -208,7 +208,7 @@ ul.products li.product .button {
 }
 
 .single-product div.product .woocommerce-product-gallery.woocommerce-product-gallery--columns-4 .flex-control-thumbs li:nth-child(4n) {
-	margin-right: 0;
+	margin-inline-end: 0;
 }
 
 .single-product div.product .woocommerce-product-gallery.woocommerce-product-gallery--columns-4 .flex-control-thumbs li:nth-child(4n+1) {
@@ -220,7 +220,7 @@ ul.products li.product .button {
 }
 
 .single-product div.product .woocommerce-product-gallery.woocommerce-product-gallery--columns-5 .flex-control-thumbs li:nth-child(5n) {
-	margin-right: 0;
+	margin-inline-end: 0;
 }
 
 .single-product div.product .woocommerce-product-gallery.woocommerce-product-gallery--columns-5 .flex-control-thumbs li:nth-child(5n+1) {
@@ -245,13 +245,13 @@ ul.products li.product .button {
 @media screen and (min-width: 768px) {
 
 	.col2-set .form-row-first {
-		float: left;
-		margin-right: 3.8%;
+		float: var(--dir-left);
+		margin-inline-end: 3.8%;
 	}
 
 	.col2-set .form-row-last {
-		float: right;
-		margin-right: 0;
+		float: var(--dir-right);
+		margin-inline-end: 0;
 	}
 
 	.col2-set .form-row-first,
@@ -302,17 +302,17 @@ ul.products li.product .button {
 .star-rating::before {
 	content: "\53\53\53\53\53";
 	opacity: 0.25;
-	float: left;
+	float: var(--dir-left);
 	top: 0;
-	left: 0;
+	inset-inline-start: 0;
 	position: absolute;
 }
 
 .star-rating span {
 	overflow: hidden;
-	float: left;
+	float: var(--dir-left);
 	top: 0;
-	left: 0;
+	inset-inline-start: 0;
 	position: absolute;
 	padding-top: 1.5em;
 }
@@ -321,7 +321,7 @@ ul.products li.product .button {
 	content: "\53\53\53\53\53";
 	top: 0;
 	position: absolute;
-	left: 0;
+	inset-inline-start: 0;
 	color: #4169e1;
 }
 
@@ -332,7 +332,7 @@ p.stars a {
 	text-indent: -999em;
 	display: inline-block;
 	text-decoration: none;
-	margin-right: 1px;
+	margin-inline-end: 1px;
 	font-weight: 400;
 }
 
@@ -340,7 +340,7 @@ p.stars a::before {
 	display: block;
 	position: absolute;
 	top: 0;
-	left: 0;
+	inset-inline-start: 0;
 	width: 1em;
 	height: 1em;
 	line-height: 1;
@@ -388,7 +388,7 @@ p.stars.selected a:not(.active)::before {
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	text-align: left;
+	text-align: var(--dir-left);
 }
 
 .woocommerce-tabs ul.tabs li {
@@ -410,7 +410,7 @@ p.stars.selected a:not(.active)::before {
  * Password strength meter
  */
 .woocommerce-password-strength {
-	text-align: right;
+	text-align: var(--dir-right);
 }
 
 .woocommerce-password-strength.strong {
@@ -468,9 +468,9 @@ p.no-comments {
 
 .demo_store {
 	position: fixed;
-	left: 0;
+	inset-inline-start: 0;
 	bottom: 0;
-	right: 0;
+	inset-inline-end: 0;
 	margin: 0;
 	padding: 1em;
 	background-color: #3d9cd2;
@@ -487,14 +487,14 @@ p.no-comments {
 		top: 100%;
 		width: 100%;
 		z-index: 999999;
-		left: -999em;
+		inset-inline-start: -999em;
 		display: block;
 		box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 	}
 
 	.site-header-cart:hover .widget_shopping_cart,
 	.site-header-cart.focus .widget_shopping_cart {
-		left: 0;
+		inset-inline-start: 0;
 		display: block;
 	}
 }
@@ -511,17 +511,17 @@ p.no-comments {
 }
 
 .widget_price_filter .price_slider_amount {
-	text-align: right;
+	text-align: var(--dir-right);
 	line-height: 2.4;
 }
 
 .widget_price_filter .price_slider_amount .button {
-	float: left;
+	float: var(--dir-left);
 }
 
 .widget_price_filter .ui-slider {
 	position: relative;
-	text-align: left;
+	text-align: var(--dir-left);
 }
 
 .widget_price_filter .ui-slider .ui-slider-handle {
@@ -538,7 +538,7 @@ p.no-comments {
 }
 
 .widget_price_filter .ui-slider .ui-slider-handle:last-child {
-	margin-left: -1em;
+	margin-inline-start: -1em;
 }
 
 .widget_price_filter .ui-slider .ui-slider-handle:hover,

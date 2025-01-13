@@ -8,17 +8,17 @@
 	}
 
 	.price_slider_amount {
-		text-align: right;
+		text-align: var(--dir-right);
 		line-height: 2.4;
 
 		.button {
-			float: left;
+			float: var(--dir-left);
 		}
 	}
 
 	.ui-slider {
 		position: relative;
-		text-align: left;
+		text-align: var(--dir-left);
 	}
 
 	.ui-slider .ui-slider-handle {
@@ -34,7 +34,7 @@
 		opacity: 1;
 
 		&:last-child {
-			margin-left: -1em;
+			margin-inline-start: -1em;
 		}
 
 		&:hover,

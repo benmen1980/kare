@@ -498,7 +498,7 @@ ol {
 li > ul,
 li > ol {
 	margin-bottom: 0;
-	margin-right: 1.5em;
+	margin-inline-end: 1.5em;
 }
 
 dt {
@@ -656,27 +656,27 @@ textarea {
 	display: none;
 	list-style: none;
 	margin: 0;
-	padding-right: 0;
+	padding-inline-end: 0;
 }
 
 .main-navigation ul ul {
 	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-	float: right;
+	float: var(--dir-right);
 	position: absolute;
 	top: 100%;
-	right: -999em;
+	inset-inline-end: -999em;
 	z-index: 99999;
 }
 
 .main-navigation ul ul ul {
-	right: -999em;
+	inset-inline-end: -999em;
 	top: 0;
 }
 
 .main-navigation ul ul li:hover > ul,
 .main-navigation ul ul li.focus > ul {
 	display: block;
-	right: auto;
+	inset-inline-end: auto;
 }
 
 .main-navigation ul ul a {
@@ -685,7 +685,7 @@ textarea {
 
 .main-navigation ul li:hover > ul,
 .main-navigation ul li.focus > ul {
-	right: auto;
+	inset-inline-end: auto;
 }
 
 .main-navigation li {
@@ -812,8 +812,8 @@ textarea {
 
 .wp-caption img[class*="wp-image-"] {
 	display: block;
-	margin-right: auto;
-	margin-left: auto;
+	margin-inline-end: auto;
+	margin-inline-start: auto;
 }
 
 .wp-caption .wp-caption-text {
@@ -924,7 +924,7 @@ textarea {
 	font-size: 0.875rem;
 	font-weight: 700;
 	height: auto;
-	right: 5px;
+	inset-inline-end: 5px;
 	line-height: normal;
 	padding: 15px 23px 14px;
 	text-decoration: none;
@@ -941,21 +941,21 @@ textarea {
 /* Alignments
 --------------------------------------------- */
 .alignleft {
-	float: left;
-	margin-right: 1.5em;
+	float: var(--dir-left);
+	margin-inline-end: 1.5em;
 	margin-bottom: 1.5em;
 }
 
 .alignright {
-	float: right;
-	margin-left: 1.5em;
+	float: var(--dir-right);
+	margin-inline-start: 1.5em;
 	margin-bottom: 1.5em;
 }
 
 .aligncenter {
 	clear: both;
 	display: block;
-	margin-right: auto;
-	margin-left: auto;
+	margin-inline-end: auto;
+	margin-inline-start: auto;
 	margin-bottom: 1.5em;
 }

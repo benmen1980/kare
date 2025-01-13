@@ -14,7 +14,7 @@ section.section_slider_categories {
             margin-top: 0;
             margin-bottom: 24px;
             font-weight: 400;
-            text-align: left;
+            text-align: var(--dir-left);
             @include media(">desktop") {
                 text-align: center;
             }
@@ -36,7 +36,7 @@ section.section_slider_categories {
                 @extend %flex-start;
                 transition-property: transform;
                 box-sizing: content-box;
-                margin-right: 3px;
+                margin-inline-end: 3px;
                 height: 100%;
                 width: auto;
                 max-width: 100%;
@@ -113,13 +113,13 @@ section.section_slider_categories {
                     }
     
                     &.swiper-nav-prev {
-                        margin-left: 40px;
-                        left: 0;
+                        margin-inline-start: 40px;
+                        inset-inline-start: 0;
                     }
     
                     &.swiper-nav-next {
-                        margin-right: 40px;
-                        right: 0;
+                        margin-inline-end: 40px;
+                        inset-inline-end: 0;
                     }
     
                     .w-btn {
@@ -128,7 +128,7 @@ section.section_slider_categories {
                         align-items: center;
                         flex-shrink: 0;
                         max-width: 100%;
-                        text-align: left;
+                        text-align: var(--dir-left);
                         cursor: pointer; 
     
                         &.w-color-white {
@@ -180,7 +180,7 @@ section.section_slider_categories {
                     position: absolute;
                     display: block;
                     bottom: 0;
-                    left: 50%;
+                    inset-inline-start: 50%;
                     transform: translateX(-50%);
                     transition: opacity .3s;
                     // transform: translateZ(0);

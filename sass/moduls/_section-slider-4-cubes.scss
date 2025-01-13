@@ -3,9 +3,9 @@
     padding-bottom: 40px;
     h2 {
         font-weight: 400;
-        padding-right: 16px;
+        padding-inline-end: 16px;
         padding-bottom: 16px;
-        text-align: left;
+        text-align: var(--dir-left);
         @include media(">desktop") {
             padding: 0;
             padding-bottom: 8px;
@@ -59,9 +59,9 @@
                         justify-content: flex-end;
                         position: absolute;
                         /* top: 0; */
-                        right: 0;
+                        inset-inline-end: 0;
                         bottom: 0;
-                        left: 0;
+                        inset-inline-start: 0;
                         height: 100%;
                         white-space: nowrap;
                         overflow: hidden !important;
@@ -106,13 +106,13 @@
                 }
 
                 &.swiper-nav-prev {
-                    margin-left: 40px;
-                    left: 0;
+                    margin-inline-start: 40px;
+                    inset-inline-start: 0;
                 }
 
                 &.swiper-nav-next {
-                    margin-right: 40px;
-                    right: 0;
+                    margin-inline-end: 40px;
+                    inset-inline-end: 0;
                 }
 
                 .w-btn {
@@ -121,7 +121,7 @@
                     align-items: center;
                     flex-shrink: 0;
                     max-width: 100%;
-                    text-align: left;
+                    text-align: var(--dir-left);
                     cursor: pointer; 
 
                     &.w-color-white {
@@ -173,7 +173,7 @@
                 position: absolute;
                 display: block;
                 bottom: 0;
-                left: 50%;
+                inset-inline-start: 50%;
                 transform: translateX(-50%);
                 transition: opacity .3s;
                 // transform: translateZ(0);

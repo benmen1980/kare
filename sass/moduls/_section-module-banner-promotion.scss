@@ -1,5 +1,5 @@
 #edittag .acf-fields.-left > .acf-field{
-    padding-left: 0!important;
+    padding-inline-start: 0!important;
 }
 .module_banner_promotion {
     & > .full_width {
@@ -43,7 +43,7 @@
             }
             h2 {
                 font-weight: 400;
-                text-align: left;
+                text-align: var(--dir-left);
                 margin: 0;
                 a {
                     text-decoration: none;

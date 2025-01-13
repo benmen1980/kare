@@ -28,13 +28,13 @@
             margin: 0;
             margin-bottom: 8px;
             @include media("<=desktop") {
-                text-align: left !important;
+                text-align: var(--dir-left) !important;
             }
         }
 
         p {
             @include media("<=desktop") {
-                text-align: left !important;
+                text-align: var(--dir-left) !important;
             } 
         }
     }

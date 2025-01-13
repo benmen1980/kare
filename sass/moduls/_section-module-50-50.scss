@@ -20,7 +20,7 @@
             display: block;
             margin-bottom: 16px;
             h2 {
-                text-align: left !important;
+                text-align: var(--dir-left) !important;
                 font-weight: 400;
                 text-decoration: none;
                 margin: 0;
@@ -84,7 +84,7 @@
         flex-direction: column;
         @include media("<=desktop") { 
             padding: 0 !important;
-            text-align: left !important;
+            text-align: var(--dir-left) !important;
         }
 
         h2.title_hero_content{

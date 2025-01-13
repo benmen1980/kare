@@ -35,17 +35,17 @@
 	&::before {
 		content: "\53\53\53\53\53";
 		opacity: 0.25;
-		float: left;
+		float: var(--dir-left);
 		top: 0;
-		left: 0;
+		inset-inline-start: 0;
 		position: absolute;
 	}
 
 	span {
 		overflow: hidden;
-		float: left;
+		float: var(--dir-left);
 		top: 0;
-		left: 0;
+		inset-inline-start: 0;
 		position: absolute;
 		padding-top: 1.5em;
 	}
@@ -54,7 +54,7 @@
 		content: "\53\53\53\53\53";
 		top: 0;
 		position: absolute;
-		left: 0;
+		inset-inline-start: 0;
 		color: $color__link;
 	}
 }
@@ -68,7 +68,7 @@ p.stars {
 		text-indent: -999em;
 		display: inline-block;
 		text-decoration: none;
-		margin-right: 1px;
+		margin-inline-end: 1px;
 		font-weight: 400;
 
 		&::before {
@@ -76,7 +76,7 @@ p.stars {
 			display: block;
 			position: absolute;
 			top: 0;
-			left: 0;
+			inset-inline-start: 0;
 			width: 1em;
 			height: 1em;
 			line-height: 1;
@@ -146,7 +146,7 @@ p.stars {
 		list-style: none;
 		margin: 0;
 		padding: 0;
-		text-align: left;
+		text-align: var(--dir-left);
 
 		li {
 			display: block;
@@ -172,7 +172,7 @@ p.stars {
  * Password strength meter
  */
 .woocommerce-password-strength {
-	text-align: right;
+	text-align: var(--dir-right);
 
 	&.strong {
 		color: $woocommerce__color-success;
@@ -239,9 +239,9 @@ p.no-comments {
 
 .demo_store {
 	position: fixed;
-	left: 0;
+	inset-inline-start: 0;
 	bottom: 0;
-	right: 0;
+	inset-inline-end: 0;
 	margin: 0;
 	padding: 1em;
 	background-color: $woocommerce__color-info;
@@ -260,7 +260,7 @@ p.no-comments {
 			top: 100%;
 			width: 100%;
 			z-index: 999999;
-			left: -999em;
+			inset-inline-start: -999em;
 			display: block;
 			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 		}
@@ -269,7 +269,7 @@ p.no-comments {
 		&.focus {
 
 			.widget_shopping_cart {
-				left: 0;
+				inset-inline-start: 0;
 				display: block;
 			}
 		}

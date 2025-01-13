@@ -5,12 +5,12 @@
 
 		.woocommerce-product-gallery {
 			position: relative;
-			float: left;
+			float: var(--dir-left);
 
 			.woocommerce-product-gallery__trigger {
 				position: absolute;
 				top: 2em;
-				right: 1em;
+				inset-inline-end: 1em;
 				display: block;
 				z-index: 99;
 			}
@@ -26,7 +26,7 @@
 				li {
 					list-style: none;
 					cursor: pointer;
-					float: left;
+					float: var(--dir-left);
 
 					img {
 						opacity: 0.5;
@@ -56,7 +56,7 @@
 							@include column-width($i);
 
 							&:nth-child(#{$i}n) {
-								margin-right: 0;
+								margin-inline-end: 0;
 							}
 
 							&:nth-child(#{$i}n+1) {
