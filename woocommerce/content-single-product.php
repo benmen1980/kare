@@ -272,7 +272,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 				<?php if ( ( !empty($kare_stock) || $kare_stock > 0) || intval($stock_available) > 0 ) : ?>
 
 					<div class="stock_shipping_availability">
-						<p class="product-shipping ?>">Shipping in: </p>
+						<p class="product-shipping"><?php echo __( 'Delivery within:', 'kare' ); ?></p>
 						<p class="instock <?php echo ($product->get_stock_quantity() > 0) ? 'stock' : ''; ?>"><?php echo esc_html( $stock ); ?></p>
 					</div>
 				<?php else : ?>
@@ -401,7 +401,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 						?>
 					</div>
 
-					<h5 class="short_discreption_title">At a glance:</h5>
+					<h5 class="short_discreption_title"><?php _e( 'At a glance:', 'kare' ); ?></h5>
 					<?php
 					
 					// add short description
@@ -425,7 +425,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 		</div>
 	</section>
 	<section class="accordion_wrapper">
-		<h2><b><?php echo esc_html_e('Product'); ?></b> <?php echo esc_html_e(' details'); ?></h2>
+		<h2><?php echo sprintf(__('<b>%s</b> details', 'kare'), __('Product', 'kare')); ?></h2>
 		<section class="accordion_details_wrapper">
 			<?php 
 			if ( get_field('product_details') ):  

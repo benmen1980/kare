@@ -7,13 +7,13 @@ if(is_category() || is_product_category()) {
     $post_id = 'category_'. $cat_id;
 }
 else{
-    // var_dump('2');
+    //var_dump('2');
     $choose_module = get_field('choose_module');
     $post_id = get_the_ID();
 } 
 
 if($choose_module): 
-    // var_dump('3');
+    //var_dump('3');
     while(the_repeater_field('choose_module',  $post_id)): 
         $mod = get_sub_field('module_list');
         $mod = explode(':', $mod);
@@ -60,3 +60,4 @@ if($choose_module):
         }
     endwhile;
 endif;
+//var_dump('3');

@@ -246,7 +246,7 @@
                                 margin-top: 20px;
                                 @include media(">desktop") {
                                     margin: 0;
-                                    padding-left: 20px;
+                                    padding-inline-start: 20px;
                                     width: 66.666667% !important;
                                 }
 
@@ -294,7 +294,7 @@
                                             align-items: center;
                                             z-index: 2;
                                             // padding: 22px 14px 24px;
-                                            margin-left: 16px;
+                                            margin-inline-start: 16px;
 
                                             &:hover {
                                                 background-color: #000;
@@ -319,7 +319,7 @@
 
                                         .product-quantity {
                                             position: relative;
-                                            margin-left: 16px;
+                                            margin-inline-start: 16px;
 
                                             .quantity {
                                                 display: flex;
@@ -335,7 +335,7 @@
                                                     font-weight: 700;
                                                     font-size: 16px;
                                                     padding: 12px 20px;
-                                                    text-align: left;
+                                                    text-align: var(--dir-left);
                                                     &:focus-visible {
                                                         outline-style: solid;
                                                     }
@@ -503,7 +503,7 @@
                                     }
                                     
                                     label.focused {
-                                        left: -25px;
+                                        inset-inline-start: -25px;
                                     }
 
                                     label span {
@@ -517,7 +517,7 @@
                                             transform: scale3d(.6, .6, 1);
                                             position: absolute;
                                             top: 2px;
-                                            left: -25px;
+                                            inset-inline-start: -25px;
                                             z-index: 2; 
                                             transition: 0.3s ease all;
                                         } 
@@ -572,7 +572,7 @@
                             .shop_table {
                                 
                                 @include media(">desktop") {
-                                    margin-left: 20px;
+                                    margin-inline-start: 20px;
                                     width: 66.66%;
                                     padding: 20px;
                                     box-shadow: 0 1px 3px rgba(0, 0, 0, .08) !important;
@@ -585,7 +585,7 @@
                                 flex-direction: row-reverse;
 
                                 .checkout-button {
-                                    margin-left: 8px; 
+                                    margin-inline-start: 8px; 
                                 }
                             }
 
@@ -616,7 +616,7 @@
                 .cart_summary {
                     @include media(">desktop") {
                         width: 25%;
-                        padding-left: 20px;
+                        padding-inline-start: 20px;
                     }
                     flex-shrink: 0;
 
@@ -686,7 +686,7 @@
                                     top: 25%;
                                     &.focused{ 
                                         top: 3px;
-                                        left: -25px;
+                                        inset-inline-start: -25px;
                                         transform: inherit;
                                     }
                                 }
@@ -698,7 +698,7 @@
                                         transform: scale3d(.6, .6, 1);
                                         position: absolute;
                                         top: 2px;
-                                        left: -25px;
+                                        inset-inline-start: -25px;
                                         z-index: 2; 
                                         transition: 0.3s ease all;
                                     } 
@@ -827,7 +827,7 @@
                                     align-items: center;
                                     flex-shrink: 0;
                                     max-width: 100%;
-                                    text-align: left;
+                                    text-align: var(--dir-left);
                                     cursor: pointer;
                                     justify-content: center;
                                     color: #424242;

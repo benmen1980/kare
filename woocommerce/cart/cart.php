@@ -92,7 +92,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 						</div>
 
 						<div class="remove_and_qty cart_product_quantity_remove_wrapper">
-							<p><?php _e( 'Crowd:', 'woocommerce' ); ?></p>
+							<p><?php _e( 'Crowd:', 'kare' ); ?></p>
 							<div class="cart-product-quantity-remove">
 
 								<?php
@@ -143,19 +143,19 @@ do_action( 'woocommerce_before_cart' ); ?>
 						?>
 						<div class="delivery_and_price_wrapper">
 							<div class="product-delivery">
-								<p><?php _e( 'Delivery time:', 'woocommerce' ); ?> </p>
+								<p><?php _e( 'Delivery time:', 'kare' ); ?> </p>
 								<p class="shipping_availability bold <?php echo ($_product->get_stock_quantity() > 0) ? 'stock' : ''; ?>"><?php echo esc_html( $stock ); ?></p>
 							</div>
 
 							<?php if ( $_product->is_on_sale() ) : ?>
 								<div class="product-price" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
-									<p><?php _e( 'Unit price:', 'woocommerce' ); ?> </p>
-									<p><?php _e( 'RRP*: ', 'woocommerce' ); ?> 
+									<p><?php _e( 'Unit price:', 'kare' ); ?> </p>
+									<p><?php _e( 'RRP*: ', 'kare' ); ?> 
 										<del> <?php echo wc_price( $_product->get_regular_price() ); ?> </del>
 									</p>
 								</div>
 								<div class="product-price-discont" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
-									<p><?php _e( 'Price after discount:', 'woocommerce' ); ?> </p>
+									<p><?php _e( 'Price after discount:', 'kare' ); ?> </p>
 									<p class="bold red">
 										<?php
 											echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
@@ -164,7 +164,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 								</div>
 							<?php else : ?>
 								<div class="product-price" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
-									<p><?php _e( 'Unit price:', 'woocommerce' ); ?> </p>
+									<p><?php _e( 'Unit price:', 'kare' ); ?> </p>
 									<p><?php
 										echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
 									?></p>
@@ -175,7 +175,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 						<hr>
 				
 						<div class="product-subtotal" data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>">
-							<p><?php _e( 'Total including VAT:', 'woocommerce' ); ?></p>
+							<p><?php _e( 'Total including VAT:', 'kare' ); ?></p>
 							<p class="bold red"><?php
 								echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
 							?></p>
@@ -192,7 +192,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 										$percentage = round( ( ($savings / $regular_price) / $qty) * 100 );
 										
 										$percentage_class = '<span class="discount-percentage">' . $percentage . '%</span>';
-										echo sprintf( __( 'Congratulations! You have just saved %s, which is %s !', 'woocommerce' ), wc_price( $savings ), $percentage_class );
+										echo sprintf( __( 'Congratulations! You have just saved %s, which is %s !', 'kare' ), wc_price( $savings ), $percentage_class );
 									?>
 								</p>
 							</div>	
@@ -204,13 +204,13 @@ do_action( 'woocommerce_before_cart' ); ?>
 			?>
 
 			<div class="delivery_cost_wrapper white_bg">
-				<h5 class="title"><?php _e( 'Delivery costs', 'woocommerce' ); ?></h5>
+				<h5 class="title"><?php _e( 'Delivery costs', 'kare' ); ?></h5>
 				<div class="delivery_price">
 					<p class="text">
-						<?php _e( '** Detailed list in the next step', 'woocommerce' ); ?>
+						<?php _e( '** Detailed list in the next step', 'kare' ); ?>
 					</p>
 					<!-- <p class="price">
-						<span><?php // _e( 'Price:', 'woocommerce' ); ?></span>
+						<span><?php // _e( 'Price:', 'kare' ); ?></span>
 						<?php /*
 							$order_total = WC()->cart->cart_contents_total;
 							$shipping_amount  = get_field('shipping_cost','option');
@@ -229,17 +229,17 @@ do_action( 'woocommerce_before_cart' ); ?>
 			<?php do_action( 'woocommerce_cart_contents' ); ?>
 			<div class="coupon_wrapper">
 				<div colspan="6" class="actions">
-					<h5 class="title"><?php _e( 'Voucher code', 'woocommerce' ); ?></h5>
+					<h5 class="title"><?php _e( 'Voucher code', 'kare' ); ?></h5>
 					
 					<?php if ( wc_coupons_enabled() ) { ?>
 						<div class="coupon">
 							<div class="form-row">
 								<label for="coupon_code" class="">
-									<span> <?php esc_html_e( 'Enter voucher code here...', 'woocommerce' ); ?> </span>
+									<span> <?php esc_html_e( 'Enter voucher code here...', 'kare' ); ?> </span>
 								</label> 
 								<input type="text" name="coupon_code" class="input-text coupon_code" id="coupon_code" value="" placeholder="" /> 
 							</div>
-							<button type="submit" class="coupon_button <?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"><?php esc_html_e( 'Activate voucher code', 'woocommerce' ); ?></button>
+							<button type="submit" class="coupon_button <?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'kare' ); ?>"><?php esc_html_e( 'Activate voucher code', 'kare' ); ?></button>
 							<?php do_action( 'woocommerce_cart_coupon' ); ?>
 						</div>
 					<?php } ?>
@@ -299,7 +299,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 								
 								// הצגת ההודעה
 								$discount_percentage = '<span class="discount-percentage">' . $discount_percentage . '%</span>';
-								echo sprintf( __( 'Congratulations! You have just saved %s , which is %s !', 'woocommerce' ), wc_price( $discount_total ), $discount_percentage );			
+								echo sprintf( __( 'Congratulations! You have just saved %s , which is %s !', 'kare' ), wc_price( $discount_total ), $discount_percentage );			
 							?>
 						</p>
 					</div>
@@ -339,26 +339,26 @@ do_action( 'woocommerce_before_cart' ); ?>
 				</div>
 			</div> -->
 			<div class="another_data">
-				<h5><?php _e( 'Do you need help?', 'woocommerce' ); ?></h5>
+				<h5><?php _e( 'Do you need help?', 'kare' ); ?></h5>
 				<button type="button" aria-label="link" class="contact_mail">
-					<a aria-label="link" href="mailto:<?php echo get_field('contact_email','option'); ?>"  target="_blank"><?php _e( 'Contact us', 'woocommerce' ); ?></a>
+					<a aria-label="link" href="mailto:<?php echo get_field('contact_email','option'); ?>"  target="_blank"><?php _e( 'Contact us', 'kare' ); ?></a>
 				</button>
 
 				<hr>
 				
-				<h5><?php _e( 'Useful links', 'woocommerce' ); ?></h5>
+				<h5><?php _e( 'Useful links', 'kare' ); ?></h5>
 				<button type="button" aria-label="link" class="back_to back_to_home_page">
-					<a aria-label="link" href="<?php echo home_url(); ?>"  target=""><?php _e( 'Back to home page', 'woocommerce' ); ?></a>
+					<a aria-label="link" href="<?php echo home_url(); ?>"  target=""><?php _e( 'Back to home page', 'kare' ); ?></a>
 				</button>
 				<?php
 					// $privacy_policy_page_id = get_option('wp_page_for_privacy_policy'); 
 					// $privacy_policy_url = get_permalink($privacy_policy_page_id);
 				?>
 				<button type="button" aria-label="link" class="back_to back_to_privact">
-					<a aria-label="link" href="<?php echo home_url(); ?>"  target=""><?php _e( 'Terms and Conditions', 'woocommerce' ); ?></a>
+					<a aria-label="link" href="<?php echo home_url(); ?>"  target=""><?php _e( 'Terms and Conditions', 'kare' ); ?></a>
 				</button>
 				<button type="button" aria-label="link" class="back_to back_to_faq">
-					<a aria-label="link" href="<?php home_url(); ?>"  target=""><?php _e( 'Faq', 'woocommerce' ); ?></a>
+					<a aria-label="link" href="<?php home_url(); ?>"  target=""><?php _e( 'Faq', 'kare' ); ?></a>
 				</button>
 			</div>
 			<div class="desc_under_total">
@@ -374,8 +374,8 @@ do_action( 'woocommerce_before_cart' ); ?>
 <section class="delivery_message_wrapper">
 	<div class="delivery_message">
 		<div class="title_message">
-			<h2> <?php _e( '+++ DELIVERY AREA +++', 'woocommerce' ); ?></h2>
+			<h2> <?php _e( '+++ DELIVERY AREA +++', 'kare' ); ?></h2>
 		</div>
-		<p><?php _e( 'Delivery area only Israel. To other countries: kare-design.com', 'woocommerce' ); ?></p>
+		<p><?php _e( 'Delivery area only Israel. To other countries: kare-design.com', 'kare' ); ?></p>
 	</div>
 </section>

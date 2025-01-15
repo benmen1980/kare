@@ -226,8 +226,14 @@
                                     display: inline-block;
                                     flex-shrink: 0;
                                     margin: 0 -8px;
+                                    [dir="rtl"] & {
+                                        transform: rotate(-180deg);
+                                    }
                                     &.w-dir-left {
                                         transform: rotate(-180deg);
+                                        [dir="rtl"] & {
+                                            transform: rotate(0deg);
+                                        }
                                     }
                                 }
                             }
