@@ -57,8 +57,17 @@ jQuery(document).ready(function($){
                 }
 
                 // Success: Handle mini-cart logic
-                console.log("Product added successfully:", response);
-                $('#wc-add-product-notices').html(response.data);
+                console.log("Product added successfully", response.data);
+                var customMessage = ajax_obj.product_added_message;
+       
+                console.log("custom msg",customMessage);
+                $('#wc-add-product-notices').append('\
+                    <div class="woocommerce-message" role="alert">\
+                        ' + ajax_obj.product_added_message + '\
+                    </div>\
+                ');
+                //$('#wc-add-product-notices').html(response.data);
+                //$('#wc-add-product-notices').html(ajax_obj.product_added_message);
                 $(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, $thisbutton]);
                 // $('#modal_mini_cart').toggleClass('is_modal_showing');
 

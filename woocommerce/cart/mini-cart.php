@@ -79,7 +79,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 							</div>
 
 							<?php
-								$stock = ($_product->get_stock_quantity() > 0) ? 'Immediately available' : '60 business days';
+								$stock = ($_product->get_stock_quantity() > 0) ? __('Immediately available', 'kare') : __('60 business days', 'kare');
 							?>
 							<div class="delivery_and_price_wrapper">
 								<?php if ( $_product->is_on_sale() ) : ?>

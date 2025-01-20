@@ -22,6 +22,9 @@
             top: 50%;
             inset-inline-start: 50%;
             transform: translate(-50%, -50%);
+            [dir="rtl"] & {
+                transform: translate(50%,-50%);
+            }
             font-size: 24px;
             font-weight: 400;
             line-height: 36px;

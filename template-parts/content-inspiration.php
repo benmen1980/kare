@@ -1,5 +1,8 @@
 <?php 
     $img_bg = get_field('trend_img',  get_the_ID() );
+    if (is_numeric($img_bg)) {
+        $img_bg = wp_get_attachment_url($img_bg);
+    }
     $array_pdts = get_field('select_pdts',  get_the_ID() );
     // var_dump($array_pdts);
 

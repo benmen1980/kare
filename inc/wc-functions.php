@@ -429,3 +429,10 @@ function allow_purchase_if_acf_stock($is_purchasable, $product) {
 
     return $is_purchasable;
 }
+
+//add_filter('wc_add_to_cart_message_html', 'custom_wc_add_to_cart_message', 10, 99999);
+
+function custom_wc_add_to_cart_message($message, $product_id) {
+    $translated_message = __('Product added to cart successfully!', 'kare');
+    return $translated_message;
+}

@@ -183,6 +183,9 @@
                                         display: inline-block;
                                         flex-shrink: 0;
                                         margin: 0 -8px;
+                                        [dir="rtl"] & {
+                                            transform: rotate(-180deg);
+                                        }
                                     }
                                 }
                             }
@@ -278,8 +281,16 @@
                             
                                     &.small-slider-nav-prev {
                                         inset-inline-start: 0;
+                                        svg{
+                                            [dir="rtl"] & {
+                                                transform: rotate(-180deg);
+                                            }
+                                        }
                                         svg.w-dir-left {
                                             transform: rotate(-180deg);
+                                            [dir="rtl"] & {
+                                                transform: rotate(0deg);
+                                            }
                                         }
                                     }
 
@@ -311,6 +322,9 @@
                                             display: inline-block;
                                             flex-shrink: 0;
                                             margin: 0 -8px;
+                                            [dir="rtl"] & {
+                                                transform: rotate(-180deg);
+                                            }
                                         }
                                     }
                                 }
@@ -578,6 +592,7 @@
                             padding: 19px;
                             width: 58px;
                             height: 58px;
+                            display: flex;
                             &.wishlist_btn_black {
                                 background-color: #000;
                                 .delete_item {
@@ -597,6 +612,11 @@
                                     color: #fff;
                                     content: url('/wp-content/themes/kare/dist/images/svg/heart-outline.svg');
                                     filter: brightness(0) saturate(100%) invert(99%) sepia(1%) saturate(46%) hue-rotate(113deg) brightness(117%) contrast(100%);
+                                }
+                                svg{
+                                    fill:#fff;
+                                    margin-inline-end: 0;
+                                    margin-inline-start: 0;
                                 }
                             }
                             .yith-wcwl-add-to-wishlist {
@@ -1080,8 +1100,14 @@
                                 display: inline-block;
                                 flex-shrink: 0;
                                 margin: 0 -8px;
+                                [dir="rtl"] & {
+                                    transform: rotate(-180deg);
+                                }
                                 &.w-dir-left {
                                     transform: rotate(-180deg);
+                                    [dir="rtl"] & {
+                                        transform: rotate(0deg);
+                                    }
                                 }
                             }
                         }
@@ -1117,6 +1143,9 @@
                         bottom: 0;
                         inset-inline-start: 50%;
                         transform: translateX(-50%);
+                        [dir="rtl"] & {
+                            transform: translateX(50%);
+                        }
                         transition: opacity .3s;
                         // transform: translateZ(0);
                         z-index: 10;
@@ -1483,6 +1512,7 @@
                     list-style-type: none;
                     position: relative;
                     margin: 0;
+                    padding-inline-start: 36px;
                     &::before {
                         content: '';
                         background-image: url("../images/svg/check.svg");

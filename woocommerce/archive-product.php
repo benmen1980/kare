@@ -153,6 +153,14 @@ endif;
 			<svg></svg>
 		</button>
 	</div> -->
+	<div class="ambiance_filter">
+		<button type="button" class="btn_active" id="pdt_img">
+			<?php echo esc_html__('Product', 'kare') ?>
+		</button>
+		<button type="button" id="ambiance_img">
+			<?php echo esc_html__('Ambiance', 'kare') ?>
+		</button>
+	</div>
 	<div class="product_sorting_wrapper">
 		<div class="hidden"></div>
 		<div class="product-count">

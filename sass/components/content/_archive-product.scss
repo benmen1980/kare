@@ -27,6 +27,9 @@
             top: 50%;
             inset-inline-start: 50%;
             transform: translate(-50%, -50%);
+            [dir="rtl"] & {
+                transform: translate(50%,50%);
+            }
             font-size: 24px;
             font-weight: 400;
             line-height: 36px;
@@ -349,6 +352,22 @@
             }
         }
     }
+    .ambiance_filter{
+        display: flex;
+        button{
+            @extend %white-btn;
+            transition-property: background-color,border-color,color,fill,stroke;
+            transition-duration: .3s;
+            padding: 8px 16px;
+            &.btn_active{
+                background-color: #f4f4f4;
+                &:hover{
+                    background-color: #e4e4e4;
+                    color:#000;
+                } 
+            }
+        }
+    }
 
     .product_sorting_wrapper {
         display: none;
@@ -557,6 +576,9 @@
                 top: 110%;
                 inset-inline-start: 50%;
                 transform: translate(-50%);
+                [dir="rtl"] & {
+                    transform: translate(50%,-50%);
+                }
             }
 
             &.open-up {

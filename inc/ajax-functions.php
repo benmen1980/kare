@@ -7,7 +7,8 @@ function kare_ajax_enqueue() {
 	wp_localize_script('kare-ajax-scripts', 'ajax_obj', array( 
         'ajax_url' => admin_url( 'admin-ajax.php' ),
         'current_page' => get_query_var( 'paged' ) ? get_query_var('paged') : 1,
-        'woo_shop_url' => get_permalink( wc_get_page_id( 'cart' ) )
+        'woo_shop_url' => get_permalink( wc_get_page_id( 'cart' ) ),
+        'product_added_message' => __('Product added to cart successfully!', 'kare')
     ));
 }
 
@@ -93,17 +94,19 @@ function autocomplete_city(){
 
     $search_term = $wpdb->esc_like(trim($_REQUEST['city']));
 
+    $current_locale = get_locale();
+    $search_column = ($current_locale === 'he_IL') ? 'name_he' : 'name_en';
+
 
     // search for any city starting with the string
     $results = $wpdb->get_results( $wpdb->prepare(
         "
-        SELECT id, name_en as value
+        SELECT id, $search_column as value
         FROM `$table_cities_and_settelments` 
-        WHERE name_he LIKE %s OR name_en LIKE %s
-        ORDER BY name_en
+        WHERE $search_column LIKE %s
+        ORDER BY $search_column
         LIMIT 10
         ",
-        ($search_term . '%'),
         ($search_term . '%')
     ) );
 
@@ -111,13 +114,12 @@ function autocomplete_city(){
     if( !count($results) ) {
         $results = $wpdb->get_results( $wpdb->prepare(
             "
-            SELECT id, name_en as value
+            SELECT id, $search_column as value
             FROM `$table_cities_and_settelments` 
-            WHERE name_he LIKE %s OR name_en LIKE %s
+            WHERE $search_column LIKE %s
             ORDER BY name_en
             LIMIT 10
             ",
-            ('%' . $search_term . '%'),
             ('%' . $search_term . '%')
         ) );
     }

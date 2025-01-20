@@ -188,6 +188,9 @@ section.section_slider_categories {
                     bottom: 0;
                     inset-inline-start: 50%;
                     transform: translateX(-50%);
+                    [dir="rtl"] & {
+                        transform: translateX(50%);
+                    }
                     transition: opacity .3s;
                     // transform: translateZ(0);
                     z-index: 10;

@@ -681,7 +681,7 @@ jQuery(document).on("ready", function(){
     }
 
     // Check if the current page is the checkout page
-    if (window.location.href.indexOf('checkout') > -1) {
+    if ($('body').hasClass('woocommerce-checkout')) {
         //Open the product display in the checkout form
         function toggleCart() {
             $('#show_pdts').on('click', function() {
@@ -839,6 +839,57 @@ jQuery(document).on("ready", function(){
         $('.banner-strip').slideUp(300, function () {
             $(this).remove(); 
         });
+    });
+
+    $('.ambiance_filter button').click(function() {
+        // Remove 'btn_active' class from all buttons
+        $('.ambiance_filter button').removeClass('btn_active');
+
+        // Add 'btn_active' class to the clicked button
+        $(this).addClass('btn_active');
+       
+        if ($(this).attr('id') === 'ambiance_img' && $(this).hasClass('btn_active')) {
+            $('.image_with_tags').addClass('swap_img');
+        }
+        else if ($(this).attr('id') === 'pdt_img' && $(this).hasClass('btn_active')) {
+            $('.image_with_tags').removeClass('swap_img');
+        }
+
+        $('.image_with_tags').each(function () {
+
+            $(this).find('.image-pdts a img').css({
+                'transition': 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out'
+            });
+            const hoverImage = $(this).find('.thumbnail-hover a img');
+            const thumbnailImage = $(this).find('.has-hover a img');
+    
+            // If 'swap_img' class exists, swap the images
+            if ($(this).hasClass('swap_img')) {
+                if (hoverImage.length > 0 && thumbnailImage.length > 0) {
+                    // Swap the src attributes
+                    const tempSrc = thumbnailImage.attr('src');
+                    thumbnailImage.attr('src', hoverImage.attr('src'));
+                    hoverImage.attr('src', tempSrc);
+
+                }
+            } else {
+                console.log('no swap');
+                // Reset the images to their original state
+                if (hoverImage.length > 0 && thumbnailImage.length > 0) {
+                    const originalSrc = hoverImage.attr('src');
+                    const currentThumbnailSrc = thumbnailImage.attr('src');
+    
+                    // Restore original hover image
+                    hoverImage.attr('src',currentThumbnailSrc );
+    
+                    // Store current thumbnail src for potential reuse
+                    thumbnailImage.attr('src', originalSrc);
+
+                }
+            }
+        })
+
+  
     });
 
 });

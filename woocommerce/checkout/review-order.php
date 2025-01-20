@@ -26,7 +26,7 @@ $total_quantity = $cart->get_cart_contents_count();
 <div class="shop_table woocommerce-checkout-review-order-table">
 	<section class="wc-cart-mini">
 		<div class="cart-header">
-			<h5 class="cart-title"><?php echo esc_html_e('Shopping cart (' . $total_quantity . ' products)', 'kare'); ?></h5>
+			<h5 class="cart-title"><?php printf( esc_html__('Shopping cart (%d products)', 'kare'), $total_quantity); ?></h5>
 			<div class="checkout-pdts">
 				<button aria-label="button" type="button" alt="show checkout products" id="show_pdts" class="toggle-cart">
 					<span><?php _e( 'Show products', 'kare' ); ?></span>
@@ -64,7 +64,7 @@ $total_quantity = $cart->get_cart_contents_count();
 										<?php echo wc_get_formatted_cart_item_data( $cart_item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 									</div>
 									<?php
-										$stock = ($_product->get_stock_quantity() > 0) ? 'Immediately available' : '60 business days';
+										$stock = ($_product->get_stock_quantity() > 0) ? __('Immediately available', 'kare') : __('60 business days', 'kare');
 									?>
 									<div class="delivery_and_price_wrapper">
 										<div class="product-delivery">

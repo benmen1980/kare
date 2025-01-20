@@ -103,7 +103,7 @@ $order = wc_get_order($order_id);
 											<?php echo wp_kses_post( $product->get_name() ) . '&nbsp;<strong class="product-quantity">×' . $item->get_quantity() . '</strong>' ?>
 										</div>
 										<?php
-											$stock = ($product->get_stock_quantity() > 0) ? 'Immediately available' : '60 business days';
+											$stock = ($product->get_stock_quantity() > 0) ? __('Immediately available', 'kare') : __('60 business days', 'kare');
 										?>
 										<div class="delivery_and_price_wrapper">
 											<div class="product-delivery">

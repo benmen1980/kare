@@ -33,7 +33,9 @@ do_action( 'woocommerce_before_cart' ); ?>
 		<div class="pdts_content">
 
 			<div class="comment_cart white_bg">
-				<h4 class="qty_products"><?php echo esc_html_e('Shopping cart (' . $total_quantity . ' products)', 'kare'); ?></h4>
+				<h4 class="qty_products">
+					<?php printf(esc_html__('Shopping cart (%d products)', 'kare'), $total_quantity); ?>
+				</h4>
 				<p class="comment_txt"><?php echo get_field('comment_txt','option'); ?></p>
 			</div>
 
@@ -139,7 +141,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 						</div>
 
 						<?php
-							$stock = ($_product->get_stock_quantity() > 0) ? 'Immediately available' : '60 business days';
+							$stock = ($_product->get_stock_quantity() > 0) ? __('Immediately available', 'kare') : __('60 business days', 'kare');
 						?>
 						<div class="delivery_and_price_wrapper">
 							<div class="product-delivery">

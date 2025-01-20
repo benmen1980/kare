@@ -42,7 +42,7 @@ function wishlist_endpoint_content() {
     if (shortcode_exists('yith_wcwl_wishlist')) {
         echo do_shortcode('[yith_wcwl_wishlist]');
     } else {
-        echo '<p>' . __('Wishlist content is not available.', 'your-text-domain') . '</p>';
+        echo '<p>' . __('Wishlist content is not available.', 'kare') . '</p>';
     }
 }
 
@@ -298,3 +298,58 @@ if (!wp_next_scheduled('upload_city_name_file_hook')) {
 
 
 add_filter( 'woocommerce_order_received_verify_known_shoppers', '__return_false' );
+
+
+
+// Include WordPress and WooCommerce functionality
+function get_products_with_title_and_excerpt() {
+    // Ensure WPML is active
+    if (!function_exists('icl_object_id')) {
+        return "WPML plugin is not active.";
+    }
+
+    // Get all products
+    $args = [
+        'post_type'      => 'product',
+        'posts_per_page' => -1, // Retrieve all products
+        'post_status'    => 'publish',
+    ];
+
+    $products_query = new WP_Query($args);
+
+    if ($products_query->have_posts()) {
+        $products = [];
+
+        while ($products_query->have_posts()) {
+            $products_query->the_post();
+
+            // Get the product ID
+            $product_id = get_the_ID();
+
+            // Get the Hebrew title
+            $hebrew_title = get_the_title($product_id);
+
+            // Get the English excerpt using WPML
+            $english_excerpt = apply_filters('wpml_translate_single_string', get_post_field('post_excerpt', $product_id), 'woocommerce', 'Product Excerpt', 'en');
+
+            // Add to the products array
+            $products[] = [
+                'ID'      => $product_id,
+                'Title'   => $hebrew_title,
+                'Excerpt' => $english_excerpt,
+            ];
+        }
+
+        wp_reset_postdata();
+
+        return $products;
+    }
+
+    return "No products found.";
+}
+
+// Example usage: Display in a custom admin page or export to JSON
+// $products = get_products_with_title_and_excerpt();
+// echo '<pre>';
+// print_r($products);
+// echo '</pre>';

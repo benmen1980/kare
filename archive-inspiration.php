@@ -36,8 +36,11 @@ get_header();
 			while ($custom_posts_inspirations->have_posts()) : $custom_posts_inspirations->the_post();
 				// Get the post ID
 				$post_id = get_the_ID();
-				// Get ACF fields (example fields: 'field_1', 'field_2')
 				$trend_img = get_field('trend_img', $post_id);
+				// Check if the value is an ID and convert to URL if needed
+				if (is_numeric($trend_img)) {
+					$trend_img = wp_get_attachment_url($trend_img);
+				}
 				$trend_title = get_the_title();?>
 				<div class="trend_box_wraper">
 					<a href="<?php echo get_the_permalink();?>">

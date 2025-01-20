@@ -152,7 +152,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 		
 		<div class="r_side">
 			<div class="summary entry-summary product-details">
-				<p class="product-sku"><?php echo 'Item no.: ' . $product->get_sku(); ?></p>
+				<p class="product-sku"><?php echo esc_html__('Item no:', 'kare') .' '. $product->get_sku(); ?></p>
 
 				<?php
 				/**
@@ -263,7 +263,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 				</div>
 
 				<?php
-					$stock = ($product->get_stock_quantity() > 0) ? ' Immediately available' : ' 60 business days';
+					$stock = ($product->get_stock_quantity() > 0) ? __('Immediately available', 'kare') : __('60 business days', 'kare');
 					$kare_stock = get_post_meta($product->get_id(), 'kare_general_stock', true);
 					$stock_available = get_post_meta($product->get_id(), '_stock', true);
 					$backorders_status = get_post_meta($product->get_id(), '_backorders', true);

@@ -294,20 +294,28 @@
                                         inset-inline-start: -25px;
                                     }  
                                 
-                                    &#billing_city_field ul {
-                                        list-style: none;
-                                        padding: 4px 24px;
-                                        margin: 0;
-                                        padding-inline-start: 24px;
-                                        background-color: #F4F4F4;
-                                        top: 4px !important;
-                                        box-shadow: inset 2px 0 0 #026805;
-    
-                                        li.ui-menu-item {
-                                            margin: 8px auto;
-                                            cursor: pointer;
+                                    &#billing_city_field{
+                                        label.focused{
+                                            [dir="rtl"] & {
+                                                inset-inline-start: 0;
+                                            }
                                         }
-                                    }
+                                        
+                                        ul {
+                                            list-style: none;
+                                            padding: 4px 24px;
+                                            margin: 0;
+                                            padding-inline-start: 24px;
+                                            background-color: #F4F4F4;
+                                            top: 4px !important;
+                                            box-shadow: inset 2px 0 0 #026805;
+        
+                                            li.ui-menu-item {
+                                                margin: 8px auto;
+                                                cursor: pointer;
+                                            }
+                                        }
+                                    } 
     
                                     &#billing_state_field {
                                         display: none !important;
