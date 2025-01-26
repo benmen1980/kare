@@ -249,11 +249,42 @@
                                             opacity: 1;
                                             mix-blend-mode: darken;
                                         }
+                                        &.threed_wrapper{
+                                            padding:0;
+                                            .threed_btn{
+                                                width: 100%;
+                                                height: 100%;
+                                                margin: 0;
+                                                padding: 0;
+                                                border: 0;
+                                                border-radius: 0;
+                                                cursor: pointer;
+                                                svg{
+                                                    width: 50px;
+                                                    height: 50px;
+                                                }
+                                            }
+                                        }
                                     }
 
                                     &.active-small-thumbnail .product_zoom_thumbnail_item {
                                         border-color: #e10915;
                                     }
+                                    &.swiper-slide-thumb-active{
+                                        .product_zoom_thumbnail_item {
+                                            border-color: #e10915;
+                                            
+                                        }
+                                        &.threed-slide{
+                                            .product_zoom_thumbnail_item {
+                                                border: 0;
+                                                &:hover{
+                                                    border-color: #e10915;
+                                                }
+                                            }
+                                        }
+
+                                    } 
                                 }
                             }
 
@@ -1292,6 +1323,11 @@
                 .video_container {
                     max-width: 768px;
                     margin: auto;
+                    @include media("<=tablet") {
+                        display: flex;
+                        align-items: center;
+                        height: calc(100vw * 432/768);
+                    }
                 }
             }
 
@@ -1571,4 +1607,48 @@
         }
        
     }
+}
+
+.threed_popup{
+    width: 80vw;
+    height: 70vh;
+    max-width: 1200px;
+    max-height: 455px;
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    inset-inline-end: 0;
+    bottom: 0;
+    inset-inline-start: 0;
+    height: 100%;
+    margin: auto;
+    overflow: hidden;
+    background-color: #fff;
+    display: none;
+    @include media("<=tablet") {
+        max-height: none;
+        width:100%;
+    }
+    .white-btn{
+        @extend %white-btn;
+        display: flex;
+        position: absolute;
+        top: 16px;
+        inset-inline-end: 16px;
+        z-index: 1;
+        padding: 16px 16px;
+        svg{
+            width: 24px;
+            height: 24px;
+        }
+    }
+}
+.fader{
+    position: fixed; 
+    top: 0; 
+    inset-inline-start: 0; 
+    width: 100vw; 
+    height: 100vh; 
+    background-color: rgba(0,0,0,.5);
+    z-index: 99;
 }

@@ -135,7 +135,7 @@ button {
           align-items: center;
 }
 
-.widget_shopping_cart_content .woocommerce-mini-cart.cart_list .woocommerce-mini-cart-item .cart_product_quantity_remove_wrapper .cart-product-quantity-remove .remove_from_cart_button, .woocommerce-checkout .site-main .entry-content .woocommerce form.woocommerce-checkout #order_review div.woocommerce-checkout-review-order-table section.another-data button, .woocommerce-cart .site-main .entry-content .woocommerce > .return-to-shop a, .woocommerce-cart .site-main .entry-content .woocommerce form.woocommerce-cart-form .cart_summary .cart_summary_content .another_data button, .woocommerce-cart .site-main .entry-content .woocommerce form.woocommerce-cart-form .cart_content_wrap .pdts_content .woocommerce-cart-form__cart-item .cart-product-details .cart_product_quantity_remove_wrapper .cart-product-quantity-remove .button_underline, .logout_popup .logout_popup_content .popup_btns #confirm_logout, .accordion_details_wrapper .accordion_item .accordion_content .downloads_wrapper .btn_white_hover, .accordion_details_wrapper .accordion_item .accordion_content .reviews_wrapper .customer_reviews .btn_white_hover, #primary .product .top_details .r_side .product-details .notification_content .notification_and_btn .wishlist_btn, #primary .product .top_details .r_side .product-details form.cart .wishlist_btn, #primary .product .top_details .r_side .product-details form.cart .custom_select_wrapper .btn_quantity_wrapper, .load_more_pdts_wrapper .pagination-dropdown .pagination-current, .load_more_pdts_wrapper .btn_white_hover, .container-archive-product .ambiance_filter button, header .login_sidebar .sidebar-content .custom-reset-password-form form button[type=submit], header .wishlist_sidebar .sidebar-content .custom-reset-password-form form button[type=submit], header .mobile_menu_sidebar .sidebar-content .custom-reset-password-form form button[type=submit], header .login_sidebar .sidebar-content .bottom_sidebar .contact_mail, header .wishlist_sidebar .sidebar-content .bottom_sidebar .contact_mail, header .mobile_menu_sidebar .sidebar-content .bottom_sidebar .contact_mail, header .login_sidebar .sidebar-content .bottom_sidebar .register_page, header .wishlist_sidebar .sidebar-content .bottom_sidebar .register_page, header .mobile_menu_sidebar .sidebar-content .bottom_sidebar .register_page, header .nav-top-wrapper .w-1-3 .shopping-cart {
+.widget_shopping_cart_content .woocommerce-mini-cart.cart_list .woocommerce-mini-cart-item .cart_product_quantity_remove_wrapper .cart-product-quantity-remove .remove_from_cart_button, .woocommerce-checkout .site-main .entry-content .woocommerce form.woocommerce-checkout #order_review div.woocommerce-checkout-review-order-table section.another-data button, .woocommerce-cart .site-main .entry-content .woocommerce > .return-to-shop a, .woocommerce-cart .site-main .entry-content .woocommerce form.woocommerce-cart-form .cart_summary .cart_summary_content .another_data button, .woocommerce-cart .site-main .entry-content .woocommerce form.woocommerce-cart-form .cart_content_wrap .pdts_content .woocommerce-cart-form__cart-item .cart-product-details .cart_product_quantity_remove_wrapper .cart-product-quantity-remove .button_underline, .logout_popup .logout_popup_content .popup_btns #confirm_logout, .threed_popup .white-btn, .accordion_details_wrapper .accordion_item .accordion_content .downloads_wrapper .btn_white_hover, .accordion_details_wrapper .accordion_item .accordion_content .reviews_wrapper .customer_reviews .btn_white_hover, #primary .product .top_details .r_side .product-details .notification_content .notification_and_btn .wishlist_btn, #primary .product .top_details .r_side .product-details form.cart .wishlist_btn, #primary .product .top_details .r_side .product-details form.cart .custom_select_wrapper .btn_quantity_wrapper, .load_more_pdts_wrapper .pagination-dropdown .pagination-current, .load_more_pdts_wrapper .btn_white_hover, .container-archive-product .ambiance_filter button, header .login_sidebar .sidebar-content .custom-reset-password-form form button[type=submit], header .wishlist_sidebar .sidebar-content .custom-reset-password-form form button[type=submit], header .mobile_menu_sidebar .sidebar-content .custom-reset-password-form form button[type=submit], header .login_sidebar .sidebar-content .bottom_sidebar .contact_mail, header .wishlist_sidebar .sidebar-content .bottom_sidebar .contact_mail, header .mobile_menu_sidebar .sidebar-content .bottom_sidebar .contact_mail, header .login_sidebar .sidebar-content .bottom_sidebar .register_page, header .wishlist_sidebar .sidebar-content .bottom_sidebar .register_page, header .mobile_menu_sidebar .sidebar-content .bottom_sidebar .register_page, header .nav-top-wrapper .w-1-3 .shopping-cart {
   padding: 16px 24px;
   width: auto;
   max-width: 100%;
@@ -151,7 +151,7 @@ button {
   text-transform: uppercase;
   cursor: pointer;
 }
-.widget_shopping_cart_content .woocommerce-mini-cart.cart_list .woocommerce-mini-cart-item .cart_product_quantity_remove_wrapper .cart-product-quantity-remove .remove_from_cart_button:hover, .woocommerce-checkout .site-main .entry-content .woocommerce form.woocommerce-checkout #order_review div.woocommerce-checkout-review-order-table section.another-data button:hover, .woocommerce-cart .site-main .entry-content .woocommerce > .return-to-shop a:hover, .woocommerce-cart .site-main .entry-content .woocommerce form.woocommerce-cart-form .cart_summary .cart_summary_content .another_data button:hover, .woocommerce-cart .site-main .entry-content .woocommerce form.woocommerce-cart-form .cart_content_wrap .pdts_content .woocommerce-cart-form__cart-item .cart-product-details .cart_product_quantity_remove_wrapper .cart-product-quantity-remove .button_underline:hover, .logout_popup .logout_popup_content .popup_btns #confirm_logout:hover, .accordion_details_wrapper .accordion_item .accordion_content .downloads_wrapper .btn_white_hover:hover, .accordion_details_wrapper .accordion_item .accordion_content .reviews_wrapper .customer_reviews .btn_white_hover:hover, #primary .product .top_details .r_side .product-details .notification_content .notification_and_btn .wishlist_btn:hover, #primary .product .top_details .r_side .product-details form.cart .wishlist_btn:hover, #primary .product .top_details .r_side .product-details form.cart .custom_select_wrapper .btn_quantity_wrapper:hover, .load_more_pdts_wrapper .pagination-dropdown .pagination-current:hover, .load_more_pdts_wrapper .btn_white_hover:hover, .container-archive-product .ambiance_filter button:hover, header .login_sidebar .sidebar-content .custom-reset-password-form form button[type=submit]:hover, header .wishlist_sidebar .sidebar-content .custom-reset-password-form form button[type=submit]:hover, header .mobile_menu_sidebar .sidebar-content .custom-reset-password-form form button[type=submit]:hover, header .login_sidebar .sidebar-content .bottom_sidebar .contact_mail:hover, header .wishlist_sidebar .sidebar-content .bottom_sidebar .contact_mail:hover, header .mobile_menu_sidebar .sidebar-content .bottom_sidebar .contact_mail:hover, header .login_sidebar .sidebar-content .bottom_sidebar .register_page:hover, header .wishlist_sidebar .sidebar-content .bottom_sidebar .register_page:hover, header .mobile_menu_sidebar .sidebar-content .bottom_sidebar .register_page:hover, header .nav-top-wrapper .w-1-3 .shopping-cart:hover {
+.widget_shopping_cart_content .woocommerce-mini-cart.cart_list .woocommerce-mini-cart-item .cart_product_quantity_remove_wrapper .cart-product-quantity-remove .remove_from_cart_button:hover, .woocommerce-checkout .site-main .entry-content .woocommerce form.woocommerce-checkout #order_review div.woocommerce-checkout-review-order-table section.another-data button:hover, .woocommerce-cart .site-main .entry-content .woocommerce > .return-to-shop a:hover, .woocommerce-cart .site-main .entry-content .woocommerce form.woocommerce-cart-form .cart_summary .cart_summary_content .another_data button:hover, .woocommerce-cart .site-main .entry-content .woocommerce form.woocommerce-cart-form .cart_content_wrap .pdts_content .woocommerce-cart-form__cart-item .cart-product-details .cart_product_quantity_remove_wrapper .cart-product-quantity-remove .button_underline:hover, .logout_popup .logout_popup_content .popup_btns #confirm_logout:hover, .threed_popup .white-btn:hover, .accordion_details_wrapper .accordion_item .accordion_content .downloads_wrapper .btn_white_hover:hover, .accordion_details_wrapper .accordion_item .accordion_content .reviews_wrapper .customer_reviews .btn_white_hover:hover, #primary .product .top_details .r_side .product-details .notification_content .notification_and_btn .wishlist_btn:hover, #primary .product .top_details .r_side .product-details form.cart .wishlist_btn:hover, #primary .product .top_details .r_side .product-details form.cart .custom_select_wrapper .btn_quantity_wrapper:hover, .load_more_pdts_wrapper .pagination-dropdown .pagination-current:hover, .load_more_pdts_wrapper .btn_white_hover:hover, .container-archive-product .ambiance_filter button:hover, header .login_sidebar .sidebar-content .custom-reset-password-form form button[type=submit]:hover, header .wishlist_sidebar .sidebar-content .custom-reset-password-form form button[type=submit]:hover, header .mobile_menu_sidebar .sidebar-content .custom-reset-password-form form button[type=submit]:hover, header .login_sidebar .sidebar-content .bottom_sidebar .contact_mail:hover, header .wishlist_sidebar .sidebar-content .bottom_sidebar .contact_mail:hover, header .mobile_menu_sidebar .sidebar-content .bottom_sidebar .contact_mail:hover, header .login_sidebar .sidebar-content .bottom_sidebar .register_page:hover, header .wishlist_sidebar .sidebar-content .bottom_sidebar .register_page:hover, header .mobile_menu_sidebar .sidebar-content .bottom_sidebar .register_page:hover, header .nav-top-wrapper .w-1-3 .shopping-cart:hover {
   background-color: #000;
   color: #fff;
 }
@@ -4713,7 +4713,32 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
   opacity: 1;
   mix-blend-mode: darken;
 }
+#primary .product .top_details .l_side .product-gallery .small_img_slider_wrapper .swiper_img_slider.thumb-slider .img_gallery_small.swiper-wrapper .swiper-slide .product_zoom_thumbnail_item.threed_wrapper {
+  padding: 0;
+}
+#primary .product .top_details .l_side .product-gallery .small_img_slider_wrapper .swiper_img_slider.thumb-slider .img_gallery_small.swiper-wrapper .swiper-slide .product_zoom_thumbnail_item.threed_wrapper .threed_btn {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+}
+#primary .product .top_details .l_side .product-gallery .small_img_slider_wrapper .swiper_img_slider.thumb-slider .img_gallery_small.swiper-wrapper .swiper-slide .product_zoom_thumbnail_item.threed_wrapper .threed_btn svg {
+  width: 50px;
+  height: 50px;
+}
 #primary .product .top_details .l_side .product-gallery .small_img_slider_wrapper .swiper_img_slider.thumb-slider .img_gallery_small.swiper-wrapper .swiper-slide.active-small-thumbnail .product_zoom_thumbnail_item {
+  border-color: #e10915;
+}
+#primary .product .top_details .l_side .product-gallery .small_img_slider_wrapper .swiper_img_slider.thumb-slider .img_gallery_small.swiper-wrapper .swiper-slide.swiper-slide-thumb-active .product_zoom_thumbnail_item {
+  border-color: #e10915;
+}
+#primary .product .top_details .l_side .product-gallery .small_img_slider_wrapper .swiper_img_slider.thumb-slider .img_gallery_small.swiper-wrapper .swiper-slide.swiper-slide-thumb-active.threed-slide .product_zoom_thumbnail_item {
+  border: 0;
+}
+#primary .product .top_details .l_side .product-gallery .small_img_slider_wrapper .swiper_img_slider.thumb-slider .img_gallery_small.swiper-wrapper .swiper-slide.swiper-slide-thumb-active.threed-slide .product_zoom_thumbnail_item:hover {
   border-color: #e10915;
 }
 #primary .product .top_details .l_side .product-gallery .small_img_slider_wrapper .swiper_img_slider.thumb-slider .swiper-nav {
@@ -5799,6 +5824,17 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
   max-width: 768px;
   margin: auto;
 }
+@media (max-width: 940px) {
+  .accordion_details_wrapper .accordion_item .accordion_content .video_wrapper .video_container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: 56.25vw;
+  }
+}
 .accordion_details_wrapper .accordion_item .accordion_content .dimensions_wrapper {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
@@ -6105,6 +6141,54 @@ div.swiper-slide div.search_suggestions_product .box_product .product_details_wr
   #modal_mini_cart .sidebar-content .bottom_sidebar {
     padding-bottom: 0;
   }
+}
+
+.threed_popup {
+  width: 80vw;
+  height: 70vh;
+  max-width: 1200px;
+  max-height: 455px;
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  inset-inline-end: 0;
+  bottom: 0;
+  inset-inline-start: 0;
+  height: 100%;
+  margin: auto;
+  overflow: hidden;
+  background-color: #fff;
+  display: none;
+}
+@media (max-width: 940px) {
+  .threed_popup {
+    max-height: none;
+    width: 100%;
+  }
+}
+.threed_popup .white-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  top: 16px;
+  inset-inline-end: 16px;
+  z-index: 1;
+  padding: 16px 16px;
+}
+.threed_popup .white-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+.fader {
+  position: fixed;
+  top: 0;
+  inset-inline-start: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
 }
 
 /* My Account Page

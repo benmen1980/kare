@@ -7,7 +7,10 @@ if (!is_category() && !is_product_category() && !is_shop() && !is_search() && $i
 <?php endif; ?>
     <div class="search_suggestions_product">
         <?php 
-        $pdt_name = $product->get_name();
+        //$pdt_name = $product->get_name();
+        $translated_product_id = apply_filters('wpml_object_id', $product->get_id(), 'product', true);
+        // Get the product name and permalink for the translated product
+        $pdt_name = get_the_title($translated_product_id);
         $pdt_permalink = get_permalink( $product->get_id() );
         if ( $product->is_type( 'variable' ) ) {
             $regular_price = $product->get_variation_regular_price();

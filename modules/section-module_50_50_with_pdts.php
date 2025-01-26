@@ -66,7 +66,8 @@
                                 'value' => 'instock',
                                 'compare' => '=',
                             ),
-                        )
+                        ),
+                        'suppress_filters' => false,
                     );
                     $featured_pdts = get_posts( $args_cat );
                 endif;

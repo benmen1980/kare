@@ -102,6 +102,19 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 					<div class="small_img_slider_wrapper tabs_wrapper">
 						<div class="swiper_img_slider thumb-slider">
 							<div id="slider_img_gallery_small" class="img_gallery_small swiper-wrapper">
+								<?php if ( get_field('product_details') ){
+									$product_details = get_field('product_details'); // Getting the main set of fields
+									$threed_url = $product_details['3d_url'];
+									if($threed_url): ?>
+										<div class="swiper-slide threed-slide">
+											<div class="product_zoom_thumbnail_item threed_wrapper">
+												<button type="button" class="threed_btn">
+													<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/3d.svg'); ?>
+												</button>
+											</div>
+										</div>
+									<?php endif;
+								} ?>
 								<div class="swiper-slide active-small-thumbnail">
 									<div class="product_zoom_thumbnail_item">
 										<!-- <a href="<?php// echo get_permalink( $product->ID ).'#zoom_1';?>" data_main_slider="main_slider_1" class="small_img_active"> -->
@@ -444,6 +457,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 
 				// Getting additional fields from the main field group
 				$video_url = $product_details['url_video'];
+				
 				$img_link = $product_details['img_dimensions_link'];
 				$txt_description = $product_details['more_description'];
 				$file_download = $product_details['file_download'];
@@ -514,22 +528,27 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 					</div>
 				</div>
 			</div>
-			<?php if($video_url) : ?>
-				<div class="accordion_item">
-					<div class="accordion_title">
-						<button type="button" aria-label="button" class="accordion_question">
-							<span class="title"><?php echo esc_html_e( 'Video', 'kare' ); ?></span>
-							<?php echo file_get_contents( get_template_directory_uri() . '/dist/images/svg/arrow-down.svg');?>
-						</button>
-					</div>
-					<div class="accordion_content">
-						<div class="accordion_answer video_wrapper">
-							<div class="video_container">
-								<iframe width="768" height="432" src="<?php echo $video_url; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<?php if($video_url) : 
+			    preg_match('/https?:\/\/(?:www\.)?vimeo\.com\/([0-9]+)/i', $video_url, $matches);
+				$vimeo_id = $matches[1] ?? null;
+				//echo 'video id'.$vimeo_id;
+				if ($vimeo_id) { ?>
+					<div class="accordion_item">
+						<div class="accordion_title">
+							<button type="button" aria-label="button" class="accordion_question">
+								<span class="title"><?php echo esc_html_e( 'Video', 'kare' ); ?></span>
+								<?php echo file_get_contents( get_template_directory_uri() . '/dist/images/svg/arrow-down.svg');?>
+							</button>
+						</div>
+						<div class="accordion_content">
+							<div class="accordion_answer video_wrapper">
+								<div class="video_container">
+									<iframe width="768" height="432" src="https://player.vimeo.com/video/<?php echo $vimeo_id; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				<?php } ?>
 			<?php endif?>
 			<?php if($img_link) : ?>
 				<div class="accordion_item">
@@ -836,6 +855,19 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 		
 	</section>
 
- </div>
+</div>
+<?php if ( get_field('product_details') ){
+	$product_details = get_field('product_details');
+	$threed_url = $product_details['3d_url'];
+	if($threed_url): ?>
+		<div class="threed_popup" id="threed_pdt_<?php the_ID(); ?>">
+			<button type="button" class="white-btn">
+				<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/close.svg'); ?>
+			</button>
+			<iframe src="<?php echo $threed_url?>" width="100%" height="100%"   allow="fullscreen; autoplay; accelerometer; gyroscope">
+			</iframe>
+		</div>
+	<?php endif;
+} ?>
  
  <?php //do_action( 'woocommerce_after_single_product' ); ?>

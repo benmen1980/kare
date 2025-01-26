@@ -138,17 +138,7 @@ jQuery(document).on("ready", function(){
             });
         }
 
-        // Initialize the large gallery (main-slider)
-        const largeGallery = new Swiper('.main-slider', {
-            slidesPerView: 1,
-            spaceBetween: 0,
-            initialSlide: 0,
-            loop: false,
-            navigation: {
-                nextEl: '.large-slider-nav-next',
-                prevEl: '.large-slider-nav-prev',
-            },
-        });
+
         //largeGallery.update(); // Forces Swiper to recalculate slides
 
         // Initialize the small gallery (thumb-slider)
@@ -170,43 +160,97 @@ jQuery(document).on("ready", function(){
                 nextEl: '.small-slider-nav-next',
                 prevEl: '.small-slider-nav-prev',
             },
+            watchSlidesProgress: true,
         });
+        const hasThreedSlide = document.querySelector('.threed-slide') !== null;
+        // Initialize the large gallery (main-slider)
+        const largeGallery = new Swiper('.main-slider', {
+            slidesPerView: 1,
+            spaceBetween: 0,
+            initialSlide: 0,
+            loop: false,
+            navigation: {
+                nextEl: '.large-slider-nav-next',
+                prevEl: '.large-slider-nav-prev',
+            },
+            thumbs: {
+                swiper: smallGallery,
+            },
+            on: {
+                slideChange: function () {
+                     // Sync small gallery to the active index of the main gallery
+                    const targetIndex = hasThreedSlide ? this.activeIndex + 1 : this.activeIndex;
+                    smallGallery.slideTo(targetIndex);
+                },
+            },
+
+        });
+
+        // Exclude the 3D button slide from affecting the main gallery if it exists
+        smallGallery.on('click', function (swiper) {
+            const clickedSlide = swiper.slides[swiper.clickedIndex];
+            if (!clickedSlide.classList.contains('threed-slide')) {
+                // Adjust the index for largeGallery based on whether threed-slide exists
+                const targetIndex = hasThreedSlide ? swiper.clickedIndex - 1 : swiper.clickedIndex;
+                largeGallery.slideTo(targetIndex);
+            }
+        });
+
+        // Ensure small gallery slides to match large gallery changes
+        largeGallery.on('slideChange', function () {
+            const activeIndex = this.activeIndex;
+            const targetIndex = hasThreedSlide ? activeIndex + 1 : activeIndex; // Adjust for threed-slide
+            smallGallery.slideTo(targetIndex);
+        });
+
+        // Prevent the threed-slide from being treated as the active thumbnail
+        largeGallery.on('slideChange', function () {
+            const activeIndex = this.activeIndex;
+            smallGallery.slides.forEach((slide, index) => {
+                // Adjust active state, accounting for whether threed-slide exists
+                const isActive = hasThreedSlide
+                    ? index === activeIndex + 1
+                    : index === activeIndex;
+                slide.classList.toggle('swiper-slide-thumb-active', isActive && !slide.classList.contains('threed-slide'));
+            });
+        });
+
         //smallGallery.update(); // Forces Swiper to recalculate slides
 
         // Sync the active thumbnail border when the large gallery changes
-        largeGallery.on('slideChange', function () {
-            let activeIndex = largeGallery.activeIndex;
-            if (activeIndex === 0) {
-                activeIndex = 1; // Adjust based on your needs
-            }
+        // largeGallery.on('slideChange', function () {
+        //     let activeIndex = largeGallery.activeIndex;
+        //     if (activeIndex === 0) {
+        //         activeIndex = 1; // Adjust based on your needs
+        //     }
             
-            // Remove 'active-thumbnail' class from all slides in the small gallery
-            smallGallery.slides.forEach(slide => {
-                slide.classList.remove('active-small-thumbnail');
-            });
+        //     // Remove 'active-thumbnail' class from all slides in the small gallery
+        //     smallGallery.slides.forEach(slide => {
+        //         slide.classList.remove('active-small-thumbnail');
+        //     });
 
-            // Add 'active-thumbnail' class to the corresponding slide in the small gallery
-            if (smallGallery.slides[activeIndex]) {
-                smallGallery.slides[activeIndex].classList.add('active-small-thumbnail');
-            }
+        //     // Add 'active-thumbnail' class to the corresponding slide in the small gallery
+        //     if (smallGallery.slides[activeIndex]) {
+        //         smallGallery.slides[activeIndex].classList.add('active-small-thumbnail');
+        //     }
 
-            // Scroll the small gallery to the correct thumbnail
-            smallGallery.slideTo(activeIndex);
-        });
+        //     // Scroll the small gallery to the correct thumbnail
+        //     smallGallery.slideTo(activeIndex);
+        // });
 
-        // Manually set the red border for the small gallery active slide
-        smallGallery.slides.forEach((slide, index) => {
-            slide.addEventListener('click', function () {
-                // Update the active thumbnail in the small gallery
-                smallGallery.slides.forEach(slide => {
-                    slide.classList.remove('active-small-thumbnail');
-                });
-                slide.classList.add('active-small-thumbnail');
+        // // Manually set the red border for the small gallery active slide
+        // smallGallery.slides.forEach((slide, index) => {
+        //     slide.addEventListener('click', function () {
+        //         // Update the active thumbnail in the small gallery
+        //         smallGallery.slides.forEach(slide => {
+        //             slide.classList.remove('active-small-thumbnail');
+        //         });
+        //         slide.classList.add('active-small-thumbnail');
 
-                // Slide the large gallery to the clicked thumbnail's corresponding slide
-                largeGallery.slideTo(index);
-            });
-        });
+        //         // Slide the large gallery to the clicked thumbnail's corresponding slide
+        //         largeGallery.slideTo(index);
+        //     });
+        // });
     }
 
     // General Swiper Initialization (for other galleries)
@@ -840,7 +884,7 @@ jQuery(document).on("ready", function(){
             $(this).remove(); 
         });
     });
-
+    //ambiance button swith between main image and ambiance image
     $('.ambiance_filter button').click(function() {
         // Remove 'btn_active' class from all buttons
         $('.ambiance_filter button').removeClass('btn_active');
@@ -891,6 +935,30 @@ jQuery(document).on("ready", function(){
 
   
     });
+
+    
+    // When the button with class 'threed_btn' is clicked
+    $('.threed_btn').on('click', function(e) {
+        e.stopPropagation();
+        // Show the 3D popup
+        $('.threed_popup').fadeIn();
+
+        // Append the fader to the popup
+        $('.threed_popup').after('<div class="fader"></div>');
+    });
+
+    // When the close button inside the 3D popup is clicked
+    $('.threed_popup .white-btn').on('click', function() {
+        // Hide the 3D popup
+        $('.threed_popup').fadeOut();
+
+        // Remove the fader
+        $('.fader').remove();
+    });
+    
+    
+
+    
 
 });
 
