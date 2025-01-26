@@ -301,55 +301,147 @@ add_filter( 'woocommerce_order_received_verify_known_shoppers', '__return_false'
 
 
 
-// Include WordPress and WooCommerce functionality
-function get_products_with_title_and_excerpt() {
-    // Ensure WPML is active
-    if (!function_exists('icl_object_id')) {
-        return "WPML plugin is not active.";
-    }
-
-    // Get all products
+function get_products_without_main_image() {
+    // Arguments for the WP_Query
     $args = [
         'post_type'      => 'product',
-        'posts_per_page' => -1, // Retrieve all products
         'post_status'    => 'publish',
+        'posts_per_page' => -1,
+        'meta_query'     => [
+            [
+                'key'     => '_thumbnail_id', // Key for the main image
+                'compare' => 'NOT EXISTS',   // No thumbnail set
+            ],
+        ],
     ];
 
-    $products_query = new WP_Query($args);
+    // Execute the query
+    $query = new WP_Query($args);
 
-    if ($products_query->have_posts()) {
-        $products = [];
-
-        while ($products_query->have_posts()) {
-            $products_query->the_post();
-
+    $products_without_image = [];
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
             // Get the product ID
             $product_id = get_the_ID();
 
-            // Get the Hebrew title
-            $hebrew_title = get_the_title($product_id);
+            // Get the product object
+            $product = wc_get_product($product_id);
 
-            // Get the English excerpt using WPML
-            $english_excerpt = apply_filters('wpml_translate_single_string', get_post_field('post_excerpt', $product_id), 'woocommerce', 'Product Excerpt', 'en');
-
-            // Add to the products array
-            $products[] = [
-                'ID'      => $product_id,
-                'Title'   => $hebrew_title,
-                'Excerpt' => $english_excerpt,
-            ];
+            // Add the SKU to the result array if available
+            if ($product) {
+                $products_without_image[] = $product->get_sku();
+            }
         }
-
-        wp_reset_postdata();
-
-        return $products;
     }
 
-    return "No products found.";
+    // Reset the query
+    wp_reset_postdata();
+
+    return $products_without_image;
 }
 
-// Example usage: Display in a custom admin page or export to JSON
-// $products = get_products_with_title_and_excerpt();
-// echo '<pre>';
-// print_r($products);
-// echo '</pre>';
+function get_products_in_hebrew_with_acf_field() {
+    // Get the current language
+    $current_language = apply_filters('wpml_current_language', null);
+
+    // Check if we are in Hebrew
+    if ($current_language !== 'he') {
+        return 'This function only runs in Hebrew.';
+    }
+
+    // Arguments for WP_Query
+    $args = [
+        'post_type'      => 'product',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1,
+        'suppress_filters' => false, // Required for WPML to filter by language
+    ];
+
+    // Execute the query
+    $query = new WP_Query($args);
+
+    $products_with_field = [];
+    $skus = [];
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+
+            $product_id = get_the_ID();
+            $product = wc_get_product($product_id);
+            if ( get_field('product_details', $product_id) ):  
+				$product_details = get_field('product_details', $product_id); // Getting the main set of fields
+
+				// getting the fields from the internal field group 'pdt_information'
+				$pdt_information = $product_details['pdt_information'];
+				$material_details = $pdt_information['material_details'];
+
+
+
+                // Check if the field is in English (e.g., string contains only English characters)
+                if (preg_match('/^[A-Za-z0-9\s]+$/', $material_details)) {
+                    $original_product_id = apply_filters('wpml_object_id', $product_id, 'product', true, 'en');
+
+                    // Get the original product title
+                    $original_title = get_the_title($original_product_id);
+                    $products_with_field[] = [
+                        'ID'        => $product_id,
+                        'sku'       => $product->get_sku(),
+                        'title'     => get_the_title($product_id),
+                        'original_title'   => $original_title,
+                        'field_value' => $material_details,
+                    ];
+                    $sku = $product ? $product->get_sku() : null;
+
+                    if ($sku) {
+                        $skus[] = $sku;
+                    }
+                }
+            endif;
+            
+        }
+    }
+
+    // Reset the query
+    wp_reset_postdata();
+
+    //return $products_with_field;
+    return $products_with_field;
+}
+
+// Example usage
+// add_action('wp', function () {
+//     if (isset($_GET['check_products'])) {
+//         $products = get_products_in_hebrew_with_acf_field();
+//         //echo implode(',', $products);
+//         echo '<pre>';
+//         print_r($products);
+//         echo '</pre>';
+//         exit; // Stop further processing
+//     }
+// });
+
+
+// add_action('wp', function () {
+//     // Check if the 'check' GET parameter is present in the URL
+//     if (isset($_GET['check'])) {
+//         $products = get_products_without_main_image();
+
+//         // Check if products exist
+//         if (!empty($products)) {
+//             echo '<pre>';
+//             print_r($products); // Output the products array
+//             echo '</pre>';
+//         } else {
+//             echo 'No products without a main image were found.';
+//         }
+
+//         // Exit to prevent the rest of the page from rendering (optional)
+//         exit;
+//     }
+// });
+
+
+
+
+
