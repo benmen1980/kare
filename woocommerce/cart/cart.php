@@ -350,17 +350,17 @@ do_action( 'woocommerce_before_cart' ); ?>
 				
 				<h5><?php _e( 'Useful links', 'kare' ); ?></h5>
 				<button type="button" aria-label="link" class="back_to back_to_home_page">
-					<a aria-label="link" href="<?php echo home_url(); ?>"  target=""><?php _e( 'Back to home page', 'kare' ); ?></a>
+					<a aria-label="link" href="<?php echo apply_filters('wpml_home_url', home_url()); ?>"  target=""><?php _e( 'Back to home page', 'kare' ); ?></a>
 				</button>
 				<?php
 					// $privacy_policy_page_id = get_option('wp_page_for_privacy_policy'); 
 					// $privacy_policy_url = get_permalink($privacy_policy_page_id);
 				?>
 				<button type="button" aria-label="link" class="back_to back_to_privact">
-					<a aria-label="link" href="<?php echo home_url(); ?>"  target=""><?php _e( 'Terms and Conditions', 'kare' ); ?></a>
+					<a aria-label="link" href="<?php echo apply_filters('wpml_home_url', home_url()); ?>"  target=""><?php _e( 'Terms and Conditions', 'kare' ); ?></a>
 				</button>
 				<button type="button" aria-label="link" class="back_to back_to_faq">
-					<a aria-label="link" href="<?php home_url(); ?>"  target=""><?php _e( 'Faq', 'kare' ); ?></a>
+					<a aria-label="link" href="<?php apply_filters('wpml_home_url', home_url()); ?>"  target=""><?php _e( 'Faq', 'kare' ); ?></a>
 				</button>
 			</div>
 			<div class="desc_under_total">

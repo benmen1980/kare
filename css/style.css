@@ -1137,6 +1137,9 @@ form .form-row:not(.create-account) label.focused {
   margin: 0 0 20px 0;
   position: relative;
 }
+[dir=rtl] .woocommerce-notices-wrapper .woocommerce-error, [dir=rtl] .woocommerce-NoticeGroup .woocommerce-error {
+  padding: 16px 36px 16px 16px;
+}
 .woocommerce-notices-wrapper .woocommerce-error::before, .woocommerce-NoticeGroup .woocommerce-error::before {
   content: "";
   background-image: url("../images/svg/alert.svg");
@@ -3142,6 +3145,10 @@ div.container .section_wrap {
   text-align: justify;
   -webkit-margin-end: 20px;
           margin-inline-end: 20px;
+}
+[dir=rtl] .site-info .footer-container .contain-footer.second-footer .customer_service_footer_menu ul.footer-menu .sub-menu p {
+  -webkit-margin-end: 0px;
+          margin-inline-end: 0px;
 }
 .site-info .footer-container .contain-footer.second-footer .customer_service_footer_menu ul.footer-menu .sub-menu p a {
   font-size: 16px;
@@ -6826,6 +6833,11 @@ form .form-row .password-input .show-password-input {
   inset-inline-end: 10px;
   cursor: pointer;
 }
+[dir=rtl] form .form-row .password-input .show-password-input {
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
 form .form-row .password-input .show-password-input::after {
   font-family: WooCommerce;
   font-weight: 400;
@@ -6985,6 +6997,9 @@ form button {
   background-repeat: no-repeat;
   background-position-x: 99%;
   background-position-y: 50%;
+}
+[dir=rtl] .register_page form .form-row.form-select .woocommerce-Input--select {
+  background-position-x: initial;
 }
 
 /* Inspiration Archive Page
@@ -10174,6 +10189,7 @@ form button {
 }
 .contact-page .description-contact .store-details-wrapper .r-side .store-details {
   margin-bottom: 16px;
+  font-size: 16px;
 }
 .contact-page .description-contact .store-details-wrapper .r-side .store-details p {
   font-size: 16px;

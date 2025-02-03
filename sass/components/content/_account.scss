@@ -643,7 +643,10 @@ form{
               top: -3px;
               inset-inline-end: 10px;
               cursor: pointer;
-              
+              [dir="rtl"] & {
+                top: 50%;
+                transform: translateY(-50%);
+              }
               &::after {
                 font-family: WooCommerce;
                 // speak: never;

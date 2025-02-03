@@ -60,7 +60,7 @@
 					</div>
 				</div>
 				<div class="logo-site center-flex w-1-3">
-					<a href="/" aria-current="page" title="KARE - Buy KARE furniture" class="logo-kare">
+					<a href="<?php echo esc_url( apply_filters( 'wpml_home_url', home_url() ) ); ?>" aria-current="page" title="KARE - Buy KARE furniture" class="logo-kare">
 						<img src="<?php echo get_template_directory_uri();?>/dist/images/logo-kare.png" alt="KARE - Buy KARE furniture" width="169" height="30" class="text-red">
 					</a>
 				</div>
@@ -112,7 +112,7 @@
 							<p><?php echo get_field('txt_before_login','option'); ?></p>
 							<?php 
 							woocommerce_login_form();?>
-							<a class="register_page" href="/register"><?php esc_html_e( 'Create new account', 'kare' ); ?></a>
+							<a class="register_page" href="<?php echo apply_filters('wpml_permalink', site_url('/register')); ?>"><?php esc_html_e( 'Create new account', 'kare' ); ?></a>
 							<div class="accordion_details_wrapper">
 								<div class="accordion_item">
 									<div class="accordion_title">
@@ -181,7 +181,7 @@
 								</div>
 							<?php } ?>
 							
-							<a class="register_page" href="/register"><?php esc_html_e( 'Create new account', 'kare' ); ?></a>
+							<a class="register_page" href="<?php echo apply_filters('wpml_permalink', site_url('/register')); ?>"><?php esc_html_e( 'Create new account', 'kare' ); ?></a>
 							<div class="accordion_details_wrapper">
 								<div class="accordion_item">
 									<div class="accordion_title">

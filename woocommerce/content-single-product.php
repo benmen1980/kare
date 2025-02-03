@@ -102,8 +102,8 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 					<div class="small_img_slider_wrapper tabs_wrapper">
 						<div class="swiper_img_slider thumb-slider">
 							<div id="slider_img_gallery_small" class="img_gallery_small swiper-wrapper">
-								<?php if ( get_field('product_details') ){
-									$product_details = get_field('product_details'); // Getting the main set of fields
+								<?php if ( $product_details = get_field('product_details') ){
+									//$product_details = get_field('product_details'); // Getting the main set of fields
 									$threed_url = $product_details['3d_url'];
 									if($threed_url): ?>
 										<div class="swiper-slide threed-slide">
@@ -211,7 +211,8 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 										'key' => 'main_module',
 										'value' => $main_module
 									)
-								)
+								),
+								'posts_per_page' => 15
 							);
 							
 							// The Query
@@ -379,10 +380,10 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 						<?php echo file_get_contents( get_template_directory_uri() . '/dist/images/svg/box.svg');?>
 						<span class="product_price_notification_text">
 							<p>
-								<?php echo esc_html_e( 'Minimum order quantity: ' . $quantity_product . ' pieces', 'kare' ); ?>
+								<?php echo sprintf(esc_html__( 'Minimum order quantity: %d pieces', 'kare' ),intval( $quantity_product )); ?>
 							</p>
 							<p>
-								<?php echo esc_html_e( 'This product is only available in a set of ' . $quantity_product . '. Price is per piece.', 'kare' ); ?>
+								<?php echo sprintf(esc_html__( 'This product is only available in a set of %d. Price is per piece.', 'kare' ),intval( $quantity_product )); ?>
 							</p>
 						</span>
 					</section>
@@ -441,8 +442,8 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 		<h2><?php echo sprintf(__('<b>%s</b> details', 'kare'), __('Product', 'kare')); ?></h2>
 		<section class="accordion_details_wrapper">
 			<?php 
-			if ( get_field('product_details') ):  
-				$product_details = get_field('product_details'); // Getting the main set of fields
+			if ( $product_details = get_field('product_details') ):  
+				//$product_details = get_field('product_details'); // Getting the main set of fields
 
 				// getting the fields from the internal field group 'pdt_information'
 				$pdt_information = $product_details['pdt_information'];
@@ -638,9 +639,13 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 	</section>
 	<?php 
 	$product_categories = get_the_terms( get_the_ID(), 'product_cat' );
+	// echo "<pre>";
+	// print_r($product_categories);
+	// echo "</pre>";
 	if ( !empty( $product_categories ) && !is_wp_error( $product_categories ) ) {
 		$category = $product_categories[0];
-		$categories_fits = get_field('add_this_fits', 'term_' . $category->term_id);
+		//$categories_fits = get_field('add_this_fits', 'term_' . $category->term_id);
+		$categories_fits = get_field('add_this_fits', 'term_' . apply_filters( 'wpml_object_id', $category->term_id, 'product_cat',true,'en' ));
 	}
 	?>
 	<section class="related_products_section container">
@@ -657,6 +662,10 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 								foreach($categories_fits as $key => $cat){ 
 									$cat_name = $cat->name; 
 									$cat_link = get_term_link($cat->term_id);
+									if( is_wp_error($cat_link) ) {
+										
+										continue;
+									}
 									$cat_img_link = get_field('img_link_cat', 'product_cat_' . $cat->term_id); 
 									?>
 
@@ -683,7 +692,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 				<?php
 				$args = array(
 					'post_type' => 'product',
-					'posts_per_page' => -1,
+					'posts_per_page' => 15,
 					'tax_query' => array(
 						array(
 							'taxonomy' => 'product_cat',
@@ -702,7 +711,17 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
                             <div id="slide_same_cat_pdts" class="more_slide_products slider_products_content swiper-wrapper">
 								<?php while ( $query->have_posts() ) {
 									$query->the_post();
-									get_template_part('page-templates/box-product');
+									$translated_product_id = apply_filters('wpml_object_id', get_the_ID(), 'product', true);
+									$transient_name = 'product_slide_' . $translated_product_id;
+									if ( false === ( $product_slide = get_transient( $transient_name ) ) ) {
+										ob_start();
+										get_template_part('page-templates/box-product');
+										$product_slide = ob_get_clean();
+										set_transient( $transient_name, $product_slide, 10 * 60 );
+									}
+									echo $product_slide;
+
+									//get_template_part('page-templates/box-product');
 								}
 								wp_reset_postdata(); ?>
 							</div>
@@ -734,7 +753,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 			<?php 
 			$args = array(
 				'post_type' => 'product',
-				'posts_per_page' => -1,
+				'posts_per_page' => 15,
 				'tax_query' => array(
 					'relation' => 'AND',
 					array(
@@ -761,7 +780,16 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 							<div id="slide_bestseller_cat_pdts" class="more_slide_products slider_products_content swiper-wrapper">
 								<?php while ( $query->have_posts() ) {
 									$query->the_post();
-									get_template_part('page-templates/box-product');
+									$translated_product_id = apply_filters('wpml_object_id', get_the_ID(), 'product', true);
+									$transient_name = 'product_slide_' . $translated_product_id;
+									if ( false === ( $product_slide = get_transient( $transient_name ) ) ) {
+										ob_start();
+										get_template_part('page-templates/box-product');
+										$product_slide = ob_get_clean();
+										set_transient( $transient_name, $product_slide, 10 * 60 );
+									}
+									echo $product_slide;
+									//get_template_part('page-templates/box-product');
 								}
 								wp_reset_postdata(); ?>
 							</div>
@@ -804,7 +832,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 				<?php
 				$args = array(
 					'post_type' => 'product',
-					'posts_per_page' => -1,
+					'posts_per_page' => 15,
 					'tax_query' => array(
 						array(
 							'taxonomy' => 'product_tag',
@@ -823,7 +851,16 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
                             <div id="slide_bestseller_products" class="more_slide_products slider_products_content swiper-wrapper">
 								<?php while ( $query->have_posts() ) {
 									$query->the_post();
-									get_template_part('page-templates/box-product');
+									$translated_product_id = apply_filters('wpml_object_id', get_the_ID(), 'product', true);
+									$transient_name = 'product_slide_' . $translated_product_id;
+									if ( false === ( $product_slide = get_transient( $transient_name ) ) ) {
+										ob_start();
+										get_template_part('page-templates/box-product');
+										$product_slide = ob_get_clean();
+										set_transient( $transient_name, $product_slide, 10 * 60 );
+									}
+									echo $product_slide;
+									//get_template_part('page-templates/box-product');
 								}
 								wp_reset_postdata(); ?>
 							</div>
@@ -856,8 +893,8 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 	</section>
 
 </div>
-<?php if ( get_field('product_details') ){
-	$product_details = get_field('product_details');
+<?php if ( $product_details = get_field('product_details') ){
+	//$product_details = get_field('product_details');
 	$threed_url = $product_details['3d_url'];
 	if($threed_url): ?>
 		<div class="threed_popup" id="threed_pdt_<?php the_ID(); ?>">

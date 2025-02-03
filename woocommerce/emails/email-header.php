@@ -53,7 +53,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 													<tr>
 														<td id="header_wrapper">
 															<div class="logo-site" >
-																<a href="<?php echo esc_url( home_url() ); ?>" aria-current="page" title="KARE DESIGN" class="logo-kare">
+																<a href="<?php echo esc_url( apply_filters( 'wpml_home_url', home_url() ) ); ?>" aria-current="page" title="KARE DESIGN" class="logo-kare">
 																	<img src="<?php echo get_template_directory_uri();?>/dist/images/logo-kare.png" alt="KARE DESIGN" width="169" height="30" style="display:block; margin:auto">
 																</a>
 															</div>			

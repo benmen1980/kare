@@ -24,9 +24,15 @@ if (!is_category() && !is_product_category() && !is_shop() && !is_search() && $i
             $percent = round((($regular_price - $sale_price)*100) / $regular_price) ;
         }
 
+        global $sitepress;
+        $original_product_id = apply_filters( 'wpml_object_id', $product->get_id(), 'product', false, $sitepress->get_default_language() );
+        if ($original_product_id) {
+            $original_product = wc_get_product($original_product_id);
+            $attachment_ids = $original_product->get_gallery_image_ids();
+        }
+        
         //get_gallery_image 
-        $attachment_ids = $product->get_gallery_image_ids();
-    
+        //$attachment_ids = $product->get_gallery_image_ids();
         if ( is_array( $attachment_ids ) && !empty($attachment_ids) ) {
             //check if image has hover image    
             if(strpos(wp_get_attachment_url( $attachment_ids[0] ), 'master-mood') !== false){

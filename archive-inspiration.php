@@ -44,7 +44,7 @@ get_header();
 				$trend_title = get_the_title();?>
 				<div class="trend_box_wraper">
 					<a href="<?php echo get_the_permalink();?>">
-						<img src="<?php echo $trend_img;?>" alt="<?php echo $trend_title;?>">
+						<img src="<?php echo $trend_img;?>" alt="<?php echo $trend_title;?>" loading="lazy">
 						<p><?php echo $trend_title;?></p>
 						<button>
 							<img src="<?php echo get_template_directory_uri();?>/dist/images/svg/screen-full.svg" alt="" width="24" height="24">

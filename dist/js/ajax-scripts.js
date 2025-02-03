@@ -63,7 +63,7 @@ jQuery(document).ready(function($){
                 console.log("custom msg",customMessage);
                 $('#wc-add-product-notices').append('\
                     <div class="woocommerce-message" role="alert">\
-                        ' + ajax_obj.product_added_message + '\
+                        ' + customMessage + '\
                     </div>\
                 ');
                 //$('#wc-add-product-notices').html(response.data);

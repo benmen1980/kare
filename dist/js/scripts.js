@@ -703,7 +703,7 @@ jQuery(document).on("ready", function(){
     });
 
     // Check if the current page is the cart page
-    if (window.location.href.indexOf("cart") > -1) {
+    if ($("body").hasClass("woocommerce-cart")) {
 
         // disable the coupon button, if the input field is empty
         const couponInputs = document.querySelectorAll('.coupon_code'); // Select all coupon code input fields
@@ -745,7 +745,7 @@ jQuery(document).on("ready", function(){
     }
 
     // Check if the current page is the order recived page
-    if (window.location.href.indexOf("order-received") !== -1) {
+    if ($("body").hasClass("woocommerce-order-received")) {
         console.log("This is the order confirmation page.");
 
         function toggleCartOrder() {
@@ -819,7 +819,7 @@ jQuery(document).on("ready", function(){
     });*/
 
     //Calculation of shipping costs and display of fields on the checkout page
-    if (window.location.href.indexOf("checkout") > -1 && window.location.href.indexOf("order-received") === -1) {
+    if ($("body").hasClass("woocommerce-checkout") && !$("body").hasClass("woocommerce-order-received")) {
         function toggleAddressFields(selectedMethod) {
             const shippingMessage = $('.delivery-message').data('acf-shipping');
             const selfMessage = $('.delivery-message').data('acf-self');

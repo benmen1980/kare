@@ -76,7 +76,7 @@ function redirect_if_not_logged_in() {
     if (is_account_page() && !is_user_logged_in()) {
         if ( is_wc_endpoint_url( 'lost-password' ) ) {
             if(isset( $_GET['reset-link-sent'] ) && $_GET['reset-link-sent'] === 'true'){
-                $redirect_url = add_query_arg('panel', 'reset-link-sent', home_url());
+                $redirect_url = add_query_arg('panel', 'reset-link-sent', apply_filters('wpml_home_url', home_url()));
             }
             // Allow access to the "lost-password" endpoint without redirecting
             else{
@@ -84,7 +84,7 @@ function redirect_if_not_logged_in() {
             }
         }
         else{
-            $redirect_url = add_query_arg('panel', 'account', home_url());
+            $redirect_url = add_query_arg('panel', 'account', apply_filters('wpml_home_url', home_url()));
         }
         wp_redirect($redirect_url);
         exit;
@@ -128,7 +128,7 @@ add_filter('woocommerce_login_redirect', 'redirect_to_home_after_login', 10, 2);
 
 function redirect_to_home_after_login($redirect_to) {
      // Always redirect to the home page after login
-    return home_url();
+    return apply_filters('wpml_home_url', apply_filters('wpml_home_url', home_url()));
 }
 
 
@@ -145,8 +145,6 @@ function add_full_name_field_to_registration_form() {
 
 // Validate Full Name Field
 function validate_woocommerce_registration_full_name_field( $username, $email, $validation_errors ) {
-    var_dump($_POST['checkbox_club']);
-    var_dump('marga');
     if ( isset( $_POST['full_name'] ) && empty( $_POST['full_name'] ) ) {
         $validation_errors->add( 'full_name_error', __( 'Please enter full name', 'woocommerce' ) );
     }
@@ -219,7 +217,7 @@ function custom_redirection_after_registration( $redirect ){
     if ( isset( $_GET['redirect_to'] ) && 'checkout' === $_GET['redirect_to'] ) {
         return wc_get_checkout_url(); //checkout page
     }
-    return home_url(); // Home page
+    return apply_filters('wpml_home_url', home_url()); // Home page
 }
 
 //use of the plugin is 'advanced-dynamic-pricing-woocommerce-pro' together with the Priority plugin
@@ -409,7 +407,7 @@ function get_products_in_hebrew_with_acf_field() {
     return $products_with_field;
 }
 
-// Example usage
+//Example usage
 // add_action('wp', function () {
 //     if (isset($_GET['check_products'])) {
 //         $products = get_products_in_hebrew_with_acf_field();
@@ -440,6 +438,61 @@ function get_products_in_hebrew_with_acf_field() {
 //         exit;
 //     }
 // });
+
+function complete_wpml_translation_fully( $translated_product_ids ) {
+    // וודא ש-WPML פעיל
+    if ( ! defined( 'ICL_SITEPRESS_VERSION' ) ) {
+        echo "WPML is not active. Exiting.\n";
+        return;
+    }
+
+    foreach ( $translated_product_ids as $translated_product_id ) {
+        // בדוק אם הפוסט המתורגם קיים
+        $translated_post = get_post( $translated_product_id );
+        if ( ! $translated_post || $translated_post->post_type !== 'product' ) {
+            echo "Skipping invalid or non-product post ID: {$translated_product_id}.\n";
+            continue;
+        }
+
+        // קבל את מזהה הפוסט המקורי
+        $original_post_id = apply_filters( 'wpml_object_id', $translated_product_id, 'product', true );
+        if ( ! $original_post_id ) {
+            echo "No original product found for translated ID {$translated_product_id}.\n";
+            continue;
+        }
+
+        // טען את עורך התרגום של WPML
+        do_action( 'wpml_pro_translation_completed', $translated_product_id );
+
+        // ודא שהתוכן המתורגם מתעדכן
+        $translated_content = apply_filters( 'wpml_translate_single_string', $translated_post->post_content, 'woocommerce', 'product description', apply_filters( 'wpml_current_language', null ) );
+        wp_update_post( [
+            'ID'           => $translated_product_id,
+            'post_content' => $translated_content,
+        ] );
+
+        echo "Translation fully completed and updated for Product ID {$translated_product_id}.\n";
+    }
+}
+
+
+
+
+// קריאה לפונקציה עם מערך של מזהי מוצרים
+//$product_ids = [105720]; // הכנס כאן את מזהי המוצרים
+//complete_wpml_translation_fully( $product_ids );
+
+
+// add_filter( 'wpml_sync_post_title', function( $sync, $post_id, $lang ) {
+//     $post_type = get_post_type( $post_id );
+//     if ( $post_type === 'product' ) {
+//         error_log( "Preventing title sync for Product ID: {$post_id}" );
+//         return false; // מנע סנכרון שם המוצר
+//     }
+//     return $sync;
+// }, 10, 3 );
+
+
 
 
 

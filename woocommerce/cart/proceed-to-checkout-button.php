@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="checkout-button button alt wc-forward<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>">
 	<?php esc_html_e( 'Proceed to checkout', 'woocommerce' ); ?>
 </a>
-<a href="<?php echo esc_url( home_url() ); ?>" class="shopping-button button alt wc-forward">
+<a href="<?php echo apply_filters('wpml_home_url', home_url()); ?>" class="shopping-button button alt wc-forward">
 	<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-back.svg'); ?>
 	<?php esc_html_e( 'Continue shopping', 'woocommerce' ); ?>
 </a>
