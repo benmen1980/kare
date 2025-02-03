@@ -23,7 +23,7 @@ function kare_custom_scripts() {
     wp_enqueue_style('swiper-css', get_template_directory_uri() . '/dist/css/swiper-bundle.min.css');
 
     wp_enqueue_script('jquery', get_template_directory_uri() . '/js/jquery-3.7.1.min.js', false, '3.7.1',true);
-    wp_enqueue_script( 'kare-scripts', get_template_directory_uri() . '/dist/js/scripts.js', array(), '1.0.1' );
+    wp_enqueue_script( 'kare-scripts', get_template_directory_uri() . '/dist/js/scripts.js', array(), '1.0.2' );
     wp_enqueue_script( 'kare-slick', get_template_directory_uri() . '/dist/js/slick.min.js', array(), '', false );
     wp_enqueue_script('swiper-js', get_template_directory_uri() . '/dist/js/swiper-bundle.min.js', array('jquery'), '', true);
     wp_localize_script( 'kare-scripts', 'loginErrorData', array(

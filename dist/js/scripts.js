@@ -886,6 +886,10 @@ jQuery(document).on("ready", function(){
     });
     //ambiance button swith between main image and ambiance image
     $('.ambiance_filter button').click(function() {
+        if( $(this).hasClass('btn_active') ) {
+            return;
+        }
+        handleKareLazy();
         // Remove 'btn_active' class from all buttons
         $('.ambiance_filter button').removeClass('btn_active');
 
@@ -1066,5 +1070,24 @@ document.addEventListener("DOMContentLoaded", function () {
             hiddenField.value = sku;
         }
     }
+
+    Array.from( document.querySelectorAll( '.kare-lazy' ) ).forEach( (element, index) => {
+        element.addEventListener('mouseover', (event) => {
+            const el = event.target.closest('.box_product');
+            const lazyImgEl = el.querySelector( '.image-pdts.thumbnail-hover img' );
+            lazyImgEl.setAttribute( 'src', lazyImgEl.getAttribute('data-src') );
+            el.classList.remove( 'kare-lazy' );
+        }, {once : true});
+    });
+});
+
+const handleKareLazy = () => {
+    Array.from( document.querySelectorAll( '.kare-lazy' ) ).forEach( (element, index) => {
+        element.dispatchEvent( new Event('mouseover') );
+    });
+};
+
+window.addEventListener('load', (event) => {
+    setTimeout(handleKareLazy, 2000);
 });
 

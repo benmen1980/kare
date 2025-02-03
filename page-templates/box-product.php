@@ -47,18 +47,18 @@ if (!is_category() && !is_product_category() && !is_shop() && !is_search() && $i
             </button>
             
         <?php endif; ?>
-        <div class="box_product flex card-product" id="<?php echo $product->get_id();?>">
+        <div class="box_product flex card-product <?php echo !empty($image_hover_url) ? 'kare-lazy' :'' ?>" id="<?php echo $product->get_id();?>">
             <div  class="product_img_wrapper">
                 <div class="image_with_tags">
                     <div class="image-pdts thumbnail <?php echo !empty($image_hover_url) ? 'has-hover' :'' ?>">
                         <a href="<?php echo $pdt_permalink; ?>" title="<?php echo $pdt_name;?>">
-                            <img src="<?php echo wp_get_attachment_url( $product->get_image_id() ); ?>" alt="<?php echo $product->get_title(); ?>">
+                            <img src="<?php echo wp_get_attachment_url( $product->get_image_id() ); ?>" loading="lazy" alt="<?php echo $product->get_title(); ?>">
                         </a>
                     </div>
                     <?php if(!empty($image_hover_url)): ?>
                         <div class="image-pdts thumbnail-hover">
                             <a href="<?php echo $pdt_permalink; ?>" title="<?php echo $pdt_name;?>">
-                                <img src="<?php echo  $image_hover_url; ?>" alt="<?php echo $product->get_title(); ?>">
+                                <img data-src="<?php echo  $image_hover_url; ?>" loading="lazy" alt="<?php echo $product->get_title(); ?>">
                             </a>
                         </div> 
                     <?php endif; ?>
