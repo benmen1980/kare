@@ -31,12 +31,14 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 			$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 			$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
 
+			
 			if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_widget_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 				/**
 				 * This filter is documented in woocommerce/templates/cart/cart.php.
 				 *
 				 * @since 2.1.0
 				 */
+				
 				$product_name      = apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key );
 				$thumbnail         = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
 				$product_price     = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
@@ -85,7 +87,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 								<?php if ( $_product->is_on_sale() ) : ?>
 									<p class="product-price" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
 										<span><?php _e( 'Unit price:', 'woocommerce' ); ?> </span>
-										<span><?php _e( 'RRP*: ', 'woocommerce' ); ?> 
+										<!-- <span><?//php _e( 'RRP*: ', 'woocommerce' ); ?>  -->
 											<del> <?php echo wc_price( $_product->get_regular_price() ); ?> </del>
 										</span>
 										<span class="bold red">

@@ -152,7 +152,8 @@ do_action( 'woocommerce_before_cart' ); ?>
 							<?php if ( $_product->is_on_sale() ) : ?>
 								<div class="product-price" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
 									<p><?php _e( 'Unit price:', 'kare' ); ?> </p>
-									<p><?php _e( 'RRP*: ', 'kare' ); ?> 
+									<p>
+										<!-- <?//php _e( 'RRP*: ', 'kare' ); ?>  -->
 										<del> <?php echo wc_price( $_product->get_regular_price() ); ?> </del>
 									</p>
 								</div>
@@ -160,7 +161,8 @@ do_action( 'woocommerce_before_cart' ); ?>
 									<p><?php _e( 'Price after discount:', 'kare' ); ?> </p>
 									<p class="bold red">
 										<?php
-											echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
+											echo  wc_price($_product->get_sale_price());
+											//echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
 										?>
 									</p>
 								</div>
@@ -179,7 +181,9 @@ do_action( 'woocommerce_before_cart' ); ?>
 						<div class="product-subtotal" data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>">
 							<p><?php _e( 'Total including VAT:', 'kare' ); ?></p>
 							<p class="bold red"><?php
-								echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
+								
+								echo wc_price($cart_item['line_total'] + $cart_item['line_tax']);
+								//echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
 							?></p>
 						</div>
 

@@ -1540,10 +1540,10 @@
 
             #wc-add-product-notices{
                 padding: 8px 0;
-                .woocommerce-message {
+                //.woocommerce-message {
                     background-color: transparent;
                     color: inherit;
-                    font-size: 12px;
+                    font-size: 14px;
                     font-weight: 700;
                     list-style-type: none;
                     position: relative;
@@ -1563,7 +1563,7 @@
                         background-position: center;
                         filter: brightness(0) saturate(100%) invert(24%) sepia(55%) saturate(2418%) hue-rotate(88deg) brightness(94%) contrast(105%);
                     }
-                }
+                //}
             }
             .continue_shop_btn {
                 text-transform: uppercase;

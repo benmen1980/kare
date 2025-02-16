@@ -228,7 +228,7 @@ function update_address_fields_func( $fields ) {
 //Calculating Shipping cost per product by class-shipping
 add_filter('woocommerce_package_rates', 'custom_shipping_cost_per_product_class', 10, 2);
 function custom_shipping_cost_per_product_class($rates, $package) {
-
+    
     $shipping_cost = 0.0;
 
     foreach ($package['contents'] as $item_id => $values) {
@@ -237,9 +237,19 @@ function custom_shipping_cost_per_product_class($rates, $package) {
         $product = $values['data'];
         $quantity = $values['quantity'];
 
-        // Get the shipping class
-        $shipping_class = $product->get_shipping_class();
+        $product_id = $product->get_id();
 
+        // Get the shipping class
+        $default_language_product_id = apply_filters( 'wpml_object_id', $product_id, 'product', true, wpml_get_default_language() );
+        $default_language = wpml_get_default_language();
+        do_action('wpml_switch_language', $default_language);
+        if ( $default_language_product_id ) {
+            $default_product = wc_get_product( $default_language_product_id );
+            $shipping_class = $default_product->get_shipping_class();
+        } else {
+            $shipping_class = $product->get_shipping_class(); // Fallback to current product
+        }
+        do_action('wpml_switch_language', ICL_LANGUAGE_CODE);
         // Define shipping cost based on shipping class
         switch ($shipping_class) {
             case 'small':
@@ -283,19 +293,25 @@ function custom_shipping_cost_per_product_class($rates, $package) {
         }
     }
 
-    $order_total = WC()->cart->cart_contents_total;
     $max_sum_shipping = get_field('max_sum_shippping', 'option');
-    if ($max_sum_shipping && $order_total >= $max_sum_shipping) {
-        $shipping_cost = 0; // Set the shipping cost for orders under $50
-    }   
+    if ($max_sum_shipping && $shipping_cost >= $max_sum_shipping) {
+        $shipping_cost = $max_sum_shipping; 
+    }  
+    $order_total = WC()->cart->cart_contents_total;
+    $free_shipping = get_field('free_shipping', 'option');
+    if ($free_shipping && $order_total >= $free_shipping) {
+        $shipping_cost = 0; 
+    }  
+    
 
     // Here you can set the cost to the shipping method or modify it
     foreach ($rates as $rate_key => $rate) {
         // Assuming you want to add this cost to a specific shipping method
         if ($rate->method_id === 'flat_rate') {
             $rates[$rate_key]->cost = $shipping_cost;
-        }
-    }       
+        } 
+    } 
+         
     
     return $rates;
 }

@@ -58,14 +58,23 @@ jQuery(document).ready(function($){
 
                 // Success: Handle mini-cart logic
                 console.log("Product added successfully", response.data);
-                var customMessage = ajax_obj.product_added_message;
-       
+                // if (ajax_obj.lang === 'he') { // Hebrew
+                //     console.log('enter hebreu');
+                //     customMessage = "המוצר נוסף בהצלחה לעגלה!";
+                // }
+                // else{
+                //     console.log("enter anglais");
+                //     customMessage = ajax_obj.product_added_message;
+                // }
+               
+                customMessage = ajax_obj.product_added_message;
                 console.log("custom msg",customMessage);
-                $('#wc-add-product-notices').append('\
-                    <div class="woocommerce-message" role="alert">\
-                        ' + customMessage + '\
-                    </div>\
-                ');
+                $('#wc-add-product-notices').text(customMessage);
+                // $('#wc-add-product-notices').append('\
+                //     <div class="woocommerce-message" role="alert">\
+                //         ' + customMessage + '\
+                //     </div>\
+                // ');
                 //$('#wc-add-product-notices').html(response.data);
                 //$('#wc-add-product-notices').html(ajax_obj.product_added_message);
                 $(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, $thisbutton]);

@@ -2,16 +2,21 @@
 global $product; 
 $is_slider = get_query_var('is_archive_product_inspiration', true); 
 
-if (!is_category() && !is_product_category() && !is_shop() && !is_search() && $is_slider !== false) : ?>
+if (!is_category() && !is_product_category() && !is_shop() && !is_search() && $is_slider !== false && isset($product) && is_a($product, 'WC_Product')) : ?>
     <div class="swiper-slide">
 <?php endif; ?>
+<?php if (isset($product) && is_a($product, 'WC_Product')) { ?>
     <div class="search_suggestions_product">
         <?php 
-        //$pdt_name = $product->get_name();
-        $translated_product_id = apply_filters('wpml_object_id', $product->get_id(), 'product', true);
-        // Get the product name and permalink for the translated product
-        $pdt_name = get_the_title($translated_product_id);
-        $pdt_permalink = get_permalink( $product->get_id() );
+            $pdt_name = $product->get_name();
+    
+            //$translated_product_id = apply_filters('wpml_object_id', $product->get_id(), 'product', true);
+            //$pdt_name = get_the_title($translated_product_id);
+        
+            // Get the product name and permalink for the translated product
+        
+            $pdt_permalink = get_permalink( $product->get_id() );
+        
         if ( $product->is_type( 'variable' ) ) {
             $regular_price = $product->get_variation_regular_price();
             $sale_price = ($regular_price != $product->get_variation_sale_price())? $product->get_variation_sale_price() : '';
@@ -87,7 +92,7 @@ if (!is_category() && !is_product_category() && !is_shop() && !is_search() && $i
                     <div class="pdt_price_wrapper">
                         <?php if(!empty($sale_price)): ?>
                             <p class="sale_price"> 
-                                <span>RRP*: </span>
+                                <!-- <span>RRP*: </span> -->
                                 <span> <?php echo wc_price($sale_price); ?> </span>
                             </p>
                             <p class="regular_price <?php  echo (!empty($sale_price)) ? 'line-through' : '' ?>"><?php echo wc_price($regular_price); ?></p>
@@ -117,6 +122,7 @@ if (!is_category() && !is_product_category() && !is_shop() && !is_search() && $i
             </div>
         </div>
     </div>
+<?php }?>
 <?php if (!is_category() && !is_product_category() && !is_shop() && !is_search() && $is_slider !== false) : ?>
     </div>
 <?php endif; ?>

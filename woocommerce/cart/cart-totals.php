@@ -86,14 +86,14 @@ defined( 'ABSPATH' ) || exit;
 		?>
 
 		<?php if ( WC()->cart->get_discount_total() > 0 ) : ?>
-            <tr class="discount">
+            <tr class="discount a">
                 <th><?php _e( 'Discount:', 'woocommerce' ); ?></th>
                 <td data-title="<?php esc_attr_e( 'Discount', 'woocommerce' ); ?>">
-                    <?php echo '-' . wc_price( WC()->cart->get_discount_total() ); ?>
+                    <?php echo '-' . wc_price( WC()->cart->get_discount_total() + WC()->cart->get_discount_tax()); ?>
                 </td>
             </tr>		
 		<?php elseif ( $discount_total > 0 ) : ?>
-			<tr class="discount">
+			<tr class="discount b">
 				<th><?php _e( 'Discount:', 'woocommerce' ); ?></th>
 				<td data-title="<?php esc_attr_e( 'Discount', 'woocommerce' ); ?>">
 					<?php echo '-' . wc_price( $discount_total ); ?>

@@ -494,6 +494,21 @@ function complete_wpml_translation_fully( $translated_product_ids ) {
 
 
 
+function wpml_floating_language_switcher() {
+    if ( function_exists( 'icl_get_languages' ) ) {
+        $languages = icl_get_languages('skip_missing=0&orderby=code');
+        if (!empty($languages)) {
+            echo '<div class="floating-lang-switcher">';
+            foreach ($languages as $lang) {
+                echo '<a href="' . $lang['url'] . '" class="lang-flag" title="' . $lang['native_name'] . '">
+                        <img src="' . $lang['country_flag_url'] . '" alt="' . $lang['language_code'] . '">
+                      </a>';
+            }
+            echo '</div>';
+        }
+    }
+}
+add_action('wp_footer', 'wpml_floating_language_switcher');
 
 
 

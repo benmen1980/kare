@@ -111,7 +111,7 @@ jQuery(document).on("ready", function(){
     });
 
     //checks if the current page is a single-product
-    if (document.body.classList.contains('single-product')) {
+    if (document.body.classList.contains('single-product') || document.body.classList.contains('page-template-module-in-content')) {
 
         //add the selected quantity of the product to the cart
         const selectWrapper = document.querySelector('.custom_select_wrapper');
@@ -502,6 +502,7 @@ jQuery(document).on("ready", function(){
          $('button.menu-toggle').on('click', function() {
             console.log('mobile');
             $('#mobile_menu_sidebar').addClass('active_left');
+            $("#mobile_menu_sidebar").addClass('child_menu_open');
             if ($('#overlay').length === 0) {
                 $('body').append('<div id="overlay"></div>');
                 $('body').css('overflow', 'hidden');
@@ -510,12 +511,20 @@ jQuery(document).on("ready", function(){
         });
 
         $('#close_menu').on('click', function() {
+            console.log('enter close menu');
             $('#mobile_menu_sidebar').removeClass('active_left');
+            $("#mobile_menu_sidebar").removeClass('child_menu_open');
             $('#overlay').fadeOut(function() {
                 $(this).remove(); // Remove overlay after fade out
             });
             $('body').css('overflow', '');
         });     
+
+        $(document).on('click', '#primary-menu > li.menu-item-has-children.active-menu > a', function(event) {
+            event.preventDefault(); 
+            $("#mobile_menu_sidebar").removeClass('child_menu_open');
+        });
+
 
         // Close the wishlist sidebar if clicked outside
         $(document).mouseup(function(e) {
@@ -533,17 +542,20 @@ jQuery(document).on("ready", function(){
         $('#primary-menu > li.menu-item-has-children > a').on('click', function(event) {
             event.preventDefault(); 
 
+            
             const parentLi = $(this).parent();
             const submenu = parentLi.find('ul.sub-menu');
         
             if (parentLi.hasClass('active-nemu')) {
-
+                
                 submenu.stop().animate({ left: '500px', opacity: 0 }, 300, function() {
                     submenu.removeClass('sub-menu-active'); 
                 });
                 parentLi.removeClass('active-nemu');
+                $("#mobile_menu_sidebar").addClass('child_menu_open');
 
             } else {
+                
                 $('#primary-menu > li.active-nemu').each(function() {
                     const activeSubmenu = $(this).find('ul.sub-menu.sub-menu-active');
                     $(this).removeClass('active-nemu');
@@ -560,11 +572,16 @@ jQuery(document).on("ready", function(){
                 submenu.addClass('sub-menu-active')
                        .css({ left: '-500px', opacity: 0 })
                        .stop().animate({ left: '0', opacity: 1 }, 300);
+                $("#mobile_menu_sidebar").removeClass('child_menu_open');
             }
         });
 
+        
+
+        
          // Close submenu on back arrow or close icon click
         $('#primary-menu > li > a::after', '#primary-menu > li > a::before').on('click', function() {
+            console.log('enter before and after');
             const parentLi = $(this).closest('li');
             const submenu = parentLi.find('ul.sub-menu');
 
@@ -575,8 +592,17 @@ jQuery(document).on("ready", function(){
             parentLi.removeClass('active-nemu');
         });
 
-        $('.visible-mobile').append('<p class="add_text">...or discover categories:</p>');
-        $('.visible-mobile a').text('show all');
+        // $('.visible-mobile').append('<p class="add_text">...or discover categories:</p>');
+        // $('.visible-mobile a').text('show all');
+        if ($("html").attr("lang") === "he" || $("html").attr("dir") === "rtl") {
+            // Change the text for Hebrew
+            $('.visible-mobile').append('<p class="add_text">או גלה קטגוריות:</p>');
+            $('.visible-mobile a').text('הצג הכל');
+        } else {
+            // Default (English or other LTR languages)
+            $('.visible-mobile').append('<p class="add_text">...or discover categories:</p>');
+            $('.visible-mobile a').text('show all');
+        }
     }
 
 
@@ -701,6 +727,8 @@ jQuery(document).on("ready", function(){
 
         $(this).toggleClass('rotate180');
     });
+
+
 
     // Check if the current page is the cart page
     if ($("body").hasClass("woocommerce-cart")) {

@@ -82,7 +82,7 @@ $order = wc_get_order($order_id);
 							foreach ( $order->get_items() as $item_id => $item ) {
 								$product = $item->get_product(); // Get the product object
 								$quantity = $item->get_quantity();
-								$product_price = $item->get_total() / $quantity;
+								$product_price = ($item->get_total() + $item->get_total_tax()) / $quantity;
 
 								if ( $product && $product->exists() ) {
 								$product_permalink = $product->is_visible() ? $product->get_permalink() : ''; ?>
@@ -114,7 +114,7 @@ $order = wc_get_order($order_id);
 											<?php if ( $product->is_on_sale() ) : ?>
 												<div class="product-price" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
 													<p><?php _e( 'Unit price:', 'kare' ); ?> </p>
-													<p><?php _e( 'RRP*: ', 'kare' ); ?> 
+													<!-- <p><//?php _e( 'RRP*: ', 'kare' ); ?>  -->
 														<del> <?php echo wc_price( $product->get_regular_price() ); ?> </del>
 													</p>
 												</div>
@@ -141,7 +141,7 @@ $order = wc_get_order($order_id);
 										<div class="product-total" data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>">
 											<p><?php _e( 'Total including VAT:', 'kare' ); ?></p>
 											<p class="bold red"><?php
-												echo wc_price( $item->get_total()); // PHPCS: XSS ok.
+												echo wc_price( $item->get_total() + $item->get_total_tax()); // PHPCS: XSS ok.
 											?></p>
 										</div>
 
@@ -189,7 +189,7 @@ $order = wc_get_order($order_id);
 
 				<li class="woocommerce-order-overview__subtotal subtotal">
 					<?php esc_html_e( 'Price of goods:', 'kare' ); ?>
-					<?php echo wc_price( $order->get_subtotal() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					<?php echo wc_price( $order->get_total()  - $order->get_shipping_total() - $order->get_shipping_tax() + $order->get_discount_total() + $order->get_discount_tax()); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				</li>
 
 				<li class="woocommerce-order-overview__delivery delivery">
@@ -200,7 +200,7 @@ $order = wc_get_order($order_id);
 				<?php if ( $order->get_discount_total() > 0 ) : ?>
 					<li class="woocommerce-order-overview__discount discount">
 						<?php esc_html_e( 'Discount:', 'kare' ); ?>
-						-<?php echo wc_price( $order->get_discount_total() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						-<?php echo wc_price( $order->get_discount_total() + $order->get_discount_tax()); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</li>
 				<?php endif; ?>
 

@@ -8,6 +8,7 @@ function kare_ajax_enqueue() {
         'ajax_url' => admin_url( 'admin-ajax.php' ),
         'current_page' => get_query_var( 'paged' ) ? get_query_var('paged') : 1,
         'woo_shop_url' => get_permalink( wc_get_page_id( 'cart' ) ),
+        'lang'     => apply_filters('wpml_current_language', null),
         'product_added_message' => __('Product added to cart successfully!', 'kare')
     ));
 }

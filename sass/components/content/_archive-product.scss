@@ -127,7 +127,10 @@
     .slider_cat {
         margin-bottom: 40px;
         padding-inline-end: 0;
-    
+        @include media("<=tablet") {
+            padding-inline-start: 16px;
+            padding-inline-end: 16px;
+        }
         h5 {
             text-align: var(--dir-left);
             margin-top: 8px;
@@ -354,6 +357,9 @@
     }
     .ambiance_filter{
         display: flex;
+        @include media("<=tablet") {
+            padding: 0 16px;
+        }
         button{
             @extend %white-btn;
             transition-property: background-color,border-color,color,fill,stroke;

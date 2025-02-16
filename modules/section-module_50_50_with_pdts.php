@@ -48,9 +48,23 @@
 
                 <div class="slider_pdts_content" style="max-height: 260px;">
 
-                <?php if($radio_selected == 'select_pdts') :
-                    $featured_pdts =  $half_with_pdts['select_pdts_slider'];
-                else :
+                <?php if($radio_selected == 'select_pdts') {
+                    $select_pdts =  $half_with_pdts['select_pdts_slider'];
+                    if (!empty($select_pdts) && is_array($select_pdts)) {
+                        foreach ($select_pdts as $pdt_id) {
+                            $product = wc_get_product($pdt_id); // Get the product object
+                            if ($product && is_a($product, 'WC_Product')) {
+                                $featured_pdts[] = $pdt_id; // Add valid product ID to the array
+                            }
+                        }
+                    }
+                    // if (isset($_GET['debug_check'])) {
+                    //     echo "<pre>";
+                    //     print_r($featured_pdts);
+                    //     echo "</pre>";
+                    // }
+                }
+                else{
                     $selected_cat =  $half_with_pdts['select_category_slider'];
                     $term = get_term( $selected_cat, 'product_cat' );
                     $slug = $term->slug;
@@ -70,8 +84,8 @@
                         'suppress_filters' => false,
                     );
                     $featured_pdts = get_posts( $args_cat );
-                endif;
-                if( $featured_pdts ): ?>
+                }
+                if( !empty($featured_pdts) ): ?>
                         <div class="tabs_wrapper">
                             <div class="swiper_slide_pdts swiper-container">
                                 <div id="module_pdts_content" class="slider_products_content swiper-wrapper">

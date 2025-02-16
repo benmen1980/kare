@@ -250,6 +250,16 @@
 								)
 							);
 						?>
+						<?php if ( function_exists( 'icl_get_languages' ) ) {
+    $languages = icl_get_languages('skip_missing=0');
+    if (!empty($languages)) {
+        echo '<select id="mobile-lang-switcher" onchange="window.location.href=this.value;">';
+        foreach ($languages as $lang) {
+            echo '<option value="'.esc_url($lang['url']).'" '.($lang['active'] ? 'selected' : '').'>'.esc_html($lang['native_name']).'</option>';
+        }
+        echo '</select>';
+    }
+} ?>
 					</div>
 				</div>
 			</div>

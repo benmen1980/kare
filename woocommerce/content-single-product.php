@@ -268,7 +268,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 							<b class="text_sale_percent"> <?php echo '-'.$percent.'%&nbsp;'; ?></b>
 						</div>
 						<p class="sale_price"> 
-							<span>RRP*: &nbsp;</span>
+							<!-- <span>RRP*: &nbsp;</span> -->
 							<?php woocommerce_template_single_price(); ?>
 						</p>
 					<?php else : ?>
@@ -414,13 +414,13 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 						endif;
 						?>
 					</div>
-
+					<?php if($product->get_short_description()): ?>
 					<h5 class="short_discreption_title"><?php _e( 'At a glance:', 'kare' ); ?></h5>
 					<?php
 					
 					// add short description
 					woocommerce_template_single_excerpt();
-
+					endif;
 					?>
 				</div>
 			</div>
@@ -517,7 +517,17 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 							</li>
 							<li>
 								<span class="description_bold"><?php echo esc_html_e( 'Color:', 'kare' ); ?></span>
-								<span class="answer"><?php echo esc_html( $color ); ?></span>
+								<span class="answer">
+									<?php 
+									//echo esc_html( $color );
+									if (!empty($product->get_attribute('color'))) {
+										echo $product->get_attribute('color');
+									}
+									// else{
+									// 	echo esc_html( $color );
+									// }
+									?>
+								</span>
 							</li>
 							<?php if(!empty($series)) : ?>
 								<li>

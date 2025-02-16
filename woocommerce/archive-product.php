@@ -217,10 +217,11 @@ endif;
 
 						if ( $product_count == 3 ) {
 							?>
-							<div class="section_modules_wrapper">
+							
 							<?php
-									if($choose_module): 
-										while(the_repeater_field('choose_module',  $post_id)): 
+								if($choose_module): ?>
+									<div class="section_modules_wrapper kkk">
+										<?php while(the_repeater_field('choose_module',  $post_id)): 
 											$mod = get_sub_field('module_list');
 											$mod = explode(':', $mod);
 											switch ($mod[0]) {
@@ -229,10 +230,10 @@ endif;
 													break;
 											}
 											// break;
-										endwhile;
-									endif;
-								?>
-							</div>
+										endwhile; ?>
+									</div>
+								<?php endif; ?>
+							
 							<?php
 						}
 
