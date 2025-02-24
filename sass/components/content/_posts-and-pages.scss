@@ -217,6 +217,9 @@ form{
         padding: 16px 16px 16px 36px;
         margin: 0 0 20px 0;
         position: relative;
+        [dir="rtl"] & {
+            padding: 16px 36px 16px 16px;
+        }
         &::before {
             content: '';
             background-image: url("../images/svg/check-circle.svg");

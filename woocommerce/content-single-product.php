@@ -383,7 +383,7 @@ if ( function_exists( 'woocommerce_breadcrumb' ) ) {
 								<?php echo sprintf(esc_html__( 'Minimum order quantity: %d pieces', 'kare' ),intval( $quantity_product )); ?>
 							</p>
 							<p>
-								<?php echo sprintf(esc_html__( 'This product is only available in a set of %d. Price is per piece.', 'kare' ),intval( $quantity_product )); ?>
+								<?php echo sprintf(esc_html__( 'This product is only available in a set of %d. Price is per set.', 'kare' ),intval( $quantity_product )); ?>
 							</p>
 						</span>
 					</section>

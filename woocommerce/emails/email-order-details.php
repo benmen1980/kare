@@ -55,9 +55,9 @@ do_action( 'woocommerce_email_before_order_table', $order, $sent_to_admin, $plai
 			$numpay = !empty( $order_cc_meta['TotalPayments'] ) ? $order_cc_meta['TotalPayments'] : 1;
 
 			//Adding the text "VAT included" to the order summary
-			if ( isset( $item_totals['order_total'] ) ) {
-				$item_totals['order_total']['value'] .= ' <small>(' . 'כולל מע"מ' . ')</small>';
-			}
+			// if ( isset( $item_totals['order_total'] ) ) {
+			// 	$item_totals['order_total']['value'] .= ' <small>(' . 'כולל מע"מ' . ')</small>';
+			// }
 
 			if ( $numpay ) {
 				$new_row = array(
@@ -77,7 +77,7 @@ do_action( 'woocommerce_email_before_order_table', $order, $sent_to_admin, $plai
 				}
 			}
 
-			if ( $item_totals ) {
+			if ( $item_totals) {
 				$i = 0;
 				foreach ( $item_totals as $total ) {
 					$i++;

@@ -511,5 +511,262 @@ function wpml_floating_language_switcher() {
 add_action('wp_footer', 'wpml_floating_language_switcher');
 
 
+function add_product_query_custom_filter($q) {
+    if (is_admin()) {
+        return;
+    }
+
+    $tax_query = array('relation' => 'AND'); // Ensure all conditions between different filters are met
+    $meta_query = array('relation' => 'AND'); // Ensure stock conditions are also enforced
+
+    // **Filter by Product Category (OR within categories, AND with other filters)**
+    if (!empty($_REQUEST['product_category'])) {
+        $tax_query[] = array(
+            'relation' => 'OR', // Multiple selected categories should use OR
+            array(
+                'taxonomy' => 'product_cat',
+                'field'    => 'slug',
+                'terms'    => $_REQUEST['product_category'],
+                'operator' => 'IN' // Products must belong to one of the selected categories
+            )
+        );
+    }
+
+    // **Filter by Color Attribute (OR within colors, AND with other filters)**
+    if (!empty($_REQUEST['product_color'])) {
+        $tax_query[] = array(
+            'relation' => 'OR', // Multiple selected colors should use OR
+            array(
+                'taxonomy' => 'pa_color',
+                'field'    => 'slug',
+                'terms'    => $_REQUEST['product_color'],
+                'operator' => 'IN' // Products must match at least one selected color
+            )
+        );
+    }
+
+    // **Filter by Delivery Time (Radio Button - AND condition remains)**
+    if (!empty($_REQUEST['product_delivery'])) {
+        $delivery_filter = $_REQUEST['product_delivery']; // Now a single value
+
+        if ($delivery_filter == 'instock') {
+            $meta_query[] = array(
+                'key'     => '_stock',
+                'value'   => '0',
+                'compare' => '>', // Products with stock greater than 0
+                'type' => 'NUMERIC'
+            );
+        }
+
+        if ($delivery_filter == 'general_stock') {
+            $meta_query[] = array(
+                'relation' => 'AND',
+                array(
+                    'key'     => '_stock',
+                    'value'   => 0,
+                    'compare' => '<=', // Stock must be 0 or less
+                    'type' => 'NUMERIC'
+                ),
+                array(
+                    'key'     => 'kare_general_stock',
+                    'value'   => '', // Field exists but is empty
+                    'compare' => '!=', // Ensure empty values are also excluded
+                )
+            );
+        }
+
+        if ($delivery_filter == 'coming_soon') {
+            $meta_query[] = array(
+                'relation' => 'AND',
+                array(
+                    'key'     => '_stock',
+                    'value'   => 0,
+                    'compare' => '<=', // Stock must be 0 or less
+                    'type' => 'NUMERIC'
+                ),
+                array(
+                    'relation' => 'OR',
+                    array(
+                        'key'     => 'kare_general_stock',
+                        'compare' => 'NOT EXISTS', // Field does not exist at all
+                    ),
+                    array(
+                        'key'     => 'kare_general_stock',
+                        'value'   => '', // Field exists but is empty
+                        'compare' => '=', // Ensure empty values are also excluded
+                    ),
+                    array( // NEW CONDITION: Check for empty field explicitly
+                        'key'     => 'kare_general_stock',
+                        'value'   => ' ',
+                        'compare' => '=',
+                    )
+                ),
+            );
+        }
+    }
+
+    // **Apply Tax Query (Category & Color)**
+    if (!empty($tax_query) && count($tax_query) > 1) {
+        $q->set('tax_query', $tax_query);
+    }
+
+    // **Apply Meta Query (Delivery Time)**
+    if (!empty($meta_query) && count($meta_query) > 1) {
+        $q->set('meta_query', $meta_query);
+    }
+
+    // echo "<pre>WooCommerce Query Variables:\n";
+    // print_r($q->query_vars);
+    // echo "</pre>";
+    // exit();
+
+}
+
+add_action('woocommerce_product_query', 'add_product_query_custom_filter'); 
+
+
+
+
+
+
+
+function translate_category_names_with_wpml($categories) {
+    if (function_exists('wpml_translate_single_string')) {
+        foreach ($categories as &$category) {
+            $category['name'] = wpml_translate_single_string($category['name'], 'Categories', $category['name']);
+        }
+    }
+    return $categories;
+}
+
+function translate_colors_with_wpml($color_data) {
+    if (function_exists('wpml_translate_single_string')) {
+        foreach ($color_data as &$color) {
+            $color['name'] = wpml_translate_single_string($color['name'], 'Colors', $color['name']);
+        }
+    }
+    return $color_data;
+}
+
+function syncCatFilterAndPdtFilter() {
+    $categories = get_terms(array(
+        'taxonomy'   => 'product_cat',
+        'hide_empty' => false,
+    ));
+
+    foreach ($categories as $term) {
+        $cat_id = $term->term_id;
+        $parent_id = $term->parent;
+        
+        // Get child categories
+        $child_categories = get_terms(array(
+            'taxonomy'   => 'product_cat',
+            'parent'     => $cat_id,
+            'hide_empty' => false,
+        ));
+
+        $cat_data = array();
+        if (!empty($child_categories)) {
+            foreach ($child_categories as $child) {
+                $cat_data[] = array(
+                    'slug' => $child->slug,
+                    'name' => $child->name
+                );
+            }
+        }
+
+        // Get products in this category
+        $product_ids = get_posts(array(
+            'post_type'   => 'product',
+            'numberposts' => -1,
+            'fields'      => 'ids',
+            'tax_query'   => array(
+                array(
+                    'taxonomy' => 'product_cat',
+                    'field'    => 'term_id',
+                    'terms'    => $cat_id,
+                ),
+            ),
+        ));
+
+        // Get colors for products
+        $color_data = array();
+        if (!empty($product_ids)) {
+            $color_terms = get_terms(array(
+                'taxonomy'   => 'pa_color',
+                'hide_empty' => false,
+                'object_ids' => $product_ids,
+            ));
+
+            if (!empty($color_terms) && !is_wp_error($color_terms)) {
+                foreach ($color_terms as $color) {
+                    $color_data[] = array(
+                        'slug' => $color->slug,
+                        'name' => $color->name
+                    );
+                }
+            }
+        }
+
+        // **Update ACF for Original Category**
+        update_field('child_categories_list', $cat_data, 'product_cat_' . $cat_id);
+        update_field('product_colors_list', $color_data, 'product_cat_' . $cat_id);
+
+        // **🔹 WPML: Update Translated Categories with Matching Values**
+        if (function_exists('wpml_object_id')) {
+            global $sitepress;
+            $languages = $sitepress->get_active_languages();
+
+            
+            $translated_term_id = apply_filters('wpml_object_id', $cat_id, 'product_cat', true, 'en');
+            if ($translated_term_id && $translated_term_id != $cat_id) {
+                
+                $translated_cat_data = array();
+                foreach ($cat_data as $child) {
+                    $translated_child_id = apply_filters('wpml_object_id', $child['slug'], 'product_cat', true, 'en');
+                    if ($translated_child_id) {
+                        $translated_term = get_term($translated_child_id, 'product_cat');
+                        if ($translated_term) {
+                            $translated_cat_data[] = array(
+                                'slug' => $translated_term->slug,
+                                'name' => $translated_term->name
+                            );
+                        }
+                    }
+                }
+
+                $translated_color_data = array();
+                foreach ($color_data as $color) {
+                    $translated_color_id = apply_filters('wpml_object_id', $color['slug'], 'pa_color', true, 'en');
+                    if ($translated_color_id) {
+                        $translated_color_term = get_term($translated_color_id, 'pa_color');
+                        if ($translated_color_term) {
+                            $translated_color_data[] = array(
+                                'slug' => $translated_color_term->slug,
+                                'name' => $translated_color_term->name
+                            );
+                        }
+                    }
+                }
+
+                update_field('child_categories_list', $translated_cat_data, 'product_cat_' . $translated_term_id);
+                update_field('product_colors_list', $translated_color_data, 'product_cat_' . $translated_term_id);
+            }
+            
+        }
+
+    }
+}
+
+// Hook into a cron job
+add_action('sync_filter_cron_hook', 'syncCatFilterAndPdtFilter');
+
+
+
+
+
+
+
+
 
 

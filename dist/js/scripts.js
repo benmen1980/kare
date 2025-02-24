@@ -424,6 +424,86 @@ jQuery(document).on("ready", function(){
         }
     }
 
+    $('.btn_filter_pdts').on('click', function () {
+        var targetSidebarId = '';
+        var targetTitle = $(this).data('title');
+        console.log("🚀 ~ targetTitle:", targetTitle);
+    
+        // Identify which button was clicked and map to the correct sidebar
+        var sidebarMapping = {
+            'cat_filter': '#cat_sidebar',
+            'delivery_filter': '#delivery_sidebar',
+            'material_filter': '#material_sidebar',
+            'color_filter': '#color_sidebar'
+        };
+    
+        var buttonId = $(this).attr('id');
+    
+        if (buttonId === 'mobile_filter') {
+            // Mobile case: show all sidebars
+            //$('.content_sidebar').show();
+            $(".sidebar-content .top_sidebar h2").html("All Filters"); // Update title
+        } else if (sidebarMapping[buttonId]) {
+            targetSidebarId = sidebarMapping[buttonId];
+    
+            // Hide all sidebar-content divs first, then show the correct one
+            $('.content_sidebar').hide();
+            $(targetSidebarId).fadeIn();
+    
+            // Update sidebar title
+            $(".sidebar-content .top_sidebar h2").html(targetTitle);
+        }
+    
+        // Show the sidebar container
+        $('.filter_sidebar').addClass('active');
+        $("#main-site").css('overflow','hidden');
+        $("#main-site").css('padding-bottom', '0');
+        // Show overlay if not already present
+        if ($('#overlay').length === 0) {
+            $('body').append('<div id="overlay"></div>');
+            $('body').css('overflow', 'hidden');
+        }
+        $('#overlay').fadeIn(); // Show the overlay
+    });
+
+    $('.btn_mobile_filter').on('click', function () {
+        var targetSidebar = $(this).data('target');
+        var $icon = $(this).find('svg'); 
+        // If the clicked section is already open, close it
+        if ($(targetSidebar).is(':visible')) {
+            $(targetSidebar).slideUp();
+            $icon.removeClass('rotated'); 
+        } else {
+            // Hide all other open filters
+            $('.content_sidebar').slideUp();
+            $icon.removeClass('rotated'); 
+            
+            // Show the selected filter section
+            $(targetSidebar).slideDown();
+            $icon.addClass('rotated'); 
+        }
+    });
+
+    
+    if( $('.filter_sidebar').hasClass('active')){
+        if ($('#overlay').length === 0) {
+            $('body').append('<div id="overlay"></div>');
+            $('body').css('overflow', 'hidden');
+        }
+        $('#overlay').fadeIn(); // Show the overlay
+        $("#main-site").css('overflow','hidden');
+        $("#main-site").css('padding-bottom', '0');
+    }
+    $('.filter_sidebar .close,.filter_sidebar .close_filter').on('click', function() {
+        $('.filter_sidebar').removeClass('active');
+        $('#overlay').fadeOut(function() {
+            $(this).remove(); // Remove overlay after fade out
+        });
+        $('body').css('overflow', '');
+        $("#main-site").css('overflow','auto');
+        $("#main-site").css('padding-bottom', '100');
+    });
+
     $("#login_sidebar .lost_password a").on('click', function(e) {
         e.preventDefault();
         $("#login_sidebar .bottom_sidebar").hide();
@@ -438,6 +518,72 @@ jQuery(document).on("ready", function(){
         $('#login_sidebar .custom-reset-password-form:visible').hide();
         $('#login_sidebar .bottom_sidebar:hidden').show();
 
+    });
+
+    // Click outside filter sidebar to close it
+    $(document).on('click', '#overlay', function () {
+        $('.filter_sidebar').removeClass('active'); // Remove active class
+        $("#main-site").css('overflow','auto');
+        $("#main-site").css('padding-bottom', '100');
+        $('#overlay').fadeOut(function () {
+            $(this).remove(); // Remove overlay after fading out
+        });
+        $('body').css('overflow', 'auto'); // Restore scrolling
+    });
+
+    // $( 'input', '.filter_sidebar .checkbox_wrapper' ).on( 'change', function() {
+    //     console.log('enter change');
+    //     $('#filter_form').trigger('submit');
+    // });
+
+    $('.reset_filter_item').on('click', function() {
+        if ($('#overlay').length === 0) {
+            $('body').append('<div id="overlay"></div>');
+            $('body').css('overflow', 'hidden');
+        }
+        $('#overlay').fadeIn();
+
+        // Handle category filter reset
+        const category = $(this).data('category');
+        if (category) {
+            const $categoryCheckbox = $(`input[name="product_category[]"][value="${category}"]`);
+            if ($categoryCheckbox.length) {
+                $categoryCheckbox.prop('checked', false);
+                $('#filter_form').submit();
+                return;
+            }
+        }
+
+        // Handle color filter reset
+        const color = $(this).data('color');
+        if (color) {
+            const $colorCheckbox = $(`input[name="product_color[]"][value="${color}"]`);
+            if ($colorCheckbox.length) {
+                $colorCheckbox.prop('checked', false);
+                $('#filter_form').submit();
+                return;
+            }
+        }
+
+        // Handle delivery filter reset
+        const delivery = $(this).data('delivery');
+
+        if (delivery) {
+
+            // Find the checkbox with the extracted value
+            const $deliveryRadio = $(`input[name="product_delivery"][value="${delivery}"]`);
+    
+            if ($deliveryRadio.length) {
+                $deliveryRadio.prop('checked', false); // Uncheck the checkbox
+                $('#filter_form').submit(); // Submit the form
+            }
+        }
+    });
+
+    $( '.reset-filters' ).on( 'click', function() {
+        console.log('enter reset');
+        $('#overlay').fadeIn();
+        $('#filter_form').find( 'input[type="checkbox"]:checked,input[type="radio"]:checked' ).prop( 'checked', '' ).end().submit();
     });
     
     // Close the sidebar if clicked outside
@@ -503,6 +649,8 @@ jQuery(document).on("ready", function(){
             console.log('mobile');
             $('#mobile_menu_sidebar').addClass('active_left');
             $("#mobile_menu_sidebar").addClass('child_menu_open');
+            $("#main-site").css('overflow','hidden');
+            $("#main-site").css('padding-bottom', '0');
             if ($('#overlay').length === 0) {
                 $('body').append('<div id="overlay"></div>');
                 $('body').css('overflow', 'hidden');
@@ -514,6 +662,8 @@ jQuery(document).on("ready", function(){
             console.log('enter close menu');
             $('#mobile_menu_sidebar').removeClass('active_left');
             $("#mobile_menu_sidebar").removeClass('child_menu_open');
+            $("#main-site").css('overflow','auto');
+            $("#main-site").css('padding-bottom', '100');
             $('#overlay').fadeOut(function() {
                 $(this).remove(); // Remove overlay after fade out
             });
@@ -531,6 +681,8 @@ jQuery(document).on("ready", function(){
             var container = $("#mobile_menu_sidebar");
             if (!container.is(e.target) && container.has(e.target).length === 0) {
                 container.removeClass('active_left');
+                $("#main-site").css('overflow','auto');
+                $("#main-site").css('padding-bottom', '100');
                 $('#overlay').fadeOut(function() {
                     $(this).remove(); // Remove overlay after fade out
                 });
@@ -553,6 +705,7 @@ jQuery(document).on("ready", function(){
                 });
                 parentLi.removeClass('active-nemu');
                 $("#mobile_menu_sidebar").addClass('child_menu_open');
+                $('body').css('overflow', 'hidden');
 
             } else {
                 
@@ -573,6 +726,7 @@ jQuery(document).on("ready", function(){
                        .css({ left: '-500px', opacity: 0 })
                        .stop().animate({ left: '0', opacity: 1 }, 300);
                 $("#mobile_menu_sidebar").removeClass('child_menu_open');
+                $('body').css('overflow', '');
             }
         });
 

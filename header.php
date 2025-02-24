@@ -231,6 +231,192 @@
 				</div>
 			</div>
 
+			<!-- Filter Sidebar -->
+			<div class="filter_sidebar">
+				<form id="filter_form" action="<?php echo esc_url($current_url); ?>" method="GET">
+					<div class="sidebar-content">
+						<div class="top_sidebar">
+							<h2><?php echo  __( 'Categories', 'kare' ); ?></h2>
+							<button type="button" class="close">
+								<img src="<?php echo get_template_directory_uri();?>/dist/images/svg/close.svg" alt="<?php esc_html_e( 'close sidebar', 'kare' ) ?>" width="18" height="18">
+							</button>
+						</div>
+						<div class="content_filter_wrapper">
+							<button type="button" class="btn_mobile_filter" data-target="#cat_sidebar">
+								<?php echo esc_html__('Categories', 'kare') ?>
+								<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-down.svg'); ?>
+							</button>
+					
+							<div class="content_sidebar" id="cat_sidebar" data-title="<?php echo __( 'Categories', 'kare' ); ?>">
+								
+									<?php 
+									$current_category = get_queried_object();
+
+									if ( $current_category ) {
+										// Get the category ID
+										$category_id = $current_category->term_id;
+										// $child_categories = get_terms( array(
+										// 	'taxonomy' => 'product_cat',
+										// 	'parent' => $category_id,
+										// 	'hide_empty' => false, // can be set to true if you want to hide empty
+										// ) );
+										//$child_categories = get_field('child_categories_list', 'product_cat_' . $category_id);
+										$english_category_id = apply_filters('wpml_object_id', $category_id, 'product_cat', true, 'en');
+										$child_categories = get_field('child_categories_list', 'product_cat_' . $english_category_id);
+										if (function_exists('icl_object_id')) {
+											$lang = apply_filters('wpml_current_language', NULL); // Get current language
+										
+											// If in Hebrew, get translated categories
+											if ($lang == 'he' && !empty($child_categories)) {
+												$translated_categories = [];
+										
+												foreach ($child_categories as $child_category) {
+												
+													$child_term = get_term_by('slug', $child_category['slug'], 'product_cat');
+													
+													if ($child_term) {
+														$translated_term_id = apply_filters('wpml_object_id', $child_term->term_id, 'product_cat', true, 'he');
+														
+														if ($translated_term_id) {
+															$translated_term = get_term($translated_term_id, 'product_cat');
+															
+															if ($translated_term) {
+																$translated_categories[] = [
+																	'slug' => $translated_term->slug,
+																	'name' => $translated_term->name
+																];
+															}
+														}
+													}
+												}
+												
+												// Use translated categories
+												$child_categories = $translated_categories;
+											}
+										}
+										if (!empty($child_categories)) :
+											foreach ($child_categories as $child_category) :
+												$cat_name = esc_html($child_category['name']);
+												$cat_slug = esc_attr($child_category['slug']); ?>
+												
+												<div class="checkbox_wrapper">
+													<label role="menuitem">
+														<input class="kare-element" type="checkbox" name="product_category[]" value="<?php echo $cat_slug; ?>" 
+															<?php checked(!empty($_REQUEST['product_category']) && in_array($cat_slug, $_REQUEST['product_category'])); ?>>	
+														<p><?php echo $cat_name; ?></p>
+													</label>
+												</div>
+								
+											<?php endforeach;
+										endif;
+									}
+									?>
+							
+							</div>
+							
+							<button type="button" class="btn_mobile_filter" data-target="#delivery_sidebar">
+								<?php echo esc_html__('Delivery Time', 'kare') ?>
+								<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-down.svg'); ?>
+							</button> 
+							<div class="content_sidebar" id="delivery_sidebar" data-title="<?php echo __( 'Delivery Time', 'kare' ); ?>">
+								
+								<?php  $selected_delivery_filter = isset($_REQUEST['product_delivery']) ? $_REQUEST['product_delivery'] : '';?>
+								<div class="radio_wrapper">
+									<label role="menuitem">
+										<input type="radio" name="product_delivery" value="instock" <?php checked( $selected_delivery_filter, 'instock' ); ?>>  
+										<p><?php echo __('Immediately Available', 'kare'); ?></p>
+									</label>
+								</div>
+								<div class="radio_wrapper">
+									<label role="menuitem">
+										<input type="radio" name="product_delivery" value="general_stock"  <?php checked( $selected_delivery_filter, 'general_stock' ); ?>>  
+										<p><?php echo __('60 business days', 'kare'); ?></p>
+									</label>
+								</div>
+								<div class="radio_wrapper">
+									<label role="menuitem">
+										<input type="radio" name="product_delivery" value="coming_soon"  <?php checked( $selected_delivery_filter, 'coming_soon' ); ?>>  
+										<p><?php echo __('coming soon', 'kare'); ?></p>
+									</label>
+								</div>
+						
+							</div>
+							
+							<button type="button" class="btn_mobile_filter" data-target="#color_sidebar">
+								<?php echo esc_html__('Colors', 'kare') ?>
+								<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-down.svg'); ?>
+							</button>
+							<div class="content_sidebar" id="color_sidebar" data-title="<?php echo __( 'Colors', 'kare' ); ?>">
+								<?php 
+								$current_category = get_queried_object();
+								if ($current_category) {
+									$category_id = $current_category->term_id;
+									$english_category_id = apply_filters('wpml_object_id', $category_id, 'product_cat', true, 'en');
+									$product_colors = get_field('product_colors_list', 'product_cat_' . $english_category_id);
+									// Get colors from ACF
+									//$product_colors = get_field('product_colors_list', 'product_cat_' . $category_id);
+									//$product_colors = json_decode($product_colors, true);
+									$lang = apply_filters('wpml_current_language', NULL); // Get current language
+										
+											// If in Hebrew, get translated categories
+									if ($lang == 'he' && !empty($product_colors)) {
+										$translated_colors = [];
+								
+										foreach ($product_colors as $color) {
+											$color_term = get_term_by('slug', $color['slug'], 'pa_color');
+											
+											
+											$translated_color_id = apply_filters('wpml_object_id', $color_term->term_id, 'pa_color', true, 'he');
+							
+											if ($translated_color_id) {
+												$translated_color = get_term($translated_color_id, 'pa_color');
+												if ($translated_color) {
+													$translated_colors[] = [
+														'slug' => $translated_color->slug,
+														'name' => $translated_color->name
+													];
+												}
+											} else {
+												// If no translation exists, use original color
+												$translated_colors[] = [
+													'slug' => $color['slug'],
+													'name' => $color['name']
+												];
+											}
+											
+										}
+								
+										$product_colors = $translated_colors;
+									}
+									
+									
+									if (!empty($product_colors)) : ?>
+										<?php foreach ($product_colors as $color) :
+											$color_name = esc_html($color['name']); 
+											$color_slug = esc_attr($color['slug']); ?>
+											
+											<div class="checkbox_wrapper">
+												<label>
+													<input type="checkbox" name="product_color[]" value="<?php echo $color_slug; ?>"
+														<?php checked(!empty($_REQUEST['product_color']) && in_array($color_slug, $_REQUEST['product_color'])); ?>>
+													<p><?php echo $color_name; ?></p>
+												</label>
+											</div>
+
+										<?php endforeach; 
+									endif;
+								}
+								?>
+							</div>
+						</div>
+						<div class="bottom_sidebar bottom_filter">
+							<button type="button" class="close_filter"><?php echo  __( 'CLOSE', 'kare' ); ?></button>
+							<button type="submit" class="confirm_filter"><?php echo  __( 'Confirm', 'kare' ); ?></button>
+						</div>
+					</div>
+				</form>
+			</div>
+
 			<!-- Popup Mobile Menu -->
 			<div id="mobile_menu_sidebar" class="mobile_menu_sidebar open_left">
 				<div class="sidebar-content">
@@ -251,15 +437,20 @@
 							);
 						?>
 						<?php if ( function_exists( 'icl_get_languages' ) ) {
-    $languages = icl_get_languages('skip_missing=0');
-    if (!empty($languages)) {
-        echo '<select id="mobile-lang-switcher" onchange="window.location.href=this.value;">';
-        foreach ($languages as $lang) {
-            echo '<option value="'.esc_url($lang['url']).'" '.($lang['active'] ? 'selected' : '').'>'.esc_html($lang['native_name']).'</option>';
-        }
-        echo '</select>';
-    }
-} ?>
+							$languages = icl_get_languages('skip_missing=0');
+							if (!empty($languages)) {
+								echo '<select id="mobile-lang-switcher" onchange="window.location.href=this.value;" style="background-image: url(' . esc_url($languages[array_search(1, array_column($languages, 'active'))]['country_flag_url']) . '); background-repeat: no-repeat; background-position: left center; padding-left: 30px;">';
+								
+								echo '<option value="#" disabled selected>Language</option>'; // Display "Language" as the default text
+								
+								foreach ($languages as $lang) {
+									echo '<option value="'.esc_url($lang['url']).'" data-flag="'.esc_url($lang['country_flag_url']).'">'.esc_html($lang['native_name']).'</option>';
+								}
+								
+								echo '</select>';
+							}
+						}
+						?>
 					</div>
 				</div>
 			</div>

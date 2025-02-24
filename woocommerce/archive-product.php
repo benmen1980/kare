@@ -131,36 +131,84 @@ endif;
 ?>
 
 <div class="container container-archive-product">
-	<!-- <div class="filtering_wrapper">
-		<button class="btn_filter_pdts">
-			<span class="filter_name">delivery time</span>
-			<svg></svg>
-		</button>
-		<button class="btn_filter_pdts">
-			<span class="filter_name">Filter categories</span>
-			<svg></svg>
-		</button>
-		<button class="btn_filter_pdts">
-			<span class="filter_name">material</span>
-			<svg></svg>
-		</button>
-		<button class="btn_filter_pdts">
-			<span class="filter_name">Color</span>
-			<svg></svg>
-		</button>
-		<button class="btn_filter_pdts">
-			<span class="filter_name">All filters</span>
-			<svg></svg>
-		</button>
-	</div> -->
-	<div class="ambiance_filter">
-		<button type="button" class="btn_active" id="pdt_img">
-			<?php echo esc_html__('Product', 'kare') ?>
-		</button>
-		<button type="button" id="ambiance_img">
-			<?php echo esc_html__('Ambiance', 'kare') ?>
-		</button>
+	<div class="filter_and_sort">
+		<div class="filtering_wrapper">
+			<button class="btn_filter_pdts" id="delivery_filter" data-title="<?php echo esc_html__('Delivery Time', 'kare') ?>">
+				<?php echo __( 'delivery time', 'kare' ) ?>
+				<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-md.svg'); ?>
+			</button>
+			<?php 
+			//$child_categories_list = get_field('child_categories_list', 'product_cat_' . $category_id);
+			$english_category_id = apply_filters('wpml_object_id', $category_id, 'product_cat', true, 'en');
+			$child_categories_list = get_field('child_categories_list', 'product_cat_' . $english_category_id);
+			if(!empty($child_categories_list)): ?>
+				<button class="btn_filter_pdts" id="cat_filter" data-title="<?php echo esc_html__('Categories', 'kare') ?>">
+					<?php echo esc_html__('Filter categories', 'kare') ?>
+					<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-md.svg'); ?>
+				</button>
+			<?php endif; ?>
+			<!-- <button class="btn_filter_pdts" id="material_filter" data-title="<?php echo esc_html__('Material', 'kare') ?>">
+				<?php echo esc_html__('material', 'kare') ?>
+				<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-md.svg'); ?>
+			</button> -->
+			<?php 
+			//$product_colors_list = get_field('product_colors_list', 'product_cat_' . $category_id);
+			$english_category_id = apply_filters('wpml_object_id', $category_id, 'product_cat', true, 'en');
+			$product_colors_list = get_field('product_colors_list', 'product_cat_' . $english_category_id);
+			if(!empty($product_colors_list)): ?>
+				<button class="btn_filter_pdts" id="color_filter" data-title="<?php echo esc_html__('Colors', 'kare') ?>">
+					<?php echo esc_html__('Color', 'kare') ?>
+					<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-md.svg'); ?>
+				</button>
+			<?php endif; ?>	
+			<button class="btn_filter_pdts" id="mobile_filter">
+				<?php echo esc_html__('All filters', 'kare') ?>
+				<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/arrow-right-md.svg'); ?>
+			</button>
+		</div>
+		<div class="ambiance_filter">
+			<button type="button" class="btn_active" id="pdt_img">
+				<?php echo esc_html__('Product', 'kare') ?>
+			</button>
+			<button type="button" id="ambiance_img">
+				<?php echo esc_html__('Ambiance', 'kare') ?>
+			</button>
+		</div>
 	</div>
+	<?php 
+	$selected_categories = array();
+
+	if (!empty($_REQUEST['product_category']) && is_array($_REQUEST['product_category'])) {
+		foreach ($_REQUEST['product_category'] as $category_slug) {
+			$category = get_term_by('slug', $category_slug, 'product_cat');
+			if ($category) {
+				$selected_categories[] = array(
+					'slug' => esc_attr($category->slug),
+					'name' => esc_html($category->name)
+				);
+			}
+		}
+	}
+
+	$selected_delivery = null;
+	if( !empty( $_REQUEST[ 'product_delivery' ] ) ) {
+	
+		$delivery_term = $_REQUEST[ 'product_delivery' ];
+		$selected_delivery = __('Delivery Time','kare').': '.$_REQUEST[ 'product_delivery' ];
+		
+	}
+
+	$selected_colors = array();
+	if( !empty( $_REQUEST[ 'product_color' ] ) && is_array($_REQUEST['product_color'])) {
+		foreach ($_REQUEST['product_color'] as $color_slug) {
+			
+			$color_term = get_term_by( 'slug', $color_slug, 'pa_color' );
+			if ($color_term) {
+				$selected_colors[] = $color_term->name;
+			}
+		}
+	}
+	?>
 	<div class="product_sorting_wrapper">
 		<div class="hidden"></div>
 		<div class="product-count">
@@ -180,6 +228,37 @@ endif;
 						); 
 				?>
 			</span>
+			<?php if(!empty($selected_categories) || !empty($selected_delivery) || !empty($selected_colors)){ ?>
+				<span> | </span>
+				<?php echo __("Active filters:","kare").'  '; ?>
+				<div class="reset_filter_item_wrap">
+					<?php if(!empty($selected_categories)): ?>
+						<?php foreach ($selected_categories as $selected_category): ?>
+							<button type="button" class="reset_filter_item" data-category="<?php echo $selected_category['slug']; ?>">
+								<span><?php echo __("Category", "kare");?>:</span><?php echo $selected_category['name']; ?>
+								<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/close.svg'); ?>
+							</button>
+						<?php endforeach; ?>
+					<?php endif; ?>
+					<?php if(!empty($selected_colors)): ?>
+						<?php foreach ($selected_colors as $selected_color): ?>
+							<button type="button" class="reset_filter_item" data-color="<?php echo  get_term_by( 'slug', $selected_color, 'pa_color' )->slug;?>">
+								<span><?php echo __("Color", "kare");?>:</span><?php echo $selected_color; ?>
+								<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/close.svg'); ?>
+							</button>
+							<?php endforeach; ?>
+					<?php endif; ?>
+					<?php if(!empty($selected_delivery)): ?>
+						<button type="button" class="reset_filter_item" data-delivery="<?php echo $delivery_term;?>">
+							<?php echo $selected_delivery; ?>
+							<?php echo file_get_contents(get_template_directory_uri() . '/dist/images/svg/close.svg'); ?>
+						</button>
+					<?php endif;  ?>
+				</div>
+				<?php if(!empty($selected_category) || !empty($selected_delivery) || !empty($selected_color)): ?>
+					<input type="reset" class="reset-filters" value="<?php echo __("Clear filter","kare");?>">
+				<?php endif; 
+			}?>
 		</div>
 		<div class="sorting-options">
 			<?php woocommerce_catalog_ordering(); ?>

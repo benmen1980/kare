@@ -113,5 +113,25 @@
 
 <?php wp_footer(); ?>
 
+<!-- Start of Glassix Chat Widget -->
+
+<script>
+
+var widgetOptions = {
+
+     apiKey: "99233337-8402-4bdc-81ab-4f317bdb843d",
+
+     snippetId: "SKrn08k65cmti5T98yWE"
+
+};
+
+ 
+
+(function(n){var u=function(){GlassixWidgetClient&&typeof GlassixWidgetClient=="function"?(window.widgetClient=new GlassixWidgetClient(n),widgetClient.attach(),window.glassixWidgetScriptLoaded&&window.glassixWidgetScriptLoaded()):f()},f=function(){r.onload=u;r.src="https://cdn.glassix.net/clients/widget.1.2.min.js";i.parentNode.removeChild(t);i.parentNode.insertBefore(r,i)},i=document.getElementsByTagName("script")[0],t=document.createElement("script"),r;(t.async=!0,t.type="text/javascript",t.crossorigin="anonymous",t.id="glassix-widget-script",r=t.cloneNode(),t.onload=u,t.src="https://cdn.glassix.com/clients/widget.1.2.min.js",!document.getElementById(t.id)&&document.body)&&(i.parentNode.insertBefore(t,i),t.onerror=f)})(widgetOptions)
+
+</script>
+
+<!-- End of Glassix Chat Widget -->
+
 </body>
 </html>
